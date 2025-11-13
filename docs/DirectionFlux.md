@@ -1,0 +1,11 @@
+# DirectionFlux
+
+Direction du flux
+
+## Enum
+
+* `In` (value: `'In'`)
+
+* `Out` (value: `'Out'`)
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
