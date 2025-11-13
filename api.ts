@@ -18,9 +18,7 @@ export * from './api/afnorpdppaapi';
 export * from './api/afnorpdppadirectory-service-api';
 export * from './api/afnorpdppaflow-service-api';
 export * from './api/chorus-pro-api';
-export * from './api/processing-endpoints-unifis-api';
 export * from './api/sant-api';
-export * from './api/signature-lectronique-api';
 export * from './api/traitement-facture-api';
 export * from './api/utilisateur-api';
 

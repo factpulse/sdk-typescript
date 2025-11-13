@@ -7,9 +7,7 @@ api/afnorpdppaapi.ts
 api/afnorpdppadirectory-service-api.ts
 api/afnorpdppaflow-service-api.ts
 api/chorus-pro-api.ts
-api/processing-endpoints-unifis-api.ts
 api/sant-api.ts
-api/signature-lectronique-api.ts
 api/traitement-facture-api.ts
 api/utilisateur-api.ts
 base.ts
@@ -68,11 +66,14 @@ docs/LigneDeTVA.md
 docs/ModeDepot.md
 docs/ModePaiement.md
 docs/MontantHtTotal.md
+docs/MontantHtTotal1.md
 docs/MontantTotal.md
 docs/MontantTotalAcompte.md
 docs/MontantTotalMontantRemiseGlobaleTtc.md
 docs/MontantTtcTotal.md
+docs/MontantTtcTotal1.md
 docs/MontantTva.md
+docs/MontantTva1.md
 docs/Montantapayer.md
 docs/Montantbaseht.md
 docs/Montanthttotal.md
@@ -88,7 +89,6 @@ docs/PDPCredentials.md
 docs/ParametresSignature.md
 docs/ParametresStructure.md
 docs/PieceJointeComplementaire.md
-docs/ProcessingEndpointsUnifisApi.md
 docs/ProfilAPI.md
 docs/ProfilFlux.md
 docs/Quantite.md
@@ -112,7 +112,6 @@ docs/SantApi.md
 docs/SchemeID.md
 docs/ServiceStructure.md
 docs/SignatureInfo.md
-docs/SignatureLectroniqueApi.md
 docs/SoumettreFactureCompleteRequest.md
 docs/SoumettreFactureCompleteResponse.md
 docs/SoumettreFactureRequest.md
@@ -184,11 +183,14 @@ models/ligne-de-tva.ts
 models/mode-depot.ts
 models/mode-paiement.ts
 models/montant-ht-total.ts
+models/montant-ht-total1.ts
 models/montant-total-acompte.ts
 models/montant-total-montant-remise-globale-ttc.ts
 models/montant-total.ts
 models/montant-ttc-total.ts
+models/montant-ttc-total1.ts
 models/montant-tva.ts
+models/montant-tva1.ts
 models/montantapayer.ts
 models/montantbaseht.ts
 models/montanthttotal.ts

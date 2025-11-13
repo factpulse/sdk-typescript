@@ -15,11 +15,8 @@
 
 
 /**
- * Description complète du statut d\'une tâche asynchrone.
+ * Montant TVA
  */
-export interface StatutTache {
-    'id_tache': string;
-    'statut': string;
-    'resultat'?: { [key: string]: any; } | null;
+export interface MontantTva1 {
 }
 

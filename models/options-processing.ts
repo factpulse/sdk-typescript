@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ProfilAPI } from './profil-api';
 
 /**
  * Options de traitement pour la génération et la soumission.
@@ -21,7 +24,7 @@ export interface OptionsProcessing {
     /**
      * Profil Factur-X à utiliser
      */
-    'profil_facturx'?: OptionsProcessingProfilFacturxEnum;
+    'profil_facturx'?: ProfilAPI;
     /**
      * Auto-enrichir les données (APIs Entreprises, Chorus Pro, etc.)
      */
@@ -36,13 +39,5 @@ export interface OptionsProcessing {
     'verifier_parametres_destination'?: boolean;
 }
 
-export const OptionsProcessingProfilFacturxEnum = {
-    Minimum: 'MINIMUM',
-    Basic: 'BASIC',
-    En16931: 'EN16931',
-    Extended: 'EXTENDED'
-} as const;
-
-export type OptionsProcessingProfilFacturxEnum = typeof OptionsProcessingProfilFacturxEnum[keyof typeof OptionsProcessingProfilFacturxEnum];
 
 

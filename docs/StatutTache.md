@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id_tache** | **string** |  | [default to undefined]
 **statut** | **string** |  | [default to undefined]
-**resultat** | [****](.md) |  | [optional] [default to undefined]
+**resultat** | **{ [key: string]: any; }** |  | [optional] [default to undefined]
 
 ## Example
 

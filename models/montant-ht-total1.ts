@@ -15,11 +15,8 @@
 
 
 /**
- * Description complète du statut d\'une tâche asynchrone.
+ * Montant HT total
  */
-export interface StatutTache {
-    'id_tache': string;
-    'statut': string;
-    'resultat'?: { [key: string]: any; } | null;
+export interface MontantHtTotal1 {
 }
 
