@@ -18,10 +18,10 @@
 import type { CategorieTVA } from './categorie-tva';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Montantbaseht } from './montantbaseht';
+import type { MontantBaseHt } from './montant-base-ht';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Montanttva } from './montanttva';
+import type { MontantTva } from './montant-tva';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { Tauxmanuel } from './tauxmanuel';
@@ -30,8 +30,8 @@ import type { Tauxmanuel } from './tauxmanuel';
  * Représente une ligne de totalisation par taux de TVA.
  */
 export interface LigneDeTVA {
-    'montantBaseHt': Montantbaseht;
-    'montantTva': Montanttva;
+    'montantBaseHt': MontantBaseHt;
+    'montantTva': MontantTva;
     'taux'?: string | null;
     'tauxManuel'?: Tauxmanuel;
     'categorie'?: CategorieTVA | null;

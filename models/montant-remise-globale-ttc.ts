@@ -15,8 +15,8 @@
 
 
 /**
- * Montant de la TVA pour cette ligne.
+ * Montant de la remise globale TTC.
  */
-export interface Montanttva {
+export interface MontantRemiseGlobaleTtc {
 }
 

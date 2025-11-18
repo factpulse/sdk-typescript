@@ -76,9 +76,8 @@ export const TraitementFactureApiAxiosParamCreator = function (configuration?: C
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -125,26 +124,25 @@ export const TraitementFactureApiAxiosParamCreator = function (configuration?: C
             if (donneesFacture !== undefined) { 
                 localVarFormParams.append('donnees_facture', donneesFacture as any);
             }
-    
+
             if (profil !== undefined) { 
                 localVarFormParams.append('profil', profil as any);
             }
-    
+
             if (formatSortie !== undefined) { 
                 localVarFormParams.append('format_sortie', formatSortie as any);
             }
-    
+
             if (autoEnrichir !== undefined) { 
                 localVarFormParams.append('auto_enrichir', String(autoEnrichir) as any);
             }
-    
+
             if (sourcePdf !== undefined) { 
                 localVarFormParams.append('source_pdf', sourcePdf as any);
             }
-    
-    
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -182,8 +180,8 @@ export const TraitementFactureApiAxiosParamCreator = function (configuration?: C
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
+            localVarHeaderParameter['Accept'] = 'application/json';
 
-    
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -230,34 +228,33 @@ export const TraitementFactureApiAxiosParamCreator = function (configuration?: C
             if (fichierPdf !== undefined) { 
                 localVarFormParams.append('fichier_pdf', fichierPdf as any);
             }
-    
+
             if (raison !== undefined) { 
                 localVarFormParams.append('raison', raison as any);
             }
-    
+
             if (localisation !== undefined) { 
                 localVarFormParams.append('localisation', localisation as any);
             }
-    
+
             if (contact !== undefined) { 
                 localVarFormParams.append('contact', contact as any);
             }
-    
+
             if (fieldName !== undefined) { 
                 localVarFormParams.append('field_name', fieldName as any);
             }
-    
+
             if (usePadesLt !== undefined) { 
                 localVarFormParams.append('use_pades_lt', String(usePadesLt) as any);
             }
-    
+
             if (useTimestamp !== undefined) { 
                 localVarFormParams.append('use_timestamp', String(useTimestamp) as any);
             }
-    
-    
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -305,34 +302,33 @@ export const TraitementFactureApiAxiosParamCreator = function (configuration?: C
             if (fichierPdf !== undefined) { 
                 localVarFormParams.append('fichier_pdf', fichierPdf as any);
             }
-    
+
             if (raison !== undefined) { 
                 localVarFormParams.append('raison', raison as any);
             }
-    
+
             if (localisation !== undefined) { 
                 localVarFormParams.append('localisation', localisation as any);
             }
-    
+
             if (contact !== undefined) { 
                 localVarFormParams.append('contact', contact as any);
             }
-    
+
             if (fieldName !== undefined) { 
                 localVarFormParams.append('field_name', fieldName as any);
             }
-    
+
             if (usePadesLt !== undefined) { 
                 localVarFormParams.append('use_pades_lt', String(usePadesLt) as any);
             }
-    
+
             if (useTimestamp !== undefined) { 
                 localVarFormParams.append('use_timestamp', String(useTimestamp) as any);
             }
-    
-    
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -369,9 +365,8 @@ export const TraitementFactureApiAxiosParamCreator = function (configuration?: C
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -409,9 +404,8 @@ export const TraitementFactureApiAxiosParamCreator = function (configuration?: C
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-
-    
             localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -456,18 +450,17 @@ export const TraitementFactureApiAxiosParamCreator = function (configuration?: C
             if (fichierPdf !== undefined) { 
                 localVarFormParams.append('fichier_pdf', fichierPdf as any);
             }
-    
+
             if (profil !== undefined) { 
                 localVarFormParams.append('profil', profil as any);
             }
-    
+
             if (useVerapdf !== undefined) { 
                 localVarFormParams.append('use_verapdf', String(useVerapdf) as any);
             }
-    
-    
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -511,18 +504,17 @@ export const TraitementFactureApiAxiosParamCreator = function (configuration?: C
             if (fichierPdf !== undefined) { 
                 localVarFormParams.append('fichier_pdf', fichierPdf as any);
             }
-    
+
             if (profil !== undefined) { 
                 localVarFormParams.append('profil', profil as any);
             }
-    
+
             if (useVerapdf !== undefined) { 
                 localVarFormParams.append('use_verapdf', String(useVerapdf) as any);
             }
-    
-    
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -564,10 +556,9 @@ export const TraitementFactureApiAxiosParamCreator = function (configuration?: C
             if (fichierPdf !== undefined) { 
                 localVarFormParams.append('fichier_pdf', fichierPdf as any);
             }
-    
-    
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -610,14 +601,13 @@ export const TraitementFactureApiAxiosParamCreator = function (configuration?: C
             if (fichierXml !== undefined) { 
                 localVarFormParams.append('fichier_xml', fichierXml as any);
             }
-    
+
             if (profil !== undefined) { 
                 localVarFormParams.append('profil', profil as any);
             }
-    
-    
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
-    
+            localVarHeaderParameter['Accept'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};

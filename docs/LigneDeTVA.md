@@ -6,8 +6,8 @@ Représente une ligne de totalisation par taux de TVA.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**montantBaseHt** | [**Montantbaseht**](Montantbaseht.md) |  | [default to undefined]
-**montantTva** | [**Montanttva**](Montanttva.md) |  | [default to undefined]
+**montantBaseHt** | [**MontantBaseHt**](MontantBaseHt.md) |  | [default to undefined]
+**montantTva** | [**MontantTva**](MontantTva.md) |  | [default to undefined]
 **taux** | **string** |  | [optional] [default to undefined]
 **tauxManuel** | [**Tauxmanuel**](Tauxmanuel.md) |  | [optional] [default to undefined]
 **categorie** | [**CategorieTVA**](CategorieTVA.md) |  | [optional] [default to undefined]

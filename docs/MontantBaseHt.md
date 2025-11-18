@@ -1,6 +1,6 @@
-# MontantTotalMontantRemiseGlobaleTtc
+# MontantBaseHt
 
-Montant de la remise globale TTC.
+Montant de la base HT pour cette ligne de TVA.
 
 ## Properties
 
@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MontantTotalMontantRemiseGlobaleTtc } from '@factpulse/sdk';
+import { MontantBaseHt } from '@factpulse/sdk';
 
-const instance: MontantTotalMontantRemiseGlobaleTtc = {
+const instance: MontantBaseHt = {
 };
 ```
 

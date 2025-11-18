@@ -14,6 +14,9 @@
 
 
 
+/**
+ * Montant total HT.
+ */
 export interface MontantHtTotal {
 }
 

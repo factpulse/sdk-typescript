@@ -1,6 +1,6 @@
-# Montantbaseht
+# MontantUnitaireHt
 
-Montant de la base HT pour cette ligne de TVA.
+Montant unitaire Hors Taxes de l\'article.
 
 ## Properties
 
@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { Montantbaseht } from '@factpulse/sdk';
+import { MontantUnitaireHt } from '@factpulse/sdk';
 
-const instance: Montantbaseht = {
+const instance: MontantUnitaireHt = {
 };
 ```
 

@@ -1,6 +1,6 @@
-# Montanthttotal
+# MontantRemiseGlobaleTtc
 
-Montant total HT.
+Montant de la remise globale TTC.
 
 ## Properties
 
@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { Montanthttotal } from '@factpulse/sdk';
+import { MontantRemiseGlobaleTtc } from '@factpulse/sdk';
 
-const instance: Montanthttotal = {
+const instance: MontantRemiseGlobaleTtc = {
 };
 ```
 

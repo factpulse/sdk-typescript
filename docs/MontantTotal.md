@@ -6,12 +6,12 @@ Contient tous les montants totaux de la facture.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**montantHtTotal** | [**Montanthttotal**](Montanthttotal.md) |  | [default to undefined]
-**montantTva** | [**Montanttva1**](Montanttva1.md) |  | [default to undefined]
-**montantTtcTotal** | [**Montantttctotal**](Montantttctotal.md) |  | [default to undefined]
-**montantAPayer** | [**Montantapayer**](Montantapayer.md) |  | [default to undefined]
+**montantHtTotal** | [**MontantHtTotal**](MontantHtTotal.md) |  | [default to undefined]
+**montantTva** | [**MontantTva1**](MontantTva1.md) |  | [default to undefined]
+**montantTtcTotal** | [**MontantTtcTotal**](MontantTtcTotal.md) |  | [default to undefined]
+**montantAPayer** | [**MontantAPayer**](MontantAPayer.md) |  | [default to undefined]
 **acompte** | [**MontantTotalAcompte**](MontantTotalAcompte.md) |  | [optional] [default to undefined]
-**montantRemiseGlobaleTtc** | [**MontantTotalMontantRemiseGlobaleTtc**](MontantTotalMontantRemiseGlobaleTtc.md) |  | [optional] [default to undefined]
+**montantRemiseGlobaleTtc** | [**MontantRemiseGlobaleTtc**](MontantRemiseGlobaleTtc.md) |  | [optional] [default to undefined]
 **motifRemiseGlobaleTtc** | **string** |  | [optional] [default to undefined]
 
 ## Example

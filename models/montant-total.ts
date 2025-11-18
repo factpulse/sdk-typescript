@@ -15,33 +15,33 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { MontantAPayer } from './montant-apayer';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { MontantHtTotal } from './montant-ht-total';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { MontantRemiseGlobaleTtc } from './montant-remise-globale-ttc';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { MontantTotalAcompte } from './montant-total-acompte';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { MontantTotalMontantRemiseGlobaleTtc } from './montant-total-montant-remise-globale-ttc';
+import type { MontantTtcTotal } from './montant-ttc-total';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Montantapayer } from './montantapayer';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Montanthttotal } from './montanthttotal';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Montantttctotal } from './montantttctotal';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { Montanttva1 } from './montanttva1';
+import type { MontantTva1 } from './montant-tva1';
 
 /**
  * Contient tous les montants totaux de la facture.
  */
 export interface MontantTotal {
-    'montantHtTotal': Montanthttotal;
-    'montantTva': Montanttva1;
-    'montantTtcTotal': Montantttctotal;
-    'montantAPayer': Montantapayer;
+    'montantHtTotal': MontantHtTotal;
+    'montantTva': MontantTva1;
+    'montantTtcTotal': MontantTtcTotal;
+    'montantAPayer': MontantAPayer;
     'acompte'?: MontantTotalAcompte | null;
-    'montantRemiseGlobaleTtc'?: MontantTotalMontantRemiseGlobaleTtc | null;
+    'montantRemiseGlobaleTtc'?: MontantRemiseGlobaleTtc | null;
     'motifRemiseGlobaleTtc'?: string | null;
 }
 

@@ -1,6 +1,6 @@
-# Montantapayer
+# MontantTotalLigneHt
 
-Montant à payer.
+Montant total HT de la ligne (quantité × prix unitaire - remise).
 
 ## Properties
 
@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { Montantapayer } from '@factpulse/sdk';
+import { MontantTotalLigneHt } from '@factpulse/sdk';
 
-const instance: Montantapayer = {
+const instance: MontantTotalLigneHt = {
 };
 ```
 

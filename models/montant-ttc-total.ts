@@ -14,6 +14,9 @@
 
 
 
+/**
+ * Montant total TTC.
+ */
 export interface MontantTtcTotal {
 }
 

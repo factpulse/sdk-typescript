@@ -24,13 +24,13 @@ import type { CodeRaisonReduction } from './code-raison-reduction';
 import type { LigneDePosteMontantRemiseHt } from './ligne-de-poste-montant-remise-ht';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { LigneDePosteMontantTotalLigneHt } from './ligne-de-poste-montant-total-ligne-ht';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { LigneDePosteTauxTvaManuel } from './ligne-de-poste-taux-tva-manuel';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Montantunitaireht } from './montantunitaireht';
+import type { MontantTotalLigneHt } from './montant-total-ligne-ht';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { MontantUnitaireHt } from './montant-unitaire-ht';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { Quantite } from './quantite';
@@ -47,9 +47,9 @@ export interface LigneDePoste {
     'denomination': string;
     'quantite': Quantite;
     'unite': Unite;
-    'montantUnitaireHt': Montantunitaireht;
+    'montantUnitaireHt': MontantUnitaireHt;
     'montantRemiseHt'?: LigneDePosteMontantRemiseHt | null;
-    'montantTotalLigneHt'?: LigneDePosteMontantTotalLigneHt | null;
+    'montantTotalLigneHt'?: MontantTotalLigneHt | null;
     'tauxTva'?: string | null;
     'tauxTvaManuel'?: LigneDePosteTauxTvaManuel | null;
     'categorieTva'?: CategorieTVA | null;

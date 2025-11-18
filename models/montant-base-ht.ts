@@ -17,6 +17,6 @@
 /**
  * Montant de la base HT pour cette ligne de TVA.
  */
-export interface Montantbaseht {
+export interface MontantBaseHt {
 }
 

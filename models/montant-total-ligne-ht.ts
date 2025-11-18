@@ -15,8 +15,8 @@
 
 
 /**
- * Montant unitaire Hors Taxes de l\'article.
+ * Montant total HT de la ligne (quantité × prix unitaire - remise).
  */
-export interface Montantunitaireht {
+export interface MontantTotalLigneHt {
 }
 

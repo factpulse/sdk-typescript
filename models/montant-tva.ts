@@ -14,6 +14,9 @@
 
 
 
+/**
+ * Montant de la TVA pour cette ligne.
+ */
 export interface MontantTva {
 }
 

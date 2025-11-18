@@ -15,8 +15,8 @@
 
 
 /**
- * Montant total HT.
+ * Montant à payer.
  */
-export interface Montanthttotal {
+export interface MontantAPayer {
 }
 
