@@ -13,13 +13,12 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { PDPCredentials } from './pdpcredentials';
 
-export * from './api/afnordirectory-service-mtier-api';
-export * from './api/afnorpdppaapi';
-export * from './api/afnorpdppadirectory-service-api';
-export * from './api/afnorpdppaflow-service-api';
-export * from './api/chorus-pro-api';
-export * from './api/sant-api';
-export * from './api/traitement-facture-api';
-export * from './api/utilisateur-api';
+export interface BodySearchSiretMetierApiV1AfnorDirectorySiretSearchPost {
+    'criteria': { [key: string]: any; };
+    'pdp_credentials'?: PDPCredentials | null;
+}
 
