@@ -7,6 +7,7 @@ Credentials PDP pour la stratégie zero-storage (Strategy B).  Permet de fournir
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **flow_service_url** | **string** | URL de base du Flow Service AFNOR | [default to undefined]
+**directory_service_url** | **string** |  | [optional] [default to undefined]
 **token_url** | **string** | URL du serveur OAuth2 | [default to undefined]
 **client_id** | **string** | Client ID OAuth2 | [default to undefined]
 **client_secret** | **string** | Client Secret OAuth2 (sensible) | [default to undefined]
@@ -18,6 +19,7 @@ import { PDPCredentials } from '@factpulse/sdk';
 
 const instance: PDPCredentials = {
     flow_service_url,
+    directory_service_url,
     token_url,
     client_id,
     client_secret,

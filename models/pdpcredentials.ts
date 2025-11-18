@@ -22,6 +22,7 @@ export interface PDPCredentials {
      * URL de base du Flow Service AFNOR
      */
     'flow_service_url': string;
+    'directory_service_url'?: string | null;
     /**
      * URL du serveur OAuth2
      */
