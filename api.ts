@@ -14,7 +14,6 @@
 
 
 
-export * from './api/afnordirectory-service-mtier-api';
 export * from './api/afnorpdppaapi';
 export * from './api/afnorpdppadirectory-service-api';
 export * from './api/afnorpdppaflow-service-api';

@@ -53,7 +53,7 @@ This endpoint does not have any parameters.
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -100,7 +100,7 @@ This endpoint does not have any parameters.
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -154,7 +154,7 @@ const { status, data } = await apiInstance.deleteDirectoryLineProxyApiV1AfnorDir
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -253,7 +253,7 @@ const { status, data } = await apiInstance.getDirectoryLineByCodeProxyApiV1Afnor
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -307,7 +307,7 @@ const { status, data } = await apiInstance.getDirectoryLineByIdInstanceProxyApiV
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -361,7 +361,7 @@ const { status, data } = await apiInstance.getRoutingCodeByIdInstanceProxyApiV1A
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -418,7 +418,7 @@ const { status, data } = await apiInstance.getRoutingCodeBySiretAndCodeProxyApiV
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -472,7 +472,7 @@ const { status, data } = await apiInstance.getSirenByCodeInseeProxyApiV1AfnorDir
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -526,7 +526,7 @@ const { status, data } = await apiInstance.getSirenByIdInstanceProxyApiV1AfnorDi
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -580,7 +580,7 @@ const { status, data } = await apiInstance.getSiretByCodeInseeProxyApiV1AfnorDir
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -634,7 +634,7 @@ const { status, data } = await apiInstance.getSiretByIdInstanceProxyApiV1AfnorDi
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -688,7 +688,7 @@ const { status, data } = await apiInstance.patchDirectoryLineProxyApiV1AfnorDire
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -742,7 +742,7 @@ const { status, data } = await apiInstance.patchRoutingCodeProxyApiV1AfnorDirect
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -796,7 +796,7 @@ const { status, data } = await apiInstance.putRoutingCodeProxyApiV1AfnorDirector
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -843,7 +843,7 @@ This endpoint does not have any parameters.
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -888,7 +888,7 @@ This endpoint does not have any parameters.
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -933,7 +933,7 @@ This endpoint does not have any parameters.
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -978,7 +978,7 @@ This endpoint does not have any parameters.
 
 ### Authorization
 
-No authorization required
+[HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 

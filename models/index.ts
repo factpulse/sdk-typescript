@@ -6,8 +6,6 @@ export * from './body-lister-services-structure-api-v1-chorus-pro-structures-id-
 export * from './body-rechercher-factures-destinataire-api-v1-chorus-pro-factures-rechercher-destinataire-post';
 export * from './body-rechercher-factures-fournisseur-api-v1-chorus-pro-factures-rechercher-fournisseur-post';
 export * from './body-recycler-facture-api-v1-chorus-pro-factures-recycler-post';
-export * from './body-search-siren-metier-api-v1-afnor-directory-siren-search-post';
-export * from './body-search-siret-metier-api-v1-afnor-directory-siret-search-post';
 export * from './body-telecharger-groupe-factures-api-v1-chorus-pro-factures-telecharger-groupe-post';
 export * from './body-traiter-facture-recue-api-v1-chorus-pro-factures-traiter-facture-recue-post';
 export * from './body-valideur-consulter-facture-api-v1-chorus-pro-factures-valideur-consulter-post';
