@@ -1,25 +1,25 @@
 # CategorieTVA
 
-Catégories de TVA standardisées pour Factur-X.
+Catégories de TVA standardisées pour Factur-X (norme EN 16931).  **Valeurs possibles :** - `S` : STANDARD - TVA au taux standard - `Z` : ZERO - TVA à taux zéro - `E` : EXONEREE - Exonération de TVA - `AE` : AUTO_LIQUIDATION - Auto-liquidation (reverse charge) - `K` : INTRA_COMMUNAUTAIRE - Livraison intracommunautaire - `G` : EXPORT - Export hors UE - `O` : HORS_CHAMP - Hors champ de la TVA - `L` : CANARIES - TVA Canaries - `M` : CEUTA_MELILLA - TVA Ceuta/Melilla
 
 ## Enum
 
-* `S` (value: `'S'`)
+* `STANDARD` (value: `'S'`)
 
-* `Z` (value: `'Z'`)
+* `ZERO` (value: `'Z'`)
 
-* `E` (value: `'E'`)
+* `EXONEREE` (value: `'E'`)
 
-* `Ae` (value: `'AE'`)
+* `AUTO_LIQUIDATION` (value: `'AE'`)
 
-* `K` (value: `'K'`)
+* `INTRA_COMMUNAUTAIRE` (value: `'K'`)
 
-* `G` (value: `'G'`)
+* `EXPORT` (value: `'G'`)
 
-* `O` (value: `'O'`)
+* `HORS_CHAMP` (value: `'O'`)
 
-* `L` (value: `'L'`)
+* `CANARIES` (value: `'L'`)
 
-* `M` (value: `'M'`)
+* `CEUTA_MELILLA` (value: `'M'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

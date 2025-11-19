@@ -15,17 +15,38 @@
 
 
 /**
- * Codes standardisés pour justifier une réduction ou une charge.
+ * Codes standardisés pour justifier une réduction ou une charge supplémentaire (norme EN 16931).  **Valeurs possibles :** - `AA` : REMISE_PUBLICITAIRE - Remise ou rabais publicitaire - `ABL` : SUPPLEMENT_EMBALLAGE - Supplément d\'emballage - `ADR` : AUTRES_SERVICES - Autres services - `ADT` : ENLEVEMENT - Coût d\'enlèvement - `FC` : COUTS_TRANSPORT - Coûts de transport - `FI` : FRAIS_FINANCIERS - Frais de financement - `LA` : ETIQUETAGE - Étiquetage
  */
 
 export const CodeRaisonReduction = {
-    Aa: 'AA',
-    Abl: 'ABL',
-    Adr: 'ADR',
-    Adt: 'ADT',
-    Fc: 'FC',
-    Fi: 'FI',
-    La: 'LA'
+    /**
+    * REMISE_PUBLICITAIRE - Remise ou rabais publicitaire
+    */
+    REMISE_PUBLICITAIRE: 'AA',
+    /**
+    * SUPPLEMENT_EMBALLAGE - Supplément d&#39;emballage
+    */
+    SUPPLEMENT_EMBALLAGE: 'ABL',
+    /**
+    * AUTRES_SERVICES - Autres services
+    */
+    AUTRES_SERVICES: 'ADR',
+    /**
+    * ENLEVEMENT - Coût d&#39;enlèvement
+    */
+    ENLEVEMENT: 'ADT',
+    /**
+    * COUTS_TRANSPORT - Coûts de transport
+    */
+    COUTS_TRANSPORT: 'FC',
+    /**
+    * FRAIS_FINANCIERS - Frais de financement
+    */
+    FRAIS_FINANCIERS: 'FI',
+    /**
+    * ETIQUETAGE - Étiquetage
+    */
+    ETIQUETAGE: 'LA'
 } as const;
 
 export type CodeRaisonReduction = typeof CodeRaisonReduction[keyof typeof CodeRaisonReduction];

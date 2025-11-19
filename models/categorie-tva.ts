@@ -15,19 +15,46 @@
 
 
 /**
- * Catégories de TVA standardisées pour Factur-X.
+ * Catégories de TVA standardisées pour Factur-X (norme EN 16931).  **Valeurs possibles :** - `S` : STANDARD - TVA au taux standard - `Z` : ZERO - TVA à taux zéro - `E` : EXONEREE - Exonération de TVA - `AE` : AUTO_LIQUIDATION - Auto-liquidation (reverse charge) - `K` : INTRA_COMMUNAUTAIRE - Livraison intracommunautaire - `G` : EXPORT - Export hors UE - `O` : HORS_CHAMP - Hors champ de la TVA - `L` : CANARIES - TVA Canaries - `M` : CEUTA_MELILLA - TVA Ceuta/Melilla
  */
 
 export const CategorieTVA = {
-    S: 'S',
-    Z: 'Z',
-    E: 'E',
-    Ae: 'AE',
-    K: 'K',
-    G: 'G',
-    O: 'O',
-    L: 'L',
-    M: 'M'
+    /**
+    * STANDARD - TVA au taux standard
+    */
+    STANDARD: 'S',
+    /**
+    * ZERO - TVA à taux zéro
+    */
+    ZERO: 'Z',
+    /**
+    * EXONEREE - Exonération de TVA
+    */
+    EXONEREE: 'E',
+    /**
+    * AUTO_LIQUIDATION - Auto-liquidation (reverse charge)
+    */
+    AUTO_LIQUIDATION: 'AE',
+    /**
+    * INTRA_COMMUNAUTAIRE - Livraison intracommunautaire
+    */
+    INTRA_COMMUNAUTAIRE: 'K',
+    /**
+    * EXPORT - Export hors UE
+    */
+    EXPORT: 'G',
+    /**
+    * HORS_CHAMP - Hors champ de la TVA
+    */
+    HORS_CHAMP: 'O',
+    /**
+    * CANARIES - TVA Canaries
+    */
+    CANARIES: 'L',
+    /**
+    * CEUTA_MELILLA - TVA Ceuta/Melilla
+    */
+    CEUTA_MELILLA: 'M'
 } as const;
 
 export type CategorieTVA = typeof CategorieTVA[keyof typeof CategorieTVA];
