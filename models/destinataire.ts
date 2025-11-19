@@ -27,6 +27,8 @@ export interface Destinataire {
     'adresseElectronique': AdresseElectronique;
     'codeServiceExecutant'?: string | null;
     'nom'?: string | null;
+    'siren'?: string | null;
+    'siret'?: string | null;
     'adressePostale'?: AdressePostale | null;
 }
 

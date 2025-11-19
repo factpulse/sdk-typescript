@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **adresseElectronique** | [**AdresseElectronique**](AdresseElectronique.md) |  | [default to undefined]
 **codeServiceExecutant** | **string** |  | [optional] [default to undefined]
 **nom** | **string** |  | [optional] [default to undefined]
+**siren** | **string** |  | [optional] [default to undefined]
+**siret** | **string** |  | [optional] [default to undefined]
 **adressePostale** | [**AdressePostale**](AdressePostale.md) |  | [optional] [default to undefined]
 
 ## Example
@@ -20,6 +22,8 @@ const instance: Destinataire = {
     adresseElectronique,
     codeServiceExecutant,
     nom,
+    siren,
+    siret,
     adressePostale,
 };
 ```

@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **montantTotal** | [**MontantTotal**](MontantTotal.md) |  | [default to undefined]
 **lignesDePoste** | [**Array&lt;LigneDePoste&gt;**](LigneDePoste.md) |  | [optional] [default to undefined]
 **lignesDeTva** | [**Array&lt;LigneDeTVA&gt;**](LigneDeTVA.md) |  | [optional] [default to undefined]
+**notes** | [**Array&lt;Note&gt;**](Note.md) |  | [optional] [default to undefined]
 **commentaire** | **string** |  | [optional] [default to undefined]
 **idUtilisateurCourant** | **number** |  | [optional] [default to undefined]
 **piecesJointesComplementaires** | [**Array&lt;PieceJointeComplementaire&gt;**](PieceJointeComplementaire.md) |  | [optional] [default to undefined]
@@ -38,6 +39,7 @@ const instance: FactureFacturX = {
     montantTotal,
     lignesDePoste,
     lignesDeTva,
+    notes,
     commentaire,
     idUtilisateurCourant,
     piecesJointesComplementaires,

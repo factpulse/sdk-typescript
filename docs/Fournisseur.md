@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **codeCoordonneesBancairesFournisseur** | **number** |  | [optional] [default to undefined]
 **idServiceFournisseur** | **number** |  | [optional] [default to undefined]
 **nom** | **string** |  | [optional] [default to undefined]
+**siren** | **string** |  | [optional] [default to undefined]
 **siret** | **string** |  | [optional] [default to undefined]
 **numeroTvaIntra** | **string** |  | [optional] [default to undefined]
 **iban** | **string** |  | [optional] [default to undefined]
@@ -27,6 +28,7 @@ const instance: Fournisseur = {
     codeCoordonneesBancairesFournisseur,
     idServiceFournisseur,
     nom,
+    siren,
     siret,
     numeroTvaIntra,
     iban,

@@ -29,6 +29,7 @@ export interface Fournisseur {
     'codeCoordonneesBancairesFournisseur'?: number | null;
     'idServiceFournisseur'?: number | null;
     'nom'?: string | null;
+    'siren'?: string | null;
     'siret'?: string | null;
     'numeroTvaIntra'?: string | null;
     'iban'?: string | null;

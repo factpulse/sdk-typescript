@@ -6,10 +6,10 @@ Représente une ligne de totalisation par taux de TVA.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**montantBaseHt** | [**MontantBaseHt**](MontantBaseHt.md) |  | [default to undefined]
-**montantTva** | [**MontantTvaLigne**](MontantTvaLigne.md) |  | [default to undefined]
+**montantBaseHt** | **string** | Montant de la base HT pour cette ligne de TVA. | [default to undefined]
+**montantTva** | **string** | Montant de la TVA pour cette ligne. | [default to undefined]
 **taux** | **string** |  | [optional] [default to undefined]
-**tauxManuel** | [**Tauxmanuel**](Tauxmanuel.md) |  | [optional] [default to undefined]
+**tauxManuel** | **string** | Taux de TVA avec valeur manuelle. | [optional] [default to undefined]
 **categorie** | [**CategorieTVA**](CategorieTVA.md) |  | [optional] [default to undefined]
 
 ## Example

@@ -15,8 +15,10 @@
 
 
 /**
- * Montant total HT de la ligne (quantité × prix unitaire - remise).
+ * Note de facture (IncludedNote en Factur-X).  Les notes obligatoires pour BR-FR-05 sont : - PMT : Indemnité forfaitaire pour frais de recouvrement - PMD : Pénalités de retard - AAB : Escompte pour paiement anticipé
  */
-export interface MontantTotalLigneHt {
+export interface Note {
+    'subjectCode'?: string | null;
+    'content': string;
 }
 

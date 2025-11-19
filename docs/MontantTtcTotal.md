@@ -1,6 +1,5 @@
 # MontantTtcTotal
 
-Montant total TTC.
 
 ## Properties
 

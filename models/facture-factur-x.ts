@@ -36,6 +36,9 @@ import type { ModeDepot } from './mode-depot';
 import type { MontantTotal } from './montant-total';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { Note } from './note';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { PieceJointeComplementaire } from './piece-jointe-complementaire';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -56,6 +59,7 @@ export interface FactureFacturX {
     'montantTotal': MontantTotal;
     'lignesDePoste'?: Array<LigneDePoste>;
     'lignesDeTva'?: Array<LigneDeTVA>;
+    'notes'?: Array<Note>;
     'commentaire'?: string | null;
     'idUtilisateurCourant'?: number | null;
     'piecesJointesComplementaires'?: Array<PieceJointeComplementaire> | null;
