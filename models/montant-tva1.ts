@@ -15,7 +15,7 @@
 
 
 /**
- * Montant total de la TVA.
+ * Montant TVA
  */
 export interface MontantTva1 {
 }

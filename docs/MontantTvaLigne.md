@@ -1,5 +1,6 @@
-# MontantTva
+# MontantTvaLigne
 
+Montant de la TVA pour cette ligne.
 
 ## Properties
 
@@ -9,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MontantTva } from '@factpulse/sdk';
+import { MontantTvaLigne } from '@factpulse/sdk';
 
-const instance: MontantTva = {
+const instance: MontantTvaLigne = {
 };
 ```
 

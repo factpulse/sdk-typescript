@@ -21,7 +21,7 @@ import type { CategorieTVA } from './categorie-tva';
 import type { MontantBaseHt } from './montant-base-ht';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { MontantTva } from './montant-tva';
+import type { MontantTvaLigne } from './montant-tva-ligne';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { Tauxmanuel } from './tauxmanuel';
@@ -31,7 +31,7 @@ import type { Tauxmanuel } from './tauxmanuel';
  */
 export interface LigneDeTVA {
     'montantBaseHt': MontantBaseHt;
-    'montantTva': MontantTva;
+    'montantTva': MontantTvaLigne;
     'taux'?: string | null;
     'tauxManuel'?: Tauxmanuel;
     'categorie'?: CategorieTVA | null;

@@ -1,5 +1,6 @@
-# MontantTva
+# MontantTvaTotal
 
+Montant total de la TVA.
 
 ## Properties
 
@@ -9,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MontantTva } from '@factpulse/sdk';
+import { MontantTvaTotal } from '@factpulse/sdk';
 
-const instance: MontantTva = {
+const instance: MontantTvaTotal = {
 };
 ```
 

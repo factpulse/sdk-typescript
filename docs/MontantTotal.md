@@ -7,7 +7,7 @@ Contient tous les montants totaux de la facture.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **montantHtTotal** | [**MontantHtTotal**](MontantHtTotal.md) |  | [default to undefined]
-**montantTva** | [**MontantTva1**](MontantTva1.md) |  | [default to undefined]
+**montantTva** | [**MontantTvaTotal**](MontantTvaTotal.md) |  | [default to undefined]
 **montantTtcTotal** | [**MontantTtcTotal**](MontantTtcTotal.md) |  | [default to undefined]
 **montantAPayer** | [**MontantAPayer**](MontantAPayer.md) |  | [default to undefined]
 **acompte** | [**MontantTotalAcompte**](MontantTotalAcompte.md) |  | [optional] [default to undefined]

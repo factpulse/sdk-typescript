@@ -13,35 +13,10 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantAPayer } from './montant-apayer';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantHtTotal } from './montant-ht-total';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantRemiseGlobaleTtc } from './montant-remise-globale-ttc';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantTotalAcompte } from './montant-total-acompte';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantTtcTotal } from './montant-ttc-total';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantTvaTotal } from './montant-tva-total';
 
 /**
- * Contient tous les montants totaux de la facture.
+ * Montant de la TVA pour cette ligne.
  */
-export interface MontantTotal {
-    'montantHtTotal': MontantHtTotal;
-    'montantTva': MontantTvaTotal;
-    'montantTtcTotal': MontantTtcTotal;
-    'montantAPayer': MontantAPayer;
-    'acompte'?: MontantTotalAcompte | null;
-    'montantRemiseGlobaleTtc'?: MontantRemiseGlobaleTtc | null;
-    'motifRemiseGlobaleTtc'?: string | null;
+export interface MontantTvaLigne {
 }
 

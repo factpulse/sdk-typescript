@@ -13,35 +13,20 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantAPayer } from './montant-apayer';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantHtTotal } from './montant-ht-total';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantRemiseGlobaleTtc } from './montant-remise-globale-ttc';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantTotalAcompte } from './montant-total-acompte';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantTtcTotal } from './montant-ttc-total';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantTvaTotal } from './montant-tva-total';
 
 /**
- * Contient tous les montants totaux de la facture.
+ * Statuts possibles d\'une tâche Celery lors du polling.  **Valeurs possibles :** - `PENDING` : Tâche en attente de traitement - `STARTED` : Tâche en cours d\'exécution - `SUCCESS` : Tâche terminée avec succès (vérifier `resultat.statut` pour le résultat métier) - `FAILURE` : Erreur système lors de l\'exécution (crash, exception non gérée) - `RETRY` : Tentative de ré-exécution en cours (après un échec temporaire)
  */
-export interface MontantTotal {
-    'montantHtTotal': MontantHtTotal;
-    'montantTva': MontantTvaTotal;
-    'montantTtcTotal': MontantTtcTotal;
-    'montantAPayer': MontantAPayer;
-    'acompte'?: MontantTotalAcompte | null;
-    'montantRemiseGlobaleTtc'?: MontantRemiseGlobaleTtc | null;
-    'motifRemiseGlobaleTtc'?: string | null;
-}
+
+export const StatutCelery = {
+    Pending: 'PENDING',
+    Started: 'STARTED',
+    Success: 'SUCCESS',
+    Failure: 'FAILURE',
+    Retry: 'RETRY'
+} as const;
+
+export type StatutCelery = typeof StatutCelery[keyof typeof StatutCelery];
+
+
 
