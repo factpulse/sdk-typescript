@@ -157,6 +157,10 @@ export class FactPulseClient {
     };
   }
 
+  // Alias plus courts
+  getChorusProCredentials(): Record<string, unknown> | undefined { return this.getChorusCredentialsForApi(); }
+  getAfnorCredentials(): Record<string, unknown> | undefined { return this.getAfnorCredentialsForApi(); }
+
   private async obtainToken(): Promise<{ access: string; refresh: string }> {
     const payload: Record<string, string> = { username: this.config.email, password: this.config.password };
     if (this.config.clientUid) payload.client_uid = this.config.clientUid;
