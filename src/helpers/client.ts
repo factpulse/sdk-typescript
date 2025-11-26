@@ -97,7 +97,7 @@ export function ligneDeTva(
   taux: MontantValue, baseHt: MontantValue, montantTva: MontantValue, categorie = 'S', motifExoneration?: string
 ): Record<string, unknown> {
   const result: Record<string, unknown> = {
-    tauxTva: montant(taux), montantBaseHt: montant(baseHt), montantTva: montant(montantTva), categorieTva: categorie,
+    tauxManuel: montant(taux), montantBaseHt: montant(baseHt), montantTva: montant(montantTva), categorie: categorie,
   };
   if (motifExoneration) result.motifExoneration = motifExoneration;
   return result;
