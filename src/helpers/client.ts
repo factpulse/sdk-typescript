@@ -201,7 +201,7 @@ export class FactPulseClient {
       if (Date.now() - startTime > timeoutMs) throw new FactPulsePollingTimeout(taskId, timeoutMs);
       await this.ensureAuthenticated();
       try {
-        const response = await this.httpClient.get(`${this.config.apiUrl}/api/facturation/v1/traitement/taches/${taskId}/statut`, {
+        const response = await this.httpClient.get(`${this.config.apiUrl}/api/v1/traitement/taches/${taskId}/statut`, {
           headers: { Authorization: `Bearer ${this.accessToken}` },
         });
         const { statut, resultat } = response.data;
@@ -234,7 +234,7 @@ export class FactPulseClient {
       form.append('format_sortie', formatSortie);
       form.append('source_pdf', fs.createReadStream(pdfPath), { filename: path.basename(pdfPath), contentType: 'application/pdf' });
       try {
-        const response = await this.httpClient.post(`${this.config.apiUrl}/api/facturation/v1/traitement/generer-facture`, form, {
+        const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/traitement/generer-facture`, form, {
           headers: { ...form.getHeaders(), Authorization: `Bearer ${this.accessToken}` }, timeout: 60000,
         });
         taskId = response.data.id_tache; break;
