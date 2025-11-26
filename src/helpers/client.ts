@@ -68,17 +68,24 @@ export function montantTotal(
 /** Crée une ligne de poste simplifiée. */
 export function ligneDePoste(
   numero: number, denomination: string, quantite: MontantValue, montantUnitaireHt: MontantValue, montantLigneHt: MontantValue,
-  options?: { tauxTva?: MontantValue; unite?: string; montantTvaLigne?: MontantValue; montantRemiseHt?: MontantValue;
-    codeRaisonRemise?: string; motifRemise?: string; description?: string; referenceAcheteur?: string; referenceVendeur?: string }
+  options?: { tauxTva?: MontantValue; categorieTva?: string; unite?: string; reference?: string;
+    montantTvaLigne?: MontantValue; montantRemiseHt?: MontantValue; codeRaisonReduction?: string; raisonReduction?: string;
+    motifExoneration?: string; dateDebutPeriode?: string; dateFinPeriode?: string;
+    description?: string; referenceAcheteur?: string; referenceVendeur?: string }
 ): Record<string, unknown> {
   const result: Record<string, unknown> = {
     numero, denomination, quantite: montant(quantite), montantUnitaireHt: montant(montantUnitaireHt),
-    montantTotalLigneHt: montant(montantLigneHt), tauxTva: montant(options?.tauxTva ?? '20.00'), unite: options?.unite ?? 'C62',
+    montantTotalLigneHt: montant(montantLigneHt), tauxTva: montant(options?.tauxTva ?? '20.00'),
+    categorieTva: options?.categorieTva ?? 'S', unite: options?.unite ?? 'C62',
   };
+  if (options?.reference) result.reference = options.reference;
   if (options?.montantTvaLigne !== undefined) result.montantTvaLigne = montant(options.montantTvaLigne);
   if (options?.montantRemiseHt !== undefined) result.montantRemiseHt = montant(options.montantRemiseHt);
-  if (options?.codeRaisonRemise) result.codeRaisonReduction = options.codeRaisonRemise;
-  if (options?.motifRemise) result.motifRemise = options.motifRemise;
+  if (options?.codeRaisonReduction) result.codeRaisonReduction = options.codeRaisonReduction;
+  if (options?.raisonReduction) result.raisonReduction = options.raisonReduction;
+  if (options?.motifExoneration) result.motifExoneration = options.motifExoneration;
+  if (options?.dateDebutPeriode) result.dateDebutPeriode = options.dateDebutPeriode;
+  if (options?.dateFinPeriode) result.dateFinPeriode = options.dateFinPeriode;
   if (options?.description) result.description = options.description;
   if (options?.referenceAcheteur) result.referenceArticleAcheteur = options.referenceAcheteur;
   if (options?.referenceVendeur) result.referenceArticleVendeur = options.referenceVendeur;
