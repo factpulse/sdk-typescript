@@ -16,6 +16,7 @@ configuration.ts
 docs/AFNORPDPPAApi.md
 docs/AFNORPDPPADirectoryServiceApi.md
 docs/AFNORPDPPAFlowServiceApi.md
+docs/APIError.md
 docs/AdresseElectronique.md
 docs/AdressePostale.md
 docs/BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost.md
@@ -47,6 +48,8 @@ docs/Destination.md
 docs/DestinationAFNOR.md
 docs/DestinationChorusPro.md
 docs/DonneesFactureSimplifiees.md
+docs/ErrorLevel.md
+docs/ErrorSource.md
 docs/FactureEnrichieInfo.md
 docs/FactureFacturX.md
 docs/FormatSortie.md
@@ -114,11 +117,13 @@ docs/Unite.md
 docs/Utilisateur.md
 docs/UtilisateurApi.md
 docs/ValidationError.md
+docs/ValidationErrorDetail.md
 docs/ValidationErrorLocInner.md
 git_push.sh
 index.ts
 models/adresse-electronique.ts
 models/adresse-postale.ts
+models/apierror.ts
 models/body-ajouter-fichier-api-v1-chorus-pro-transverses-ajouter-fichier-post.ts
 models/body-completer-facture-api-v1-chorus-pro-factures-completer-post.ts
 models/body-lister-services-structure-api-v1-chorus-pro-structures-id-structure-cpp-services-get.ts
@@ -147,6 +152,8 @@ models/destination-afnor.ts
 models/destination-chorus-pro.ts
 models/destination.ts
 models/donnees-facture-simplifiees.ts
+models/error-level.ts
+models/error-source.ts
 models/facture-enrichie-info.ts
 models/facture-factur-x.ts
 models/format-sortie.ts
@@ -211,6 +218,7 @@ models/type-facture.ts
 models/type-tva.ts
 models/unite.ts
 models/utilisateur.ts
+models/validation-error-detail.ts
 models/validation-error-loc-inner.ts
 models/validation-error.ts
 package.json
