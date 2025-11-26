@@ -4,33 +4,157 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { FactPulseAuthError, FactPulsePollingTimeout, FactPulseValidationError, ValidationErrorDetail } from './exceptions';
 
-export interface FactPulseClientConfig {
-  email: string; password: string; apiUrl?: string; clientUid?: string;
-  pollingInterval?: number; pollingTimeout?: number; maxRetries?: number;
+// =============================================================================
+// Credentials interfaces - pour une configuration simplifiée
+// =============================================================================
+
+/** Credentials Chorus Pro pour le mode Zero-Trust. */
+export interface ChorusProCredentials {
+  pisteClientId: string;
+  pisteClientSecret: string;
+  chorusProLogin: string;
+  chorusProPassword: string;
+  sandbox?: boolean;
 }
+
+/** Credentials AFNOR PDP pour le mode Zero-Trust. */
+export interface AFNORCredentials {
+  clientId: string;
+  clientSecret: string;
+  flowServiceUrl: string;
+}
+
+export interface FactPulseClientConfig {
+  email: string;
+  password: string;
+  apiUrl?: string;
+  clientUid?: string;
+  chorusCredentials?: ChorusProCredentials;
+  afnorCredentials?: AFNORCredentials;
+  pollingInterval?: number;
+  pollingTimeout?: number;
+  maxRetries?: number;
+}
+
+// =============================================================================
+// Helpers pour les types anyOf - évite la verbosité des wrappers générés
+// =============================================================================
+
+type MontantValue = string | number | null | undefined;
+
+/** Convertit une valeur en string de montant pour l'API. */
+export function montant(value: MontantValue): string {
+  if (value === null || value === undefined) return '0.00';
+  if (typeof value === 'number') return value.toFixed(2);
+  if (typeof value === 'string') return value;
+  return '0.00';
+}
+
+/** Crée un objet MontantTotal simplifié. */
+export function montantTotal(
+  ht: MontantValue, tva: MontantValue, ttc: MontantValue, aPayer: MontantValue,
+  options?: { remiseTtc?: MontantValue; motifRemise?: string; acompte?: MontantValue }
+): Record<string, unknown> {
+  const result: Record<string, unknown> = {
+    montantHtTotal: montant(ht), montantTva: montant(tva),
+    montantTtcTotal: montant(ttc), montantAPayer: montant(aPayer),
+  };
+  if (options?.remiseTtc !== undefined) result.montantRemiseGlobaleTtc = montant(options.remiseTtc);
+  if (options?.motifRemise !== undefined) result.motifRemiseGlobaleTtc = options.motifRemise;
+  if (options?.acompte !== undefined) result.acompte = montant(options.acompte);
+  return result;
+}
+
+/** Crée une ligne de poste simplifiée. */
+export function ligneDePoste(
+  numero: number, denomination: string, quantite: MontantValue, montantUnitaireHt: MontantValue, montantLigneHt: MontantValue,
+  options?: { tauxTva?: MontantValue; unite?: string; montantTvaLigne?: MontantValue; montantRemiseHt?: MontantValue;
+    codeRaisonRemise?: string; motifRemise?: string; description?: string; referenceAcheteur?: string; referenceVendeur?: string }
+): Record<string, unknown> {
+  const result: Record<string, unknown> = {
+    numero, denomination, quantite: montant(quantite), montantUnitaireHt: montant(montantUnitaireHt),
+    montantTotalLigneHt: montant(montantLigneHt), tauxTva: montant(options?.tauxTva ?? '20.00'), unite: options?.unite ?? 'C62',
+  };
+  if (options?.montantTvaLigne !== undefined) result.montantTvaLigne = montant(options.montantTvaLigne);
+  if (options?.montantRemiseHt !== undefined) result.montantRemiseHt = montant(options.montantRemiseHt);
+  if (options?.codeRaisonRemise) result.codeRaisonReduction = options.codeRaisonRemise;
+  if (options?.motifRemise) result.motifRemise = options.motifRemise;
+  if (options?.description) result.description = options.description;
+  if (options?.referenceAcheteur) result.referenceArticleAcheteur = options.referenceAcheteur;
+  if (options?.referenceVendeur) result.referenceArticleVendeur = options.referenceVendeur;
+  return result;
+}
+
+/** Crée une ligne de TVA simplifiée. */
+export function ligneDeTva(
+  taux: MontantValue, baseHt: MontantValue, montantTva: MontantValue, categorie = 'S', motifExoneration?: string
+): Record<string, unknown> {
+  const result: Record<string, unknown> = {
+    tauxTva: montant(taux), montantBaseHt: montant(baseHt), montantTva: montant(montantTva), categorieTva: categorie,
+  };
+  if (motifExoneration) result.motifExoneration = motifExoneration;
+  return result;
+}
+
+// =============================================================================
+// Client principal
+// =============================================================================
 
 const DEFAULT_API_URL = 'https://factpulse.fr';
 const DEFAULT_POLLING_INTERVAL = 2000;
 const DEFAULT_POLLING_TIMEOUT = 120000;
 const DEFAULT_MAX_RETRIES = 1;
 
+interface InternalConfig {
+  email: string; password: string; apiUrl: string; clientUid: string;
+  chorusCredentials?: ChorusProCredentials; afnorCredentials?: AFNORCredentials;
+  pollingInterval: number; pollingTimeout: number; maxRetries: number;
+}
+
 export class FactPulseClient {
-  private config: Required<FactPulseClientConfig>;
+  private config: InternalConfig;
   private httpClient: AxiosInstance;
   private accessToken: string | null = null;
   private refreshToken: string | null = null;
   private tokenExpiresAt: number | null = null;
+
+  public readonly chorusCredentials?: ChorusProCredentials;
+  public readonly afnorCredentials?: AFNORCredentials;
 
   constructor(config: FactPulseClientConfig) {
     this.config = {
       email: config.email, password: config.password,
       apiUrl: (config.apiUrl || DEFAULT_API_URL).replace(/\/$/, ''),
       clientUid: config.clientUid || '',
+      chorusCredentials: config.chorusCredentials,
+      afnorCredentials: config.afnorCredentials,
       pollingInterval: config.pollingInterval || DEFAULT_POLLING_INTERVAL,
       pollingTimeout: config.pollingTimeout || DEFAULT_POLLING_TIMEOUT,
       maxRetries: config.maxRetries ?? DEFAULT_MAX_RETRIES,
     };
+    this.chorusCredentials = config.chorusCredentials;
+    this.afnorCredentials = config.afnorCredentials;
     this.httpClient = axios.create({ timeout: 30000, headers: { 'Content-Type': 'application/json' } });
+  }
+
+  getChorusCredentialsForApi(): Record<string, unknown> | undefined {
+    if (!this.chorusCredentials) return undefined;
+    return {
+      piste_client_id: this.chorusCredentials.pisteClientId,
+      piste_client_secret: this.chorusCredentials.pisteClientSecret,
+      chorus_pro_login: this.chorusCredentials.chorusProLogin,
+      chorus_pro_password: this.chorusCredentials.chorusProPassword,
+      sandbox: this.chorusCredentials.sandbox ?? true,
+    };
+  }
+
+  getAfnorCredentialsForApi(): Record<string, unknown> | undefined {
+    if (!this.afnorCredentials) return undefined;
+    return {
+      client_id: this.afnorCredentials.clientId,
+      client_secret: this.afnorCredentials.clientSecret,
+      flow_service_url: this.afnorCredentials.flowServiceUrl,
+    };
   }
 
   private async obtainToken(): Promise<{ access: string; refresh: string }> {

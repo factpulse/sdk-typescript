@@ -1,2 +1,6 @@
+// Exceptions
 export { FactPulseError, FactPulseAuthError, FactPulsePollingTimeout, FactPulseValidationError, ValidationErrorDetail, formatValidationError } from './exceptions';
-export { FactPulseClient, FactPulseClientConfig } from './client';
+// Client et configuration
+export { FactPulseClient, FactPulseClientConfig, ChorusProCredentials, AFNORCredentials } from './client';
+// Helpers pour les montants
+export { montant, montantTotal, ligneDePoste, ligneDeTva } from './client';
