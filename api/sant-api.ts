@@ -27,6 +27,36 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 export const SantApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Endpoint de healthcheck pour Docker et les load balancers.  Utile pour : - Docker healthcheck - Kubernetes liveness/readiness probes - Load balancers (Nginx, HAProxy) - Monitoring de disponibilité - Déploiement zero downtime  Retourne un code 200 si l\'API est opérationnelle.
+         * @summary Endpoint de healthcheck pour Docker
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        healthcheckHealthcheckGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/healthcheck`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Endpoint de health check pour vérifier que l\'API répond.  Utile pour : - Monitoring de disponibilité - Tests d\'intégration - Load balancers
          * @summary Vérifier l\'état de l\'API
          * @param {*} [options] Override http request option.
@@ -66,6 +96,18 @@ export const SantApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = SantApiAxiosParamCreator(configuration)
     return {
         /**
+         * Endpoint de healthcheck pour Docker et les load balancers.  Utile pour : - Docker healthcheck - Kubernetes liveness/readiness probes - Load balancers (Nginx, HAProxy) - Monitoring de disponibilité - Déploiement zero downtime  Retourne un code 200 si l\'API est opérationnelle.
+         * @summary Endpoint de healthcheck pour Docker
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async healthcheckHealthcheckGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.healthcheckHealthcheckGet(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SantApi.healthcheckHealthcheckGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Endpoint de health check pour vérifier que l\'API répond.  Utile pour : - Monitoring de disponibilité - Tests d\'intégration - Load balancers
          * @summary Vérifier l\'état de l\'API
          * @param {*} [options] Override http request option.
@@ -87,6 +129,15 @@ export const SantApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = SantApiFp(configuration)
     return {
         /**
+         * Endpoint de healthcheck pour Docker et les load balancers.  Utile pour : - Docker healthcheck - Kubernetes liveness/readiness probes - Load balancers (Nginx, HAProxy) - Monitoring de disponibilité - Déploiement zero downtime  Retourne un code 200 si l\'API est opérationnelle.
+         * @summary Endpoint de healthcheck pour Docker
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        healthcheckHealthcheckGet(options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.healthcheckHealthcheckGet(options).then((request) => request(axios, basePath));
+        },
+        /**
          * Endpoint de health check pour vérifier que l\'API répond.  Utile pour : - Monitoring de disponibilité - Tests d\'intégration - Load balancers
          * @summary Vérifier l\'état de l\'API
          * @param {*} [options] Override http request option.
@@ -102,6 +153,16 @@ export const SantApiFactory = function (configuration?: Configuration, basePath?
  * SantApi - object-oriented interface
  */
 export class SantApi extends BaseAPI {
+    /**
+     * Endpoint de healthcheck pour Docker et les load balancers.  Utile pour : - Docker healthcheck - Kubernetes liveness/readiness probes - Load balancers (Nginx, HAProxy) - Monitoring de disponibilité - Déploiement zero downtime  Retourne un code 200 si l\'API est opérationnelle.
+     * @summary Endpoint de healthcheck pour Docker
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public healthcheckHealthcheckGet(options?: RawAxiosRequestConfig) {
+        return SantApiFp(this.configuration).healthcheckHealthcheckGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Endpoint de health check pour vérifier que l\'API répond.  Utile pour : - Monitoring de disponibilité - Tests d\'intégration - Load balancers
      * @summary Vérifier l\'état de l\'API

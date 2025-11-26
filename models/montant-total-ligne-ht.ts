@@ -15,16 +15,8 @@
 
 
 /**
- * Informations sur la facture enrichie.
+ * Montant total HT de la ligne (quantité × prix unitaire - remise). (Accepte number, string ou integer)
  */
-export interface FactureEnrichieInfoOutput {
-    'numero_facture': string;
-    'id_emetteur'?: number | null;
-    'id_destinataire'?: number | null;
-    'nom_emetteur': string;
-    'nom_destinataire': string;
-    'montant_ht_total': string;
-    'montant_tva': string;
-    'montant_ttc_total': string;
+export interface MontantTotalLigneHt {
 }
 

@@ -1,6 +1,6 @@
-# MontantTtcTotal1
+# MontantTotalAcompte
 
-Montant TTC total
+Acompte versé. (Accepte number, string ou integer)
 
 ## Properties
 
@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MontantTtcTotal1 } from '@factpulse/sdk';
+import { MontantTotalAcompte } from '@factpulse/sdk';
 
-const instance: MontantTtcTotal1 = {
+const instance: MontantTotalAcompte = {
 };
 ```
 

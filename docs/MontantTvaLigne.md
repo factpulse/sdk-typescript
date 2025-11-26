@@ -1,6 +1,6 @@
-# MontantHtTotal
+# MontantTvaLigne
 
-Montant total HT. (Accepte number, string ou integer)
+Montant de la TVA pour cette ligne. (Accepte number, string ou integer)
 
 ## Properties
 
@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MontantHtTotal } from '@factpulse/sdk';
+import { MontantTvaLigne } from '@factpulse/sdk';
 
-const instance: MontantHtTotal = {
+const instance: MontantTvaLigne = {
 };
 ```
 

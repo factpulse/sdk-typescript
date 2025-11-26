@@ -15,8 +15,8 @@
 
 
 /**
- * Montant TTC total
+ * Montant de la remise globale TTC. (Accepte number, string ou integer)
  */
-export interface MontantTtcTotal1 {
+export interface MontantRemiseGlobaleTtc {
 }
 

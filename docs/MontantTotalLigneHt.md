@@ -1,6 +1,6 @@
-# MontantHtTotal
+# MontantTotalLigneHt
 
-Montant total HT. (Accepte number, string ou integer)
+Montant total HT de la ligne (quantité × prix unitaire - remise). (Accepte number, string ou integer)
 
 ## Properties
 
@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MontantHtTotal } from '@factpulse/sdk';
+import { MontantTotalLigneHt } from '@factpulse/sdk';
 
-const instance: MontantHtTotal = {
+const instance: MontantTotalLigneHt = {
 };
 ```
 

@@ -15,8 +15,8 @@
 
 
 /**
- * Montant total TTC. (Accepte number, string ou integer)
+ * Montant de la TVA pour cette ligne. (Accepte number, string ou integer)
  */
-export interface MontantTtcTotal {
+export interface MontantTvaLigne {
 }
 

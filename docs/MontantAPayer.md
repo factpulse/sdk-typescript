@@ -1,6 +1,6 @@
-# MontantTva1
+# MontantAPayer
 
-Montant TVA
+Montant à payer. (Accepte number, string ou integer)
 
 ## Properties
 
@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MontantTva1 } from '@factpulse/sdk';
+import { MontantAPayer } from '@factpulse/sdk';
 
-const instance: MontantTva1 = {
+const instance: MontantAPayer = {
 };
 ```
 

@@ -1,6 +1,6 @@
-# MontantHtTotal1
+# LigneDePosteTauxTvaManuel
 
-Montant HT total
+Taux de TVA avec valeur manuelle. (Accepte number, string ou integer)
 
 ## Properties
 
@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MontantHtTotal1 } from '@factpulse/sdk';
+import { LigneDePosteTauxTvaManuel } from '@factpulse/sdk';
 
-const instance: MontantHtTotal1 = {
+const instance: LigneDePosteTauxTvaManuel = {
 };
 ```
 

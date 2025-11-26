@@ -6,12 +6,12 @@ Contient tous les montants totaux de la facture.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**montantHtTotal** | **string** | Montant total HT. | [default to undefined]
-**montantTva** | **string** | Montant total de la TVA. | [default to undefined]
-**montantTtcTotal** | **string** | Montant total TTC. | [default to undefined]
-**montantAPayer** | **string** | Montant à payer. | [default to undefined]
-**acompte** | **string** | Acompte versé. | [optional] [default to undefined]
-**montantRemiseGlobaleTtc** | **string** | Montant de la remise globale TTC. | [optional] [default to undefined]
+**montantHtTotal** | [**MontantHtTotal**](MontantHtTotal.md) |  | [default to undefined]
+**montantTva** | [**MontantTvaTotal**](MontantTvaTotal.md) |  | [default to undefined]
+**montantTtcTotal** | [**MontantTtcTotal**](MontantTtcTotal.md) |  | [default to undefined]
+**montantAPayer** | [**MontantAPayer**](MontantAPayer.md) |  | [default to undefined]
+**acompte** | [**MontantTotalAcompte**](MontantTotalAcompte.md) |  | [optional] [default to undefined]
+**montantRemiseGlobaleTtc** | [**MontantRemiseGlobaleTtc**](MontantRemiseGlobaleTtc.md) |  | [optional] [default to undefined]
 **motifRemiseGlobaleTtc** | **string** |  | [optional] [default to undefined]
 
 ## Example

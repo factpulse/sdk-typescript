@@ -21,6 +21,15 @@ import type { CategorieTVA } from './categorie-tva';
 import type { CodeRaisonReduction } from './code-raison-reduction';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { LigneDePosteMontantRemiseHt } from './ligne-de-poste-montant-remise-ht';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { LigneDePosteTauxTvaManuel } from './ligne-de-poste-taux-tva-manuel';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { MontantTotalLigneHt } from './montant-total-ligne-ht';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { MontantUnitaireHt } from './montant-unitaire-ht';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -39,19 +48,10 @@ export interface LigneDePoste {
     'quantite': Quantite;
     'unite': Unite;
     'montantUnitaireHt': MontantUnitaireHt;
-    /**
-     * Montant de la remise HT.
-     */
-    'montantRemiseHt'?: string | null;
-    /**
-     * Montant total HT de la ligne (quantité × prix unitaire - remise).
-     */
-    'montantTotalLigneHt'?: string;
+    'montantRemiseHt'?: LigneDePosteMontantRemiseHt | null;
+    'montantTotalLigneHt'?: MontantTotalLigneHt;
     'tauxTva'?: string | null;
-    /**
-     * Taux de TVA avec valeur manuelle.
-     */
-    'tauxTvaManuel'?: string | null;
+    'tauxTvaManuel'?: LigneDePosteTauxTvaManuel | null;
     'categorieTva'?: CategorieTVA | null;
     'dateDebutPeriode'?: string | null;
     'dateFinPeriode'?: string | null;

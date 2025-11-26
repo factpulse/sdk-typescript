@@ -15,8 +15,8 @@
 
 
 /**
- * Montant total TTC. (Accepte number, string ou integer)
+ * Acompte versé. (Accepte number, string ou integer)
  */
-export interface MontantTtcTotal {
+export interface MontantTotalAcompte {
 }
 

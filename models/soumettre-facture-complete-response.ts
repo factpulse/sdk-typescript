@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FactureEnrichieInfoOutput } from './facture-enrichie-info-output';
+import type { FactureEnrichieInfo } from './facture-enrichie-info';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { PDFFacturXInfo } from './pdffactur-xinfo';
@@ -46,7 +46,7 @@ export interface SoumettreFactureCompleteResponse {
     /**
      * Données de la facture enrichie
      */
-    'facture_enrichie': FactureEnrichieInfoOutput;
+    'facture_enrichie': FactureEnrichieInfo;
     /**
      * Informations sur le PDF généré
      */

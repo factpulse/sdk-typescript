@@ -1,4 +1,4 @@
-# FactureEnrichieInfoOutput
+# FactureEnrichieInfo
 
 Informations sur la facture enrichie.
 
@@ -18,9 +18,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { FactureEnrichieInfoOutput } from '@factpulse/sdk';
+import { FactureEnrichieInfo } from '@factpulse/sdk';
 
-const instance: FactureEnrichieInfoOutput = {
+const instance: FactureEnrichieInfo = {
     numero_facture,
     id_emetteur,
     id_destinataire,

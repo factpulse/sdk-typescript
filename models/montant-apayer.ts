@@ -15,8 +15,8 @@
 
 
 /**
- * Montant total TTC. (Accepte number, string ou integer)
+ * Montant à payer. (Accepte number, string ou integer)
  */
-export interface MontantTtcTotal {
+export interface MontantAPayer {
 }
 

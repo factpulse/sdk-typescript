@@ -1,6 +1,6 @@
-# MontantHtTotal
+# LigneDePosteMontantRemiseHt
 
-Montant total HT. (Accepte number, string ou integer)
+Montant de la remise HT. (Accepte number, string ou integer)
 
 ## Properties
 
@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { MontantHtTotal } from '@factpulse/sdk';
+import { LigneDePosteMontantRemiseHt } from '@factpulse/sdk';
 
-const instance: MontantHtTotal = {
+const instance: LigneDePosteMontantRemiseHt = {
 };
 ```
 

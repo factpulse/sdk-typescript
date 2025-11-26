@@ -13,27 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantHtTotal } from './montant-ht-total';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantTtcTotal } from './montant-ttc-total';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { MontantTva } from './montant-tva';
 
 /**
  * Informations sur la facture enrichie.
  */
-export interface FactureEnrichieInfoInput {
+export interface FactureEnrichieInfo {
     'numero_facture': string;
     'id_emetteur'?: number | null;
     'id_destinataire'?: number | null;
     'nom_emetteur': string;
     'nom_destinataire': string;
-    'montant_ht_total': MontantHtTotal;
-    'montant_tva': MontantTva;
-    'montant_ttc_total': MontantTtcTotal;
+    'montant_ht_total': string;
+    'montant_tva': string;
+    'montant_ttc_total': string;
 }
 

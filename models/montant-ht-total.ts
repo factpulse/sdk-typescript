@@ -14,6 +14,9 @@
 
 
 
+/**
+ * Montant total HT. (Accepte number, string ou integer)
+ */
 export interface MontantHtTotal {
 }
 

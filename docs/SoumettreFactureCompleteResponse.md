@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **destination_type** | **string** | Type de destination | [default to undefined]
 **resultat_chorus** | [**ResultatChorusPro**](ResultatChorusPro.md) |  | [optional] [default to undefined]
 **resultat_afnor** | [**ResultatAFNOR**](ResultatAFNOR.md) |  | [optional] [default to undefined]
-**facture_enrichie** | [**FactureEnrichieInfoOutput**](FactureEnrichieInfoOutput.md) | Données de la facture enrichie | [default to undefined]
+**facture_enrichie** | [**FactureEnrichieInfo**](FactureEnrichieInfo.md) | Données de la facture enrichie | [default to undefined]
 **pdf_facturx** | [**PDFFacturXInfo**](PDFFacturXInfo.md) | Informations sur le PDF généré | [default to undefined]
 **signature** | [**SignatureInfo**](SignatureInfo.md) |  | [optional] [default to undefined]
 **pdf_base64** | **string** | PDF Factur-X généré (et signé si demandé) encodé en base64 | [default to undefined]

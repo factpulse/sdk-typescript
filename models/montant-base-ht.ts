@@ -15,8 +15,8 @@
 
 
 /**
- * Montant total TTC. (Accepte number, string ou integer)
+ * Montant de la base HT pour cette ligne de TVA. (Accepte number, string ou integer)
  */
-export interface MontantTtcTotal {
+export interface MontantBaseHt {
 }
 

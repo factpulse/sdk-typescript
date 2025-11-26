@@ -15,8 +15,8 @@
 
 
 /**
- * Montant HT total
+ * Taux de TVA avec valeur manuelle. (Accepte number, string ou integer)
  */
-export interface MontantHtTotal1 {
+export interface Tauxmanuel {
 }
 

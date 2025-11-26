@@ -15,8 +15,8 @@
 
 
 /**
- * Montant TVA
+ * Montant de la remise HT. (Accepte number, string ou integer)
  */
-export interface MontantTva1 {
+export interface LigneDePosteMontantRemiseHt {
 }
 

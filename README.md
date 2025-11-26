@@ -8,7 +8,7 @@ Client TypeScript/JavaScript officiel pour l'API FactPulse - Facturation électr
 - **Chorus Pro** : Intégration avec la plateforme de facturation publique française
 - **AFNOR PDP/PA** : Soumission de flux conformes à la norme XP Z12-013
 - **Signature électronique** : Signature PDF (PAdES-B-B, PAdES-B-T, PAdES-B-LT)
-- **Traitement asynchrone** : Support Celery pour opérations longues
+- **Client simplifié** : Authentification JWT et polling intégrés via `helpers`
 - **TypeScript** : Support complet avec types générés automatiquement
 
 ## 🚀 Installation
@@ -21,121 +21,164 @@ yarn add @factpulse/sdk
 
 ## 📖 Démarrage rapide
 
-### 1. Authentification
+### Méthode recommandée : Client simplifié avec helpers
+
+Le module `helpers` offre une API simplifiée avec authentification et polling automatiques :
 
 ```typescript
-import { Configuration, TraitementFactureApi } from '@factpulse/sdk';
+import { FactPulseClient } from '@factpulse/sdk/helpers';
+import * as fs from 'fs';
 
-// Configuration du client
-const config = new Configuration({
-  basePath: 'https://factpulse.fr/api/facturation',
-  accessToken: 'votre_token_jwt'
-});
-
-const api = new TraitementFactureApi(config);
-```
-
-### 2. Générer une facture Factur-X
-
-```typescript
-// Données de la facture
-const factureData = {
-  numeroFacture: "FAC-2025-001",
-  dateFacture: "2025-01-15",
-  montantTotalHt: "1000.00",
-  montantTotalTtc: "1200.00",
-  fournisseur: {
-    nom: "Mon Entreprise SAS",
-    siret: "12345678901234",
-    adressePostale: {
-      ligneUn: "123 Rue Example",
-      codePostal: "75001",
-      nomVille: "Paris",
-      paysCodeIso: "FR"
-    }
-  },
-  destinataire: {
-    nom: "Client SARL",
-    siret: "98765432109876",
-    adressePostale: {
-      ligneUn: "456 Avenue Test",
-      codePostal: "69001",
-      nomVille: "Lyon",
-      paysCodeIso: "FR"
-    }
-  },
-  lignesDePoste: [{
-    numero: 1,
-    denomination: "Prestation de conseil",
-    quantite: "10.00",
-    montantUnitaireHt: "100.00",
-    montantLigneHt: "1000.00"
-  }]
-};
-
-// Générer le PDF Factur-X
-const response = await api.genererFactureApiV1TraitementGenererFacturePost(
-  JSON.stringify(factureData),
-  'EN16931',
-  'pdf'
-);
-
-// Sauvegarder le fichier
-const fs = require('fs');
-fs.writeFileSync('facture.pdf', Buffer.from(response.data));
-```
-
-### 3. Soumettre une facture complète (Chorus Pro / AFNOR PDP)
-
-```typescript
-const response = await api.soumettreFactureCompleteApiV1TraitementFacturesSoumettreCompletePost({
-  facture: factureData,
-  destination: {
-    type: "chorus_pro",
-    credentials: {
-      login: "votre_login_chorus",
-      password: "votre_password_chorus"
-    }
-  }
-});
-
-console.log(`Facture soumise : ${response.data.idFactureChorus}`);
-```
-
-## 🔑 Obtention du token JWT
-
-### Via l'API
-
-```typescript
-import axios from 'axios';
-
-const response = await axios.post('https://factpulse.fr/api/token/', {
-  username: 'votre_email@example.com',
+// Créer le client (authentification automatique)
+const client = new FactPulseClient({
+  email: 'votre_email@example.com',
   password: 'votre_mot_de_passe'
 });
 
-const token = response.data.access;
+// Données de la facture
+const factureData = {
+  numero_facture: 'FAC-2025-001',
+  date_facture: '2025-01-15',
+  fournisseur: {
+    nom: 'Mon Entreprise SAS',
+    siret: '12345678901234',
+    adresse_postale: {
+      ligne_un: '123 Rue Example',
+      code_postal: '75001',
+      nom_ville: 'Paris',
+      pays_code_iso: 'FR'
+    }
+  },
+  destinataire: {
+    nom: 'Client SARL',
+    siret: '98765432109876',
+    adresse_postale: {
+      ligne_un: '456 Avenue Test',
+      code_postal: '69001',
+      nom_ville: 'Lyon',
+      pays_code_iso: 'FR'
+    }
+  },
+  montant_total: {
+    montant_ht_total: '1000.00',
+    montant_tva: '200.00',
+    montant_ttc_total: '1200.00',
+    montant_a_payer: '1200.00'
+  },
+  lignes_de_poste: [{
+    numero: 1,
+    denomination: 'Prestation de conseil',
+    quantite: '10.00',
+    unite: 'PIECE',
+    montant_unitaire_ht: '100.00'
+  }]
+};
+
+// Lire le PDF source
+const pdfSource = fs.readFileSync('facture_source.pdf');
+
+// Générer le PDF Factur-X (polling automatique)
+const pdfBytes = await client.genererFacturx(
+  factureData,
+  pdfSource,
+  'EN16931',  // profil
+  'pdf',      // format
+  true        // sync (attend le résultat)
+);
+
+// Sauvegarder
+fs.writeFileSync('facture_facturx.pdf', pdfBytes);
 ```
 
-**Accès aux credentials d'un client spécifique :**
+### Méthode alternative : SDK brut
 
-Si vous gérez plusieurs clients et souhaitez accéder aux credentials (Chorus Pro, AFNOR PDP) d'un client particulier, ajoutez le champ `client_uid` :
+Pour un contrôle total, utilisez le SDK généré directement :
 
 ```typescript
-const response = await axios.post('https://factpulse.fr/api/token/', {
+import { Configuration, TraitementFactureApi } from '@factpulse/sdk';
+import axios from 'axios';
+
+// 1. Obtenir le token JWT
+const tokenResponse = await axios.post('https://factpulse.fr/api/token/', {
   username: 'votre_email@example.com',
-  password: 'votre_mot_de_passe',
-  client_uid: 'identifiant_client'  // UID du client cible
+  password: 'votre_mot_de_passe'
+});
+const token = tokenResponse.data.access;
+
+// 2. Configurer le client
+const config = new Configuration({
+  basePath: 'https://factpulse.fr/api/facturation',
+  accessToken: token
 });
 
-const token = response.data.access;
+// 3. Appeler l'API
+const api = new TraitementFactureApi(config);
+const response = await api.genererFactureApiV1TraitementGenererFacturePost(
+  JSON.stringify(factureData),
+  'EN16931',
+  'pdf',
+  new Blob([pdfSource])
+);
+
+// 4. Polling manuel pour récupérer le résultat
+const taskId = response.data.id_tache;
+// ... (implémenter le polling)
 ```
 
-### Via le Dashboard
+## 🔧 Avantages des helpers
 
-1. Connectez-vous sur https://factpulse.fr/api/dashboard/
-2. Générez un token API
-3. Copiez et utilisez le token dans votre configuration
+| Fonctionnalité | SDK brut | helpers |
+|----------------|----------|---------|
+| Authentification | Manuelle | Automatique |
+| Refresh token | Manuel | Automatique |
+| Polling tâches async | Manuel | Automatique (backoff) |
+| Retry sur 401 | Manuel | Automatique |
+| Types TypeScript | ✓ | ✓ |
+
+## 🔑 Options d'authentification
+
+### Client UID (multi-clients)
+
+Si vous gérez plusieurs clients :
+
+```typescript
+const client = new FactPulseClient({
+  email: 'votre_email@example.com',
+  password: 'votre_mot_de_passe',
+  clientUid: 'identifiant_client'  // UID du client cible
+});
+```
+
+### Configuration avancée
+
+```typescript
+const client = new FactPulseClient({
+  email: 'votre_email@example.com',
+  password: 'votre_mot_de_passe',
+  apiUrl: 'https://factpulse.fr',  // URL personnalisée
+  pollingInterval: 2000,  // Intervalle de polling initial (ms)
+  pollingTimeout: 120000,  // Timeout de polling (ms)
+  maxRetries: 2  // Tentatives en cas de 401
+});
+```
+
+## 💡 Formats de montants acceptés
+
+L'API accepte plusieurs formats pour les montants :
+
+```typescript
+// String (recommandé pour la précision)
+const montant = "1234.56";
+
+// Number
+const montant = 1234.56;
+
+// Integer
+const montant = 1234;
+
+// Helper de formatage
+const montantFormate = FactPulseClient.formatMontant(1234.5);  // "1234.50"
+```
 
 ## 📚 Ressources
 
