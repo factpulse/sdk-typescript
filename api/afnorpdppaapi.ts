@@ -27,6 +27,40 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 export const AFNORPDPPAApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Récupère les credentials AFNOR/PDP stockés pour le client_uid du JWT. Cet endpoint est utilisé par le SDK en mode \'stored\' pour récupérer les credentials avant de faire l\'OAuth AFNOR lui-même.
+         * @summary Récupérer les credentials AFNOR stockés
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAfnorCredentialsApiV1AfnorCredentialsGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/afnor/credentials`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Endpoint proxy OAuth2 pour obtenir un token d\'accès AFNOR. Fait proxy vers le mock AFNOR (sandbox) ou la vraie PDP selon MOCK_AFNOR_BASE_URL. Cet endpoint est public (pas d\'auth Django requise) car il est appelé par le SDK AFNOR.
          * @summary Endpoint OAuth2 pour authentification AFNOR
          * @param {*} [options] Override http request option.
@@ -66,6 +100,18 @@ export const AFNORPDPPAApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AFNORPDPPAApiAxiosParamCreator(configuration)
     return {
         /**
+         * Récupère les credentials AFNOR/PDP stockés pour le client_uid du JWT. Cet endpoint est utilisé par le SDK en mode \'stored\' pour récupérer les credentials avant de faire l\'OAuth AFNOR lui-même.
+         * @summary Récupérer les credentials AFNOR stockés
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAfnorCredentialsApiV1AfnorCredentialsGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAfnorCredentialsApiV1AfnorCredentialsGet(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPAApi.getAfnorCredentialsApiV1AfnorCredentialsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Endpoint proxy OAuth2 pour obtenir un token d\'accès AFNOR. Fait proxy vers le mock AFNOR (sandbox) ou la vraie PDP selon MOCK_AFNOR_BASE_URL. Cet endpoint est public (pas d\'auth Django requise) car il est appelé par le SDK AFNOR.
          * @summary Endpoint OAuth2 pour authentification AFNOR
          * @param {*} [options] Override http request option.
@@ -87,6 +133,15 @@ export const AFNORPDPPAApiFactory = function (configuration?: Configuration, bas
     const localVarFp = AFNORPDPPAApiFp(configuration)
     return {
         /**
+         * Récupère les credentials AFNOR/PDP stockés pour le client_uid du JWT. Cet endpoint est utilisé par le SDK en mode \'stored\' pour récupérer les credentials avant de faire l\'OAuth AFNOR lui-même.
+         * @summary Récupérer les credentials AFNOR stockés
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAfnorCredentialsApiV1AfnorCredentialsGet(options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.getAfnorCredentialsApiV1AfnorCredentialsGet(options).then((request) => request(axios, basePath));
+        },
+        /**
          * Endpoint proxy OAuth2 pour obtenir un token d\'accès AFNOR. Fait proxy vers le mock AFNOR (sandbox) ou la vraie PDP selon MOCK_AFNOR_BASE_URL. Cet endpoint est public (pas d\'auth Django requise) car il est appelé par le SDK AFNOR.
          * @summary Endpoint OAuth2 pour authentification AFNOR
          * @param {*} [options] Override http request option.
@@ -102,6 +157,16 @@ export const AFNORPDPPAApiFactory = function (configuration?: Configuration, bas
  * AFNORPDPPAApi - object-oriented interface
  */
 export class AFNORPDPPAApi extends BaseAPI {
+    /**
+     * Récupère les credentials AFNOR/PDP stockés pour le client_uid du JWT. Cet endpoint est utilisé par le SDK en mode \'stored\' pour récupérer les credentials avant de faire l\'OAuth AFNOR lui-même.
+     * @summary Récupérer les credentials AFNOR stockés
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getAfnorCredentialsApiV1AfnorCredentialsGet(options?: RawAxiosRequestConfig) {
+        return AFNORPDPPAApiFp(this.configuration).getAfnorCredentialsApiV1AfnorCredentialsGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Endpoint proxy OAuth2 pour obtenir un token d\'accès AFNOR. Fait proxy vers le mock AFNOR (sandbox) ou la vraie PDP selon MOCK_AFNOR_BASE_URL. Cet endpoint est public (pas d\'auth Django requise) car il est appelé par le SDK AFNOR.
      * @summary Endpoint OAuth2 pour authentification AFNOR
