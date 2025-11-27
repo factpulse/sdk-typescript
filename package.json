@@ -1,6 +1,6 @@
 {
   "name": "@factpulse/sdk",
-  "version": "1.0.0",
+  "version": "2.0.21",
   "description": "OpenAPI client for @factpulse/sdk",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
