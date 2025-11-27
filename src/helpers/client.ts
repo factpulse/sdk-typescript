@@ -372,9 +372,6 @@ export class FactPulseClient {
     // Préparer flowInfo
     const flowInfo: Record<string, unknown> = { name: flowName, flowSyntax, flowProfile, sha256 };
     if (trackingId) flowInfo.trackingId = trackingId;
-    if (this.afnorCredentials) {
-      flowInfo.pdp_credentials = this.getAfnorCredentialsForApi();
-    }
 
     const form = new FormData();
     form.append('file', pdfBuffer, { filename: 'facture.pdf', contentType: 'application/pdf' });
@@ -395,7 +392,6 @@ export class FactPulseClient {
     };
     if (criteria.trackingId) (searchBody.where as Record<string, unknown>).trackingId = criteria.trackingId;
     if (criteria.status) (searchBody.where as Record<string, unknown>).status = criteria.status;
-    if (this.afnorCredentials) searchBody.pdp_credentials = this.getAfnorCredentialsForApi();
 
     const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/afnor/flow/v1/flows/search`, searchBody, {
       headers: { Authorization: `Bearer ${this.accessToken}`, 'Content-Type': 'application/json' },
