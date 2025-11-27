@@ -22,7 +22,7 @@ All URIs are relative to *http://localhost*
 |[**valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost**](#valideurtraiterfactureapiv1chorusprofacturesvalideurtraiterpost) | **POST** /api/v1/chorus-pro/factures/valideur/traiter | Valider ou refuser une facture (Valideur)|
 
 # **ajouterFichierApiV1ChorusProTransversesAjouterFichierPost**
-> any ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost)
+> any ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(requestBody)
 
 Ajoute une pièce jointe au compte utilisateur courant.      **Taille max** : 10 Mo par fichier      **Payload exemple** :     ```json     {       \"pieceJointeFichier\": \"JVBERi0xLjQKJeLjz9MKNSAwIG9iago8P...\",       \"pieceJointeNom\": \"bon_commande.pdf\",       \"pieceJointeTypeMime\": \"application/pdf\",       \"pieceJointeExtension\": \"PDF\"     }     ```      **Retour** : L\'ID de la pièce jointe (`pieceJointeIdFichier`) à utiliser ensuite dans `/factures/completer`.      **Extensions acceptées** : PDF, JPG, PNG, ZIP, XML, etc.
 
@@ -31,17 +31,16 @@ Ajoute une pièce jointe au compte utilisateur courant.      **Taille max** : 10
 ```typescript
 import {
     ChorusProApi,
-    Configuration,
-    BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost
+    Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new ChorusProApi(configuration);
 
-let bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost: BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost; //
+let requestBody: { [key: string]: any; }; //
 
 const { status, data } = await apiInstance.ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(
-    bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost
+    requestBody
 );
 ```
 
@@ -49,7 +48,7 @@ const { status, data } = await apiInstance.ajouterFichierApiV1ChorusProTransvers
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost** | **BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost**|  | |
+| **requestBody** | **{ [key: string]: any; }**|  | |
 
 
 ### Return type
@@ -75,7 +74,7 @@ const { status, data } = await apiInstance.ajouterFichierApiV1ChorusProTransvers
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **completerFactureApiV1ChorusProFacturesCompleterPost**
-> any completerFactureApiV1ChorusProFacturesCompleterPost(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost)
+> any completerFactureApiV1ChorusProFacturesCompleterPost(requestBody)
 
 Complète une facture au statut SUSPENDUE en ajoutant des pièces jointes ou un commentaire.      **Statut requis** : SUSPENDUE      **Actions possibles** :     - Ajouter des pièces jointes (justificatifs, bons de commande, etc.)     - Modifier le commentaire      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"commentaire\": \"Voici les justificatifs demandés\",       \"listePiecesJointes\": [         {           \"pieceJointeIdFichier\": 98765,           \"pieceJointeNom\": \"bon_commande.pdf\"         }       ]     }     ```      **Note** : Les pièces jointes doivent d\'abord être uploadées via `/transverses/ajouter-fichier`.      **Après complétion** : La facture repasse au statut MISE_A_DISPOSITION.
 
@@ -84,17 +83,16 @@ Complète une facture au statut SUSPENDUE en ajoutant des pièces jointes ou un 
 ```typescript
 import {
     ChorusProApi,
-    Configuration,
-    BodyCompleterFactureApiV1ChorusProFacturesCompleterPost
+    Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new ChorusProApi(configuration);
 
-let bodyCompleterFactureApiV1ChorusProFacturesCompleterPost: BodyCompleterFactureApiV1ChorusProFacturesCompleterPost; //
+let requestBody: { [key: string]: any; }; //
 
 const { status, data } = await apiInstance.completerFactureApiV1ChorusProFacturesCompleterPost(
-    bodyCompleterFactureApiV1ChorusProFacturesCompleterPost
+    requestBody
 );
 ```
 
@@ -102,7 +100,7 @@ const { status, data } = await apiInstance.completerFactureApiV1ChorusProFacture
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodyCompleterFactureApiV1ChorusProFacturesCompleterPost** | **BodyCompleterFactureApiV1ChorusProFacturesCompleterPost**|  | |
+| **requestBody** | **{ [key: string]: any; }**|  | |
 
 
 ### Return type
@@ -234,7 +232,7 @@ const { status, data } = await apiInstance.consulterStructureApiV1ChorusProStruc
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet**
-> RechercherServicesResponse listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet)
+> RechercherServicesResponse listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet()
 
 Récupère la liste des services actifs d\'une structure publique.      **Cas d\'usage** :     - Lister les services disponibles pour une administration     - Vérifier qu\'un code service existe avant de soumettre une facture      **Retour** :     - Liste des services avec leur code, libellé et statut (actif/inactif)
 
@@ -243,19 +241,16 @@ Récupère la liste des services actifs d\'une structure publique.      **Cas d\
 ```typescript
 import {
     ChorusProApi,
-    Configuration,
-    BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet
+    Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new ChorusProApi(configuration);
 
 let idStructureCpp: number; // (default to undefined)
-let bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet: BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet; //
 
 const { status, data } = await apiInstance.listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(
-    idStructureCpp,
-    bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet
+    idStructureCpp
 );
 ```
 
@@ -263,7 +258,6 @@ const { status, data } = await apiInstance.listerServicesStructureApiV1ChorusPro
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet** | **BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet**|  | |
 | **idStructureCpp** | [**number**] |  | defaults to undefined|
 
 
@@ -277,7 +271,7 @@ const { status, data } = await apiInstance.listerServicesStructureApiV1ChorusPro
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
@@ -343,7 +337,7 @@ const { status, data } = await apiInstance.obtenirIdChorusProDepuisSiretApiV1Cho
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost**
-> any rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost)
+> any rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(requestBody)
 
 Recherche les factures reçues par le destinataire connecté.      **Filtres** :     - Téléchargée / non téléchargée     - Dates de réception     - Statut (MISE_A_DISPOSITION, SUSPENDUE, etc.)     - Fournisseur      **Indicateur utile** : `factureTelechargeeParDestinataire` permet de savoir si la facture a déjà été téléchargée.
 
@@ -352,17 +346,16 @@ Recherche les factures reçues par le destinataire connecté.      **Filtres** :
 ```typescript
 import {
     ChorusProApi,
-    Configuration,
-    BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost
+    Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new ChorusProApi(configuration);
 
-let bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost: BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost; //
+let requestBody: { [key: string]: any; }; //
 
 const { status, data } = await apiInstance.rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(
-    bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost
+    requestBody
 );
 ```
 
@@ -370,7 +363,7 @@ const { status, data } = await apiInstance.rechercherFacturesDestinataireApiV1Ch
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost** | **BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost**|  | |
+| **requestBody** | **{ [key: string]: any; }**|  | |
 
 
 ### Return type
@@ -396,7 +389,7 @@ const { status, data } = await apiInstance.rechercherFacturesDestinataireApiV1Ch
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost**
-> any rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost)
+> any rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(requestBody)
 
 Recherche les factures émises par le fournisseur connecté.      **Filtres disponibles** :     - Numéro de facture     - Dates (début/fin)     - Statut     - Structure destinataire     - Montant      **Cas d\'usage** :     - Suivi des factures émises     - Vérification des statuts     - Export pour comptabilité
 
@@ -405,17 +398,16 @@ Recherche les factures émises par le fournisseur connecté.      **Filtres disp
 ```typescript
 import {
     ChorusProApi,
-    Configuration,
-    BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost
+    Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new ChorusProApi(configuration);
 
-let bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost: BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost; //
+let requestBody: { [key: string]: any; }; //
 
 const { status, data } = await apiInstance.rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(
-    bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost
+    requestBody
 );
 ```
 
@@ -423,7 +415,7 @@ const { status, data } = await apiInstance.rechercherFacturesFournisseurApiV1Cho
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost** | **BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost**|  | |
+| **requestBody** | **{ [key: string]: any; }**|  | |
 
 
 ### Return type
@@ -502,7 +494,7 @@ const { status, data } = await apiInstance.rechercherStructuresApiV1ChorusProStr
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **recyclerFactureApiV1ChorusProFacturesRecyclerPost**
-> any recyclerFactureApiV1ChorusProFacturesRecyclerPost(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost)
+> any recyclerFactureApiV1ChorusProFacturesRecyclerPost(requestBody)
 
 Recycle une facture au statut A_RECYCLER en modifiant les données d\'acheminement.      **Statut requis** : A_RECYCLER      **Champs modifiables** :     - Destinataire (`idStructureCPP`)     - Code service     - Numéro d\'engagement      **Cas d\'usage** :     - Erreur de destinataire     - Changement de service facturation     - Mise à jour du numéro d\'engagement      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"idStructureCPP\": 67890,       \"codeService\": \"SERVICE_01\",       \"numeroEngagement\": \"ENG2024001\"     }     ```      **Note** : La facture conserve son numéro et ses montants, seuls les champs d\'acheminement changent.
 
@@ -511,17 +503,16 @@ Recycle une facture au statut A_RECYCLER en modifiant les données d\'achemineme
 ```typescript
 import {
     ChorusProApi,
-    Configuration,
-    BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost
+    Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new ChorusProApi(configuration);
 
-let bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost: BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost; //
+let requestBody: { [key: string]: any; }; //
 
 const { status, data } = await apiInstance.recyclerFactureApiV1ChorusProFacturesRecyclerPost(
-    bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost
+    requestBody
 );
 ```
 
@@ -529,7 +520,7 @@ const { status, data } = await apiInstance.recyclerFactureApiV1ChorusProFactures
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost** | **BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost**|  | |
+| **requestBody** | **{ [key: string]: any; }**|  | |
 
 
 ### Return type
@@ -608,7 +599,7 @@ const { status, data } = await apiInstance.soumettreFactureApiV1ChorusProFacture
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost**
-> any telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost)
+> any telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(requestBody)
 
 Télécharge une ou plusieurs factures (max 10 recommandé) avec leurs pièces jointes.      **Formats disponibles** :     - PDF : Fichier PDF uniquement     - XML : Fichier XML uniquement     - ZIP : Archive contenant PDF + XML + pièces jointes      **Taille maximale** : 120 Mo par téléchargement      **Payload exemple** :     ```json     {       \"listeIdentifiantsFactureCPP\": [12345, 12346],       \"inclurePiecesJointes\": true,       \"formatFichier\": \"ZIP\"     }     ```      **Retour** : Le fichier est encodé en base64 dans le champ `fichierBase64`.      **Note** : Le flag `factureTelechargeeParDestinataire` est mis à jour automatiquement.
 
@@ -617,17 +608,16 @@ Télécharge une ou plusieurs factures (max 10 recommandé) avec leurs pièces j
 ```typescript
 import {
     ChorusProApi,
-    Configuration,
-    BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost
+    Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new ChorusProApi(configuration);
 
-let bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost: BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost; //
+let requestBody: { [key: string]: any; }; //
 
 const { status, data } = await apiInstance.telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(
-    bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost
+    requestBody
 );
 ```
 
@@ -635,7 +625,7 @@ const { status, data } = await apiInstance.telechargerGroupeFacturesApiV1ChorusP
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost** | **BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost**|  | |
+| **requestBody** | **{ [key: string]: any; }**|  | |
 
 
 ### Return type
@@ -661,7 +651,7 @@ const { status, data } = await apiInstance.telechargerGroupeFacturesApiV1ChorusP
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost**
-> any traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost)
+> any traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(requestBody)
 
 Change le statut d\'une facture reçue.      **Statuts possibles** :     - MISE_A_DISPOSITION : Facture acceptée     - SUSPENDUE : En attente d\'informations complémentaires (motif obligatoire)     - REJETEE : Facture refusée (motif obligatoire)     - MANDATEE : Facture mandatée     - MISE_EN_PAIEMENT : Facture en cours de paiement     - COMPTABILISEE : Facture comptabilisée     - MISE_A_DISPOSITION_COMPTABLE : Mise à disposition comptable     - A_RECYCLER : À recycler     - COMPLETEE : Complétée     - SERVICE-FAIT : Service fait     - PRISE_EN_COMPTE_DESTINATAIRE : Prise en compte     - TRANSMISE_MOA : Transmise à la MOA      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"nouveauStatut\": \"REJETEE\",       \"motifRejet\": \"Facture en double\",       \"commentaire\": \"Facture déjà reçue sous la référence ABC123\"     }     ```      **Règles** :     - Un motif est **obligatoire** pour SUSPENDUE et REJETEE     - Seuls certains statuts sont autorisés selon le statut actuel de la facture
 
@@ -670,17 +660,16 @@ Change le statut d\'une facture reçue.      **Statuts possibles** :     - MISE_
 ```typescript
 import {
     ChorusProApi,
-    Configuration,
-    BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost
+    Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new ChorusProApi(configuration);
 
-let bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost: BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost; //
+let requestBody: { [key: string]: any; }; //
 
 const { status, data } = await apiInstance.traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(
-    bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost
+    requestBody
 );
 ```
 
@@ -688,7 +677,7 @@ const { status, data } = await apiInstance.traiterFactureRecueApiV1ChorusProFact
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost** | **BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost**|  | |
+| **requestBody** | **{ [key: string]: any; }**|  | |
 
 
 ### Return type
@@ -714,26 +703,24 @@ const { status, data } = await apiInstance.traiterFactureRecueApiV1ChorusProFact
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost**
-> any valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost)
+> any valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(requestBody)
 
-Consulte facture (valideur).
 
 ### Example
 
 ```typescript
 import {
     ChorusProApi,
-    Configuration,
-    BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost
+    Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new ChorusProApi(configuration);
 
-let bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost: BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost; //
+let requestBody: { [key: string]: any; }; //
 
 const { status, data } = await apiInstance.valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(
-    bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost
+    requestBody
 );
 ```
 
@@ -741,7 +728,7 @@ const { status, data } = await apiInstance.valideurConsulterFactureApiV1ChorusPr
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost** | **BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost**|  | |
+| **requestBody** | **{ [key: string]: any; }**|  | |
 
 
 ### Return type
@@ -767,7 +754,7 @@ const { status, data } = await apiInstance.valideurConsulterFactureApiV1ChorusPr
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost**
-> any valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost)
+> any valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(requestBody)
 
 Recherche les factures en attente de validation par le valideur connecté.      **Rôle** : Valideur dans le circuit de validation interne.      **Filtres** : Dates, structure, service, etc.
 
@@ -776,17 +763,16 @@ Recherche les factures en attente de validation par le valideur connecté.      
 ```typescript
 import {
     ChorusProApi,
-    Configuration,
-    BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost
+    Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new ChorusProApi(configuration);
 
-let bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost: BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost; //
+let requestBody: { [key: string]: any; }; //
 
 const { status, data } = await apiInstance.valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(
-    bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost
+    requestBody
 );
 ```
 
@@ -794,7 +780,7 @@ const { status, data } = await apiInstance.valideurRechercherFacturesApiV1Chorus
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost** | **BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost**|  | |
+| **requestBody** | **{ [key: string]: any; }**|  | |
 
 
 ### Return type
@@ -820,7 +806,7 @@ const { status, data } = await apiInstance.valideurRechercherFacturesApiV1Chorus
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost**
-> any valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost)
+> any valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(requestBody)
 
 Valide ou refuse une facture en attente de validation.      **Actions** :     - Valider : La facture passe au statut suivant du circuit     - Refuser : La facture est rejetée (motif obligatoire)
 
@@ -829,17 +815,16 @@ Valide ou refuse une facture en attente de validation.      **Actions** :     - 
 ```typescript
 import {
     ChorusProApi,
-    Configuration,
-    BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost
+    Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new ChorusProApi(configuration);
 
-let bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost: BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost; //
+let requestBody: { [key: string]: any; }; //
 
 const { status, data } = await apiInstance.valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(
-    bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost
+    requestBody
 );
 ```
 
@@ -847,7 +832,7 @@ const { status, data } = await apiInstance.valideurTraiterFactureApiV1ChorusProF
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost** | **BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost**|  | |
+| **requestBody** | **{ [key: string]: any; }**|  | |
 
 
 ### Return type

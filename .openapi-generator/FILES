@@ -19,17 +19,6 @@ docs/AFNORPDPPAFlowServiceApi.md
 docs/APIError.md
 docs/AdresseElectronique.md
 docs/AdressePostale.md
-docs/BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost.md
-docs/BodyCompleterFactureApiV1ChorusProFacturesCompleterPost.md
-docs/BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet.md
-docs/BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost.md
-docs/BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost.md
-docs/BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost.md
-docs/BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost.md
-docs/BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost.md
-docs/BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost.md
-docs/BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost.md
-docs/BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost.md
 docs/CadreDeFacturation.md
 docs/CategorieTVA.md
 docs/CertificateInfoResponse.md
@@ -86,7 +75,6 @@ docs/ParametresStructure.md
 docs/PieceJointeComplementaire.md
 docs/ProfilAPI.md
 docs/Quantite.md
-docs/QuotaInfo.md
 docs/RechercherServicesResponse.md
 docs/RechercherStructureRequest.md
 docs/RechercherStructureResponse.md
@@ -114,7 +102,6 @@ docs/TraitementFactureApi.md
 docs/TypeFacture.md
 docs/TypeTVA.md
 docs/Unite.md
-docs/Utilisateur.md
 docs/UtilisateurApi.md
 docs/ValidationError.md
 docs/ValidationErrorDetail.md
@@ -124,17 +111,6 @@ index.ts
 models/adresse-electronique.ts
 models/adresse-postale.ts
 models/apierror.ts
-models/body-ajouter-fichier-api-v1-chorus-pro-transverses-ajouter-fichier-post.ts
-models/body-completer-facture-api-v1-chorus-pro-factures-completer-post.ts
-models/body-lister-services-structure-api-v1-chorus-pro-structures-id-structure-cpp-services-get.ts
-models/body-rechercher-factures-destinataire-api-v1-chorus-pro-factures-rechercher-destinataire-post.ts
-models/body-rechercher-factures-fournisseur-api-v1-chorus-pro-factures-rechercher-fournisseur-post.ts
-models/body-recycler-facture-api-v1-chorus-pro-factures-recycler-post.ts
-models/body-telecharger-groupe-factures-api-v1-chorus-pro-factures-telecharger-groupe-post.ts
-models/body-traiter-facture-recue-api-v1-chorus-pro-factures-traiter-facture-recue-post.ts
-models/body-valideur-consulter-facture-api-v1-chorus-pro-factures-valideur-consulter-post.ts
-models/body-valideur-rechercher-factures-api-v1-chorus-pro-factures-valideur-rechercher-post.ts
-models/body-valideur-traiter-facture-api-v1-chorus-pro-factures-valideur-traiter-post.ts
 models/cadre-de-facturation.ts
 models/categorie-tva.ts
 models/certificate-info-response.ts
@@ -191,7 +167,6 @@ models/pdffactur-xinfo.ts
 models/piece-jointe-complementaire.ts
 models/profil-api.ts
 models/quantite.ts
-models/quota-info.ts
 models/rechercher-services-response.ts
 models/rechercher-structure-request.ts
 models/rechercher-structure-response.ts
@@ -217,7 +192,6 @@ models/tauxmanuel.ts
 models/type-facture.ts
 models/type-tva.ts
 models/unite.ts
-models/utilisateur.ts
 models/validation-error-detail.ts
 models/validation-error-loc-inner.ts
 models/validation-error.ts

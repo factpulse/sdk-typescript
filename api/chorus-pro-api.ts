@@ -22,28 +22,6 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import type { BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost } from '../models';
-// @ts-ignore
-import type { BodyCompleterFactureApiV1ChorusProFacturesCompleterPost } from '../models';
-// @ts-ignore
-import type { BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet } from '../models';
-// @ts-ignore
-import type { BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost } from '../models';
-// @ts-ignore
-import type { BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost } from '../models';
-// @ts-ignore
-import type { BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost } from '../models';
-// @ts-ignore
-import type { BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost } from '../models';
-// @ts-ignore
-import type { BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost } from '../models';
-// @ts-ignore
-import type { BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost } from '../models';
-// @ts-ignore
-import type { BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost } from '../models';
-// @ts-ignore
-import type { BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost } from '../models';
-// @ts-ignore
 import type { ConsulterFactureRequest } from '../models';
 // @ts-ignore
 import type { ConsulterFactureResponse } from '../models';
@@ -75,13 +53,13 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Ajoute une pièce jointe au compte utilisateur courant.      **Taille max** : 10 Mo par fichier      **Payload exemple** :     ```json     {       \"pieceJointeFichier\": \"JVBERi0xLjQKJeLjz9MKNSAwIG9iago8P...\",       \"pieceJointeNom\": \"bon_commande.pdf\",       \"pieceJointeTypeMime\": \"application/pdf\",       \"pieceJointeExtension\": \"PDF\"     }     ```      **Retour** : L\'ID de la pièce jointe (`pieceJointeIdFichier`) à utiliser ensuite dans `/factures/completer`.      **Extensions acceptées** : PDF, JPG, PNG, ZIP, XML, etc.
          * @summary Ajouter une pièce jointe
-         * @param {BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost} bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ajouterFichierApiV1ChorusProTransversesAjouterFichierPost: async (bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost: BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost' is not null or undefined
-            assertParamExists('ajouterFichierApiV1ChorusProTransversesAjouterFichierPost', 'bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost', bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost)
+        ajouterFichierApiV1ChorusProTransversesAjouterFichierPost: async (requestBody: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'requestBody' is not null or undefined
+            assertParamExists('ajouterFichierApiV1ChorusProTransversesAjouterFichierPost', 'requestBody', requestBody)
             const localVarPath = `/api/v1/chorus-pro/transverses/ajouter-fichier`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -104,7 +82,7 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -114,13 +92,13 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Complète une facture au statut SUSPENDUE en ajoutant des pièces jointes ou un commentaire.      **Statut requis** : SUSPENDUE      **Actions possibles** :     - Ajouter des pièces jointes (justificatifs, bons de commande, etc.)     - Modifier le commentaire      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"commentaire\": \"Voici les justificatifs demandés\",       \"listePiecesJointes\": [         {           \"pieceJointeIdFichier\": 98765,           \"pieceJointeNom\": \"bon_commande.pdf\"         }       ]     }     ```      **Note** : Les pièces jointes doivent d\'abord être uploadées via `/transverses/ajouter-fichier`.      **Après complétion** : La facture repasse au statut MISE_A_DISPOSITION.
          * @summary Compléter une facture suspendue (Fournisseur)
-         * @param {BodyCompleterFactureApiV1ChorusProFacturesCompleterPost} bodyCompleterFactureApiV1ChorusProFacturesCompleterPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        completerFactureApiV1ChorusProFacturesCompleterPost: async (bodyCompleterFactureApiV1ChorusProFacturesCompleterPost: BodyCompleterFactureApiV1ChorusProFacturesCompleterPost, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'bodyCompleterFactureApiV1ChorusProFacturesCompleterPost' is not null or undefined
-            assertParamExists('completerFactureApiV1ChorusProFacturesCompleterPost', 'bodyCompleterFactureApiV1ChorusProFacturesCompleterPost', bodyCompleterFactureApiV1ChorusProFacturesCompleterPost)
+        completerFactureApiV1ChorusProFacturesCompleterPost: async (requestBody: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'requestBody' is not null or undefined
+            assertParamExists('completerFactureApiV1ChorusProFacturesCompleterPost', 'requestBody', requestBody)
             const localVarPath = `/api/v1/chorus-pro/factures/completer`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -143,7 +121,7 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -232,15 +210,12 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
          * Récupère la liste des services actifs d\'une structure publique.      **Cas d\'usage** :     - Lister les services disponibles pour une administration     - Vérifier qu\'un code service existe avant de soumettre une facture      **Retour** :     - Liste des services avec leur code, libellé et statut (actif/inactif)
          * @summary Lister les services d\'une structure
          * @param {number} idStructureCpp 
-         * @param {BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet} bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet: async (idStructureCpp: number, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet: BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet: async (idStructureCpp: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'idStructureCpp' is not null or undefined
             assertParamExists('listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet', 'idStructureCpp', idStructureCpp)
-            // verify required parameter 'bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet' is not null or undefined
-            assertParamExists('listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet', 'bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet', bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet)
             const localVarPath = `/api/v1/chorus-pro/structures/{id_structure_cpp}/services`
                 .replace(`{${"id_structure_cpp"}}`, encodeURIComponent(String(idStructureCpp)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -258,13 +233,11 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -313,13 +286,13 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Recherche les factures reçues par le destinataire connecté.      **Filtres** :     - Téléchargée / non téléchargée     - Dates de réception     - Statut (MISE_A_DISPOSITION, SUSPENDUE, etc.)     - Fournisseur      **Indicateur utile** : `factureTelechargeeParDestinataire` permet de savoir si la facture a déjà été téléchargée.
          * @summary Rechercher factures reçues (Destinataire)
-         * @param {BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost} bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost: async (bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost: BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost' is not null or undefined
-            assertParamExists('rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost', 'bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost', bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost)
+        rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost: async (requestBody: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'requestBody' is not null or undefined
+            assertParamExists('rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost', 'requestBody', requestBody)
             const localVarPath = `/api/v1/chorus-pro/factures/rechercher-destinataire`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -342,7 +315,7 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -352,13 +325,13 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Recherche les factures émises par le fournisseur connecté.      **Filtres disponibles** :     - Numéro de facture     - Dates (début/fin)     - Statut     - Structure destinataire     - Montant      **Cas d\'usage** :     - Suivi des factures émises     - Vérification des statuts     - Export pour comptabilité
          * @summary Rechercher factures émises (Fournisseur)
-         * @param {BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost} bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost: async (bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost: BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost' is not null or undefined
-            assertParamExists('rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost', 'bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost', bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost)
+        rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost: async (requestBody: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'requestBody' is not null or undefined
+            assertParamExists('rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost', 'requestBody', requestBody)
             const localVarPath = `/api/v1/chorus-pro/factures/rechercher-fournisseur`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -381,7 +354,7 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -430,13 +403,13 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Recycle une facture au statut A_RECYCLER en modifiant les données d\'acheminement.      **Statut requis** : A_RECYCLER      **Champs modifiables** :     - Destinataire (`idStructureCPP`)     - Code service     - Numéro d\'engagement      **Cas d\'usage** :     - Erreur de destinataire     - Changement de service facturation     - Mise à jour du numéro d\'engagement      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"idStructureCPP\": 67890,       \"codeService\": \"SERVICE_01\",       \"numeroEngagement\": \"ENG2024001\"     }     ```      **Note** : La facture conserve son numéro et ses montants, seuls les champs d\'acheminement changent.
          * @summary Recycler une facture (Fournisseur)
-         * @param {BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost} bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        recyclerFactureApiV1ChorusProFacturesRecyclerPost: async (bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost: BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost' is not null or undefined
-            assertParamExists('recyclerFactureApiV1ChorusProFacturesRecyclerPost', 'bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost', bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost)
+        recyclerFactureApiV1ChorusProFacturesRecyclerPost: async (requestBody: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'requestBody' is not null or undefined
+            assertParamExists('recyclerFactureApiV1ChorusProFacturesRecyclerPost', 'requestBody', requestBody)
             const localVarPath = `/api/v1/chorus-pro/factures/recycler`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -459,7 +432,7 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -508,13 +481,13 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Télécharge une ou plusieurs factures (max 10 recommandé) avec leurs pièces jointes.      **Formats disponibles** :     - PDF : Fichier PDF uniquement     - XML : Fichier XML uniquement     - ZIP : Archive contenant PDF + XML + pièces jointes      **Taille maximale** : 120 Mo par téléchargement      **Payload exemple** :     ```json     {       \"listeIdentifiantsFactureCPP\": [12345, 12346],       \"inclurePiecesJointes\": true,       \"formatFichier\": \"ZIP\"     }     ```      **Retour** : Le fichier est encodé en base64 dans le champ `fichierBase64`.      **Note** : Le flag `factureTelechargeeParDestinataire` est mis à jour automatiquement.
          * @summary Télécharger un groupe de factures
-         * @param {BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost} bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost: async (bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost: BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost' is not null or undefined
-            assertParamExists('telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost', 'bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost', bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost)
+        telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost: async (requestBody: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'requestBody' is not null or undefined
+            assertParamExists('telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost', 'requestBody', requestBody)
             const localVarPath = `/api/v1/chorus-pro/factures/telecharger-groupe`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -537,7 +510,7 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -547,13 +520,13 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Change le statut d\'une facture reçue.      **Statuts possibles** :     - MISE_A_DISPOSITION : Facture acceptée     - SUSPENDUE : En attente d\'informations complémentaires (motif obligatoire)     - REJETEE : Facture refusée (motif obligatoire)     - MANDATEE : Facture mandatée     - MISE_EN_PAIEMENT : Facture en cours de paiement     - COMPTABILISEE : Facture comptabilisée     - MISE_A_DISPOSITION_COMPTABLE : Mise à disposition comptable     - A_RECYCLER : À recycler     - COMPLETEE : Complétée     - SERVICE-FAIT : Service fait     - PRISE_EN_COMPTE_DESTINATAIRE : Prise en compte     - TRANSMISE_MOA : Transmise à la MOA      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"nouveauStatut\": \"REJETEE\",       \"motifRejet\": \"Facture en double\",       \"commentaire\": \"Facture déjà reçue sous la référence ABC123\"     }     ```      **Règles** :     - Un motif est **obligatoire** pour SUSPENDUE et REJETEE     - Seuls certains statuts sont autorisés selon le statut actuel de la facture
          * @summary Traiter une facture reçue (Destinataire)
-         * @param {BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost} bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost: async (bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost: BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost' is not null or undefined
-            assertParamExists('traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost', 'bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost', bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost)
+        traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost: async (requestBody: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'requestBody' is not null or undefined
+            assertParamExists('traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost', 'requestBody', requestBody)
             const localVarPath = `/api/v1/chorus-pro/factures/traiter-facture-recue`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -576,7 +549,7 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -584,15 +557,15 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Consulte facture (valideur).
+         * 
          * @summary Consulter une facture (Valideur)
-         * @param {BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost} bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost: async (bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost: BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost' is not null or undefined
-            assertParamExists('valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost', 'bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost', bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost)
+        valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost: async (requestBody: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'requestBody' is not null or undefined
+            assertParamExists('valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost', 'requestBody', requestBody)
             const localVarPath = `/api/v1/chorus-pro/factures/valideur/consulter`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -615,7 +588,7 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -625,13 +598,13 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Recherche les factures en attente de validation par le valideur connecté.      **Rôle** : Valideur dans le circuit de validation interne.      **Filtres** : Dates, structure, service, etc.
          * @summary Rechercher factures à valider (Valideur)
-         * @param {BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost} bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost: async (bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost: BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost' is not null or undefined
-            assertParamExists('valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost', 'bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost', bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost)
+        valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost: async (requestBody: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'requestBody' is not null or undefined
+            assertParamExists('valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost', 'requestBody', requestBody)
             const localVarPath = `/api/v1/chorus-pro/factures/valideur/rechercher`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -654,7 +627,7 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -664,13 +637,13 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Valide ou refuse une facture en attente de validation.      **Actions** :     - Valider : La facture passe au statut suivant du circuit     - Refuser : La facture est rejetée (motif obligatoire)
          * @summary Valider ou refuser une facture (Valideur)
-         * @param {BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost} bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost: async (bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost: BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost' is not null or undefined
-            assertParamExists('valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost', 'bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost', bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost)
+        valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost: async (requestBody: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'requestBody' is not null or undefined
+            assertParamExists('valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost', 'requestBody', requestBody)
             const localVarPath = `/api/v1/chorus-pro/factures/valideur/traiter`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -693,7 +666,7 @@ export const ChorusProApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -712,12 +685,12 @@ export const ChorusProApiFp = function(configuration?: Configuration) {
         /**
          * Ajoute une pièce jointe au compte utilisateur courant.      **Taille max** : 10 Mo par fichier      **Payload exemple** :     ```json     {       \"pieceJointeFichier\": \"JVBERi0xLjQKJeLjz9MKNSAwIG9iago8P...\",       \"pieceJointeNom\": \"bon_commande.pdf\",       \"pieceJointeTypeMime\": \"application/pdf\",       \"pieceJointeExtension\": \"PDF\"     }     ```      **Retour** : L\'ID de la pièce jointe (`pieceJointeIdFichier`) à utiliser ensuite dans `/factures/completer`.      **Extensions acceptées** : PDF, JPG, PNG, ZIP, XML, etc.
          * @summary Ajouter une pièce jointe
-         * @param {BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost} bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost: BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, options);
+        async ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(requestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChorusProApi.ajouterFichierApiV1ChorusProTransversesAjouterFichierPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -725,12 +698,12 @@ export const ChorusProApiFp = function(configuration?: Configuration) {
         /**
          * Complète une facture au statut SUSPENDUE en ajoutant des pièces jointes ou un commentaire.      **Statut requis** : SUSPENDUE      **Actions possibles** :     - Ajouter des pièces jointes (justificatifs, bons de commande, etc.)     - Modifier le commentaire      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"commentaire\": \"Voici les justificatifs demandés\",       \"listePiecesJointes\": [         {           \"pieceJointeIdFichier\": 98765,           \"pieceJointeNom\": \"bon_commande.pdf\"         }       ]     }     ```      **Note** : Les pièces jointes doivent d\'abord être uploadées via `/transverses/ajouter-fichier`.      **Après complétion** : La facture repasse au statut MISE_A_DISPOSITION.
          * @summary Compléter une facture suspendue (Fournisseur)
-         * @param {BodyCompleterFactureApiV1ChorusProFacturesCompleterPost} bodyCompleterFactureApiV1ChorusProFacturesCompleterPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async completerFactureApiV1ChorusProFacturesCompleterPost(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost: BodyCompleterFactureApiV1ChorusProFacturesCompleterPost, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.completerFactureApiV1ChorusProFacturesCompleterPost(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost, options);
+        async completerFactureApiV1ChorusProFacturesCompleterPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.completerFactureApiV1ChorusProFacturesCompleterPost(requestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChorusProApi.completerFactureApiV1ChorusProFacturesCompleterPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -765,12 +738,11 @@ export const ChorusProApiFp = function(configuration?: Configuration) {
          * Récupère la liste des services actifs d\'une structure publique.      **Cas d\'usage** :     - Lister les services disponibles pour une administration     - Vérifier qu\'un code service existe avant de soumettre une facture      **Retour** :     - Liste des services avec leur code, libellé et statut (actif/inactif)
          * @summary Lister les services d\'une structure
          * @param {number} idStructureCpp 
-         * @param {BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet} bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp: number, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet: BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RechercherServicesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, options);
+        async listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RechercherServicesResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChorusProApi.listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -791,12 +763,12 @@ export const ChorusProApiFp = function(configuration?: Configuration) {
         /**
          * Recherche les factures reçues par le destinataire connecté.      **Filtres** :     - Téléchargée / non téléchargée     - Dates de réception     - Statut (MISE_A_DISPOSITION, SUSPENDUE, etc.)     - Fournisseur      **Indicateur utile** : `factureTelechargeeParDestinataire` permet de savoir si la facture a déjà été téléchargée.
          * @summary Rechercher factures reçues (Destinataire)
-         * @param {BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost} bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost: BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, options);
+        async rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(requestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChorusProApi.rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -804,12 +776,12 @@ export const ChorusProApiFp = function(configuration?: Configuration) {
         /**
          * Recherche les factures émises par le fournisseur connecté.      **Filtres disponibles** :     - Numéro de facture     - Dates (début/fin)     - Statut     - Structure destinataire     - Montant      **Cas d\'usage** :     - Suivi des factures émises     - Vérification des statuts     - Export pour comptabilité
          * @summary Rechercher factures émises (Fournisseur)
-         * @param {BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost} bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost: BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, options);
+        async rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(requestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChorusProApi.rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -830,12 +802,12 @@ export const ChorusProApiFp = function(configuration?: Configuration) {
         /**
          * Recycle une facture au statut A_RECYCLER en modifiant les données d\'acheminement.      **Statut requis** : A_RECYCLER      **Champs modifiables** :     - Destinataire (`idStructureCPP`)     - Code service     - Numéro d\'engagement      **Cas d\'usage** :     - Erreur de destinataire     - Changement de service facturation     - Mise à jour du numéro d\'engagement      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"idStructureCPP\": 67890,       \"codeService\": \"SERVICE_01\",       \"numeroEngagement\": \"ENG2024001\"     }     ```      **Note** : La facture conserve son numéro et ses montants, seuls les champs d\'acheminement changent.
          * @summary Recycler une facture (Fournisseur)
-         * @param {BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost} bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async recyclerFactureApiV1ChorusProFacturesRecyclerPost(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost: BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.recyclerFactureApiV1ChorusProFacturesRecyclerPost(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, options);
+        async recyclerFactureApiV1ChorusProFacturesRecyclerPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.recyclerFactureApiV1ChorusProFacturesRecyclerPost(requestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChorusProApi.recyclerFactureApiV1ChorusProFacturesRecyclerPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -856,12 +828,12 @@ export const ChorusProApiFp = function(configuration?: Configuration) {
         /**
          * Télécharge une ou plusieurs factures (max 10 recommandé) avec leurs pièces jointes.      **Formats disponibles** :     - PDF : Fichier PDF uniquement     - XML : Fichier XML uniquement     - ZIP : Archive contenant PDF + XML + pièces jointes      **Taille maximale** : 120 Mo par téléchargement      **Payload exemple** :     ```json     {       \"listeIdentifiantsFactureCPP\": [12345, 12346],       \"inclurePiecesJointes\": true,       \"formatFichier\": \"ZIP\"     }     ```      **Retour** : Le fichier est encodé en base64 dans le champ `fichierBase64`.      **Note** : Le flag `factureTelechargeeParDestinataire` est mis à jour automatiquement.
          * @summary Télécharger un groupe de factures
-         * @param {BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost} bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost: BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, options);
+        async telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(requestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChorusProApi.telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -869,25 +841,25 @@ export const ChorusProApiFp = function(configuration?: Configuration) {
         /**
          * Change le statut d\'une facture reçue.      **Statuts possibles** :     - MISE_A_DISPOSITION : Facture acceptée     - SUSPENDUE : En attente d\'informations complémentaires (motif obligatoire)     - REJETEE : Facture refusée (motif obligatoire)     - MANDATEE : Facture mandatée     - MISE_EN_PAIEMENT : Facture en cours de paiement     - COMPTABILISEE : Facture comptabilisée     - MISE_A_DISPOSITION_COMPTABLE : Mise à disposition comptable     - A_RECYCLER : À recycler     - COMPLETEE : Complétée     - SERVICE-FAIT : Service fait     - PRISE_EN_COMPTE_DESTINATAIRE : Prise en compte     - TRANSMISE_MOA : Transmise à la MOA      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"nouveauStatut\": \"REJETEE\",       \"motifRejet\": \"Facture en double\",       \"commentaire\": \"Facture déjà reçue sous la référence ABC123\"     }     ```      **Règles** :     - Un motif est **obligatoire** pour SUSPENDUE et REJETEE     - Seuls certains statuts sont autorisés selon le statut actuel de la facture
          * @summary Traiter une facture reçue (Destinataire)
-         * @param {BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost} bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost: BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, options);
+        async traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(requestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChorusProApi.traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Consulte facture (valideur).
+         * 
          * @summary Consulter une facture (Valideur)
-         * @param {BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost} bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost: BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, options);
+        async valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(requestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChorusProApi.valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -895,12 +867,12 @@ export const ChorusProApiFp = function(configuration?: Configuration) {
         /**
          * Recherche les factures en attente de validation par le valideur connecté.      **Rôle** : Valideur dans le circuit de validation interne.      **Filtres** : Dates, structure, service, etc.
          * @summary Rechercher factures à valider (Valideur)
-         * @param {BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost} bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost: BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, options);
+        async valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(requestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChorusProApi.valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -908,12 +880,12 @@ export const ChorusProApiFp = function(configuration?: Configuration) {
         /**
          * Valide ou refuse une facture en attente de validation.      **Actions** :     - Valider : La facture passe au statut suivant du circuit     - Refuser : La facture est rejetée (motif obligatoire)
          * @summary Valider ou refuser une facture (Valideur)
-         * @param {BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost} bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost: BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, options);
+        async valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(requestBody, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ChorusProApi.valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -930,22 +902,22 @@ export const ChorusProApiFactory = function (configuration?: Configuration, base
         /**
          * Ajoute une pièce jointe au compte utilisateur courant.      **Taille max** : 10 Mo par fichier      **Payload exemple** :     ```json     {       \"pieceJointeFichier\": \"JVBERi0xLjQKJeLjz9MKNSAwIG9iago8P...\",       \"pieceJointeNom\": \"bon_commande.pdf\",       \"pieceJointeTypeMime\": \"application/pdf\",       \"pieceJointeExtension\": \"PDF\"     }     ```      **Retour** : L\'ID de la pièce jointe (`pieceJointeIdFichier`) à utiliser ensuite dans `/factures/completer`.      **Extensions acceptées** : PDF, JPG, PNG, ZIP, XML, etc.
          * @summary Ajouter une pièce jointe
-         * @param {BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost} bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost: BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, options).then((request) => request(axios, basePath));
+        ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(requestBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Complète une facture au statut SUSPENDUE en ajoutant des pièces jointes ou un commentaire.      **Statut requis** : SUSPENDUE      **Actions possibles** :     - Ajouter des pièces jointes (justificatifs, bons de commande, etc.)     - Modifier le commentaire      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"commentaire\": \"Voici les justificatifs demandés\",       \"listePiecesJointes\": [         {           \"pieceJointeIdFichier\": 98765,           \"pieceJointeNom\": \"bon_commande.pdf\"         }       ]     }     ```      **Note** : Les pièces jointes doivent d\'abord être uploadées via `/transverses/ajouter-fichier`.      **Après complétion** : La facture repasse au statut MISE_A_DISPOSITION.
          * @summary Compléter une facture suspendue (Fournisseur)
-         * @param {BodyCompleterFactureApiV1ChorusProFacturesCompleterPost} bodyCompleterFactureApiV1ChorusProFacturesCompleterPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        completerFactureApiV1ChorusProFacturesCompleterPost(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost: BodyCompleterFactureApiV1ChorusProFacturesCompleterPost, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.completerFactureApiV1ChorusProFacturesCompleterPost(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost, options).then((request) => request(axios, basePath));
+        completerFactureApiV1ChorusProFacturesCompleterPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.completerFactureApiV1ChorusProFacturesCompleterPost(requestBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Récupère les informations et le statut actuel d\'une facture soumise à Chorus Pro.      **Retour** :     - Numéro et date de facture     - Montant TTC     - **Statut courant** : SOUMISE, VALIDEE, REJETEE, SUSPENDUE, MANDATEE, MISE_EN_PAIEMENT, etc.     - Structure destinataire      **Cas d\'usage** :     - Suivre l\'évolution du traitement d\'une facture     - Vérifier si une facture a été validée ou rejetée     - Obtenir la date de mise en paiement      **Polling** : Appelez cet endpoint régulièrement pour suivre l\'évolution du statut.
@@ -971,12 +943,11 @@ export const ChorusProApiFactory = function (configuration?: Configuration, base
          * Récupère la liste des services actifs d\'une structure publique.      **Cas d\'usage** :     - Lister les services disponibles pour une administration     - Vérifier qu\'un code service existe avant de soumettre une facture      **Retour** :     - Liste des services avec leur code, libellé et statut (actif/inactif)
          * @summary Lister les services d\'une structure
          * @param {number} idStructureCpp 
-         * @param {BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet} bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp: number, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet: BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, options?: RawAxiosRequestConfig): AxiosPromise<RechercherServicesResponse> {
-            return localVarFp.listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, options).then((request) => request(axios, basePath));
+        listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp: number, options?: RawAxiosRequestConfig): AxiosPromise<RechercherServicesResponse> {
+            return localVarFp.listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp, options).then((request) => request(axios, basePath));
         },
         /**
          * **Utilitaire pratique** pour obtenir l\'ID Chorus Pro d\'une structure à partir de son SIRET.       Cette fonction wrapper combine :     1. Recherche de la structure par SIRET     2. Extraction de l\'`id_structure_cpp` si une seule structure est trouvée      **Retour** :     - `id_structure_cpp` : ID Chorus Pro (0 si non trouvé ou si plusieurs résultats)     - `designation_structure` : Nom de la structure (si trouvée)     - `message` : Message explicatif      **Cas d\'usage** :     - Raccourci pour obtenir directement l\'ID Chorus Pro avant de soumettre une facture     - Alternative simplifiée à `rechercher-structures` + extraction manuelle de l\'ID      **Note** : Si plusieurs structures correspondent au SIRET (rare), retourne 0 et un message d\'erreur.
@@ -991,22 +962,22 @@ export const ChorusProApiFactory = function (configuration?: Configuration, base
         /**
          * Recherche les factures reçues par le destinataire connecté.      **Filtres** :     - Téléchargée / non téléchargée     - Dates de réception     - Statut (MISE_A_DISPOSITION, SUSPENDUE, etc.)     - Fournisseur      **Indicateur utile** : `factureTelechargeeParDestinataire` permet de savoir si la facture a déjà été téléchargée.
          * @summary Rechercher factures reçues (Destinataire)
-         * @param {BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost} bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost: BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, options).then((request) => request(axios, basePath));
+        rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(requestBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Recherche les factures émises par le fournisseur connecté.      **Filtres disponibles** :     - Numéro de facture     - Dates (début/fin)     - Statut     - Structure destinataire     - Montant      **Cas d\'usage** :     - Suivi des factures émises     - Vérification des statuts     - Export pour comptabilité
          * @summary Rechercher factures émises (Fournisseur)
-         * @param {BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost} bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost: BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, options).then((request) => request(axios, basePath));
+        rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(requestBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Recherche des structures (entreprises, administrations) enregistrées sur Chorus Pro.      **Cas d\'usage** :     - Trouver l\'ID Chorus Pro d\'une structure à partir de son SIRET     - Vérifier si une structure est enregistrée sur Chorus Pro     - Lister les structures correspondant à des critères      **Filtres disponibles** :     - Identifiant (SIRET, SIREN, etc.)     - Raison sociale     - Type d\'identifiant     - Structures privées uniquement      **Étape typique** : Appelée avant `soumettre-facture` pour obtenir l\'`id_structure_cpp` du destinataire.
@@ -1021,12 +992,12 @@ export const ChorusProApiFactory = function (configuration?: Configuration, base
         /**
          * Recycle une facture au statut A_RECYCLER en modifiant les données d\'acheminement.      **Statut requis** : A_RECYCLER      **Champs modifiables** :     - Destinataire (`idStructureCPP`)     - Code service     - Numéro d\'engagement      **Cas d\'usage** :     - Erreur de destinataire     - Changement de service facturation     - Mise à jour du numéro d\'engagement      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"idStructureCPP\": 67890,       \"codeService\": \"SERVICE_01\",       \"numeroEngagement\": \"ENG2024001\"     }     ```      **Note** : La facture conserve son numéro et ses montants, seuls les champs d\'acheminement changent.
          * @summary Recycler une facture (Fournisseur)
-         * @param {BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost} bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        recyclerFactureApiV1ChorusProFacturesRecyclerPost(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost: BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.recyclerFactureApiV1ChorusProFacturesRecyclerPost(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, options).then((request) => request(axios, basePath));
+        recyclerFactureApiV1ChorusProFacturesRecyclerPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.recyclerFactureApiV1ChorusProFacturesRecyclerPost(requestBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Soumet une facture électronique à une structure publique via Chorus Pro.       **📋 Workflow complet** :     1. **Uploader le PDF Factur-X** via `/transverses/ajouter-fichier` → récupérer `pieceJointeId`     2. **Obtenir l\'ID structure** via `/structures/rechercher` ou `/structures/obtenir-id-depuis-siret`     3. **Vérifier les paramètres obligatoires** via `/structures/consulter`     4. **Soumettre la facture** avec le `piece_jointe_principale_id` obtenu à l\'étape 1      **Pré-requis** :     1. Avoir l\'`id_structure_cpp` du destinataire (via `/structures/rechercher`)     2. Connaître les paramètres obligatoires (via `/structures/consulter`) :        - Code service si `code_service_doit_etre_renseigne=true`        - Numéro d\'engagement si `numero_ej_doit_etre_renseigne=true`     3. Avoir uploadé le PDF Factur-X (via `/transverses/ajouter-fichier`)      **Format attendu** :     - `piece_jointe_principale_id` : ID retourné par `/transverses/ajouter-fichier`     - Montants : Chaînes de caractères avec 2 décimales (ex: \"1250.50\")     - Dates : Format ISO 8601 (YYYY-MM-DD)      **Retour** :     - `identifiant_facture_cpp` : ID Chorus Pro de la facture créée     - `numero_flux_depot` : Numéro de suivi du dépôt      **Statuts possibles après soumission** :     - SOUMISE : En attente de validation     - VALIDEE : Validée par le destinataire     - REJETEE : Rejetée (erreur de données ou refus métier)     - SUSPENDUE : En attente d\'informations complémentaires      **Note** : Utilisez `/factures/consulter` pour suivre l\'évolution du statut.
@@ -1041,52 +1012,52 @@ export const ChorusProApiFactory = function (configuration?: Configuration, base
         /**
          * Télécharge une ou plusieurs factures (max 10 recommandé) avec leurs pièces jointes.      **Formats disponibles** :     - PDF : Fichier PDF uniquement     - XML : Fichier XML uniquement     - ZIP : Archive contenant PDF + XML + pièces jointes      **Taille maximale** : 120 Mo par téléchargement      **Payload exemple** :     ```json     {       \"listeIdentifiantsFactureCPP\": [12345, 12346],       \"inclurePiecesJointes\": true,       \"formatFichier\": \"ZIP\"     }     ```      **Retour** : Le fichier est encodé en base64 dans le champ `fichierBase64`.      **Note** : Le flag `factureTelechargeeParDestinataire` est mis à jour automatiquement.
          * @summary Télécharger un groupe de factures
-         * @param {BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost} bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost: BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, options).then((request) => request(axios, basePath));
+        telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(requestBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Change le statut d\'une facture reçue.      **Statuts possibles** :     - MISE_A_DISPOSITION : Facture acceptée     - SUSPENDUE : En attente d\'informations complémentaires (motif obligatoire)     - REJETEE : Facture refusée (motif obligatoire)     - MANDATEE : Facture mandatée     - MISE_EN_PAIEMENT : Facture en cours de paiement     - COMPTABILISEE : Facture comptabilisée     - MISE_A_DISPOSITION_COMPTABLE : Mise à disposition comptable     - A_RECYCLER : À recycler     - COMPLETEE : Complétée     - SERVICE-FAIT : Service fait     - PRISE_EN_COMPTE_DESTINATAIRE : Prise en compte     - TRANSMISE_MOA : Transmise à la MOA      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"nouveauStatut\": \"REJETEE\",       \"motifRejet\": \"Facture en double\",       \"commentaire\": \"Facture déjà reçue sous la référence ABC123\"     }     ```      **Règles** :     - Un motif est **obligatoire** pour SUSPENDUE et REJETEE     - Seuls certains statuts sont autorisés selon le statut actuel de la facture
          * @summary Traiter une facture reçue (Destinataire)
-         * @param {BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost} bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost: BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, options).then((request) => request(axios, basePath));
+        traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(requestBody, options).then((request) => request(axios, basePath));
         },
         /**
-         * Consulte facture (valideur).
+         * 
          * @summary Consulter une facture (Valideur)
-         * @param {BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost} bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost: BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, options).then((request) => request(axios, basePath));
+        valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(requestBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Recherche les factures en attente de validation par le valideur connecté.      **Rôle** : Valideur dans le circuit de validation interne.      **Filtres** : Dates, structure, service, etc.
          * @summary Rechercher factures à valider (Valideur)
-         * @param {BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost} bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost: BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, options).then((request) => request(axios, basePath));
+        valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(requestBody, options).then((request) => request(axios, basePath));
         },
         /**
          * Valide ou refuse une facture en attente de validation.      **Actions** :     - Valider : La facture passe au statut suivant du circuit     - Refuser : La facture est rejetée (motif obligatoire)
          * @summary Valider ou refuser une facture (Valideur)
-         * @param {BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost} bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost 
+         * @param {{ [key: string]: any; }} requestBody 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost: BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, options).then((request) => request(axios, basePath));
+        valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(requestBody, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1098,23 +1069,23 @@ export class ChorusProApi extends BaseAPI {
     /**
      * Ajoute une pièce jointe au compte utilisateur courant.      **Taille max** : 10 Mo par fichier      **Payload exemple** :     ```json     {       \"pieceJointeFichier\": \"JVBERi0xLjQKJeLjz9MKNSAwIG9iago8P...\",       \"pieceJointeNom\": \"bon_commande.pdf\",       \"pieceJointeTypeMime\": \"application/pdf\",       \"pieceJointeExtension\": \"PDF\"     }     ```      **Retour** : L\'ID de la pièce jointe (`pieceJointeIdFichier`) à utiliser ensuite dans `/factures/completer`.      **Extensions acceptées** : PDF, JPG, PNG, ZIP, XML, etc.
      * @summary Ajouter une pièce jointe
-     * @param {BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost} bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost 
+     * @param {{ [key: string]: any; }} requestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost: BodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, options?: RawAxiosRequestConfig) {
-        return ChorusProApiFp(this.configuration).ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(bodyAjouterFichierApiV1ChorusProTransversesAjouterFichierPost, options).then((request) => request(this.axios, this.basePath));
+    public ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return ChorusProApiFp(this.configuration).ajouterFichierApiV1ChorusProTransversesAjouterFichierPost(requestBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Complète une facture au statut SUSPENDUE en ajoutant des pièces jointes ou un commentaire.      **Statut requis** : SUSPENDUE      **Actions possibles** :     - Ajouter des pièces jointes (justificatifs, bons de commande, etc.)     - Modifier le commentaire      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"commentaire\": \"Voici les justificatifs demandés\",       \"listePiecesJointes\": [         {           \"pieceJointeIdFichier\": 98765,           \"pieceJointeNom\": \"bon_commande.pdf\"         }       ]     }     ```      **Note** : Les pièces jointes doivent d\'abord être uploadées via `/transverses/ajouter-fichier`.      **Après complétion** : La facture repasse au statut MISE_A_DISPOSITION.
      * @summary Compléter une facture suspendue (Fournisseur)
-     * @param {BodyCompleterFactureApiV1ChorusProFacturesCompleterPost} bodyCompleterFactureApiV1ChorusProFacturesCompleterPost 
+     * @param {{ [key: string]: any; }} requestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public completerFactureApiV1ChorusProFacturesCompleterPost(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost: BodyCompleterFactureApiV1ChorusProFacturesCompleterPost, options?: RawAxiosRequestConfig) {
-        return ChorusProApiFp(this.configuration).completerFactureApiV1ChorusProFacturesCompleterPost(bodyCompleterFactureApiV1ChorusProFacturesCompleterPost, options).then((request) => request(this.axios, this.basePath));
+    public completerFactureApiV1ChorusProFacturesCompleterPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return ChorusProApiFp(this.configuration).completerFactureApiV1ChorusProFacturesCompleterPost(requestBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1143,12 +1114,11 @@ export class ChorusProApi extends BaseAPI {
      * Récupère la liste des services actifs d\'une structure publique.      **Cas d\'usage** :     - Lister les services disponibles pour une administration     - Vérifier qu\'un code service existe avant de soumettre une facture      **Retour** :     - Liste des services avec leur code, libellé et statut (actif/inactif)
      * @summary Lister les services d\'une structure
      * @param {number} idStructureCpp 
-     * @param {BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet} bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp: number, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet: BodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, options?: RawAxiosRequestConfig) {
-        return ChorusProApiFp(this.configuration).listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp, bodyListerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet, options).then((request) => request(this.axios, this.basePath));
+    public listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp: number, options?: RawAxiosRequestConfig) {
+        return ChorusProApiFp(this.configuration).listerServicesStructureApiV1ChorusProStructuresIdStructureCppServicesGet(idStructureCpp, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1165,23 +1135,23 @@ export class ChorusProApi extends BaseAPI {
     /**
      * Recherche les factures reçues par le destinataire connecté.      **Filtres** :     - Téléchargée / non téléchargée     - Dates de réception     - Statut (MISE_A_DISPOSITION, SUSPENDUE, etc.)     - Fournisseur      **Indicateur utile** : `factureTelechargeeParDestinataire` permet de savoir si la facture a déjà été téléchargée.
      * @summary Rechercher factures reçues (Destinataire)
-     * @param {BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost} bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost 
+     * @param {{ [key: string]: any; }} requestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost: BodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, options?: RawAxiosRequestConfig) {
-        return ChorusProApiFp(this.configuration).rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(bodyRechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost, options).then((request) => request(this.axios, this.basePath));
+    public rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return ChorusProApiFp(this.configuration).rechercherFacturesDestinataireApiV1ChorusProFacturesRechercherDestinatairePost(requestBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Recherche les factures émises par le fournisseur connecté.      **Filtres disponibles** :     - Numéro de facture     - Dates (début/fin)     - Statut     - Structure destinataire     - Montant      **Cas d\'usage** :     - Suivi des factures émises     - Vérification des statuts     - Export pour comptabilité
      * @summary Rechercher factures émises (Fournisseur)
-     * @param {BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost} bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost 
+     * @param {{ [key: string]: any; }} requestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost: BodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, options?: RawAxiosRequestConfig) {
-        return ChorusProApiFp(this.configuration).rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(bodyRechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost, options).then((request) => request(this.axios, this.basePath));
+    public rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return ChorusProApiFp(this.configuration).rechercherFacturesFournisseurApiV1ChorusProFacturesRechercherFournisseurPost(requestBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1198,12 +1168,12 @@ export class ChorusProApi extends BaseAPI {
     /**
      * Recycle une facture au statut A_RECYCLER en modifiant les données d\'acheminement.      **Statut requis** : A_RECYCLER      **Champs modifiables** :     - Destinataire (`idStructureCPP`)     - Code service     - Numéro d\'engagement      **Cas d\'usage** :     - Erreur de destinataire     - Changement de service facturation     - Mise à jour du numéro d\'engagement      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"idStructureCPP\": 67890,       \"codeService\": \"SERVICE_01\",       \"numeroEngagement\": \"ENG2024001\"     }     ```      **Note** : La facture conserve son numéro et ses montants, seuls les champs d\'acheminement changent.
      * @summary Recycler une facture (Fournisseur)
-     * @param {BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost} bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost 
+     * @param {{ [key: string]: any; }} requestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public recyclerFactureApiV1ChorusProFacturesRecyclerPost(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost: BodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, options?: RawAxiosRequestConfig) {
-        return ChorusProApiFp(this.configuration).recyclerFactureApiV1ChorusProFacturesRecyclerPost(bodyRecyclerFactureApiV1ChorusProFacturesRecyclerPost, options).then((request) => request(this.axios, this.basePath));
+    public recyclerFactureApiV1ChorusProFacturesRecyclerPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return ChorusProApiFp(this.configuration).recyclerFactureApiV1ChorusProFacturesRecyclerPost(requestBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1220,56 +1190,56 @@ export class ChorusProApi extends BaseAPI {
     /**
      * Télécharge une ou plusieurs factures (max 10 recommandé) avec leurs pièces jointes.      **Formats disponibles** :     - PDF : Fichier PDF uniquement     - XML : Fichier XML uniquement     - ZIP : Archive contenant PDF + XML + pièces jointes      **Taille maximale** : 120 Mo par téléchargement      **Payload exemple** :     ```json     {       \"listeIdentifiantsFactureCPP\": [12345, 12346],       \"inclurePiecesJointes\": true,       \"formatFichier\": \"ZIP\"     }     ```      **Retour** : Le fichier est encodé en base64 dans le champ `fichierBase64`.      **Note** : Le flag `factureTelechargeeParDestinataire` est mis à jour automatiquement.
      * @summary Télécharger un groupe de factures
-     * @param {BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost} bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost 
+     * @param {{ [key: string]: any; }} requestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost: BodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, options?: RawAxiosRequestConfig) {
-        return ChorusProApiFp(this.configuration).telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(bodyTelechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost, options).then((request) => request(this.axios, this.basePath));
+    public telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return ChorusProApiFp(this.configuration).telechargerGroupeFacturesApiV1ChorusProFacturesTelechargerGroupePost(requestBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Change le statut d\'une facture reçue.      **Statuts possibles** :     - MISE_A_DISPOSITION : Facture acceptée     - SUSPENDUE : En attente d\'informations complémentaires (motif obligatoire)     - REJETEE : Facture refusée (motif obligatoire)     - MANDATEE : Facture mandatée     - MISE_EN_PAIEMENT : Facture en cours de paiement     - COMPTABILISEE : Facture comptabilisée     - MISE_A_DISPOSITION_COMPTABLE : Mise à disposition comptable     - A_RECYCLER : À recycler     - COMPLETEE : Complétée     - SERVICE-FAIT : Service fait     - PRISE_EN_COMPTE_DESTINATAIRE : Prise en compte     - TRANSMISE_MOA : Transmise à la MOA      **Payload exemple** :     ```json     {       \"identifiantFactureCPP\": 12345,       \"nouveauStatut\": \"REJETEE\",       \"motifRejet\": \"Facture en double\",       \"commentaire\": \"Facture déjà reçue sous la référence ABC123\"     }     ```      **Règles** :     - Un motif est **obligatoire** pour SUSPENDUE et REJETEE     - Seuls certains statuts sont autorisés selon le statut actuel de la facture
      * @summary Traiter une facture reçue (Destinataire)
-     * @param {BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost} bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost 
+     * @param {{ [key: string]: any; }} requestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost: BodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, options?: RawAxiosRequestConfig) {
-        return ChorusProApiFp(this.configuration).traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(bodyTraiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost, options).then((request) => request(this.axios, this.basePath));
+    public traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return ChorusProApiFp(this.configuration).traiterFactureRecueApiV1ChorusProFacturesTraiterFactureRecuePost(requestBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Consulte facture (valideur).
+     * 
      * @summary Consulter une facture (Valideur)
-     * @param {BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost} bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost 
+     * @param {{ [key: string]: any; }} requestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost: BodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, options?: RawAxiosRequestConfig) {
-        return ChorusProApiFp(this.configuration).valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(bodyValideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost, options).then((request) => request(this.axios, this.basePath));
+    public valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return ChorusProApiFp(this.configuration).valideurConsulterFactureApiV1ChorusProFacturesValideurConsulterPost(requestBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Recherche les factures en attente de validation par le valideur connecté.      **Rôle** : Valideur dans le circuit de validation interne.      **Filtres** : Dates, structure, service, etc.
      * @summary Rechercher factures à valider (Valideur)
-     * @param {BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost} bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost 
+     * @param {{ [key: string]: any; }} requestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost: BodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, options?: RawAxiosRequestConfig) {
-        return ChorusProApiFp(this.configuration).valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(bodyValideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost, options).then((request) => request(this.axios, this.basePath));
+    public valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return ChorusProApiFp(this.configuration).valideurRechercherFacturesApiV1ChorusProFacturesValideurRechercherPost(requestBody, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Valide ou refuse une facture en attente de validation.      **Actions** :     - Valider : La facture passe au statut suivant du circuit     - Refuser : La facture est rejetée (motif obligatoire)
      * @summary Valider ou refuser une facture (Valideur)
-     * @param {BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost} bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost 
+     * @param {{ [key: string]: any; }} requestBody 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost: BodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, options?: RawAxiosRequestConfig) {
-        return ChorusProApiFp(this.configuration).valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(bodyValideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost, options).then((request) => request(this.axios, this.basePath));
+    public valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return ChorusProApiFp(this.configuration).valideurTraiterFactureApiV1ChorusProFacturesValideurTraiterPost(requestBody, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
