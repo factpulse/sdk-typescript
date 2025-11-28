@@ -323,37 +323,172 @@ export class FactPulseClient {
     return '0.00';
   }
 
+  // =========================================================================
+  // AFNOR - Authentication et helpers internes
+  // =========================================================================
+
+  /**
+   * Recupere les credentials AFNOR (mode stored ou zero-trust).
+   * Mode zero-trust: Retourne les afnorCredentials fournis au constructeur.
+   * Mode stored: Recupere les credentials via GET /api/v1/afnor/credentials.
+   */
+  private async getAfnorCredentialsInternal(): Promise<AFNORCredentials> {
+    // Mode zero-trust : credentials fournis au constructeur
+    if (this.afnorCredentials) {
+      return this.afnorCredentials;
+    }
+
+    // Mode stored : recuperer les credentials via l'API
+    await this.ensureAuthenticated();
+
+    try {
+      const response = await this.httpClient.get(`${this.config.apiUrl}/api/v1/afnor/credentials`, {
+        headers: { Authorization: `Bearer ${this.accessToken}` },
+      });
+
+      const creds = response.data;
+      return {
+        flowServiceUrl: creds.flow_service_url,
+        tokenUrl: creds.token_url,
+        clientId: creds.client_id,
+        clientSecret: creds.client_secret,
+        directoryServiceUrl: creds.directory_service_url,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError<{ detail?: { error?: string; message?: string } }>;
+      if (axiosError.response?.status === 400) {
+        const detail = axiosError.response.data?.detail;
+        if (typeof detail === 'object' && detail?.error === 'NO_CLIENT_UID') {
+          throw new FactPulseAuthError(
+            "Aucun client_uid dans le JWT. Pour utiliser les endpoints AFNOR, soit:\n" +
+            "1. Generez un token avec un client_uid (mode stored)\n" +
+            "2. Fournissez AFNORCredentials au constructeur du client (mode zero-trust)"
+          );
+        }
+      }
+      throw new FactPulseAuthError(`Echec recuperation credentials AFNOR: ${axiosError.message}`);
+    }
+  }
+
+  /**
+   * Obtient le token OAuth2 AFNOR et l'URL de la PDP.
+   * Cette methode:
+   * 1. Recupere les credentials AFNOR (mode stored ou zero-trust)
+   * 2. Fait l'OAuth AFNOR pour obtenir un token
+   * 3. Retourne le token et l'URL de la PDP
+   */
+  private async getAfnorTokenAndUrl(): Promise<{ token: string; pdpBaseUrl: string }> {
+    // Etape 1: Obtenir les credentials AFNOR
+    const credentials = await this.getAfnorCredentialsInternal();
+
+    // Etape 2: Faire l'OAuth AFNOR via le proxy FactPulse
+    const oauthData = new URLSearchParams({
+      grant_type: 'client_credentials',
+      client_id: credentials.clientId,
+      client_secret: credentials.clientSecret,
+    });
+
+    try {
+      const response = await this.httpClient.post(
+        `${this.config.apiUrl}/api/v1/afnor/oauth/token`,
+        oauthData.toString(),
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-PDP-Token-URL': credentials.tokenUrl,
+          },
+        }
+      );
+
+      const tokenData = response.data;
+      if (!tokenData.access_token) {
+        throw new FactPulseAuthError('Reponse OAuth2 AFNOR invalide: access_token manquant');
+      }
+
+      return {
+        token: tokenData.access_token,
+        pdpBaseUrl: credentials.flowServiceUrl,
+      };
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      throw new FactPulseAuthError(`Echec OAuth2 AFNOR: ${axiosError.message}`);
+    }
+  }
+
+  /**
+   * Effectue une requete vers l'API AFNOR avec gestion d'auth et d'erreurs.
+   * IMPORTANT: Cette methode utilise le token OAuth AFNOR, PAS le JWT FactPulse!
+   */
+  private async makeAfnorRequest<T = unknown>(
+    method: 'GET' | 'POST',
+    endpoint: string,
+    options?: { data?: unknown; files?: FormData; params?: Record<string, string> }
+  ): Promise<T> {
+    // Obtenir le token AFNOR et l'URL de la PDP
+    const { token: afnorToken, pdpBaseUrl } = await this.getAfnorTokenAndUrl();
+
+    const url = `${this.config.apiUrl}/api/v1/afnor${endpoint}`;
+
+    // TOUJOURS utiliser le token AFNOR + header X-PDP-Base-URL
+    const headers: Record<string, string> = {
+      'Authorization': `Bearer ${afnorToken}`,
+      'X-PDP-Base-URL': pdpBaseUrl,
+    };
+
+    try {
+      let response;
+      if (options?.files) {
+        response = await this.httpClient.request({
+          method,
+          url,
+          data: options.files,
+          headers: { ...options.files.getHeaders(), ...headers },
+          params: options?.params,
+          timeout: 60000,
+        });
+      } else {
+        response = await this.httpClient.request({
+          method,
+          url,
+          data: options?.data,
+          headers: { ...headers, 'Content-Type': 'application/json' },
+          params: options?.params,
+          timeout: 30000,
+        });
+      }
+      return response.data;
+    } catch (error) {
+      const axiosError = error as AxiosError<{ errorMessage?: string; detail?: string }>;
+      const errorMsg = axiosError.response?.data?.errorMessage ||
+                       axiosError.response?.data?.detail ||
+                       axiosError.message;
+      throw new FactPulseValidationError(`Erreur AFNOR: ${errorMsg}`);
+    }
+  }
+
   // ==================== AFNOR Directory ====================
 
   async rechercherSiretAfnor(siret: string): Promise<Record<string, unknown>> {
-    await this.ensureAuthenticated();
-    const response = await this.httpClient.get(`${this.config.apiUrl}/api/v1/afnor/directory/siret/${siret}`, {
-      headers: { Authorization: `Bearer ${this.accessToken}` },
-    });
-    return response.data;
+    return this.makeAfnorRequest('GET', `/directory/siret/${siret}`);
   }
 
   async rechercherSirenAfnor(siren: string): Promise<Record<string, unknown>> {
-    await this.ensureAuthenticated();
-    const response = await this.httpClient.get(`${this.config.apiUrl}/api/v1/afnor/directory/siren/${siren}`, {
-      headers: { Authorization: `Bearer ${this.accessToken}` },
-    });
-    return response.data;
+    return this.makeAfnorRequest('GET', `/directory/siren/${siren}`);
   }
 
   async listerCodesRoutageAfnor(siren: string): Promise<unknown[]> {
-    await this.ensureAuthenticated();
-    const response = await this.httpClient.get(`${this.config.apiUrl}/api/v1/afnor/directory/siren/${siren}/routing-codes`, {
-      headers: { Authorization: `Bearer ${this.accessToken}` },
-    });
-    return response.data;
+    return this.makeAfnorRequest('GET', `/directory/siren/${siren}/routing-codes`);
   }
 
   // ==================== AFNOR Flow ====================
 
   /**
-   * Soumet une facture à une PDP via l'API AFNOR.
-   * @param pdfBuffer Buffer du PDF Factur-X à soumettre
+   * Soumet une facture a une PDP via l'API AFNOR.
+   * L'authentification utilise le token OAuth AFNOR (obtenu automatiquement),
+   * soit via les credentials stockes (mode stored), soit via les afnorCredentials
+   * fournis au constructeur (mode zero-trust).
+   *
+   * @param pdfBuffer Buffer du PDF Factur-X a soumettre
    * @param flowName Nom du flux (ex: "Facture FAC-2025-001")
    * @param options Options: trackingId, flowSyntax (CII/UBL), flowProfile
    */
@@ -362,14 +497,13 @@ export class FactPulseClient {
     flowName: string,
     options: { trackingId?: string; flowSyntax?: string; flowProfile?: string } = {}
   ): Promise<Record<string, unknown>> {
-    await this.ensureAuthenticated();
     const { trackingId, flowSyntax = 'CII', flowProfile = 'EN16931' } = options;
 
     // Calculer SHA-256
     const crypto = require('crypto');
     const sha256 = crypto.createHash('sha256').update(pdfBuffer).digest('hex');
 
-    // Préparer flowInfo
+    // Preparer flowInfo
     const flowInfo: Record<string, unknown> = { name: flowName, flowSyntax, flowProfile, sha256 };
     if (trackingId) flowInfo.trackingId = trackingId;
 
@@ -377,14 +511,10 @@ export class FactPulseClient {
     form.append('file', pdfBuffer, { filename: 'facture.pdf', contentType: 'application/pdf' });
     form.append('flowInfo', JSON.stringify(flowInfo), { contentType: 'application/json' });
 
-    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/afnor/flow/v1/flows`, form, {
-      headers: { ...form.getHeaders(), Authorization: `Bearer ${this.accessToken}` },
-    });
-    return response.data;
+    return this.makeAfnorRequest('POST', '/flow/v1/flows', { files: form });
   }
 
   async rechercherFluxAfnor(criteria: { trackingId?: string; status?: string; offset?: number; limit?: number } = {}): Promise<Record<string, unknown>> {
-    await this.ensureAuthenticated();
     const searchBody: Record<string, unknown> = {
       offset: criteria.offset ?? 0,
       limit: criteria.limit ?? 25,
@@ -393,19 +523,26 @@ export class FactPulseClient {
     if (criteria.trackingId) (searchBody.where as Record<string, unknown>).trackingId = criteria.trackingId;
     if (criteria.status) (searchBody.where as Record<string, unknown>).status = criteria.status;
 
-    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/afnor/flow/v1/flows/search`, searchBody, {
-      headers: { Authorization: `Bearer ${this.accessToken}`, 'Content-Type': 'application/json' },
-    });
-    return response.data;
+    return this.makeAfnorRequest('POST', '/flow/v1/flows/search', { data: searchBody });
   }
 
   async telechargerFluxAfnor(flowId: string): Promise<Buffer> {
-    await this.ensureAuthenticated();
-    const response = await this.httpClient.get(`${this.config.apiUrl}/api/v1/afnor/flow/v1/flows/${flowId}`, {
-      headers: { Authorization: `Bearer ${this.accessToken}` },
+    // Pour le telechargement, on doit gerer le type de reponse differemment
+    const { token: afnorToken, pdpBaseUrl } = await this.getAfnorTokenAndUrl();
+
+    const url = `${this.config.apiUrl}/api/v1/afnor/flow/v1/flows/${flowId}`;
+    const response = await this.httpClient.get(url, {
+      headers: {
+        'Authorization': `Bearer ${afnorToken}`,
+        'X-PDP-Base-URL': pdpBaseUrl,
+      },
       responseType: 'arraybuffer',
     });
     return Buffer.from(response.data);
+  }
+
+  async healthcheckAfnor(): Promise<Record<string, unknown>> {
+    return this.makeAfnorRequest('GET', '/flow/v1/healthcheck');
   }
 
   // ==================== Chorus Pro ====================
@@ -422,6 +559,19 @@ export class FactPulseClient {
     await this.ensureAuthenticated();
     const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/chorus-pro/structures/consulter`, { id_structure_cpp: idStructureCpp }, {
       headers: { Authorization: `Bearer ${this.accessToken}`, 'Content-Type': 'application/json' },
+    });
+    return response.data;
+  }
+
+  /**
+   * Liste les services d'une structure Chorus Pro.
+   * @param idStructureCpp ID Chorus Pro de la structure
+   * @returns Objet avec listeServices, total, codeRetour, libelle
+   */
+  async listerServicesStructureChorus(idStructureCpp: number): Promise<Record<string, unknown>> {
+    await this.ensureAuthenticated();
+    const response = await this.httpClient.get(`${this.config.apiUrl}/api/v1/chorus-pro/structures/${idStructureCpp}/services`, {
+      headers: { Authorization: `Bearer ${this.accessToken}` },
     });
     return response.data;
   }
