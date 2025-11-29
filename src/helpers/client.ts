@@ -546,6 +546,9 @@ export class FactPulseClient {
    * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées
    * de la facture vers un format JSON unifié. Supporte Factur-X, CII et UBL.
    *
+   * Note: Cet endpoint utilise l'authentification JWT FactPulse (pas OAuth AFNOR).
+   * Le serveur FactPulse se charge d'appeler la PDP avec les credentials stockés.
+   *
    * @param flowId Identifiant du flux (UUID)
    * @param includeDocument Si true, inclut le document original encodé en base64
    * @returns Métadonnées de la facture (fournisseur, montants, dates, etc.)
@@ -559,13 +562,27 @@ export class FactPulseClient {
     flowId: string,
     includeDocument: boolean = false
   ): Promise<Record<string, unknown>> {
+    await this.ensureAuthenticated();
+
+    const url = `${this.config.apiUrl}/api/v1/afnor/flux-entrants/${flowId}`;
     const params: Record<string, string> = {};
     if (includeDocument) {
       params.include_document = 'true';
     }
-    return this.makeAfnorRequest('GET', `/flux-entrants/${flowId}`, {
-      params: Object.keys(params).length > 0 ? params : undefined,
-    });
+
+    try {
+      const response = await this.httpClient.get(url, {
+        headers: { 'Authorization': `Bearer ${this.accessToken}` },
+        params: Object.keys(params).length > 0 ? params : undefined,
+        timeout: 60000,
+      });
+      return response.data;
+    } catch (error) {
+      const axiosError = error as AxiosError<{ detail?: string }>;
+      throw new FactPulseValidationError(
+        `Erreur flux entrant: ${axiosError.response?.data?.detail || axiosError.message}`
+      );
+    }
   }
 
   async healthcheckAfnor(): Promise<Record<string, unknown>> {
