@@ -21,6 +21,10 @@ import globalAxios from 'axios';
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+// @ts-ignore
+import type { FactureEntrante } from '../models';
+// @ts-ignore
+import type { HTTPValidationError } from '../models';
 /**
  * AFNORPDPPAApi - axios parameter creator
  */
@@ -34,6 +38,44 @@ export const AFNORPDPPAApiAxiosParamCreator = function (configuration?: Configur
          */
         getAfnorCredentialsApiV1AfnorCredentialsGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/afnor/credentials`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+         * @summary Récupérer et extraire une facture entrante
+         * @param {string} flowId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet: async (flowId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'flowId' is not null or undefined
+            assertParamExists('getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet', 'flowId', flowId)
+            const localVarPath = `/api/v1/afnor/flux-entrants/{flow_id}`
+                .replace(`{${"flow_id"}}`, encodeURIComponent(String(flowId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -112,6 +154,19 @@ export const AFNORPDPPAApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+         * @summary Récupérer et extraire une facture entrante
+         * @param {string} flowId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FactureEntrante>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPAApi.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Endpoint proxy OAuth2 pour obtenir un token d\'accès AFNOR. Fait proxy vers le mock AFNOR (sandbox) ou la vraie PDP selon MOCK_AFNOR_BASE_URL. Cet endpoint est public (pas d\'auth Django requise) car il est appelé par le SDK AFNOR.
          * @summary Endpoint OAuth2 pour authentification AFNOR
          * @param {*} [options] Override http request option.
@@ -142,6 +197,16 @@ export const AFNORPDPPAApiFactory = function (configuration?: Configuration, bas
             return localVarFp.getAfnorCredentialsApiV1AfnorCredentialsGet(options).then((request) => request(axios, basePath));
         },
         /**
+         * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+         * @summary Récupérer et extraire une facture entrante
+         * @param {string} flowId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId: string, options?: RawAxiosRequestConfig): AxiosPromise<FactureEntrante> {
+            return localVarFp.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Endpoint proxy OAuth2 pour obtenir un token d\'accès AFNOR. Fait proxy vers le mock AFNOR (sandbox) ou la vraie PDP selon MOCK_AFNOR_BASE_URL. Cet endpoint est public (pas d\'auth Django requise) car il est appelé par le SDK AFNOR.
          * @summary Endpoint OAuth2 pour authentification AFNOR
          * @param {*} [options] Override http request option.
@@ -165,6 +230,17 @@ export class AFNORPDPPAApi extends BaseAPI {
      */
     public getAfnorCredentialsApiV1AfnorCredentialsGet(options?: RawAxiosRequestConfig) {
         return AFNORPDPPAApiFp(this.configuration).getAfnorCredentialsApiV1AfnorCredentialsGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+     * @summary Récupérer et extraire une facture entrante
+     * @param {string} flowId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPAApiFp(this.configuration).getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

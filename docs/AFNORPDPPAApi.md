@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
 |[**getAfnorCredentialsApiV1AfnorCredentialsGet**](#getafnorcredentialsapiv1afnorcredentialsget) | **GET** /api/v1/afnor/credentials | Récupérer les credentials AFNOR stockés|
+|[**getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet**](#getfluxentrantapiv1afnorfluxentrantsflowidget) | **GET** /api/v1/afnor/flux-entrants/{flow_id} | Récupérer et extraire une facture entrante|
 |[**oauthTokenProxyApiV1AfnorOauthTokenPost**](#oauthtokenproxyapiv1afnoroauthtokenpost) | **POST** /api/v1/afnor/oauth/token | Endpoint OAuth2 pour authentification AFNOR|
 
 # **getAfnorCredentialsApiV1AfnorCredentialsGet**
@@ -51,6 +52,62 @@ This endpoint does not have any parameters.
 |**400** | Aucun client_uid dans le JWT |  -  |
 |**401** | Non authentifié - Token JWT manquant ou invalide |  -  |
 |**404** | Client non trouvé ou pas de credentials AFNOR configurés |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet**
+> FactureEntrante getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet()
+
+Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+
+### Example
+
+```typescript
+import {
+    AFNORPDPPAApi,
+    Configuration
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPAApi(configuration);
+
+let flowId: string; // (default to undefined)
+
+const { status, data } = await apiInstance.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(
+    flowId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **flowId** | [**string**] |  | defaults to undefined|
+
+
+### Return type
+
+**FactureEntrante**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Facture extraite avec succès |  -  |
+|**400** | Format de facture non supporté ou invalide |  -  |
+|**401** | Non authentifié |  -  |
+|**404** | Flux non trouvé |  -  |
+|**503** | Service PDP indisponible |  -  |
+|**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
