@@ -68,10 +68,11 @@ export const AFNORPDPPAApiAxiosParamCreator = function (configuration?: Configur
          * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
          * @summary Récupérer et extraire une facture entrante
          * @param {string} flowId 
+         * @param {boolean} [includeDocument] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet: async (flowId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet: async (flowId: string, includeDocument?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'flowId' is not null or undefined
             assertParamExists('getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet', 'flowId', flowId)
             const localVarPath = `/api/v1/afnor/flux-entrants/{flow_id}`
@@ -90,6 +91,10 @@ export const AFNORPDPPAApiAxiosParamCreator = function (configuration?: Configur
             // authentication HTTPBearer required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (includeDocument !== undefined) {
+                localVarQueryParameter['include_document'] = includeDocument;
+            }
 
             localVarHeaderParameter['Accept'] = 'application/json';
 
@@ -157,11 +162,12 @@ export const AFNORPDPPAApiFp = function(configuration?: Configuration) {
          * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
          * @summary Récupérer et extraire une facture entrante
          * @param {string} flowId 
+         * @param {boolean} [includeDocument] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FactureEntrante>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId, options);
+        async getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId: string, includeDocument?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FactureEntrante>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId, includeDocument, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPAApi.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -200,11 +206,12 @@ export const AFNORPDPPAApiFactory = function (configuration?: Configuration, bas
          * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
          * @summary Récupérer et extraire une facture entrante
          * @param {string} flowId 
+         * @param {boolean} [includeDocument] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId: string, options?: RawAxiosRequestConfig): AxiosPromise<FactureEntrante> {
-            return localVarFp.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId, options).then((request) => request(axios, basePath));
+        getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId: string, includeDocument?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<FactureEntrante> {
+            return localVarFp.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId, includeDocument, options).then((request) => request(axios, basePath));
         },
         /**
          * Endpoint proxy OAuth2 pour obtenir un token d\'accès AFNOR. Fait proxy vers le mock AFNOR (sandbox) ou la vraie PDP selon MOCK_AFNOR_BASE_URL. Cet endpoint est public (pas d\'auth Django requise) car il est appelé par le SDK AFNOR.
@@ -236,11 +243,12 @@ export class AFNORPDPPAApi extends BaseAPI {
      * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
      * @summary Récupérer et extraire une facture entrante
      * @param {string} flowId 
+     * @param {boolean} [includeDocument] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId: string, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPAApiFp(this.configuration).getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId, options).then((request) => request(this.axios, this.basePath));
+    public getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId: string, includeDocument?: boolean, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPAApiFp(this.configuration).getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(flowId, includeDocument, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

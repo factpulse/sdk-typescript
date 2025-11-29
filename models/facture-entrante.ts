@@ -73,6 +73,9 @@ export interface FactureEntrante {
     'numero_bon_commande'?: string | null;
     'reference_contrat'?: string | null;
     'objet_facture'?: string | null;
+    'document_base64'?: string | null;
+    'document_content_type'?: string | null;
+    'document_filename'?: string | null;
 }
 
 

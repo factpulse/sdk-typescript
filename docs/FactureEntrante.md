@@ -22,6 +22,9 @@ Name | Type | Description | Notes
 **numero_bon_commande** | **string** |  | [optional] [default to undefined]
 **reference_contrat** | **string** |  | [optional] [default to undefined]
 **objet_facture** | **string** |  | [optional] [default to undefined]
+**document_base64** | **string** |  | [optional] [default to undefined]
+**document_content_type** | **string** |  | [optional] [default to undefined]
+**document_filename** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -45,6 +48,9 @@ const instance: FactureEntrante = {
     numero_bon_commande,
     reference_contrat,
     objet_facture,
+    document_base64,
+    document_content_type,
+    document_filename,
 };
 ```
 

@@ -72,9 +72,11 @@ const configuration = new Configuration();
 const apiInstance = new AFNORPDPPAApi(configuration);
 
 let flowId: string; // (default to undefined)
+let includeDocument: boolean; // (optional) (default to false)
 
 const { status, data } = await apiInstance.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(
-    flowId
+    flowId,
+    includeDocument
 );
 ```
 
@@ -83,6 +85,7 @@ const { status, data } = await apiInstance.getFluxEntrantApiV1AfnorFluxEntrantsF
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | [**string**] |  | defaults to undefined|
+| **includeDocument** | [**boolean**] |  | (optional) defaults to false|
 
 
 ### Return type
