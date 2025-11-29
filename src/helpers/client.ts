@@ -541,6 +541,33 @@ export class FactPulseClient {
     return Buffer.from(response.data);
   }
 
+  /**
+   * Récupère les métadonnées JSON d'un flux entrant (facture fournisseur).
+   * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées
+   * de la facture vers un format JSON unifié. Supporte Factur-X, CII et UBL.
+   *
+   * @param flowId Identifiant du flux (UUID)
+   * @param includeDocument Si true, inclut le document original encodé en base64
+   * @returns Métadonnées de la facture (fournisseur, montants, dates, etc.)
+   *
+   * @example
+   * const facture = await client.obtenirFactureEntranteAfnor("550e8400-...");
+   * console.log(`Fournisseur: ${facture.fournisseur.nom}`);
+   * console.log(`Montant TTC: ${facture.montant_ttc} ${facture.devise}`);
+   */
+  async obtenirFactureEntranteAfnor(
+    flowId: string,
+    includeDocument: boolean = false
+  ): Promise<Record<string, unknown>> {
+    const params: Record<string, string> = {};
+    if (includeDocument) {
+      params.include_document = 'true';
+    }
+    return this.makeAfnorRequest('GET', `/flux-entrants/${flowId}`, {
+      params: Object.keys(params).length > 0 ? params : undefined,
+    });
+  }
+
   async healthcheckAfnor(): Promise<Record<string, unknown>> {
     return this.makeAfnorRequest('GET', '/flow/v1/healthcheck');
   }
