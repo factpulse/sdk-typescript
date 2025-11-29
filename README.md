@@ -2,16 +2,15 @@
 
 Client TypeScript/JavaScript officiel pour l'API FactPulse - Facturation électronique française.
 
-## 🎯 Fonctionnalités
+## Fonctionnalités
 
 - **Factur-X** : Génération et validation de factures électroniques (profils MINIMUM, BASIC, EN16931, EXTENDED)
 - **Chorus Pro** : Intégration avec la plateforme de facturation publique française
 - **AFNOR PDP/PA** : Soumission de flux conformes à la norme XP Z12-013
 - **Signature électronique** : Signature PDF (PAdES-B-B, PAdES-B-T, PAdES-B-LT)
 - **Client simplifié** : Authentification JWT et polling intégrés via `helpers`
-- **TypeScript** : Support complet avec types générés automatiquement
 
-## 🚀 Installation
+## Installation
 
 ```bash
 npm install @factpulse/sdk
@@ -19,174 +18,224 @@ npm install @factpulse/sdk
 yarn add @factpulse/sdk
 ```
 
-## 📖 Démarrage rapide
-
-### Méthode recommandée : Client simplifié avec helpers
+## Démarrage rapide
 
 Le module `helpers` offre une API simplifiée avec authentification et polling automatiques :
 
 ```typescript
-import { FactPulseClient } from '@factpulse/sdk/helpers';
+import {
+  FactPulseClient,
+  montant,
+  montantTotal,
+  ligneDePoste,
+  ligneDeTva,
+  fournisseur,
+  destinataire,
+} from '@factpulse/sdk/helpers';
 import * as fs from 'fs';
 
-// Créer le client (authentification automatique)
+// Créer le client
 const client = new FactPulseClient({
   email: 'votre_email@example.com',
   password: 'votre_mot_de_passe'
 });
 
-// Données de la facture
+// Construire la facture avec les helpers
 const factureData = {
-  numero_facture: 'FAC-2025-001',
-  date_facture: '2025-01-15',
-  fournisseur: {
-    nom: 'Mon Entreprise SAS',
-    siret: '12345678901234',
-    adresse_postale: {
-      ligne_un: '123 Rue Example',
-      code_postal: '75001',
-      nom_ville: 'Paris',
-      pays_code_iso: 'FR'
-    }
-  },
-  destinataire: {
-    nom: 'Client SARL',
-    siret: '98765432109876',
-    adresse_postale: {
-      ligne_un: '456 Avenue Test',
-      code_postal: '69001',
-      nom_ville: 'Lyon',
-      pays_code_iso: 'FR'
-    }
-  },
-  montant_total: {
-    montant_ht_total: '1000.00',
-    montant_tva: '200.00',
-    montant_ttc_total: '1200.00',
-    montant_a_payer: '1200.00'
-  },
-  lignes_de_poste: [{
-    numero: 1,
-    denomination: 'Prestation de conseil',
-    quantite: '10.00',
-    unite: 'PIECE',
-    montant_unitaire_ht: '100.00'
-  }]
+  numeroFacture: 'FAC-2025-001',
+  dateFacture: '2025-01-15',
+  fournisseur: fournisseur(
+    'Mon Entreprise SAS',
+    '12345678901234',
+    '123 Rue Example',
+    '75001',
+    'Paris'
+  ),
+  destinataire: destinataire(
+    'Client SARL',
+    '98765432109876',
+    '456 Avenue Test',
+    '69001',
+    'Lyon'
+  ),
+  montantTotal: montantTotal(1000.00, 200.00, 1200.00, 1200.00),
+  lignesDePoste: [
+    ligneDePoste(1, 'Prestation de conseil', 10, 100.00, 1000.00)
+  ],
+  lignesDeTva: [
+    ligneDeTva(1000.00, 200.00, { tauxManuel: '20.00' })
+  ],
 };
 
-// Lire le PDF source
-const pdfSource = fs.readFileSync('facture_source.pdf');
-
-// Générer le PDF Factur-X (polling automatique)
+// Générer le PDF Factur-X
 const pdfBytes = await client.genererFacturx(
   factureData,
-  pdfSource,
-  'EN16931',  // profil
-  'pdf',      // format
-  true        // sync (attend le résultat)
+  'facture_source.pdf',
+  'EN16931'
 );
 
-// Sauvegarder
 fs.writeFileSync('facture_facturx.pdf', pdfBytes);
 ```
 
-### Méthode alternative : SDK brut
+## Helpers disponibles
 
-Pour un contrôle total, utilisez le SDK généré directement :
+### montant(value)
+
+Convertit une valeur en string formaté pour les montants monétaires.
 
 ```typescript
-import { Configuration, TraitementFactureApi } from '@factpulse/sdk';
-import axios from 'axios';
+import { montant } from '@factpulse/sdk/helpers';
 
-// 1. Obtenir le token JWT
-const tokenResponse = await axios.post('https://factpulse.fr/api/token/', {
-  username: 'votre_email@example.com',
-  password: 'votre_mot_de_passe'
+montant(1234.5);      // "1234.50"
+montant("1234.56");   // "1234.56"
+montant(null);        // "0.00"
+```
+
+### montantTotal(ht, tva, ttc, aPayer, options?)
+
+Crée un objet MontantTotal complet.
+
+```typescript
+import { montantTotal } from '@factpulse/sdk/helpers';
+
+const total = montantTotal(1000.00, 200.00, 1200.00, 1200.00, {
+  remiseTtc: 50.00,          // Optionnel
+  motifRemise: 'Fidélité',   // Optionnel
+  acompte: 100.00,           // Optionnel
 });
-const token = tokenResponse.data.access;
+```
 
-// 2. Configurer le client
-const config = new Configuration({
-  basePath: 'https://factpulse.fr/api/facturation',
-  accessToken: token
-});
+### ligneDePoste(numero, denomination, quantite, montantUnitaireHt, montantTotalLigneHt, options?)
 
-// 3. Appeler l'API
-const api = new TraitementFactureApi(config);
-const response = await api.genererFactureApiV1TraitementGenererFacturePost(
-  JSON.stringify(factureData),
-  'EN16931',
-  'pdf',
-  new Blob([pdfSource])
+Crée une ligne de facturation.
+
+```typescript
+import { ligneDePoste } from '@factpulse/sdk/helpers';
+
+const ligne = ligneDePoste(
+  1,
+  'Prestation de conseil',
+  5,
+  200.00,
+  1000.00,  // montantTotalLigneHt requis
+  {
+    tauxTva: 'TVA20',        // Ou tauxTvaManuel: '20.00'
+    categorieTva: 'S',       // S, Z, E, AE, K
+    unite: 'HEURE',          // FORFAIT, PIECE, HEURE, JOUR...
+    reference: 'REF-001',    // Optionnel
+  }
 );
-
-// 4. Polling manuel pour récupérer le résultat
-const taskId = response.data.id_tache;
-// ... (implémenter le polling)
 ```
 
-## 🔧 Avantages des helpers
+### ligneDeTva(montantBaseHt, montantTva, options?)
 
-| Fonctionnalité | SDK brut | helpers |
-|----------------|----------|---------|
-| Authentification | Manuelle | Automatique |
-| Refresh token | Manuel | Automatique |
-| Polling tâches async | Manuel | Automatique (backoff) |
-| Retry sur 401 | Manuel | Automatique |
-| Types TypeScript | ✓ | ✓ |
-
-## 🔑 Options d'authentification
-
-### Client UID (multi-clients)
-
-Si vous gérez plusieurs clients :
+Crée une ligne de ventilation TVA.
 
 ```typescript
-const client = new FactPulseClient({
-  email: 'votre_email@example.com',
-  password: 'votre_mot_de_passe',
-  clientUid: 'identifiant_client'  // UID du client cible
+import { ligneDeTva } from '@factpulse/sdk/helpers';
+
+const tva = ligneDeTva(1000.00, 200.00, {
+  taux: 'TVA20',       // Ou tauxManuel: '20.00'
+  categorie: 'S',      // S, Z, E, AE, K
 });
 ```
 
-### Configuration avancée
+### adressePostale(ligne1, codePostal, ville, options?)
+
+Crée une adresse postale structurée.
 
 ```typescript
-const client = new FactPulseClient({
-  email: 'votre_email@example.com',
-  password: 'votre_mot_de_passe',
-  apiUrl: 'https://factpulse.fr',  // URL personnalisée
-  pollingInterval: 2000,  // Intervalle de polling initial (ms)
-  pollingTimeout: 120000,  // Timeout de polling (ms)
-  maxRetries: 2  // Tentatives en cas de 401
+import { adressePostale } from '@factpulse/sdk/helpers';
+
+const adresse = adressePostale('123 Rue de la République', '75001', 'Paris', {
+  pays: 'FR',          // Défaut: 'FR'
+  ligne2: 'Bâtiment A' // Optionnel
 });
 ```
 
-## 💡 Formats de montants acceptés
+### adresseElectronique(identifiant, schemeId?)
 
-L'API accepte plusieurs formats pour les montants :
+Crée une adresse électronique (identifiant numérique).
 
 ```typescript
-// String (recommandé pour la précision)
-const montant = "1234.56";
+import { adresseElectronique } from '@factpulse/sdk/helpers';
 
-// Number
-const montant = 1234.56;
+// SIRET (schemeId="0225")
+const adresse = adresseElectronique('12345678901234', '0225');
 
-// Integer
-const montant = 1234;
-
-// Helper de formatage
-const montantFormate = FactPulseClient.formatMontant(1234.5);  // "1234.50"
+// SIREN (schemeId="0009", défaut)
+const adresse = adresseElectronique('123456789');
 ```
 
-## 📚 Ressources
+### fournisseur(nom, siret, adresseLigne1, codePostal, ville, options?)
+
+Crée un fournisseur complet avec calcul automatique du SIREN et TVA intra.
+
+```typescript
+import { fournisseur } from '@factpulse/sdk/helpers';
+
+const f = fournisseur(
+  'Ma Société SAS',
+  '12345678901234',
+  '123 Rue Example',
+  '75001',
+  'Paris',
+  { iban: 'FR7630006000011234567890189' }
+);
+// SIREN et TVA intracommunautaire calculés automatiquement
+```
+
+### destinataire(nom, siret, adresseLigne1, codePostal, ville, options?)
+
+Crée un destinataire (client) avec calcul automatique du SIREN.
+
+```typescript
+import { destinataire } from '@factpulse/sdk/helpers';
+
+const d = destinataire(
+  'Client SARL',
+  '98765432109876',
+  '456 Avenue Test',
+  '69001',
+  'Lyon'
+);
+```
+
+## Mode Zero-Trust (Chorus Pro / AFNOR)
+
+Pour passer vos propres credentials sans stockage côté serveur :
+
+```typescript
+import {
+  FactPulseClient,
+  ChorusProCredentials,
+  AFNORCredentials,
+} from '@factpulse/sdk/helpers';
+
+const client = new FactPulseClient({
+  email: 'votre_email@example.com',
+  password: 'votre_mot_de_passe',
+  chorusCredentials: {
+    pisteClientId: 'votre_client_id',
+    pisteClientSecret: 'votre_client_secret',
+    chorusProLogin: 'votre_login',
+    chorusProPassword: 'votre_password',
+    sandbox: true,
+  },
+  afnorCredentials: {
+    flowServiceUrl: 'https://api.pdp.fr/flow/v1',
+    tokenUrl: 'https://auth.pdp.fr/oauth/token',
+    clientId: 'votre_client_id',
+    clientSecret: 'votre_client_secret',
+  },
+});
+```
+
+## Ressources
 
 - **Documentation API** : https://factpulse.fr/api/facturation/documentation
-- **Code source** : https://github.com/factpulse/sdk-typescript
-- **Issues** : https://github.com/factpulse/sdk-typescript/issues
 - **Support** : contact@factpulse.fr
 
-## 📄 Licence
+## Licence
 
 MIT License - Copyright (c) 2025 FactPulse
