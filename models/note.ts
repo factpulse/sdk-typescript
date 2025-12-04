@@ -18,7 +18,7 @@
  * Note de facture (IncludedNote en Factur-X).  Les notes obligatoires pour BR-FR-05 sont : - PMT : Indemnité forfaitaire pour frais de recouvrement - PMD : Pénalités de retard - AAB : Escompte pour paiement anticipé
  */
 export interface Note {
-    'subjectCode'?: string | null;
-    'content': string;
+    'codeSujet'?: string | null;
+    'contenu': string;
 }
 

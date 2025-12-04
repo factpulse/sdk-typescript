@@ -6,8 +6,8 @@ Note de facture (IncludedNote en Factur-X).  Les notes obligatoires pour BR-FR-0
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**subjectCode** | **string** |  | [optional] [default to undefined]
-**content** | **string** |  | [default to undefined]
+**codeSujet** | **string** |  | [optional] [default to undefined]
+**contenu** | **string** |  | [default to undefined]
 
 ## Example
 
@@ -15,8 +15,8 @@ Name | Type | Description | Notes
 import { Note } from '@factpulse/sdk';
 
 const instance: Note = {
-    subjectCode,
-    content,
+    codeSujet,
+    contenu,
 };
 ```
 
