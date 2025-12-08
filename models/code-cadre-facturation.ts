@@ -14,6 +14,9 @@
 
 
 
+/**
+ * Codes Chorus Pro pour le cadre de facturation (usage B2G).
+ */
 
 export const CodeCadreFacturation = {
     A1FactureFournisseur: 'A1_FACTURE_FOURNISSEUR',

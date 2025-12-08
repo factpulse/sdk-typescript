@@ -14,19 +14,31 @@
 
 
 
-
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
-} as const;
-
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
-
-
+/**
+ * Réponse après soumission d\'un flux
+ */
+export interface ReponseSoumissionFlux {
+    /**
+     * Identifiant unique du flux généré par la PDP
+     */
+    'flow_id': string;
+    'tracking_id'?: string | null;
+    /**
+     * Nom du flux
+     */
+    'nom': string;
+    /**
+     * Syntaxe du flux (CII, UBL, etc.)
+     */
+    'syntaxe_flux': string;
+    'profil_flux'?: string | null;
+    /**
+     * Hash SHA256 du fichier soumis
+     */
+    'sha256': string;
+    /**
+     * Message de confirmation
+     */
+    'message': string;
+}
 

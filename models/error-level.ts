@@ -14,9 +14,6 @@
 
 
 
-/**
- * Niveau de gravité d\'une erreur (aligné sur AFNOR AcknowledgementDetail).
- */
 
 export const ErrorLevel = {
     Error: 'Error',

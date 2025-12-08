@@ -27,7 +27,7 @@ import type { MontantTvaLigne } from './montant-tva-ligne';
 import type { Tauxmanuel } from './tauxmanuel';
 
 /**
- * Représente une ligne de totalisation par taux de TVA.
+ * Représente une ligne de totalisation par taux de TVA.  Pour les exonérations (catégories E, AE, K, G, O), les champs `motif_exoneration` et `code_vatex` sont requis selon EN16931.
  */
 export interface LigneDeTVA {
     'montantBaseHt': MontantBaseHt;
@@ -35,6 +35,8 @@ export interface LigneDeTVA {
     'taux'?: string | null;
     'tauxManuel'?: Tauxmanuel;
     'categorie'?: CategorieTVA | null;
+    'motifExoneration'?: string | null;
+    'codeVatex'?: string | null;
 }
 
 

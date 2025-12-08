@@ -1,5 +1,6 @@
 # CodeCadreFacturation
 
+Codes Chorus Pro pour le cadre de facturation (usage B2G).
 
 ## Enum
 

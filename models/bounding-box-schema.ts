@@ -14,19 +14,37 @@
 
 
 
-
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
-} as const;
-
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
-
-
+/**
+ * Coordonnées d\'une zone rectangulaire dans le PDF.  Les coordonnées sont en points PDF (1 point = 1/72 pouce). L\'origine (0,0) est en bas à gauche de la page.
+ */
+export interface BoundingBoxSchema {
+    /**
+     * Coordonnée X gauche
+     */
+    'x0': number;
+    /**
+     * Coordonnée Y bas
+     */
+    'y0': number;
+    /**
+     * Coordonnée X droite
+     */
+    'x1': number;
+    /**
+     * Coordonnée Y haut
+     */
+    'y1': number;
+    /**
+     * Numéro de page (0-indexed)
+     */
+    'page'?: number;
+    /**
+     * Largeur de la zone
+     */
+    'width': number;
+    /**
+     * Hauteur de la zone
+     */
+    'height': number;
+}
 

@@ -1,6 +1,5 @@
 # ErrorSource
 
-Source de l\'erreur pour faciliter le diagnostic.
 
 ## Enum
 

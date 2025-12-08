@@ -272,9 +272,10 @@ export class FactPulseClient {
         const { statut, resultat } = response.data;
         if (statut === 'SUCCESS') return (resultat as Record<string, unknown>) || {};
         if (statut === 'FAILURE') {
+          // Format AFNOR: errorMessage, details
           const result = resultat as Record<string, unknown> | undefined;
-          const errors: ValidationErrorDetail[] = Array.isArray(result?.erreurs) ? result.erreurs.filter((e): e is ValidationErrorDetail => typeof e === 'object' && e !== null) : [];
-          throw new FactPulseValidationError(`La tâche ${taskId} a échoué: ${result?.message_erreur || 'Erreur inconnue'}`, errors);
+          const errors: ValidationErrorDetail[] = Array.isArray(result?.details) ? result.details.filter((e): e is ValidationErrorDetail => typeof e === 'object' && e !== null) : [];
+          throw new FactPulseValidationError(`La tâche ${taskId} a échoué: ${result?.errorMessage || 'Erreur inconnue'}`, errors);
         }
         await new Promise(resolve => setTimeout(resolve, currentInterval));
         currentInterval = Math.min(currentInterval * 1.5, 10000);

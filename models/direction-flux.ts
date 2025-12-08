@@ -14,19 +14,16 @@
 
 
 
+/**
+ * Direction du flux
+ */
 
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
+export const DirectionFlux = {
+    In: 'In',
+    Out: 'Out'
 } as const;
 
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
+export type DirectionFlux = typeof DirectionFlux[keyof typeof DirectionFlux];
 
 
 

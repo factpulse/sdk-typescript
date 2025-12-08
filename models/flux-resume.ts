@@ -14,19 +14,17 @@
 
 
 
-
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
-} as const;
-
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
-
-
+/**
+ * Résumé d\'un flux dans les résultats de recherche
+ */
+export interface FluxResume {
+    'flow_id': string;
+    'tracking_id'?: string | null;
+    'nom': string;
+    'type_flux'?: string | null;
+    'direction_flux'?: string | null;
+    'statut_acquittement'?: string | null;
+    'date_creation'?: string | null;
+    'date_maj'?: string | null;
+}
 

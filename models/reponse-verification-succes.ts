@@ -13,20 +13,56 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ChampVerifieSchema } from './champ-verifie-schema';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { DimensionPageSchema } from './dimension-page-schema';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { NoteObligatoireSchema } from './note-obligatoire-schema';
 
-
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
-} as const;
-
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
-
-
+/**
+ * Réponse de vérification réussie avec données unifiées.
+ */
+export interface ReponseVerificationSucces {
+    /**
+     * True si aucun écart critique
+     */
+    'est_conforme': boolean;
+    /**
+     * Score de conformité (0-100%)
+     */
+    'score_conformite': number;
+    /**
+     * Nombre de champs vérifiés
+     */
+    'champs_verifies'?: number;
+    /**
+     * Nombre de champs conformes
+     */
+    'champs_conformes'?: number;
+    /**
+     * True si le PDF contient du XML Factur-X
+     */
+    'est_facturx'?: boolean;
+    'profil_facturx'?: string | null;
+    /**
+     * Liste des champs vérifiés avec valeurs, statuts et coordonnées PDF
+     */
+    'champs'?: Array<ChampVerifieSchema>;
+    /**
+     * Notes obligatoires (PMT, PMD, AAB) avec localisation PDF
+     */
+    'notes_obligatoires'?: Array<NoteObligatoireSchema>;
+    /**
+     * Dimensions de chaque page du PDF (largeur, hauteur)
+     */
+    'dimensions_pages'?: Array<DimensionPageSchema>;
+    /**
+     * Avertissements non bloquants
+     */
+    'avertissements'?: Array<string>;
+}
 

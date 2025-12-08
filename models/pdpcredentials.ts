@@ -14,19 +14,26 @@
 
 
 
-
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
-} as const;
-
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
-
-
+/**
+ * Credentials PDP pour la stratégie zero-storage (Strategy B).  Permet de fournir directement les credentials PDP dans la requête au lieu de les stocker dans Django.  Utile pour : - Tests ponctuels sans persister les credentials - Intégrations temporaires - Environnements de développement
+ */
+export interface PDPCredentials {
+    /**
+     * URL de base du Flow Service AFNOR
+     */
+    'flow_service_url': string;
+    'directory_service_url'?: string | null;
+    /**
+     * URL du serveur OAuth2
+     */
+    'token_url': string;
+    /**
+     * Client ID OAuth2
+     */
+    'client_id': string;
+    /**
+     * Client Secret OAuth2 (sensible)
+     */
+    'client_secret': string;
+}
 

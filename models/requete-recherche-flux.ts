@@ -13,20 +13,36 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { DirectionFlux } from './direction-flux';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StatutAcquittement } from './statut-acquittement';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { TypeFlux } from './type-flux';
 
-
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
-} as const;
-
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
+/**
+ * Requête pour rechercher des flux soumis
+ */
+export interface RequeteRechercheFlux {
+    'date_maj_apres'?: string | null;
+    'date_maj_avant'?: string | null;
+    'type_flux'?: Array<TypeFlux> | null;
+    'direction_flux'?: Array<DirectionFlux> | null;
+    'tracking_id'?: string | null;
+    'flow_id'?: string | null;
+    'statut_acquittement'?: StatutAcquittement | null;
+    /**
+     * Décalage pour la pagination
+     */
+    'offset'?: number;
+    /**
+     * Nombre maximum de résultats (max 100)
+     */
+    'limit'?: number;
+}
 
 
 

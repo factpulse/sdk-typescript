@@ -13,20 +13,34 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { BoundingBoxSchema } from './bounding-box-schema';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { StatutChampAPI } from './statut-champ-api';
 
-
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
-} as const;
-
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
+/**
+ * Note obligatoire détectée avec localisation et comparaison XML/PDF.
+ */
+export interface NoteObligatoireSchema {
+    /**
+     * Code sujet (PMT, PMD, AAB)
+     */
+    'code_sujet': string;
+    /**
+     * Libellé (ex: Indemnité recouvrement)
+     */
+    'label': string;
+    'valeur_pdf'?: string | null;
+    'valeur_xml'?: string | null;
+    /**
+     * Statut de conformité (CONFORME si XML trouvé dans PDF)
+     */
+    'statut'?: StatutChampAPI;
+    'message'?: string | null;
+    'bbox'?: BoundingBoxSchema | null;
+}
 
 
 

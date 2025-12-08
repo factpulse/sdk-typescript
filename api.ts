@@ -21,4 +21,5 @@ export * from './api/chorus-pro-api';
 export * from './api/sant-api';
 export * from './api/traitement-facture-api';
 export * from './api/utilisateur-api';
+export * from './api/vrification-pdfxmlapi';
 

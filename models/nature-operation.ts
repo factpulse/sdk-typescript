@@ -14,19 +14,42 @@
 
 
 
+/**
+ * Nature de l\'opération (BT-23) pour Factur-X - Réforme française.  BR-FR-08: Le cadre de facturation doit être l\'un des codes suivants. La première lettre indique : B = Biens, S = Services, M = Mixte.  Ref: XP Z12-012, article_conformite_pdf_facturx.md  Exemple d\'utilisation:     >>> cadre = CadreDeFacturation(     ...     code_cadre_facturation=CodeCadreFacturation.A1_FACTURE_FOURNISSEUR,     ...     nature_operation=NatureOperation.BIENS     ... )
+ */
 
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
+export const NatureOperation = {
+    B1: 'B1',
+    B12: 'B1',
+    S1: 'S1',
+    S12: 'S1',
+    M1: 'M1',
+    M12: 'M1',
+    B2: 'B2',
+    B22: 'B2',
+    S2: 'S2',
+    S22: 'S2',
+    M2: 'M2',
+    M22: 'M2',
+    B4: 'B4',
+    B42: 'B4',
+    S4: 'S4',
+    S42: 'S4',
+    M4: 'M4',
+    M42: 'M4',
+    S3: 'S3',
+    S32: 'S3',
+    S5: 'S5',
+    S52: 'S5',
+    S6: 'S6',
+    S62: 'S6',
+    B7: 'B7',
+    B72: 'B7',
+    S7: 'S7',
+    S72: 'S7'
 } as const;
 
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
+export type NatureOperation = typeof NatureOperation[keyof typeof NatureOperation];
 
 
 

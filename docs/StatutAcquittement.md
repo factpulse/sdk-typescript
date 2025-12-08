@@ -1,10 +1,13 @@
-# ErrorLevel
+# StatutAcquittement
 
+Statut d\'acquittement du flux
 
 ## Enum
 
-* `Error` (value: `'Error'`)
+* `Pending` (value: `'Pending'`)
 
-* `Warning` (value: `'Warning'`)
+* `Ok` (value: `'Ok'`)
+
+* `Error` (value: `'Error'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

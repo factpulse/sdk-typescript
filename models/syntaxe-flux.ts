@@ -14,19 +14,19 @@
 
 
 
+/**
+ * Syntaxes de flux supportées par AFNOR
+ */
 
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
+export const SyntaxeFlux = {
+    Cii: 'CII',
+    Ubl: 'UBL',
+    FacturX: 'Factur-X',
+    Cdar: 'CDAR',
+    Frr: 'FRR'
 } as const;
 
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
+export type SyntaxeFlux = typeof SyntaxeFlux[keyof typeof SyntaxeFlux];
 
 
 

@@ -13,20 +13,29 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { FluxResume } from './flux-resume';
 
-
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
-} as const;
-
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
-
-
+/**
+ * Réponse d\'une recherche de flux
+ */
+export interface ReponseRechercheFlux {
+    /**
+     * Nombre total de résultats
+     */
+    'total': number;
+    /**
+     * Décalage appliqué
+     */
+    'offset': number;
+    /**
+     * Limite de résultats
+     */
+    'limit': number;
+    /**
+     * Liste des flux trouvés
+     */
+    'resultats': Array<FluxResume>;
+}
 

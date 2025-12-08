@@ -1,10 +1,11 @@
-# ErrorLevel
+# DirectionFlux
 
+Direction du flux
 
 ## Enum
 
-* `Error` (value: `'Error'`)
+* `In` (value: `'In'`)
 
-* `Warning` (value: `'Warning'`)
+* `Out` (value: `'Out'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

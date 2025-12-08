@@ -13,20 +13,33 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { PDPCredentials } from './pdpcredentials';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ProfilFlux } from './profil-flux';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SyntaxeFlux } from './syntaxe-flux';
 
-
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
-} as const;
-
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
+/**
+ * Requête pour soumettre une facture à une PDP/PA via AFNOR
+ */
+export interface RequeteSoumissionFlux {
+    /**
+     * Nom du flux (ex: \'Facture 2025-001\')
+     */
+    'nom_flux': string;
+    /**
+     * Syntaxe du flux (CII pour Factur-X)
+     */
+    'syntaxe_flux'?: SyntaxeFlux;
+    'profil_flux'?: ProfilFlux | null;
+    'tracking_id'?: string | null;
+    'request_id'?: string | null;
+    'pdp_credentials'?: PDPCredentials | null;
+}
 
 
 

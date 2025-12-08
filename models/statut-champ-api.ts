@@ -14,19 +14,19 @@
 
 
 
+/**
+ * Statut de conformité d\'un champ.
+ */
 
-export const ErrorSource = {
-    Schematron: 'schematron',
-    Pdfa: 'pdfa',
-    Pydantic: 'pydantic',
-    Xmp: 'xmp',
-    Signature: 'signature',
-    Afnor: 'afnor',
-    ChorusPro: 'chorus_pro',
-    System: 'system'
+export const StatutChampAPI = {
+    Conforme: 'CONFORME',
+    Ecart: 'ECART',
+    AbsentPdf: 'ABSENT_PDF',
+    AbsentXml: 'ABSENT_XML',
+    NonVerifie: 'NON_VERIFIE'
 } as const;
 
-export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];
+export type StatutChampAPI = typeof StatutChampAPI[keyof typeof StatutChampAPI];
 
 
 
