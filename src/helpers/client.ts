@@ -305,9 +305,39 @@ export class FactPulseClient {
         });
         taskId = response.data.id_tache; break;
       } catch (error) {
-        const axiosError = error as AxiosError;
+        const axiosError = error as AxiosError<{ detail?: unknown; errorMessage?: string }>;
         if (axiosError.response?.status === 401 && attempt < this.config.maxRetries) { this.resetAuth(); continue; }
-        throw new FactPulseValidationError(`Erreur API: ${axiosError.message}`);
+
+        // Extraire les détails d'erreur du corps de la réponse
+        const responseData = axiosError.response?.data;
+        let errorMsg = `Erreur API (${axiosError.response?.status || 'unknown'}): ${axiosError.message}`;
+        const errors: ValidationErrorDetail[] = [];
+
+        if (responseData) {
+          // Format FastAPI/Pydantic: {"detail": [{"loc": [...], "msg": "...", "type": "..."}]}
+          if (Array.isArray(responseData.detail)) {
+            errorMsg = 'Erreur de validation';
+            for (const err of responseData.detail) {
+              if (typeof err === 'object' && err !== null) {
+                const loc = (err as { loc?: unknown[] }).loc || [];
+                errors.push({
+                  level: 'ERROR',
+                  item: loc.map(String).join(' -> '),
+                  reason: (err as { msg?: string }).msg || String(err),
+                  source: 'validation',
+                  code: (err as { type?: string }).type,
+                });
+              }
+            }
+          } else if (typeof responseData.detail === 'string') {
+            errorMsg = responseData.detail;
+          } else if (responseData.errorMessage) {
+            errorMsg = responseData.errorMessage;
+          }
+        }
+
+        console.error(`Erreur API ${axiosError.response?.status}:`, responseData);
+        throw new FactPulseValidationError(errorMsg, errors);
       }
     }
     if (!taskId) throw new FactPulseValidationError("Pas d'ID de tâche");
