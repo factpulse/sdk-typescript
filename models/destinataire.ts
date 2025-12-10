@@ -24,7 +24,7 @@ import type { AdressePostale } from './adresse-postale';
  * Informations sur le destinataire de la facture (le client).
  */
 export interface Destinataire {
-    'adresseElectronique': AdresseElectronique;
+    'adresseElectronique': AdresseElectronique | null;
     'codeServiceExecutant'?: string | null;
     'nom'?: string | null;
     'siren'?: string | null;

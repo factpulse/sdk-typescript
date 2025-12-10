@@ -16,23 +16,19 @@
 // May contain unused imports in some cases
 // @ts-ignore
 import type { AdresseElectronique } from './adresse-electronique';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { AdressePostale } from './adresse-postale';
 
 /**
- * Informations sur le fournisseur qui émet la facture.
+ * Informations sur le bénéficiaire du paiement (BG-10 / PayeeTradeParty).  Le bénéficiaire est la partie qui reçoit le paiement. Ce bloc est utilisé uniquement si le bénéficiaire est différent du vendeur (fournisseur).  **Cas d\'usage principal** : Affacturage (factoring) Quand une facture est affacturée, le factor (société d\'affacturage) devient le bénéficiaire du paiement à la place du fournisseur.  **Business Terms (EN16931)** : - BT-59 : Nom du bénéficiaire (obligatoire) - BT-60 : Identifiant du bénéficiaire (SIRET avec schemeID 0009) - BT-61 : Identifiant légal du bénéficiaire (SIREN avec schemeID 0002)  **Référence** : docs/guide_affacturage.md
  */
-export interface Fournisseur {
-    'adresseElectronique': AdresseElectronique | null;
-    'idFournisseur': number;
-    'codeCoordonneesBancairesFournisseur'?: number | null;
-    'idServiceFournisseur'?: number | null;
-    'nom'?: string | null;
-    'siren'?: string | null;
+export interface Beneficiaire {
+    /**
+     * Nom du bénéficiaire (BT-59). Obligatoire.
+     */
+    'nom': string;
     'siret'?: string | null;
-    'numeroTvaIntra'?: string | null;
+    'siren'?: string | null;
+    'adresseElectronique'?: AdresseElectronique | null;
     'iban'?: string | null;
-    'adressePostale'?: AdressePostale | null;
+    'bic'?: string | null;
 }
 

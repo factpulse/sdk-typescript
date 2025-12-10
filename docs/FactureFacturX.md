@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **commentaire** | **string** |  | [optional] [default to undefined]
 **idUtilisateurCourant** | **number** |  | [optional] [default to undefined]
 **piecesJointesComplementaires** | [**Array&lt;PieceJointeComplementaire&gt;**](PieceJointeComplementaire.md) |  | [optional] [default to undefined]
+**beneficiaire** | [**Beneficiaire**](Beneficiaire.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -43,6 +44,7 @@ const instance: FactureFacturX = {
     commentaire,
     idUtilisateurCourant,
     piecesJointesComplementaires,
+    beneficiaire,
 };
 ```
 

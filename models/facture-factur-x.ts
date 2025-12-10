@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { Beneficiaire } from './beneficiaire';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { CadreDeFacturation } from './cadre-de-facturation';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -63,6 +66,7 @@ export interface FactureFacturX {
     'commentaire'?: string | null;
     'idUtilisateurCourant'?: number | null;
     'piecesJointesComplementaires'?: Array<PieceJointeComplementaire> | null;
+    'beneficiaire'?: Beneficiaire | null;
 }
 
 

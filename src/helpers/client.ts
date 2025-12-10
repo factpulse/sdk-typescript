@@ -168,6 +168,44 @@ export function destinataire(
   return result;
 }
 
+/**
+ * Crée un bénéficiaire (factor) pour l'affacturage.
+ *
+ * Le bénéficiaire (BG-10 / PayeeTradeParty) est utilisé lorsque le paiement
+ * doit être effectué à un tiers différent du fournisseur, typiquement un
+ * factor (société d'affacturage).
+ *
+ * Pour les factures affacturées, il faut aussi:
+ * - Utiliser un type de document affacturé (393, 396, 501, 502, 472, 473)
+ * - Ajouter une note ACC avec la mention de subrogation
+ * - L'IBAN du bénéficiaire sera utilisé pour le paiement
+ *
+ * @param nom Raison sociale du factor (BT-59)
+ * @param options Options: siret (BT-60), siren (BT-61), iban, bic
+ * @returns Dict prêt à être utilisé dans une facture affacturée
+ *
+ * @example
+ * const factor = beneficiaire('FACTOR SAS', {
+ *   siret: '30000000700033',
+ *   iban: 'FR76 3000 4000 0500 0012 3456 789',
+ * });
+ */
+export function beneficiaire(
+  nom: string,
+  options?: { siret?: string; siren?: string; iban?: string; bic?: string }
+): Record<string, unknown> {
+  const opts = options ?? {};
+  // Auto-calcul SIREN depuis SIRET
+  const siren = opts.siren ?? (opts.siret && opts.siret.length === 14 ? opts.siret.slice(0, 9) : undefined);
+
+  const result: Record<string, unknown> = { nom };
+  if (opts.siret) result.siret = opts.siret;
+  if (siren) result.siren = siren;
+  if (opts.iban) result.iban = opts.iban;
+  if (opts.bic) result.bic = opts.bic;
+  return result;
+}
+
 // =============================================================================
 // Client principal
 // =============================================================================

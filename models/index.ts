@@ -1,6 +1,7 @@
 export * from './apierror';
 export * from './adresse-electronique';
 export * from './adresse-postale';
+export * from './beneficiaire';
 export * from './bounding-box-schema';
 export * from './cadre-de-facturation';
 export * from './categorie-tva';
