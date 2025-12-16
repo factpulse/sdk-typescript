@@ -15,15 +15,30 @@
 
 
 /**
- * Types de documents commerciaux (UNTDID 1001).
+ * Types de documents commerciaux (UNTDID 1001).  | Code | Nom | Description | |------|-----|-------------| | 380 | FACTURE | Facture commerciale | | 381 | AVOIR | Avoir | | 384 | FACTURE_RECTIFICATIVE | Facture rectificative | | 386 | ACOMPTE | Facture d\'acompte | | 389 | AUTOFACTURATION | Facture auto-facturée |
  */
 
 export const TypeDocument = {
-    _380: '380',
-    _381: '381',
-    _384: '384',
-    _386: '386',
-    _389: '389'
+    /**
+    * Facture commerciale
+    */
+    FACTURE: '380',
+    /**
+    * Avoir
+    */
+    AVOIR: '381',
+    /**
+    * Facture rectificative
+    */
+    FACTURE_RECTIFICATIVE: '384',
+    /**
+    * Facture d&#39;acompte
+    */
+    ACOMPTE: '386',
+    /**
+    * Facture auto-facturée
+    */
+    AUTOFACTURATION: '389'
 } as const;
 
 export type TypeDocument = typeof TypeDocument[keyof typeof TypeDocument];

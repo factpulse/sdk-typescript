@@ -713,11 +713,24 @@ export class FactPulseClient {
 
   // ==================== Validation ====================
 
-  async validerPdfFacturx(pdfBuffer: Buffer, profil = 'EN16931'): Promise<Record<string, unknown>> {
+  /**
+   * Valide un PDF Factur-X.
+   * @param pdfBuffer - Contenu du PDF en Buffer
+   * @param options - Options de validation
+   * @param options.profil - Profil Factur-X (MINIMUM, BASIC, EN16931, EXTENDED). Si non spécifié, auto-détecté.
+   * @param options.useVerapdf - Active la validation stricte PDF/A avec VeraPDF (défaut: false)
+   */
+  async validerPdfFacturx(
+    pdfBuffer: Buffer,
+    options: { profil?: string; useVerapdf?: boolean } = {}
+  ): Promise<Record<string, unknown>> {
     await this.ensureAuthenticated();
     const form = new FormData();
     form.append('fichier_pdf', pdfBuffer, { filename: 'facture.pdf', contentType: 'application/pdf' });
-    form.append('profil', profil);
+    if (options.profil) {
+      form.append('profil', options.profil);
+    }
+    form.append('use_verapdf', String(options.useVerapdf ?? false));
     const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/traitement/valider-pdf-facturx`, form, {
       headers: { ...form.getHeaders(), Authorization: `Bearer ${this.accessToken}` },
     });
