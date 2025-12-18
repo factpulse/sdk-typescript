@@ -857,7 +857,7 @@ export class FactPulseClient {
 
     // 2. Validation
     if (valider) {
-      const validation = await this.validerPdfFacturx(pdfBuffer, profil);
+      const validation = await this.validerPdfFacturx(pdfBuffer, { profil });
       result.validation = validation;
     }
 
