@@ -8,11 +8,13 @@ on:
 permissions:
   contents: write
   packages: write
+  id-token: write  # Required for npm Trusted Publishing (OIDC)
 
 jobs:
   build-and-publish:
     name: Build and publish to npm
     runs-on: ubuntu-latest
+    environment: npm-publish  # Optional: for additional protection
 
     steps:
     - name: Checkout code
@@ -21,7 +23,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '20'
         registry-url: 'https://registry.npmjs.org'
 
     - name: Install dependencies
@@ -30,8 +32,8 @@ jobs:
     - name: Build
       run: npm run build || echo "No build script found, skipping..."
 
-    - name: Publish to npm
-      run: npm publish --access public
+    - name: Publish to npm (Trusted Publishing)
+      run: npm publish --access public --provenance
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
