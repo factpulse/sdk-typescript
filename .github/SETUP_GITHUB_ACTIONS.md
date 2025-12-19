@@ -1,39 +1,26 @@
 # Configuration GitHub Actions - npm Trusted Publishing
 
-Ce SDK utilise **npm Trusted Publishing** avec OIDC pour une sécurité renforcée.
+Ce SDK utilise **npm Trusted Publishing** avec OIDC. **Aucun token npm n'est requis !**
 
-## Configuration sur npmjs.com (Trusted Publishing)
+## Étape 1 : Configurer Trusted Publishing sur npmjs.com
 
 1. Connectez-vous sur https://www.npmjs.com/
 2. Allez sur le package `@factpulse/sdk` > **Settings** > **Publishing access**
-3. Cliquez sur **Add new provider** > **GitHub Actions**
+3. Dans la section **Trusted Publisher**, cliquez sur **GitHub Actions**
 4. Remplissez :
-   - **Repository owner**: `factpulse`
-   - **Repository name**: `sdk-typescript`
+   - **Organization or user**: `factpulse`
+   - **Repository**: `sdk-typescript`
    - **Workflow filename**: `publish-npm.yml`
-   - **Environment**: `npm-publish` (optionnel mais recommandé)
+   - **Environment name**: (laisser vide)
 5. Cliquez **Add**
 
-## Configuration sur GitHub
+## Étape 2 (Recommandé) : Désactiver les tokens classiques
 
-### Option 1 : Avec Environment (recommandé)
+Pour une sécurité maximale, après avoir vérifié que Trusted Publishing fonctionne :
 
-1. Allez sur https://github.com/factpulse/sdk-typescript/settings/environments
-2. Cliquez **New environment**
-3. Nom : `npm-publish`
-4. Configurez les règles de protection si souhaité (reviewers, etc.)
-
-### Option 2 : Token npm Automation
-
-Si vous ne pouvez pas utiliser Trusted Publishing :
-
-1. Allez sur https://www.npmjs.com/settings/YOUR_USERNAME/tokens
-2. Cliquez **Generate New Token** > **Automation**
-3. Copiez le token généré
-4. Allez sur https://github.com/factpulse/sdk-typescript/settings/secrets/actions
-5. Cliquez **New repository secret**
-6. Nom : `NPM_TOKEN`
-7. Valeur : le token copié
+1. Allez dans **Settings** > **Publishing access**
+2. Sélectionnez **"Require two-factor authentication and disallow tokens"**
+3. Cliquez **Update Package Settings**
 
 ## Déploiement
 
@@ -44,7 +31,21 @@ git tag -a v1.0.0 -m "Release v1.0.0"
 git push origin v1.0.0
 ```
 
-## Provenance
+## Comment ça marche ?
 
-Le flag `--provenance` génère une attestation de provenance signée, visible sur npmjs.com.
-Cela garantit que le package a été publié depuis ce repository GitHub.
+- Le workflow utilise `id-token: write` pour générer un token OIDC
+- npm vérifie que la requête vient bien du workflow configuré
+- La provenance est générée automatiquement (pas besoin de `--provenance`)
+- Aucun secret npm à gérer ou à faire tourner
+
+## Dépendances privées (si nécessaire)
+
+Si vous avez des dépendances npm privées, ajoutez un token read-only :
+
+```yaml
+- run: npm ci
+  env:
+    NODE_AUTH_TOKEN: ${{ secrets.NPM_READ_TOKEN }}
+```
+
+Le publish utilise OIDC, pas besoin de token pour cette étape.
