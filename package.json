@@ -1,11 +1,11 @@
 {
   "name": "@factpulse/sdk",
-  "version": "2.0.48",
+  "version": "2.0.49",
   "description": "OpenAPI client for @factpulse/sdk",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+    "url": "https://github.com/factpulse/sdk-typescript.git"
   },
   "keywords": [
     "axios",
