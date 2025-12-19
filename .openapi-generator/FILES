@@ -107,8 +107,11 @@ docs/SubmitCompleteInvoiceRequest.md
 docs/SubmitCompleteInvoiceResponse.md
 docs/SubmitFlowRequest.md
 docs/SubmitFlowResponse.md
+docs/SubmitGrossAmount.md
 docs/SubmitInvoiceRequest.md
 docs/SubmitInvoiceResponse.md
+docs/SubmitNetAmount.md
+docs/SubmitVatAmount.md
 docs/SupplementaryAttachment.md
 docs/Supplier.md
 docs/TaskResponse.md
@@ -129,7 +132,6 @@ docs/ValidationErrorDetail.md
 docs/ValidationErrorLocInner.md
 docs/ValidationErrorResponse.md
 docs/ValidationSuccessResponse.md
-docs/VatAmount.md
 docs/VerificationSuccessResponse.md
 docs/VerifiedFieldSchema.md
 git_push.sh
@@ -221,8 +223,11 @@ models/submit-complete-invoice-request.ts
 models/submit-complete-invoice-response.ts
 models/submit-flow-request.ts
 models/submit-flow-response.ts
+models/submit-gross-amount.ts
 models/submit-invoice-request.ts
 models/submit-invoice-response.ts
+models/submit-net-amount.ts
+models/submit-vat-amount.ts
 models/supplementary-attachment.ts
 models/supplier.ts
 models/task-response.ts
@@ -238,7 +243,6 @@ models/validation-error-loc-inner.ts
 models/validation-error-response.ts
 models/validation-error.ts
 models/validation-success-response.ts
-models/vat-amount.ts
 models/vataccounting-code.ts
 models/vatamount.ts
 models/vatcategory.ts

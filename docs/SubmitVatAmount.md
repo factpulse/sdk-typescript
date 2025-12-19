@@ -1,4 +1,4 @@
-# VatAmount
+# SubmitVatAmount
 
 VAT amount
 
@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { VatAmount } from '@factpulse/sdk';
+import { SubmitVatAmount } from '@factpulse/sdk';
 
-const instance: VatAmount = {
+const instance: SubmitVatAmount = {
 };
 ```
 

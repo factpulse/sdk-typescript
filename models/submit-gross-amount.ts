@@ -15,8 +15,8 @@
 
 
 /**
- * VAT amount
+ * Total gross amount
  */
-export interface VatAmount {
+export interface SubmitGrossAmount {
 }
 

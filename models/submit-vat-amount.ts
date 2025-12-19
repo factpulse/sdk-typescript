@@ -13,46 +13,10 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { FactureElectroniqueRestApiSchemasChorusProChorusProCredentials } from './facture-electronique-rest-api-schemas-chorus-pro-chorus-pro-credentials';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { SubmitGrossAmount } from './submit-gross-amount';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { SubmitNetAmount } from './submit-net-amount';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { SubmitVatAmount } from './submit-vat-amount';
 
 /**
- * Submit an invoice to Chorus Pro.
+ * VAT amount
  */
-export interface SubmitInvoiceRequest {
-    'credentials'?: FactureElectroniqueRestApiSchemasChorusProChorusProCredentials | null;
-    /**
-     * Invoice number
-     */
-    'invoice_number': string;
-    /**
-     * Invoice date (ISO format: YYYY-MM-DD)
-     */
-    'invoice_date': string;
-    'payment_due_date'?: string | null;
-    /**
-     * Chorus Pro recipient structure ID
-     */
-    'structure_id': number;
-    'service_code'?: string | null;
-    'engagement_number'?: string | null;
-    'total_net_amount': SubmitNetAmount;
-    'vat_amount': SubmitVatAmount;
-    'total_gross_amount': SubmitGrossAmount;
-    'main_attachment_id'?: number | null;
-    'main_attachment_label'?: string | null;
-    'comment'?: string | null;
-    'purchase_order_reference'?: string | null;
-    'contract_reference'?: string | null;
+export interface SubmitVatAmount {
 }
 
