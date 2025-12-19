@@ -1,16 +1,16 @@
 # StructureInfo
 
-Informations d\'une structure.
+Structure information.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id_structure_cpp** | **number** | ID Chorus Pro de la structure | [default to undefined]
-**identifiant_structure** | **string** | Identifiant (SIRET, SIREN) | [default to undefined]
-**designation_structure** | **string** | Nom de la structure | [default to undefined]
-**type_identifiant_structure** | **string** | Type d\&#39;identifiant | [default to undefined]
-**statut** | **string** | Statut (ACTIVE, INACTIVE) | [default to undefined]
+**structureId** | **number** | Chorus Pro structure ID | [default to undefined]
+**structureIdentifier** | **string** | Identifier (SIRET, SIREN) | [default to undefined]
+**structureName** | **string** | Structure name | [default to undefined]
+**structureIdentifierType** | **string** | Identifier type | [default to undefined]
+**status** | **string** | Status (ACTIVE, INACTIVE) | [default to undefined]
 
 ## Example
 
@@ -18,11 +18,11 @@ Name | Type | Description | Notes
 import { StructureInfo } from '@factpulse/sdk';
 
 const instance: StructureInfo = {
-    id_structure_cpp,
-    identifiant_structure,
-    designation_structure,
-    type_identifiant_structure,
-    statut,
+    structureId,
+    structureIdentifier,
+    structureName,
+    structureIdentifierType,
+    status,
 };
 ```
 

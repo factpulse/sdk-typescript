@@ -1,15 +1,15 @@
 # Destination
 
-Configuration de la destination (Chorus Pro ou AFNOR)
+Destination configuration (Chorus Pro or AFNOR)
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **type** | **string** |  | [optional] [default to TypeEnum_ChorusPro]
-**credentials** | [**CredentialsAFNOR**](CredentialsAFNOR.md) |  | [optional] [default to undefined]
-**flow_syntax** | **string** | Syntaxe du flux à envoyer | [optional] [default to FlowSyntaxEnum_FacturX]
-**tracking_id** | **string** |  | [optional] [default to undefined]
+**credentials** | [**AFNORCredentials**](AFNORCredentials.md) |  | [optional] [default to undefined]
+**flowSyntax** | **string** | Flow syntax to send | [optional] [default to FlowSyntaxEnum_FacturX]
+**trackingId** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -19,8 +19,8 @@ import { Destination } from '@factpulse/sdk';
 const instance: Destination = {
     type,
     credentials,
-    flow_syntax,
-    tracking_id,
+    flowSyntax,
+    trackingId,
 };
 ```
 

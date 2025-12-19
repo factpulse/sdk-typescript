@@ -1,13 +1,13 @@
 # APIError
 
-Erreur API standardisée (alignée sur AFNOR Error schema).  Format unifié pour toutes les réponses d\'erreur HTTP.
+Standardized API error (aligned with AFNOR Error schema).  Unified format for all HTTP error responses.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**errorCode** | **string** | Code alphanumérique identifiant précisément l\&#39;erreur | [default to undefined]
-**errorMessage** | **string** | Message décrivant l\&#39;erreur (non destiné à l\&#39;utilisateur final) | [default to undefined]
+**errorCode** | **string** | Alphanumeric code precisely identifying the error | [default to undefined]
+**errorMessage** | **string** | Message describing the error (not intended for end user) | [default to undefined]
 **details** | [**Array&lt;ValidationErrorDetail&gt;**](ValidationErrorDetail.md) |  | [optional] [default to undefined]
 
 ## Example

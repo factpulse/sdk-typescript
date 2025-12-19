@@ -1,16 +1,16 @@
 # PDPCredentials
 
-Credentials PDP pour la stratégie zero-storage (Strategy B).  Permet de fournir directement les credentials PDP dans la requête au lieu de les stocker dans Django.  Utile pour : - Tests ponctuels sans persister les credentials - Intégrations temporaires - Environnements de développement
+PDP credentials for zero-storage strategy (Strategy B).  Allows providing PDP credentials directly in the request instead of storing them in Django.  Useful for: - Ad-hoc tests without persisting credentials - Temporary integrations - Development environments
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**flow_service_url** | **string** | URL de base du Flow Service AFNOR | [default to undefined]
+**flow_service_url** | **string** | Base URL of the AFNOR Flow Service | [default to undefined]
 **directory_service_url** | **string** |  | [optional] [default to undefined]
-**token_url** | **string** | URL du serveur OAuth2 | [default to undefined]
-**client_id** | **string** | Client ID OAuth2 | [default to undefined]
-**client_secret** | **string** | Client Secret OAuth2 (sensible) | [default to undefined]
+**token_url** | **string** | OAuth2 server URL | [default to undefined]
+**client_id** | **string** | OAuth2 Client ID | [default to undefined]
+**client_secret** | **string** | OAuth2 Client Secret (sensitive) | [default to undefined]
 
 ## Example
 

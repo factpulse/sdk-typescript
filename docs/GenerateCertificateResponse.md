@@ -1,17 +1,17 @@
 # GenerateCertificateResponse
 
-Réponse après génération d\'un certificat de test.  Contient le certificat PEM, la clé privée PEM, et optionnellement le PKCS#12.
+Response after generating a test certificate.  Contains certificate PEM, private key PEM, and optionally PKCS#12.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**status** | **string** | Statut de l\&#39;opération | [optional] [default to 'success']
-**certificat_pem** | **string** | Certificat X.509 au format PEM | [default to undefined]
-**cle_privee_pem** | **string** | Clé privée RSA au format PEM | [default to undefined]
-**pkcs12_base64** | **string** |  | [optional] [default to undefined]
-**info** | [**CertificateInfoResponse**](CertificateInfoResponse.md) | Informations sur le certificat généré | [default to undefined]
-**avertissement** | **string** | Avertissement sur l\&#39;utilisation du certificat | [optional] [default to '⚠️ Ce certificat est AUTO-SIGNÉ et destiné uniquement aux TESTS. Ne PAS utiliser en production. Niveau eIDAS : SES (Simple Electronic Signature)']
+**status** | **string** | Operation status | [optional] [default to 'success']
+**certificatePem** | **string** | X.509 certificate in PEM format | [default to undefined]
+**privateKeyPem** | **string** | RSA private key in PEM format | [default to undefined]
+**pkcs12Base64** | **string** |  | [optional] [default to undefined]
+**info** | [**CertificateInfoResponse**](CertificateInfoResponse.md) | Generated certificate information | [default to undefined]
+**warning** | **string** | Warning about certificate usage | [optional] [default to 'WARNING: This certificate is SELF-SIGNED and intended for TESTING only. DO NOT use in production. eIDAS level: SES (Simple Electronic Signature)']
 
 ## Example
 
@@ -20,11 +20,11 @@ import { GenerateCertificateResponse } from '@factpulse/sdk';
 
 const instance: GenerateCertificateResponse = {
     status,
-    certificat_pem,
-    cle_privee_pem,
-    pkcs12_base64,
+    certificatePem,
+    privateKeyPem,
+    pkcs12Base64,
     info,
-    avertissement,
+    warning,
 };
 ```
 

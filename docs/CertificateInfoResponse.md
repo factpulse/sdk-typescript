@@ -1,23 +1,23 @@
 # CertificateInfoResponse
 
-Informations sur un certificat généré.
+Information about a generated certificate.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cn** | **string** | Common Name | [default to undefined]
-**organisation** | **string** | Organisation | [default to undefined]
-**pays** | **string** | Code pays | [default to undefined]
-**ville** | **string** | Ville | [default to undefined]
-**province** | **string** | Province | [default to undefined]
+**organization** | **string** | Organization | [default to undefined]
+**country** | **string** | Country code | [default to undefined]
+**city** | **string** | City | [default to undefined]
+**state** | **string** | State/Province | [default to undefined]
 **email** | **string** |  | [optional] [default to undefined]
-**sujet** | **string** | Sujet complet (RFC4514) | [default to undefined]
-**emetteur** | **string** | Émetteur (auto-signé &#x3D; même que sujet) | [default to undefined]
-**numero_serie** | **number** | Numéro de série du certificat | [default to undefined]
-**valide_du** | **string** | Date de début de validité (ISO 8601) | [default to undefined]
-**valide_au** | **string** | Date de fin de validité (ISO 8601) | [default to undefined]
-**algorithme** | **string** | Algorithme de signature | [default to undefined]
+**subject** | **string** | Full subject (RFC4514) | [default to undefined]
+**issuer** | **string** | Issuer (self-signed &#x3D; same as subject) | [default to undefined]
+**serialNumber** | **number** | Certificate serial number | [default to undefined]
+**validFrom** | **string** | Validity start date (ISO 8601) | [default to undefined]
+**validTo** | **string** | Validity end date (ISO 8601) | [default to undefined]
+**algorithm** | **string** | Signature algorithm | [default to undefined]
 
 ## Example
 
@@ -26,17 +26,17 @@ import { CertificateInfoResponse } from '@factpulse/sdk';
 
 const instance: CertificateInfoResponse = {
     cn,
-    organisation,
-    pays,
-    ville,
-    province,
+    organization,
+    country,
+    city,
+    state,
     email,
-    sujet,
-    emetteur,
-    numero_serie,
-    valide_du,
-    valide_au,
-    algorithme,
+    subject,
+    issuer,
+    serialNumber,
+    validFrom,
+    validTo,
+    algorithm,
 };
 ```
 

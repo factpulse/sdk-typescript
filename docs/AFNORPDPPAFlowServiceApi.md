@@ -4,15 +4,15 @@ All URIs are relative to *http://localhost*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet**](#downloadflowproxyapiv1afnorflowv1flowsflowidget) | **GET** /api/v1/afnor/flow/v1/flows/{flowId} | Télécharger un flux|
+|[**downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet**](#downloadflowproxyapiv1afnorflowv1flowsflowidget) | **GET** /api/v1/afnor/flow/v1/flows/{flowId} | Download a flow|
 |[**flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet**](#flowhealthcheckproxyapiv1afnorflowv1healthcheckget) | **GET** /api/v1/afnor/flow/v1/healthcheck | Healthcheck Flow Service|
-|[**searchFlowsProxyApiV1AfnorFlowV1FlowsSearchPost**](#searchflowsproxyapiv1afnorflowv1flowssearchpost) | **POST** /api/v1/afnor/flow/v1/flows/search | Rechercher des flux|
-|[**submitFlowProxyApiV1AfnorFlowV1FlowsPost**](#submitflowproxyapiv1afnorflowv1flowspost) | **POST** /api/v1/afnor/flow/v1/flows | Soumettre un flux de facturation|
+|[**searchFlowsProxyApiV1AfnorFlowV1FlowsSearchPost**](#searchflowsproxyapiv1afnorflowv1flowssearchpost) | **POST** /api/v1/afnor/flow/v1/flows/search | Search flows|
+|[**submitFlowProxyApiV1AfnorFlowV1FlowsPost**](#submitflowproxyapiv1afnorflowv1flowspost) | **POST** /api/v1/afnor/flow/v1/flows | Submit an invoicing flow|
 
 # **downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet**
 > any downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet()
 
-Télécharger le fichier PDF/A-3 d\'un flux de facturation (utilise le client_uid du JWT)
+Download the PDF/A-3 file of an invoicing flow (uses JWT client_uid)
 
 ### Example
 
@@ -56,10 +56,10 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Fichier PDF/A-3 |  -  |
-|**400** | Configuration PDP manquante |  -  |
-|**401** | Non authentifié - Token JWT manquant ou invalide |  -  |
-|**404** | Flux non trouvé ou client_uid invalide |  -  |
+|**200** | PDF/A-3 file |  -  |
+|**400** | Missing PDP configuration |  -  |
+|**401** | Not authenticated - Missing or invalid JWT token |  -  |
+|**404** | Flow not found or invalid client_uid |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -67,7 +67,7 @@ No authorization required
 # **flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet**
 > any flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet()
 
-Vérifier la disponibilité du Flow Service
+Check Flow Service availability
 
 ### Example
 
@@ -104,14 +104,14 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Service opérationnel |  -  |
+|**200** | Service operational |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **searchFlowsProxyApiV1AfnorFlowV1FlowsSearchPost**
 > any searchFlowsProxyApiV1AfnorFlowV1FlowsSearchPost()
 
-Rechercher des flux de facturation selon des critères (utilise le client_uid du JWT)
+Search invoicing flows by criteria (uses JWT client_uid)
 
 ### Example
 
@@ -148,18 +148,18 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Résultats de recherche |  -  |
-|**400** | Configuration PDP manquante |  -  |
-|**401** | Non authentifié - Token JWT manquant ou invalide |  -  |
-|**404** | Client PDP non trouvé (client_uid invalide) |  -  |
-|**429** | Trop de requêtes - Rate limit atteint (60 recherches/minute) |  -  |
+|**200** | Search results |  -  |
+|**400** | Missing PDP configuration |  -  |
+|**401** | Not authenticated - Missing or invalid JWT token |  -  |
+|**404** | PDP client not found (invalid client_uid) |  -  |
+|**429** | Too many requests - Rate limit reached (60 searches/minute) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submitFlowProxyApiV1AfnorFlowV1FlowsPost**
 > any submitFlowProxyApiV1AfnorFlowV1FlowsPost()
 
-Soumet une facture électronique à une Plateforme de Dématérialisation Partenaire (PDP) conformément à la norme AFNOR XP Z12-013
+Submits an electronic invoice to a Partner Dematerialization Platform (PDP) in compliance with the AFNOR XP Z12-013 standard
 
 ### Example
 
@@ -197,12 +197,12 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Successful Response |  -  |
-|**201** | Flux soumis avec succès |  -  |
-|**400** | Requête invalide ou configuration PDP manquante |  -  |
-|**401** | Non authentifié - Token JWT manquant ou invalide |  -  |
-|**403** | Non autorisé - Quota dépassé ou permissions insuffisantes |  -  |
-|**404** | Client PDP non trouvé (client_uid invalide) |  -  |
-|**429** | Trop de requêtes - Rate limit atteint (30 soumissions/minute) |  -  |
+|**201** | Flow submitted successfully |  -  |
+|**400** | Invalid request or missing PDP configuration |  -  |
+|**401** | Not authenticated - Missing or invalid JWT token |  -  |
+|**403** | Not authorized - Quota exceeded or insufficient permissions |  -  |
+|**404** | PDP client not found (invalid client_uid) |  -  |
+|**429** | Too many requests - Rate limit reached (30 submissions/minute) |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

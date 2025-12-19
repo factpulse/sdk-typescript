@@ -27,7 +27,7 @@ All URIs are relative to *http://localhost*
 # **createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost**
 > any createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost()
 
-Créer une ligne dans l\'annuaire
+Create a line in the directory
 
 ### Example
 
@@ -65,16 +65,16 @@ This endpoint does not have any parameters.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Successful Response |  -  |
-|**201** | Ligne d\&#39;annuaire créée avec succès |  -  |
-|**400** | Requête invalide |  -  |
-|**401** | Non authentifié |  -  |
+|**201** | Directory line created successfully |  -  |
+|**400** | Invalid request |  -  |
+|**401** | Not authenticated |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost**
 > any createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost()
 
-Créer un code de routage dans l\'annuaire
+Create a routing code in the directory
 
 ### Example
 
@@ -112,16 +112,16 @@ This endpoint does not have any parameters.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Successful Response |  -  |
-|**201** | Code de routage créé avec succès |  -  |
-|**400** | Requête invalide |  -  |
-|**401** | Non authentifié |  -  |
+|**201** | Routing code created successfully |  -  |
+|**400** | Invalid request |  -  |
+|**401** | Not authenticated |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete**
 > any deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete()
 
-Supprimer une ligne d\'annuaire
+Delete a directory line
 
 ### Example
 
@@ -166,9 +166,9 @@ const { status, data } = await apiInstance.deleteDirectoryLineProxyApiV1AfnorDir
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Successful Response |  -  |
-|**204** | Ligne d\&#39;annuaire supprimée |  -  |
-|**404** | Ligne d\&#39;annuaire non trouvée |  -  |
-|**401** | Non authentifié |  -  |
+|**204** | Directory line deleted |  -  |
+|**404** | Directory line not found |  -  |
+|**401** | Not authenticated |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -176,7 +176,7 @@ const { status, data } = await apiInstance.deleteDirectoryLineProxyApiV1AfnorDir
 # **directoryHealthcheckProxyApiV1AfnorDirectoryV1HealthcheckGet**
 > any directoryHealthcheckProxyApiV1AfnorDirectoryV1HealthcheckGet()
 
-Vérifier la disponibilité du Directory Service
+Check Directory Service availability
 
 ### Example
 
@@ -213,14 +213,14 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Service opérationnel |  -  |
+|**200** | Service operational |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet**
 > any getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet()
 
-Obtenir une ligne d\'annuaire identifiée par un identifiant d\'adressage
+Get a directory line identified by an addressing identifier
 
 ### Example
 
@@ -264,9 +264,9 @@ const { status, data } = await apiInstance.getDirectoryLineByCodeProxyApiV1Afnor
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Détails de la ligne d\&#39;annuaire |  -  |
-|**404** | Ligne d\&#39;annuaire non trouvée |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Directory line details |  -  |
+|**404** | Directory line not found |  -  |
+|**401** | Not authenticated |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -274,7 +274,7 @@ const { status, data } = await apiInstance.getDirectoryLineByCodeProxyApiV1Afnor
 # **getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet**
 > any getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet()
 
-Obtenir une ligne d\'annuaire identifiée par son idInstance
+Get a directory line identified by its idInstance
 
 ### Example
 
@@ -318,9 +318,9 @@ const { status, data } = await apiInstance.getDirectoryLineByIdInstanceProxyApiV
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Détails de la ligne d\&#39;annuaire |  -  |
-|**404** | Ligne d\&#39;annuaire non trouvée |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Directory line details |  -  |
+|**404** | Directory line not found |  -  |
+|**401** | Not authenticated |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -328,7 +328,7 @@ const { status, data } = await apiInstance.getDirectoryLineByIdInstanceProxyApiV
 # **getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet**
 > any getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet()
 
-Obtenir un code de routage identifié par son idInstance
+Get a routing code identified by its idInstance
 
 ### Example
 
@@ -372,9 +372,9 @@ const { status, data } = await apiInstance.getRoutingCodeByIdInstanceProxyApiV1A
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Détails du code de routage |  -  |
-|**404** | Code de routage non trouvé |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Routing code details |  -  |
+|**404** | Routing code not found |  -  |
+|**401** | Not authenticated |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -382,7 +382,7 @@ const { status, data } = await apiInstance.getRoutingCodeByIdInstanceProxyApiV1A
 # **getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet**
 > any getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet()
 
-Consulter un code de routage identifié par SIRET et identifiant de routage
+Consult a routing code identified by SIRET and routing identifier
 
 ### Example
 
@@ -429,9 +429,9 @@ const { status, data } = await apiInstance.getRoutingCodeBySiretAndCodeProxyApiV
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Détails du code de routage |  -  |
-|**404** | Code de routage non trouvé |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Routing code details |  -  |
+|**404** | Routing code not found |  -  |
+|**401** | Not authenticated |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -439,7 +439,7 @@ const { status, data } = await apiInstance.getRoutingCodeBySiretAndCodeProxyApiV
 # **getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet**
 > any getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet()
 
-Retourne les détails d\'une entreprise (unité légale) identifiée par son numéro SIREN
+Returns details of a company (legal unit) identified by its SIREN number
 
 ### Example
 
@@ -483,9 +483,9 @@ const { status, data } = await apiInstance.getSirenByCodeInseeProxyApiV1AfnorDir
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Informations de l\&#39;entreprise |  -  |
-|**404** | Entreprise non trouvée |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Company information |  -  |
+|**404** | Company not found |  -  |
+|**401** | Not authenticated |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -493,7 +493,7 @@ const { status, data } = await apiInstance.getSirenByCodeInseeProxyApiV1AfnorDir
 # **getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet**
 > any getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet()
 
-Obtenir une entreprise (unité légale) identifiée par son idInstance
+Get a company (legal unit) identified by its idInstance
 
 ### Example
 
@@ -537,9 +537,9 @@ const { status, data } = await apiInstance.getSirenByIdInstanceProxyApiV1AfnorDi
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Informations de l\&#39;entreprise |  -  |
-|**404** | Entreprise non trouvée |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Company information |  -  |
+|**404** | Company not found |  -  |
+|**401** | Not authenticated |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -547,7 +547,7 @@ const { status, data } = await apiInstance.getSirenByIdInstanceProxyApiV1AfnorDi
 # **getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet**
 > any getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet()
 
-Obtenir un établissement identifié par son numéro SIRET
+Get an establishment identified by its SIRET number
 
 ### Example
 
@@ -591,9 +591,9 @@ const { status, data } = await apiInstance.getSiretByCodeInseeProxyApiV1AfnorDir
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Informations de l\&#39;établissement |  -  |
-|**404** | Établissement non trouvé |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Establishment information |  -  |
+|**404** | Establishment not found |  -  |
+|**401** | Not authenticated |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -601,7 +601,7 @@ const { status, data } = await apiInstance.getSiretByCodeInseeProxyApiV1AfnorDir
 # **getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet**
 > any getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet()
 
-Obtenir un établissement identifié par son idInstance
+Get an establishment identified by its idInstance
 
 ### Example
 
@@ -645,9 +645,9 @@ const { status, data } = await apiInstance.getSiretByIdInstanceProxyApiV1AfnorDi
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Informations de l\&#39;établissement |  -  |
-|**404** | Établissement non trouvé |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Establishment information |  -  |
+|**404** | Establishment not found |  -  |
+|**401** | Not authenticated |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -655,7 +655,7 @@ const { status, data } = await apiInstance.getSiretByIdInstanceProxyApiV1AfnorDi
 # **patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch**
 > any patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch()
 
-Mettre à jour partiellement une ligne d\'annuaire
+Partially update a directory line
 
 ### Example
 
@@ -699,9 +699,9 @@ const { status, data } = await apiInstance.patchDirectoryLineProxyApiV1AfnorDire
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Ligne d\&#39;annuaire mise à jour |  -  |
-|**404** | Ligne d\&#39;annuaire non trouvée |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Directory line updated |  -  |
+|**404** | Directory line not found |  -  |
+|**401** | Not authenticated |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -709,7 +709,7 @@ const { status, data } = await apiInstance.patchDirectoryLineProxyApiV1AfnorDire
 # **patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch**
 > any patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch()
 
-Mettre à jour partiellement un code de routage privé
+Partially update a private routing code
 
 ### Example
 
@@ -753,9 +753,9 @@ const { status, data } = await apiInstance.patchRoutingCodeProxyApiV1AfnorDirect
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Code de routage mis à jour |  -  |
-|**404** | Code de routage non trouvé |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Routing code updated |  -  |
+|**404** | Routing code not found |  -  |
+|**401** | Not authenticated |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -763,7 +763,7 @@ const { status, data } = await apiInstance.patchRoutingCodeProxyApiV1AfnorDirect
 # **putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut**
 > any putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut()
 
-Mettre à jour complètement un code de routage privé
+Completely update a private routing code
 
 ### Example
 
@@ -807,9 +807,9 @@ const { status, data } = await apiInstance.putRoutingCodeProxyApiV1AfnorDirector
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Code de routage mis à jour |  -  |
-|**404** | Code de routage non trouvé |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Routing code updated |  -  |
+|**404** | Routing code not found |  -  |
+|**401** | Not authenticated |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -817,7 +817,7 @@ const { status, data } = await apiInstance.putRoutingCodeProxyApiV1AfnorDirector
 # **searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost**
 > any searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost()
 
-Rechercher des lignes d\'annuaire selon des critères
+Search for directory lines by criteria
 
 ### Example
 
@@ -854,15 +854,15 @@ This endpoint does not have any parameters.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Résultats de recherche |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Search results |  -  |
+|**401** | Not authenticated |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost**
 > any searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost()
 
-Rechercher des codes de routage selon des critères
+Search for routing codes by criteria
 
 ### Example
 
@@ -899,15 +899,15 @@ This endpoint does not have any parameters.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Résultats de recherche |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Search results |  -  |
+|**401** | Not authenticated |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost**
 > any searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost()
 
-Recherche multi-critères d\'entreprises (unités légales)
+Multi-criteria search for companies (legal units)
 
 ### Example
 
@@ -944,15 +944,15 @@ This endpoint does not have any parameters.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Retourne une ou plusieurs entreprises |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Returns one or more companies |  -  |
+|**401** | Not authenticated |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost**
 > any searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost()
 
-Recherche multi-critères d\'établissements
+Multi-criteria search for establishments
 
 ### Example
 
@@ -989,8 +989,8 @@ This endpoint does not have any parameters.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Retourne un ou plusieurs établissements |  -  |
-|**401** | Non authentifié |  -  |
+|**200** | Returns one or more establishments |  -  |
+|**401** | Not authenticated |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -5,10 +5,10 @@ import * as path from 'path';
 import { FactPulseAuthError, FactPulsePollingTimeout, FactPulseValidationError, ValidationErrorDetail } from './exceptions';
 
 // =============================================================================
-// Credentials interfaces - pour une configuration simplifiée
+// Credentials interfaces - for simplified configuration
 // =============================================================================
 
-/** Credentials Chorus Pro pour le mode Zero-Trust. */
+/** Chorus Pro credentials for Zero-Trust mode. */
 export interface ChorusProCredentials {
   pisteClientId: string;
   pisteClientSecret: string;
@@ -17,7 +17,7 @@ export interface ChorusProCredentials {
   sandbox?: boolean;
 }
 
-/** Credentials AFNOR PDP pour le mode Zero-Trust. L'API FactPulse utilise ces credentials pour s'authentifier auprès de la PDP AFNOR. */
+/** AFNOR PDP credentials for Zero-Trust mode. The FactPulse API uses these credentials to authenticate with the AFNOR PDP. */
 export interface AFNORCredentials {
   flowServiceUrl: string;
   tokenUrl: string;
@@ -39,166 +39,166 @@ export interface FactPulseClientConfig {
 }
 
 // =============================================================================
-// Helpers pour les types anyOf - évite la verbosité des wrappers générés
+// Helpers for anyOf types - avoids verbosity of generated wrappers
 // =============================================================================
 
-type MontantValue = string | number | null | undefined;
+type AmountValue = string | number | null | undefined;
 
-/** Convertit une valeur en string de montant pour l'API. */
-export function montant(value: MontantValue): string {
+/** Converts a value to an amount string for the API. */
+export function amount(value: AmountValue): string {
   if (value === null || value === undefined) return '0.00';
   if (typeof value === 'number') return value.toFixed(2);
   if (typeof value === 'string') return value;
   return '0.00';
 }
 
-/** Crée un objet MontantTotal simplifié. */
-export function montantTotal(
-  ht: MontantValue, tva: MontantValue, ttc: MontantValue, aPayer: MontantValue,
-  options?: { remiseTtc?: MontantValue; motifRemise?: string; acompte?: MontantValue }
+/** Creates a simplified InvoiceTotals object. */
+export function invoiceTotals(
+  exclTax: AmountValue, vat: AmountValue, inclTax: AmountValue, amountDue: AmountValue,
+  options?: { discountInclTax?: AmountValue; discountReason?: string; prepayment?: AmountValue }
 ): Record<string, unknown> {
   const result: Record<string, unknown> = {
-    montantHtTotal: montant(ht), montantTva: montant(tva),
-    montantTtcTotal: montant(ttc), montantAPayer: montant(aPayer),
+    totalExclTax: amount(exclTax), vatAmount: amount(vat),
+    totalInclTax: amount(inclTax), amountDue: amount(amountDue),
   };
-  if (options?.remiseTtc !== undefined) result.montantRemiseGlobaleTtc = montant(options.remiseTtc);
-  if (options?.motifRemise !== undefined) result.motifRemiseGlobaleTtc = options.motifRemise;
-  if (options?.acompte !== undefined) result.acompte = montant(options.acompte);
+  if (options?.discountInclTax !== undefined) result.globalDiscountInclTax = amount(options.discountInclTax);
+  if (options?.discountReason !== undefined) result.globalDiscountReason = options.discountReason;
+  if (options?.prepayment !== undefined) result.prepayment = amount(options.prepayment);
   return result;
 }
 
-/** Crée une ligne de poste (aligné sur LigneDePoste de models.py).
- * Pour le taux TVA: soit tauxTva (code ex: "TVA20") soit tauxTvaManuel (valeur ex: 20.00) */
-export function ligneDePoste(
-  numero: number, denomination: string, quantite: MontantValue, montantUnitaireHt: MontantValue, montantTotalLigneHt: MontantValue,
-  options?: { tauxTva?: string; tauxTvaManuel?: MontantValue; categorieTva?: string; unite?: string; reference?: string;
-    montantRemiseHt?: MontantValue; codeRaisonReduction?: string; raisonReduction?: string;
-    dateDebutPeriode?: string; dateFinPeriode?: string }
+/** Creates an invoice line (aligned with InvoiceLine in models.py).
+ * For VAT rate: either vatRate (code e.g.: "VAT20") or vatRateManual (value e.g.: 20.00) */
+export function invoiceLine(
+  number: number, description: string, quantity: AmountValue, unitPriceExclTax: AmountValue, lineTotalExclTax: AmountValue,
+  options?: { vatRate?: string; vatRateManual?: AmountValue; vatCategory?: string; unit?: string; reference?: string;
+    discountExclTax?: AmountValue; discountReasonCode?: string; discountReason?: string;
+    periodStartDate?: string; periodEndDate?: string }
 ): Record<string, unknown> {
   const result: Record<string, unknown> = {
-    numero, denomination, quantite: montant(quantite), montantUnitaireHt: montant(montantUnitaireHt),
-    montantTotalLigneHt: montant(montantTotalLigneHt),
-    categorieTva: options?.categorieTva ?? 'S', unite: options?.unite ?? 'FORFAIT',
+    number, description, quantity: amount(quantity), unitPriceExclTax: amount(unitPriceExclTax),
+    lineTotalExclTax: amount(lineTotalExclTax),
+    vatCategory: options?.vatCategory ?? 'S', unit: options?.unit ?? 'LUMP_SUM',
   };
-  // Soit tauxTva (code) soit tauxTvaManuel (valeur)
-  if (options?.tauxTva) result.tauxTva = options.tauxTva;
-  else result.tauxTvaManuel = montant(options?.tauxTvaManuel ?? '20.00');
+  // Either vatRate (code) or vatRateManual (value)
+  if (options?.vatRate) result.vatRate = options.vatRate;
+  else result.vatRateManual = amount(options?.vatRateManual ?? '20.00');
   if (options?.reference) result.reference = options.reference;
-  if (options?.montantRemiseHt !== undefined) result.montantRemiseHt = montant(options.montantRemiseHt);
-  if (options?.codeRaisonReduction) result.codeRaisonReduction = options.codeRaisonReduction;
-  if (options?.raisonReduction) result.raisonReduction = options.raisonReduction;
-  if (options?.dateDebutPeriode) result.dateDebutPeriode = options.dateDebutPeriode;
-  if (options?.dateFinPeriode) result.dateFinPeriode = options.dateFinPeriode;
+  if (options?.discountExclTax !== undefined) result.discountExclTax = amount(options.discountExclTax);
+  if (options?.discountReasonCode) result.discountReasonCode = options.discountReasonCode;
+  if (options?.discountReason) result.discountReason = options.discountReason;
+  if (options?.periodStartDate) result.periodStartDate = options.periodStartDate;
+  if (options?.periodEndDate) result.periodEndDate = options.periodEndDate;
   return result;
 }
 
-/** Crée une ligne de TVA (aligné sur LigneDeTVA de models.py).
- * Pour le taux: soit taux (code ex: "TVA20") soit tauxManuel (valeur ex: 20.00) */
-export function ligneDeTva(
-  montantBaseHt: MontantValue, montantTva: MontantValue,
-  options?: { taux?: string; tauxManuel?: MontantValue; categorie?: string }
+/** Creates a VAT line (aligned with VatLine in models.py).
+ * For rate: either rate (code e.g.: "VAT20") or rateManual (value e.g.: 20.00) */
+export function vatLine(
+  baseAmountExclTax: AmountValue, vatAmount: AmountValue,
+  options?: { rate?: string; rateManual?: AmountValue; category?: string }
 ): Record<string, unknown> {
   const result: Record<string, unknown> = {
-    montantBaseHt: montant(montantBaseHt), montantTva: montant(montantTva), categorie: options?.categorie ?? 'S',
+    baseAmountExclTax: amount(baseAmountExclTax), vatAmount: amount(vatAmount), category: options?.category ?? 'S',
   };
-  // Soit taux (code) soit tauxManuel (valeur)
-  if (options?.taux) result.taux = options.taux;
-  else result.tauxManuel = montant(options?.tauxManuel ?? '20.00');
+  // Either rate (code) or rateManual (value)
+  if (options?.rate) result.rate = options.rate;
+  else result.rateManual = amount(options?.rateManual ?? '20.00');
   return result;
 }
 
-/** Crée une adresse postale pour l'API FactPulse. */
-export function adressePostale(
-  ligne1: string, codePostal: string, ville: string,
-  options?: { pays?: string; ligne2?: string; ligne3?: string }
+/** Creates a postal address for the FactPulse API. */
+export function postalAddress(
+  line1: string, postalCode: string, city: string,
+  options?: { country?: string; line2?: string; line3?: string }
 ): Record<string, unknown> {
-  const result: Record<string, unknown> = { ligneUn: ligne1, codePostal, nomVille: ville, paysCodeIso: options?.pays ?? 'FR' };
-  if (options?.ligne2) result.ligneDeux = options.ligne2;
-  if (options?.ligne3) result.ligneTrois = options.ligne3;
+  const result: Record<string, unknown> = { line1, postalCode, city, countryCode: options?.country ?? 'FR' };
+  if (options?.line2) result.line2 = options.line2;
+  if (options?.line3) result.line3 = options.line3;
   return result;
 }
 
-/** Crée une adresse électronique pour l'API FactPulse. schemeId: "0009"=SIREN, "0225"=SIRET */
-export function adresseElectronique(identifiant: string, schemeId = '0009'): Record<string, unknown> {
-  return { identifiant, schemeId };
+/** Creates an electronic address for the FactPulse API. schemeId: "0009"=SIREN, "0225"=SIRET */
+export function electronicAddress(identifier: string, schemeId = '0009'): Record<string, unknown> {
+  return { identifier, schemeId };
 }
 
-/** Calcule le numéro TVA intracommunautaire français depuis un SIREN. */
-function calculerTvaIntra(siren: string): string | null {
+/** Computes the French intra-community VAT number from a SIREN. */
+function computeVatIntra(siren: string): string | null {
   if (siren.length !== 9 || !/^\d+$/.test(siren)) return null;
   const cle = (12 + 3 * (parseInt(siren, 10) % 97)) % 97;
   return `FR${cle.toString().padStart(2, '0')}${siren}`;
 }
 
-/** Crée un fournisseur (émetteur) avec auto-calcul SIREN, TVA intracommunautaire et adresses. */
-export function fournisseur(
-  nom: string, siret: string, adresseLigne1: string, codePostal: string, ville: string,
-  options?: { idFournisseur?: number; siren?: string; numeroTvaIntra?: string; iban?: string; pays?: string; adresseLigne2?: string; codeService?: number; codeCoordonnesBancaires?: number }
+/** Creates a supplier (issuer) with auto-computed SIREN, intra-EU VAT number and addresses. */
+export function supplier(
+  name: string, siret: string, addressLine1: string, postalCode: string, city: string,
+  options?: { supplierId?: number; siren?: string; vatIntra?: string; iban?: string; country?: string; addressLine2?: string; serviceCode?: number; bankCoordinatesCode?: number }
 ): Record<string, unknown> {
   const opts = options ?? {};
   const siren = opts.siren ?? (siret.length === 14 ? siret.slice(0, 9) : undefined);
-  const numeroTvaIntra = opts.numeroTvaIntra ?? (siren ? calculerTvaIntra(siren) : null);
+  const vatIntra = opts.vatIntra ?? (siren ? computeVatIntra(siren) : null);
   const result: Record<string, unknown> = {
-    nom, idFournisseur: opts.idFournisseur ?? 0, siret,
-    adresseElectronique: adresseElectronique(siret, '0225'),
-    adressePostale: adressePostale(adresseLigne1, codePostal, ville, { pays: opts.pays, ligne2: opts.adresseLigne2 }),
+    name, supplierId: opts.supplierId ?? 0, siret,
+    electronicAddress: electronicAddress(siret, '0225'),
+    postalAddress: postalAddress(addressLine1, postalCode, city, { country: opts.country, line2: opts.addressLine2 }),
   };
   if (siren) result.siren = siren;
-  if (numeroTvaIntra) result.numeroTvaIntra = numeroTvaIntra;
+  if (vatIntra) result.vatIntra = vatIntra;
   if (opts.iban) result.iban = opts.iban;
-  if (opts.codeService) result.idServiceFournisseur = opts.codeService;
-  if (opts.codeCoordonnesBancaires) result.codeCoordonnesBancairesFournisseur = opts.codeCoordonnesBancaires;
+  if (opts.serviceCode) result.supplierServiceId = opts.serviceCode;
+  if (opts.bankCoordinatesCode) result.supplierBankCoordinatesCode = opts.bankCoordinatesCode;
   return result;
 }
 
-/** Crée un destinataire (client) avec auto-calcul SIREN et adresses. */
-export function destinataire(
-  nom: string, siret: string, adresseLigne1: string, codePostal: string, ville: string,
-  options?: { siren?: string; pays?: string; adresseLigne2?: string; codeServiceExecutant?: string }
+/** Creates a recipient (customer) with auto-computed SIREN and addresses. */
+export function recipient(
+  name: string, siret: string, addressLine1: string, postalCode: string, city: string,
+  options?: { siren?: string; country?: string; addressLine2?: string; executingServiceCode?: string }
 ): Record<string, unknown> {
   const opts = options ?? {};
   const siren = opts.siren ?? (siret.length === 14 ? siret.slice(0, 9) : undefined);
   const result: Record<string, unknown> = {
-    nom, siret,
-    adresseElectronique: adresseElectronique(siret, '0225'),
-    adressePostale: adressePostale(adresseLigne1, codePostal, ville, { pays: opts.pays, ligne2: opts.adresseLigne2 }),
+    name, siret,
+    electronicAddress: electronicAddress(siret, '0225'),
+    postalAddress: postalAddress(addressLine1, postalCode, city, { country: opts.country, line2: opts.addressLine2 }),
   };
   if (siren) result.siren = siren;
-  if (opts.codeServiceExecutant) result.codeServiceExecutant = opts.codeServiceExecutant;
+  if (opts.executingServiceCode) result.executingServiceCode = opts.executingServiceCode;
   return result;
 }
 
 /**
- * Crée un bénéficiaire (factor) pour l'affacturage.
+ * Creates a beneficiary (factor) for factoring.
  *
- * Le bénéficiaire (BG-10 / PayeeTradeParty) est utilisé lorsque le paiement
- * doit être effectué à un tiers différent du fournisseur, typiquement un
- * factor (société d'affacturage).
+ * The beneficiary (BG-10 / PayeeTradeParty) is used when payment
+ * must be made to a third party different from the supplier, typically
+ * a factor (factoring company).
  *
- * Pour les factures affacturées, il faut aussi:
- * - Utiliser un type de document affacturé (393, 396, 501, 502, 472, 473)
- * - Ajouter une note ACC avec la mention de subrogation
- * - L'IBAN du bénéficiaire sera utilisé pour le paiement
+ * For factored invoices, you also need to:
+ * - Use a factored document type (393, 396, 501, 502, 472, 473)
+ * - Add an ACC note with the subrogation mention
+ * - The beneficiary's IBAN will be used for payment
  *
- * @param nom Raison sociale du factor (BT-59)
+ * @param name Factor's business name (BT-59)
  * @param options Options: siret (BT-60), siren (BT-61), iban, bic
- * @returns Dict prêt à être utilisé dans une facture affacturée
+ * @returns Dict ready to be used in a factored invoice
  *
  * @example
- * const factor = beneficiaire('FACTOR SAS', {
+ * const factor = beneficiary('FACTOR SAS', {
  *   siret: '30000000700033',
  *   iban: 'FR76 3000 4000 0500 0012 3456 789',
  * });
  */
-export function beneficiaire(
-  nom: string,
+export function beneficiary(
+  name: string,
   options?: { siret?: string; siren?: string; iban?: string; bic?: string }
 ): Record<string, unknown> {
   const opts = options ?? {};
-  // Auto-calcul SIREN depuis SIRET
+  // Auto-compute SIREN from SIRET
   const siren = opts.siren ?? (opts.siret && opts.siret.length === 14 ? opts.siret.slice(0, 9) : undefined);
 
-  const result: Record<string, unknown> = { nom };
+  const result: Record<string, unknown> = { name };
   if (opts.siret) result.siret = opts.siret;
   if (siren) result.siren = siren;
   if (opts.iban) result.iban = opts.iban;
@@ -207,7 +207,7 @@ export function beneficiaire(
 }
 
 // =============================================================================
-// Client principal
+// Main client
 // =============================================================================
 
 const DEFAULT_API_URL = 'https://factpulse.fr';
@@ -267,7 +267,7 @@ export class FactPulseClient {
     };
   }
 
-  // Alias plus courts
+  // Shorter aliases
   getChorusProCredentials(): Record<string, unknown> | undefined { return this.getChorusCredentialsForApi(); }
   getAfnorCredentials(): Record<string, unknown> | undefined { return this.getAfnorCredentialsForApi(); }
 
@@ -279,7 +279,7 @@ export class FactPulseClient {
       return response.data;
     } catch (error) {
       const axiosError = error as AxiosError<{ detail?: string }>;
-      throw new FactPulseAuthError(`Impossible d'obtenir le token JWT: ${axiosError.response?.data?.detail || axiosError.message}`);
+      throw new FactPulseAuthError(`Unable to obtain JWT token: ${axiosError.response?.data?.detail || axiosError.message}`);
     }
   }
 
@@ -304,7 +304,7 @@ export class FactPulseClient {
       if (Date.now() - startTime > timeoutMs) throw new FactPulsePollingTimeout(taskId, timeoutMs);
       await this.ensureAuthenticated();
       try {
-        const response = await this.httpClient.get(`${this.config.apiUrl}/api/v1/traitement/taches/${taskId}/statut`, {
+        const response = await this.httpClient.get(`${this.config.apiUrl}/api/v1/processing/tasks/${taskId}/status`, {
           headers: { Authorization: `Bearer ${this.accessToken}` },
         });
         const { statut, resultat } = response.data;
@@ -313,7 +313,7 @@ export class FactPulseClient {
           // Format AFNOR: errorMessage, details
           const result = resultat as Record<string, unknown> | undefined;
           const errors: ValidationErrorDetail[] = Array.isArray(result?.details) ? result.details.filter((e): e is ValidationErrorDetail => typeof e === 'object' && e !== null) : [];
-          throw new FactPulseValidationError(`La tâche ${taskId} a échoué: ${result?.errorMessage || 'Erreur inconnue'}`, errors);
+          throw new FactPulseValidationError(`Task ${taskId} failed: ${result?.errorMessage || 'Unknown error'}`, errors);
         }
         await new Promise(resolve => setTimeout(resolve, currentInterval));
         currentInterval = Math.min(currentInterval * 1.5, 10000);
@@ -321,7 +321,7 @@ export class FactPulseClient {
         if (error instanceof FactPulseValidationError || error instanceof FactPulsePollingTimeout) throw error;
         const axiosError = error as AxiosError;
         if (axiosError.response?.status === 401) { this.resetAuth(); continue; }
-        throw new FactPulseValidationError(`Erreur API: ${axiosError.message}`);
+        throw new FactPulseValidationError(`API Error: ${axiosError.message}`);
       }
     }
   }
@@ -333,15 +333,15 @@ export class FactPulseClient {
     for (let attempt = 0; attempt <= this.config.maxRetries; attempt++) {
       await this.ensureAuthenticated();
       const form = new FormData();
-      form.append('donnees_facture', jsonData);
-      form.append('profil', profil);
-      form.append('format_sortie', formatSortie);
+      form.append('invoice_data', jsonData);
+      form.append('profile', profil);
+      form.append('output_format', formatSortie);
       form.append('source_pdf', fs.createReadStream(pdfPath), { filename: path.basename(pdfPath), contentType: 'application/pdf' });
       try {
-        const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/traitement/generer-facture`, form, {
+        const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/processing/generate-invoice`, form, {
           headers: { ...form.getHeaders(), Authorization: `Bearer ${this.accessToken}` }, timeout: 60000,
         });
-        taskId = response.data.id_tache; break;
+        taskId = response.data.task_id; break;
       } catch (error) {
         const axiosError = error as AxiosError<{ detail?: unknown; errorMessage?: string }>;
         if (axiosError.response?.status === 401 && attempt < this.config.maxRetries) { this.resetAuth(); continue; }
@@ -354,7 +354,7 @@ export class FactPulseClient {
         if (responseData) {
           // Format FastAPI/Pydantic: {"detail": [{"loc": [...], "msg": "...", "type": "..."}]}
           if (Array.isArray(responseData.detail)) {
-            errorMsg = 'Erreur de validation';
+            errorMsg = 'Validation error';
             for (const err of responseData.detail) {
               if (typeof err === 'object' && err !== null) {
                 const loc = (err as { loc?: unknown[] }).loc || [];
@@ -374,15 +374,15 @@ export class FactPulseClient {
           }
         }
 
-        console.error(`Erreur API ${axiosError.response?.status}:`, responseData);
+        console.error(`API Error ${axiosError.response?.status}:`, responseData);
         throw new FactPulseValidationError(errorMsg, errors);
       }
     }
-    if (!taskId) throw new FactPulseValidationError("Pas d'ID de tâche");
+    if (!taskId) throw new FactPulseValidationError("No task ID");
     if (!sync) return taskId;
     const result = await this.pollTask(taskId, timeout);
     if (result.contenu_b64) return Buffer.from(result.contenu_b64 as string, 'base64');
-    throw new FactPulseValidationError('Pas de contenu');
+    throw new FactPulseValidationError('No content');
   }
 
   static formatMontant(m: unknown): string {
@@ -393,21 +393,21 @@ export class FactPulseClient {
   }
 
   // =========================================================================
-  // AFNOR - Authentication et helpers internes
+  // AFNOR - Authentication and internal helpers
   // =========================================================================
 
   /**
-   * Recupere les credentials AFNOR (mode stored ou zero-trust).
-   * Mode zero-trust: Retourne les afnorCredentials fournis au constructeur.
-   * Mode stored: Recupere les credentials via GET /api/v1/afnor/credentials.
+   * Retrieves AFNOR credentials (stored or zero-trust mode).
+   * Zero-trust mode: Returns the afnorCredentials provided to the constructor.
+   * Stored mode: Retrieves credentials via GET /api/v1/afnor/credentials.
    */
   private async getAfnorCredentialsInternal(): Promise<AFNORCredentials> {
-    // Mode zero-trust : credentials fournis au constructeur
+    // Zero-trust mode: credentials provided to the constructor
     if (this.afnorCredentials) {
       return this.afnorCredentials;
     }
 
-    // Mode stored : recuperer les credentials via l'API
+    // Stored mode: retrieve credentials via the API
     await this.ensureAuthenticated();
 
     try {
@@ -429,28 +429,28 @@ export class FactPulseClient {
         const detail = axiosError.response.data?.detail;
         if (typeof detail === 'object' && detail?.error === 'NO_CLIENT_UID') {
           throw new FactPulseAuthError(
-            "Aucun client_uid dans le JWT. Pour utiliser les endpoints AFNOR, soit:\n" +
-            "1. Generez un token avec un client_uid (mode stored)\n" +
-            "2. Fournissez AFNORCredentials au constructeur du client (mode zero-trust)"
+            "No client_uid in JWT. To use AFNOR endpoints, either:\n" +
+            "1. Generate a token with a client_uid (stored mode)\n" +
+            "2. Provide AFNORCredentials to the client constructor (zero-trust mode)"
           );
         }
       }
-      throw new FactPulseAuthError(`Echec recuperation credentials AFNOR: ${axiosError.message}`);
+      throw new FactPulseAuthError(`Failed to retrieve AFNOR credentials: ${axiosError.message}`);
     }
   }
 
   /**
-   * Obtient le token OAuth2 AFNOR et l'URL de la PDP.
-   * Cette methode:
-   * 1. Recupere les credentials AFNOR (mode stored ou zero-trust)
-   * 2. Fait l'OAuth AFNOR pour obtenir un token
-   * 3. Retourne le token et l'URL de la PDP
+   * Obtains the AFNOR OAuth2 token and the PDP URL.
+   * This method:
+   * 1. Retrieves AFNOR credentials (stored or zero-trust mode)
+   * 2. Performs AFNOR OAuth to obtain a token
+   * 3. Returns the token and the PDP URL
    */
   private async getAfnorTokenAndUrl(): Promise<{ token: string; pdpBaseUrl: string }> {
-    // Etape 1: Obtenir les credentials AFNOR
+    // Step 1: Get AFNOR credentials
     const credentials = await this.getAfnorCredentialsInternal();
 
-    // Etape 2: Faire l'OAuth AFNOR via le proxy FactPulse
+    // Step 2: Perform AFNOR OAuth via the FactPulse proxy
     const oauthData = new URLSearchParams({
       grant_type: 'client_credentials',
       client_id: credentials.clientId,
@@ -471,7 +471,7 @@ export class FactPulseClient {
 
       const tokenData = response.data;
       if (!tokenData.access_token) {
-        throw new FactPulseAuthError('Reponse OAuth2 AFNOR invalide: access_token manquant');
+        throw new FactPulseAuthError('Invalid AFNOR OAuth2 response: access_token missing');
       }
 
       return {
@@ -480,13 +480,13 @@ export class FactPulseClient {
       };
     } catch (error) {
       const axiosError = error as AxiosError;
-      throw new FactPulseAuthError(`Echec OAuth2 AFNOR: ${axiosError.message}`);
+      throw new FactPulseAuthError(`AFNOR OAuth2 failed: ${axiosError.message}`);
     }
   }
 
   /**
-   * Effectue une requete vers l'API AFNOR avec gestion d'auth et d'erreurs.
-   * IMPORTANT: Cette methode utilise le token OAuth AFNOR, PAS le JWT FactPulse!
+   * Performs a request to the AFNOR API with auth and error handling.
+   * IMPORTANT: This method uses the AFNOR OAuth token, NOT the FactPulse JWT!
    */
   private async makeAfnorRequest<T = unknown>(
     method: 'GET' | 'POST',
@@ -498,7 +498,7 @@ export class FactPulseClient {
 
     const url = `${this.config.apiUrl}/api/v1/afnor${endpoint}`;
 
-    // TOUJOURS utiliser le token AFNOR + header X-PDP-Base-URL
+    // ALWAYS use the AFNOR token + X-PDP-Base-URL header
     const headers: Record<string, string> = {
       'Authorization': `Bearer ${afnorToken}`,
       'X-PDP-Base-URL': pdpBaseUrl,
@@ -531,7 +531,7 @@ export class FactPulseClient {
       const errorMsg = axiosError.response?.data?.errorMessage ||
                        axiosError.response?.data?.detail ||
                        axiosError.message;
-      throw new FactPulseValidationError(`Erreur AFNOR: ${errorMsg}`);
+      throw new FactPulseValidationError(`AFNOR Error: ${errorMsg}`);
     }
   }
 
@@ -552,27 +552,27 @@ export class FactPulseClient {
   // ==================== AFNOR Flow ====================
 
   /**
-   * Soumet une facture a une PDP via l'API AFNOR.
-   * L'authentification utilise le token OAuth AFNOR (obtenu automatiquement),
-   * soit via les credentials stockes (mode stored), soit via les afnorCredentials
-   * fournis au constructeur (mode zero-trust).
+   * Submits an invoice to a PDP via the AFNOR API.
+   * Authentication uses the AFNOR OAuth token (obtained automatically),
+   * either via stored credentials (stored mode), or via the afnorCredentials
+   * provided to the constructor (zero-trust mode).
    *
-   * @param pdfBuffer Buffer du PDF Factur-X a soumettre
-   * @param flowName Nom du flux (ex: "Facture FAC-2025-001")
+   * @param pdfBuffer Buffer of the Factur-X PDF to submit
+   * @param flowName Flow name (e.g.: "Invoice INV-2025-001")
    * @param options Options: trackingId, flowSyntax (CII/UBL), flowProfile
    */
-  async soumettreFactureAfnor(
+  async submitInvoiceAfnor(
     pdfBuffer: Buffer,
     flowName: string,
     options: { trackingId?: string; flowSyntax?: string; flowProfile?: string } = {}
   ): Promise<Record<string, unknown>> {
     const { trackingId, flowSyntax = 'CII', flowProfile = 'EN16931' } = options;
 
-    // Calculer SHA-256
+    // Compute SHA-256
     const crypto = require('crypto');
     const sha256 = crypto.createHash('sha256').update(pdfBuffer).digest('hex');
 
-    // Preparer flowInfo
+    // Prepare flowInfo
     const flowInfo: Record<string, unknown> = { name: flowName, flowSyntax, flowProfile, sha256 };
     if (trackingId) flowInfo.trackingId = trackingId;
 
@@ -583,7 +583,7 @@ export class FactPulseClient {
     return this.makeAfnorRequest('POST', '/flow/v1/flows', { files: form });
   }
 
-  async rechercherFluxAfnor(criteria: { trackingId?: string; status?: string; offset?: number; limit?: number } = {}): Promise<Record<string, unknown>> {
+  async searchFlowsAfnor(criteria: { trackingId?: string; status?: string; offset?: number; limit?: number } = {}): Promise<Record<string, unknown>> {
     const searchBody: Record<string, unknown> = {
       offset: criteria.offset ?? 0,
       limit: criteria.limit ?? 25,
@@ -595,8 +595,8 @@ export class FactPulseClient {
     return this.makeAfnorRequest('POST', '/flow/v1/flows/search', { data: searchBody });
   }
 
-  async telechargerFluxAfnor(flowId: string): Promise<Buffer> {
-    // Pour le telechargement, on doit gerer le type de reponse differemment
+  async downloadFlowAfnor(flowId: string): Promise<Buffer> {
+    // For downloading, we need to handle the response type differently
     const { token: afnorToken, pdpBaseUrl } = await this.getAfnorTokenAndUrl();
 
     const url = `${this.config.apiUrl}/api/v1/afnor/flow/v1/flows/${flowId}`;
@@ -611,29 +611,29 @@ export class FactPulseClient {
   }
 
   /**
-   * Récupère les métadonnées JSON d'un flux entrant (facture fournisseur).
-   * Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées
-   * de la facture vers un format JSON unifié. Supporte Factur-X, CII et UBL.
+   * Retrieves JSON metadata of an incoming flow (supplier invoice).
+   * Downloads an incoming flow from the AFNOR PDP and extracts invoice
+   * metadata into a unified JSON format. Supports Factur-X, CII and UBL.
    *
-   * Note: Cet endpoint utilise l'authentification JWT FactPulse (pas OAuth AFNOR).
-   * Le serveur FactPulse se charge d'appeler la PDP avec les credentials stockés.
+   * Note: This endpoint uses FactPulse JWT authentication (not AFNOR OAuth).
+   * The FactPulse server handles calling the PDP with stored credentials.
    *
-   * @param flowId Identifiant du flux (UUID)
-   * @param includeDocument Si true, inclut le document original encodé en base64
-   * @returns Métadonnées de la facture (fournisseur, montants, dates, etc.)
+   * @param flowId Flow identifier (UUID)
+   * @param includeDocument If true, includes the original document encoded in base64
+   * @returns Invoice metadata (supplier, amounts, dates, etc.)
    *
    * @example
-   * const facture = await client.obtenirFactureEntranteAfnor("550e8400-...");
-   * console.log(`Fournisseur: ${facture.fournisseur.nom}`);
-   * console.log(`Montant TTC: ${facture.montant_ttc} ${facture.devise}`);
+   * const invoice = await client.getIncomingInvoiceAfnor("550e8400-...");
+   * console.log(`Supplier: ${invoice.supplier.name}`);
+   * console.log(`Total incl. tax: ${invoice.total_incl_tax} ${invoice.currency}`);
    */
-  async obtenirFactureEntranteAfnor(
+  async getIncomingInvoiceAfnor(
     flowId: string,
     includeDocument: boolean = false
   ): Promise<Record<string, unknown>> {
     await this.ensureAuthenticated();
 
-    const url = `${this.config.apiUrl}/api/v1/afnor/flux-entrants/${flowId}`;
+    const url = `${this.config.apiUrl}/api/v1/afnor/incoming-flows/${flowId}`;
     const params: Record<string, string> = {};
     if (includeDocument) {
       params.include_document = 'true';
@@ -649,7 +649,7 @@ export class FactPulseClient {
     } catch (error) {
       const axiosError = error as AxiosError<{ detail?: string }>;
       throw new FactPulseValidationError(
-        `Erreur flux entrant: ${axiosError.response?.data?.detail || axiosError.message}`
+        `Incoming flow error: ${axiosError.response?.data?.detail || axiosError.message}`
       );
     }
   }
@@ -677,9 +677,9 @@ export class FactPulseClient {
   }
 
   /**
-   * Liste les services d'une structure Chorus Pro.
-   * @param idStructureCpp ID Chorus Pro de la structure
-   * @returns Objet avec listeServices, total, codeRetour, libelle
+   * Lists the services of a Chorus Pro structure.
+   * @param idStructureCpp Chorus Pro ID of the structure
+   * @returns Object with listeServices, total, codeRetour, libelle
    */
   async listerServicesStructureChorus(idStructureCpp: number): Promise<Record<string, unknown>> {
     await this.ensureAuthenticated();
@@ -714,45 +714,45 @@ export class FactPulseClient {
   // ==================== Validation ====================
 
   /**
-   * Valide un PDF Factur-X.
-   * @param pdfBuffer - Contenu du PDF en Buffer
-   * @param options - Options de validation
-   * @param options.profil - Profil Factur-X (MINIMUM, BASIC, EN16931, EXTENDED). Si non spécifié, auto-détecté.
-   * @param options.useVerapdf - Active la validation stricte PDF/A avec VeraPDF (défaut: false)
+   * Validates a Factur-X PDF.
+   * @param pdfBuffer - PDF content as Buffer
+   * @param options - Validation options
+   * @param options.profile - Factur-X profile (MINIMUM, BASIC, EN16931, EXTENDED). If not specified, auto-detected.
+   * @param options.useVerapdf - Enable strict PDF/A validation with VeraPDF (default: false)
    */
-  async validerPdfFacturx(
+  async validateFacturxPdf(
     pdfBuffer: Buffer,
-    options: { profil?: string; useVerapdf?: boolean } = {}
+    options: { profile?: string; useVerapdf?: boolean } = {}
   ): Promise<Record<string, unknown>> {
     await this.ensureAuthenticated();
     const form = new FormData();
-    form.append('fichier_pdf', pdfBuffer, { filename: 'facture.pdf', contentType: 'application/pdf' });
-    if (options.profil) {
-      form.append('profil', options.profil);
+    form.append('pdf_file', pdfBuffer, { filename: 'facture.pdf', contentType: 'application/pdf' });
+    if (options.profile) {
+      form.append('profile', options.profile);
     }
     form.append('use_verapdf', String(options.useVerapdf ?? false));
-    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/traitement/valider-pdf-facturx`, form, {
+    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/processing/validate-facturx-pdf`, form, {
       headers: { ...form.getHeaders(), Authorization: `Bearer ${this.accessToken}` },
     });
     return response.data;
   }
 
-  async validerXmlFacturx(xmlContent: string, profil = 'EN16931'): Promise<Record<string, unknown>> {
+  async validateFacturxXml(xmlContent: string, profile = 'EN16931'): Promise<Record<string, unknown>> {
     await this.ensureAuthenticated();
     const form = new FormData();
-    form.append('fichier_xml', Buffer.from(xmlContent, 'utf-8'), { filename: 'facture.xml', contentType: 'application/xml' });
-    form.append('profil', profil);
-    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/traitement/valider-xml`, form, {
+    form.append('xml_file', Buffer.from(xmlContent, 'utf-8'), { filename: 'facture.xml', contentType: 'application/xml' });
+    form.append('profile', profile);
+    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/processing/validate-xml`, form, {
       headers: { ...form.getHeaders(), Authorization: `Bearer ${this.accessToken}` },
     });
     return response.data;
   }
 
-  async validerSignaturePdf(pdfBuffer: Buffer): Promise<Record<string, unknown>> {
+  async validatePdfSignature(pdfBuffer: Buffer): Promise<Record<string, unknown>> {
     await this.ensureAuthenticated();
     const form = new FormData();
-    form.append('fichier_pdf', pdfBuffer, { filename: 'document.pdf', contentType: 'application/pdf' });
-    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/traitement/valider-signature-pdf`, form, {
+    form.append('pdf_file', pdfBuffer, { filename: 'document.pdf', contentType: 'application/pdf' });
+    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/processing/validate-pdf-signature`, form, {
       headers: { ...form.getHeaders(), Authorization: `Bearer ${this.accessToken}` },
     });
     return response.data;
@@ -761,46 +761,46 @@ export class FactPulseClient {
   // ==================== Signature ====================
 
   /**
-   * Signe un PDF avec le certificat configuré côté serveur (via client_uid du JWT).
-   * Le certificat doit être préalablement configuré dans Django Admin.
+   * Signs a PDF with the server-configured certificate (via JWT client_uid).
+   * The certificate must be previously configured in Django Admin.
    */
-  async signerPdf(
+  async signPdf(
     pdfBuffer: Buffer,
-    options: { raison?: string; localisation?: string; contact?: string; usePadesLt?: boolean; useTimestamp?: boolean } = {}
+    options: { reason?: string; location?: string; contact?: string; usePadesLt?: boolean; useTimestamp?: boolean } = {}
   ): Promise<Buffer> {
     await this.ensureAuthenticated();
     const form = new FormData();
-    form.append('fichier_pdf', pdfBuffer, { filename: 'document.pdf', contentType: 'application/pdf' });
-    if (options.raison) form.append('raison', options.raison);
-    if (options.localisation) form.append('localisation', options.localisation);
+    form.append('pdf_file', pdfBuffer, { filename: 'document.pdf', contentType: 'application/pdf' });
+    if (options.reason) form.append('reason', options.reason);
+    if (options.location) form.append('location', options.location);
     if (options.contact) form.append('contact', options.contact);
     if (options.usePadesLt !== undefined) form.append('use_pades_lt', String(options.usePadesLt));
     if (options.useTimestamp !== undefined) form.append('use_timestamp', String(options.useTimestamp));
-    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/traitement/signer-pdf`, form, {
+    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/processing/sign-pdf`, form, {
       headers: { ...form.getHeaders(), Authorization: `Bearer ${this.accessToken}` },
     });
-    // L'API retourne du JSON avec pdf_signe_base64
+    // The API returns JSON with pdf_signe_base64
     const data = response.data as { pdf_signe_base64?: string };
     if (data.pdf_signe_base64) {
       return Buffer.from(data.pdf_signe_base64, 'base64');
     }
-    throw new Error('Réponse de signature invalide');
+    throw new Error('Invalid signature response');
   }
 
   /**
-   * Génère un certificat de test (NON PRODUCTION).
-   * Le certificat doit ensuite être configuré dans Django Admin.
+   * Generates a test certificate (NOT FOR PRODUCTION).
+   * The certificate must then be configured in Django Admin.
    */
-  async genererCertificatTest(
-    options: { cn?: string; organisation?: string; email?: string; dureeJours?: number; tailleClé?: number } = {}
+  async generateTestCertificate(
+    options: { cn?: string; organisation?: string; email?: string; validityDays?: number; keySize?: number } = {}
   ): Promise<Record<string, unknown>> {
     await this.ensureAuthenticated();
-    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/traitement/generer-certificat-test`, {
+    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/processing/generate-test-certificate`, {
       cn: options.cn || 'Test Organisation',
       organisation: options.organisation || 'Test Organisation',
       email: options.email || 'test@example.com',
-      duree_jours: options.dureeJours || 365,
-      taille_cle: options.tailleClé || 2048,
+      validity_days: options.validityDays || 365,
+      key_size: options.keySize || 2048,
     }, {
       headers: { Authorization: `Bearer ${this.accessToken}`, 'Content-Type': 'application/json' },
     });
@@ -810,15 +810,15 @@ export class FactPulseClient {
   // ==================== Workflow complet ====================
 
   /**
-   * Workflow complet : génération + validation + signature + soumission AFNOR.
-   * Note: La signature utilise le certificat configuré côté serveur (via client_uid du JWT).
-   * @param factureData Données de la facture
-   * @param pdfPath Chemin vers le PDF source
-   * @param options Options du workflow
-   * @returns Résultat avec pdfBuffer, validation, signature et afnor
+   * Complete workflow: generation + validation + signature + AFNOR submission.
+   * Note: Signature uses the server-configured certificate (via JWT client_uid).
+   * @param invoiceData Invoice data
+   * @param pdfPath Path to the source PDF
+   * @param options Workflow options
+   * @returns Result with pdfBuffer, validation, signature and afnor
    */
-  async genererFacturxComplet(
-    factureData: Record<string, unknown>,
+  async generateCompleteFacturx(
+    invoiceData: Record<string, unknown>,
     pdfPath: string,
     options: {
       profil?: string;
@@ -847,33 +847,33 @@ export class FactPulseClient {
     const result: {
       pdfBuffer: Buffer;
       validation?: Record<string, unknown>;
-      signature?: { signe: boolean };
+      signature?: { signed: boolean };
       afnor?: Record<string, unknown>;
     } = { pdfBuffer: Buffer.alloc(0) };
 
-    // 1. Génération
-    const pdfBuffer = await this.genererFacturx(factureData, pdfPath, profil, 'pdf', true, timeout) as Buffer;
+    // 1. Generation
+    const pdfBuffer = await this.genererFacturx(invoiceData, pdfPath, profile, 'pdf', true, timeout) as Buffer;
     result.pdfBuffer = pdfBuffer;
 
     // 2. Validation
-    if (valider) {
-      const validation = await this.validerPdfFacturx(pdfBuffer, { profil });
+    if (validate) {
+      const validation = await this.validateFacturxPdf(pdfBuffer, { profile });
       result.validation = validation;
     }
 
-    // 3. Signature (utilise le certificat configuré côté serveur)
-    if (signer) {
-      const signedPdf = await this.signerPdf(result.pdfBuffer);
+    // 3. Signature (uses the server-configured certificate)
+    if (sign) {
+      const signedPdf = await this.signPdf(result.pdfBuffer);
       result.pdfBuffer = signedPdf;
-      result.signature = { signe: true };
+      result.signature = { signed: true };
     }
 
-    // 4. Soumission AFNOR
-    if (soumettreAfnor) {
-      const numeroFacture = (factureData.numeroFacture || factureData.numero_facture || 'FACTURE') as string;
-      const flowName = afnorFlowName || `Facture ${numeroFacture}`;
-      const trackingId = afnorTrackingId || numeroFacture;
-      const afnorResult = await this.soumettreFactureAfnor(result.pdfBuffer, flowName, { trackingId });
+    // 4. AFNOR submission
+    if (submitAfnor) {
+      const invoiceNumber = (invoiceData.invoiceNumber || invoiceData.invoice_number || 'INVOICE') as string;
+      const flowName = afnorFlowName || `Invoice ${invoiceNumber}`;
+      const trackingId = afnorTrackingId || invoiceNumber;
+      const afnorResult = await this.submitInvoiceAfnor(result.pdfBuffer, flowName, { trackingId });
       result.afnor = afnorResult;
     }
 

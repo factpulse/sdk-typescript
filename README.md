@@ -1,209 +1,209 @@
 # FactPulse SDK TypeScript
 
-Client TypeScript/JavaScript officiel pour l'API FactPulse - Facturation électronique française.
+Official TypeScript/JavaScript client for the FactPulse API - French electronic invoicing.
 
-## Fonctionnalités
+## Features
 
-- **Factur-X** : Génération et validation de factures électroniques (profils MINIMUM, BASIC, EN16931, EXTENDED)
-- **Chorus Pro** : Intégration avec la plateforme de facturation publique française
-- **AFNOR PDP/PA** : Soumission de flux conformes à la norme XP Z12-013
-- **Signature électronique** : Signature PDF (PAdES-B-B, PAdES-B-T, PAdES-B-LT)
-- **Client simplifié** : Authentification JWT et polling intégrés via `helpers`
+- **Factur-X**: Generation and validation of electronic invoices (MINIMUM, BASIC, EN16931, EXTENDED profiles)
+- **Chorus Pro**: Integration with the French public invoicing platform
+- **AFNOR PDP/PA**: Submission of flows compliant with XP Z12-013 standard
+- **Electronic signature**: PDF signing (PAdES-B-B, PAdES-B-T, PAdES-B-LT)
+- **Simplified client**: JWT authentication and polling integrated via `helpers`
 
 ## Installation
 
 ```bash
 npm install @factpulse/sdk
-# ou
+# or
 yarn add @factpulse/sdk
 ```
 
-## Démarrage rapide
+## Quick Start
 
-Le module `helpers` offre une API simplifiée avec authentification et polling automatiques :
+The `helpers` module provides a simplified API with automatic authentication and polling:
 
 ```typescript
 import {
   FactPulseClient,
-  montant,
-  montantTotal,
-  ligneDePoste,
-  ligneDeTva,
-  fournisseur,
-  destinataire,
+  amount,
+  totalAmount,
+  invoiceLine,
+  vatLine,
+  supplier,
+  recipient,
 } from '@factpulse/sdk/helpers';
 import * as fs from 'fs';
 
-// Créer le client
+// Create the client
 const client = new FactPulseClient({
-  email: 'votre_email@example.com',
-  password: 'votre_mot_de_passe'
+  email: 'your_email@example.com',
+  password: 'your_password'
 });
 
-// Construire la facture avec les helpers
-const factureData = {
-  numeroFacture: 'FAC-2025-001',
-  dateFacture: '2025-01-15',
-  fournisseur: fournisseur(
-    'Mon Entreprise SAS',
+// Build the invoice with helpers
+const invoiceData = {
+  number: 'INV-2025-001',
+  date: '2025-01-15',
+  supplier: supplier(
+    'My Company SAS',
     '12345678901234',
-    '123 Rue Example',
+    '123 Example Street',
     '75001',
     'Paris'
   ),
-  destinataire: destinataire(
+  recipient: recipient(
     'Client SARL',
     '98765432109876',
-    '456 Avenue Test',
+    '456 Test Avenue',
     '69001',
     'Lyon'
   ),
-  montantTotal: montantTotal(1000.00, 200.00, 1200.00, 1200.00),
-  lignesDePoste: [
-    ligneDePoste(1, 'Prestation de conseil', 10, 100.00, 1000.00)
+  totalAmount: totalAmount(1000.00, 200.00, 1200.00, 1200.00),
+  lines: [
+    invoiceLine(1, 'Consulting services', 10, 100.00, 1000.00)
   ],
-  lignesDeTva: [
-    ligneDeTva(1000.00, 200.00, { tauxManuel: '20.00' })
+  vatLines: [
+    vatLine(1000.00, 200.00, { manualRate: '20.00' })
   ],
 };
 
-// Générer le PDF Factur-X
-const pdfBytes = await client.genererFacturx(
-  factureData,
-  'facture_source.pdf',
+// Generate the Factur-X PDF
+const pdfBytes = await client.generateFacturx(
+  invoiceData,
+  'source_invoice.pdf',
   'EN16931'
 );
 
-fs.writeFileSync('facture_facturx.pdf', pdfBytes);
+fs.writeFileSync('facturx_invoice.pdf', pdfBytes);
 ```
 
-## Helpers disponibles
+## Available Helpers
 
-### montant(value)
+### amount(value)
 
-Convertit une valeur en string formaté pour les montants monétaires.
+Converts a value to a formatted string for monetary amounts.
 
 ```typescript
-import { montant } from '@factpulse/sdk/helpers';
+import { amount } from '@factpulse/sdk/helpers';
 
-montant(1234.5);      // "1234.50"
-montant("1234.56");   // "1234.56"
-montant(null);        // "0.00"
+amount(1234.5);      // "1234.50"
+amount("1234.56");   // "1234.56"
+amount(null);        // "0.00"
 ```
 
-### montantTotal(ht, tva, ttc, aPayer, options?)
+### totalAmount(excludingTax, vat, includingTax, due, options?)
 
-Crée un objet MontantTotal complet.
+Creates a complete TotalAmount object.
 
 ```typescript
-import { montantTotal } from '@factpulse/sdk/helpers';
+import { totalAmount } from '@factpulse/sdk/helpers';
 
-const total = montantTotal(1000.00, 200.00, 1200.00, 1200.00, {
-  remiseTtc: 50.00,          // Optionnel
-  motifRemise: 'Fidélité',   // Optionnel
-  acompte: 100.00,           // Optionnel
+const total = totalAmount(1000.00, 200.00, 1200.00, 1200.00, {
+  discountIncludingTax: 50.00,  // Optional
+  discountReason: 'Loyalty',    // Optional
+  prepayment: 100.00,           // Optional
 });
 ```
 
-### ligneDePoste(numero, denomination, quantite, montantUnitaireHt, montantTotalLigneHt, options?)
+### invoiceLine(number, description, quantity, unitPrice, lineTotal, options?)
 
-Crée une ligne de facturation.
+Creates an invoice line.
 
 ```typescript
-import { ligneDePoste } from '@factpulse/sdk/helpers';
+import { invoiceLine } from '@factpulse/sdk/helpers';
 
-const ligne = ligneDePoste(
+const line = invoiceLine(
   1,
-  'Prestation de conseil',
+  'Consulting services',
   5,
   200.00,
-  1000.00,  // montantTotalLigneHt requis
+  1000.00,  // lineTotal required
   {
-    tauxTva: 'TVA20',        // Ou tauxTvaManuel: '20.00'
-    categorieTva: 'S',       // S, Z, E, AE, K
-    unite: 'HEURE',          // FORFAIT, PIECE, HEURE, JOUR...
-    reference: 'REF-001',    // Optionnel
+    vatRate: 'VAT20',        // Or manualVatRate: '20.00'
+    vatCategory: 'S',        // S, Z, E, AE, K
+    unit: 'HOUR',            // PACKAGE, PIECE, HOUR, DAY...
+    reference: 'REF-001',    // Optional
   }
 );
 ```
 
-### ligneDeTva(montantBaseHt, montantTva, options?)
+### vatLine(baseAmount, vatAmount, options?)
 
-Crée une ligne de ventilation TVA.
+Creates a VAT breakdown line.
 
 ```typescript
-import { ligneDeTva } from '@factpulse/sdk/helpers';
+import { vatLine } from '@factpulse/sdk/helpers';
 
-const tva = ligneDeTva(1000.00, 200.00, {
-  taux: 'TVA20',       // Ou tauxManuel: '20.00'
-  categorie: 'S',      // S, Z, E, AE, K
+const vat = vatLine(1000.00, 200.00, {
+  rate: 'VAT20',       // Or manualRate: '20.00'
+  category: 'S',       // S, Z, E, AE, K
 });
 ```
 
-### adressePostale(ligne1, codePostal, ville, options?)
+### postalAddress(line1, postalCode, city, options?)
 
-Crée une adresse postale structurée.
+Creates a structured postal address.
 
 ```typescript
-import { adressePostale } from '@factpulse/sdk/helpers';
+import { postalAddress } from '@factpulse/sdk/helpers';
 
-const adresse = adressePostale('123 Rue de la République', '75001', 'Paris', {
-  pays: 'FR',          // Défaut: 'FR'
-  ligne2: 'Bâtiment A' // Optionnel
+const address = postalAddress('123 Republic Street', '75001', 'Paris', {
+  country: 'FR',       // Default: 'FR'
+  line2: 'Building A'  // Optional
 });
 ```
 
-### adresseElectronique(identifiant, schemeId?)
+### electronicAddress(identifier, schemeId?)
 
-Crée une adresse électronique (identifiant numérique).
+Creates an electronic address (digital identifier).
 
 ```typescript
-import { adresseElectronique } from '@factpulse/sdk/helpers';
+import { electronicAddress } from '@factpulse/sdk/helpers';
 
 // SIRET (schemeId="0225")
-const adresse = adresseElectronique('12345678901234', '0225');
+const address = electronicAddress('12345678901234', '0225');
 
-// SIREN (schemeId="0009", défaut)
-const adresse = adresseElectronique('123456789');
+// SIREN (schemeId="0009", default)
+const address = electronicAddress('123456789');
 ```
 
-### fournisseur(nom, siret, adresseLigne1, codePostal, ville, options?)
+### supplier(name, siret, addressLine1, postalCode, city, options?)
 
-Crée un fournisseur complet avec calcul automatique du SIREN et TVA intra.
+Creates a complete supplier with automatic SIREN and intra-EU VAT calculation.
 
 ```typescript
-import { fournisseur } from '@factpulse/sdk/helpers';
+import { supplier } from '@factpulse/sdk/helpers';
 
-const f = fournisseur(
-  'Ma Société SAS',
+const s = supplier(
+  'My Company SAS',
   '12345678901234',
-  '123 Rue Example',
+  '123 Example Street',
   '75001',
   'Paris',
   { iban: 'FR7630006000011234567890189' }
 );
-// SIREN et TVA intracommunautaire calculés automatiquement
+// SIREN and intra-EU VAT number calculated automatically
 ```
 
-### destinataire(nom, siret, adresseLigne1, codePostal, ville, options?)
+### recipient(name, siret, addressLine1, postalCode, city, options?)
 
-Crée un destinataire (client) avec calcul automatique du SIREN.
+Creates a recipient (customer) with automatic SIREN calculation.
 
 ```typescript
-import { destinataire } from '@factpulse/sdk/helpers';
+import { recipient } from '@factpulse/sdk/helpers';
 
-const d = destinataire(
+const r = recipient(
   'Client SARL',
   '98765432109876',
-  '456 Avenue Test',
+  '456 Test Avenue',
   '69001',
   'Lyon'
 );
 ```
 
-## Mode Zero-Trust (Chorus Pro / AFNOR)
+## Zero-Trust Mode (Chorus Pro / AFNOR)
 
-Pour passer vos propres credentials sans stockage côté serveur :
+To pass your own credentials without server-side storage:
 
 ```typescript
 import {
@@ -213,29 +213,29 @@ import {
 } from '@factpulse/sdk/helpers';
 
 const client = new FactPulseClient({
-  email: 'votre_email@example.com',
-  password: 'votre_mot_de_passe',
+  email: 'your_email@example.com',
+  password: 'your_password',
   chorusCredentials: {
-    pisteClientId: 'votre_client_id',
-    pisteClientSecret: 'votre_client_secret',
-    chorusProLogin: 'votre_login',
-    chorusProPassword: 'votre_password',
+    pisteClientId: 'your_client_id',
+    pisteClientSecret: 'your_client_secret',
+    chorusProLogin: 'your_login',
+    chorusProPassword: 'your_password',
     sandbox: true,
   },
   afnorCredentials: {
     flowServiceUrl: 'https://api.pdp.fr/flow/v1',
     tokenUrl: 'https://auth.pdp.fr/oauth/token',
-    clientId: 'votre_client_id',
-    clientSecret: 'votre_client_secret',
+    clientId: 'your_client_id',
+    clientSecret: 'your_client_secret',
   },
 });
 ```
 
-## Ressources
+## Resources
 
-- **Documentation API** : https://factpulse.fr/api/facturation/documentation
-- **Support** : contact@factpulse.fr
+- **API Documentation**: https://factpulse.fr/api/facturation/documentation
+- **Support**: contact@factpulse.fr
 
-## Licence
+## License
 
 MIT License - Copyright (c) 2025 FactPulse

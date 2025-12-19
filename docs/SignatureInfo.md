@@ -1,12 +1,12 @@
 # SignatureInfo
 
-Informations sur la signature électronique.
+Information about the electronic signature.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**signe** | **boolean** | Le PDF a été signé | [default to undefined]
+**signed** | **boolean** | PDF was signed | [default to undefined]
 **cn** | **string** |  | [optional] [default to undefined]
 **expiration** | **string** |  | [optional] [default to undefined]
 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 import { SignatureInfo } from '@factpulse/sdk';
 
 const instance: SignatureInfo = {
-    signe,
+    signed,
     cn,
     expiration,
 };

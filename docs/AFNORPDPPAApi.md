@@ -4,14 +4,14 @@ All URIs are relative to *http://localhost*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**getAfnorCredentialsApiV1AfnorCredentialsGet**](#getafnorcredentialsapiv1afnorcredentialsget) | **GET** /api/v1/afnor/credentials | Récupérer les credentials AFNOR stockés|
-|[**getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet**](#getfluxentrantapiv1afnorfluxentrantsflowidget) | **GET** /api/v1/afnor/flux-entrants/{flow_id} | Récupérer et extraire une facture entrante|
-|[**oauthTokenProxyApiV1AfnorOauthTokenPost**](#oauthtokenproxyapiv1afnoroauthtokenpost) | **POST** /api/v1/afnor/oauth/token | Endpoint OAuth2 pour authentification AFNOR|
+|[**getAfnorCredentialsApiV1AfnorCredentialsGet**](#getafnorcredentialsapiv1afnorcredentialsget) | **GET** /api/v1/afnor/credentials | Retrieve stored AFNOR credentials|
+|[**getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet**](#getfluxentrantapiv1afnorincomingflowsflowidget) | **GET** /api/v1/afnor/incoming-flows/{flow_id} | Retrieve and extract an incoming invoice|
+|[**oauthTokenProxyApiV1AfnorOauthTokenPost**](#oauthtokenproxyapiv1afnoroauthtokenpost) | **POST** /api/v1/afnor/oauth/token | OAuth2 endpoint for AFNOR authentication|
 
 # **getAfnorCredentialsApiV1AfnorCredentialsGet**
 > any getAfnorCredentialsApiV1AfnorCredentialsGet()
 
-Récupère les credentials AFNOR/PDP stockés pour le client_uid du JWT. Cet endpoint est utilisé par le SDK en mode \'stored\' pour récupérer les credentials avant de faire l\'OAuth AFNOR lui-même.
+Retrieves stored AFNOR/PDP credentials for the JWT\'s client_uid. This endpoint is used by the SDK in \'stored\' mode to retrieve credentials before performing AFNOR OAuth itself.
 
 ### Example
 
@@ -48,17 +48,17 @@ This endpoint does not have any parameters.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Credentials AFNOR récupérés avec succès |  -  |
-|**400** | Aucun client_uid dans le JWT |  -  |
-|**401** | Non authentifié - Token JWT manquant ou invalide |  -  |
-|**404** | Client non trouvé ou pas de credentials AFNOR configurés |  -  |
+|**200** | AFNOR credentials retrieved successfully |  -  |
+|**400** | No client_uid in JWT |  -  |
+|**401** | Not authenticated - Missing or invalid JWT token |  -  |
+|**404** | Client not found or no AFNOR credentials configured |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet**
-> FactureEntrante getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet()
+# **getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet**
+> IncomingInvoice getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet()
 
-Télécharge un flux entrant depuis la PDP AFNOR et extrait les métadonnées de la facture vers un format JSON unifié. Supporte les formats Factur-X, CII et UBL.
+Downloads an incoming flow from the AFNOR PDP and extracts invoice metadata into a unified JSON format. Supports Factur-X, CII, and UBL formats.
 
 ### Example
 
@@ -74,7 +74,7 @@ const apiInstance = new AFNORPDPPAApi(configuration);
 let flowId: string; // (default to undefined)
 let includeDocument: boolean; // (optional) (default to false)
 
-const { status, data } = await apiInstance.getFluxEntrantApiV1AfnorFluxEntrantsFlowIdGet(
+const { status, data } = await apiInstance.getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(
     flowId,
     includeDocument
 );
@@ -90,7 +90,7 @@ const { status, data } = await apiInstance.getFluxEntrantApiV1AfnorFluxEntrantsF
 
 ### Return type
 
-**FactureEntrante**
+**IncomingInvoice**
 
 ### Authorization
 
@@ -105,11 +105,11 @@ const { status, data } = await apiInstance.getFluxEntrantApiV1AfnorFluxEntrantsF
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Facture extraite avec succès |  -  |
-|**400** | Format de facture non supporté ou invalide |  -  |
-|**401** | Non authentifié |  -  |
-|**404** | Flux non trouvé |  -  |
-|**503** | Service PDP indisponible |  -  |
+|**200** | Invoice extracted successfully |  -  |
+|**400** | Unsupported or invalid invoice format |  -  |
+|**401** | Not authenticated |  -  |
+|**404** | Flow not found |  -  |
+|**503** | PDP service unavailable |  -  |
 |**422** | Validation Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -117,7 +117,7 @@ const { status, data } = await apiInstance.getFluxEntrantApiV1AfnorFluxEntrantsF
 # **oauthTokenProxyApiV1AfnorOauthTokenPost**
 > any oauthTokenProxyApiV1AfnorOauthTokenPost()
 
-Endpoint proxy OAuth2 pour obtenir un token d\'accès AFNOR. Fait proxy vers le mock AFNOR (sandbox) ou la vraie PDP selon MOCK_AFNOR_BASE_URL. Cet endpoint est public (pas d\'auth Django requise) car il est appelé par le SDK AFNOR.
+OAuth2 proxy endpoint to obtain an AFNOR access token. Proxies to AFNOR mock (sandbox) or real PDP depending on MOCK_AFNOR_BASE_URL. This endpoint is public (no Django auth required) as it is called by the AFNOR SDK.
 
 ### Example
 
@@ -154,8 +154,8 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Token OAuth2 acquis avec succès |  -  |
-|**401** | Credentials invalides |  -  |
+|**200** | OAuth2 token acquired successfully |  -  |
+|**401** | Invalid credentials |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
