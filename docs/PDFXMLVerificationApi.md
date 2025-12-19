@@ -12,7 +12,7 @@ All URIs are relative to *http://localhost*
 |[**verifyPdfSyncApiV1VerificationVerifyPost_0**](#verifypdfsyncapiv1verificationverifypost_0) | **POST** /api/v1/verification/verify | Verify PDF/XML Factur-X compliance (synchronous)|
 
 # **getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet**
-> TaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet()
+> AsyncTaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet()
 
 Retrieves the status and result of an asynchronous verification task.  **Possible statuses:** - `PENDING`: Task waiting in queue - `STARTED`: Task currently running - `SUCCESS`: Task completed successfully (see `result`) - `FAILURE`: System error (unhandled exception)  **Note:** The `result.status` field can be \"SUCCESS\" or \"ERROR\" independently of Celery status (which will always be SUCCESS if the task ran).
 
@@ -43,7 +43,7 @@ const { status, data } = await apiInstance.getVerificationStatusApiV1Verificatio
 
 ### Return type
 
-**TaskStatus**
+**AsyncTaskStatus**
 
 ### Authorization
 
@@ -64,7 +64,7 @@ const { status, data } = await apiInstance.getVerificationStatusApiV1Verificatio
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0**
-> TaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0()
+> AsyncTaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0()
 
 Retrieves the status and result of an asynchronous verification task.  **Possible statuses:** - `PENDING`: Task waiting in queue - `STARTED`: Task currently running - `SUCCESS`: Task completed successfully (see `result`) - `FAILURE`: System error (unhandled exception)  **Note:** The `result.status` field can be \"SUCCESS\" or \"ERROR\" independently of Celery status (which will always be SUCCESS if the task ran).
 
@@ -95,7 +95,7 @@ const { status, data } = await apiInstance.getVerificationStatusApiV1Verificatio
 
 ### Return type
 
-**TaskStatus**
+**AsyncTaskStatus**
 
 ### Authorization
 

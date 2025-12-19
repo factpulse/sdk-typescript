@@ -24,6 +24,8 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { APIProfile } from '../models';
 // @ts-ignore
+import type { AsyncTaskStatus } from '../models';
+// @ts-ignore
 import type { GenerateCertificateRequest } from '../models';
 // @ts-ignore
 import type { GenerateCertificateResponse } from '../models';
@@ -39,8 +41,6 @@ import type { SubmitCompleteInvoiceRequest } from '../models';
 import type { SubmitCompleteInvoiceResponse } from '../models';
 // @ts-ignore
 import type { TaskResponse } from '../models';
-// @ts-ignore
-import type { TaskStatus } from '../models';
 // @ts-ignore
 import type { ValidationErrorResponse } from '../models';
 // @ts-ignore
@@ -664,7 +664,7 @@ export const InvoiceProcessingApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
+        async getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AsyncTaskStatus>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['InvoiceProcessingApi.getTaskStatusApiV1ProcessingTasksTaskIdStatusGet']?.[localVarOperationServerIndex]?.url;
@@ -831,7 +831,7 @@ export const InvoiceProcessingApiFactory = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId: string, options?: RawAxiosRequestConfig): AxiosPromise<TaskStatus> {
+        getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId: string, options?: RawAxiosRequestConfig): AxiosPromise<AsyncTaskStatus> {
             return localVarFp.getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId, options).then((request) => request(axios, basePath));
         },
         /**

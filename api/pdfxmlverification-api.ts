@@ -24,11 +24,11 @@ import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError
 // @ts-ignore
 import type { APIError } from '../models';
 // @ts-ignore
+import type { AsyncTaskStatus } from '../models';
+// @ts-ignore
 import type { HTTPValidationError } from '../models';
 // @ts-ignore
 import type { TaskResponse } from '../models';
-// @ts-ignore
-import type { TaskStatus } from '../models';
 // @ts-ignore
 import type { VerificationSuccessResponse } from '../models';
 /**
@@ -314,7 +314,7 @@ export const PDFXMLVerificationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
+        async getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AsyncTaskStatus>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PDFXMLVerificationApi.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet']?.[localVarOperationServerIndex]?.url;
@@ -327,7 +327,7 @@ export const PDFXMLVerificationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_1(taskId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskStatus>> {
+        async getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_1(taskId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AsyncTaskStatus>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_1(taskId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['PDFXMLVerificationApi.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_1']?.[localVarOperationServerIndex]?.url;
@@ -403,7 +403,7 @@ export const PDFXMLVerificationApiFactory = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId: string, options?: RawAxiosRequestConfig): AxiosPromise<TaskStatus> {
+        getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId: string, options?: RawAxiosRequestConfig): AxiosPromise<AsyncTaskStatus> {
             return localVarFp.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -413,7 +413,7 @@ export const PDFXMLVerificationApiFactory = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_1(taskId: string, options?: RawAxiosRequestConfig): AxiosPromise<TaskStatus> {
+        getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_1(taskId: string, options?: RawAxiosRequestConfig): AxiosPromise<AsyncTaskStatus> {
             return localVarFp.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_1(taskId, options).then((request) => request(axios, basePath));
         },
         /**

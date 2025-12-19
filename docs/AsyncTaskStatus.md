@@ -1,4 +1,4 @@
-# TaskStatus
+# AsyncTaskStatus
 
 Complete description of an async task status.  The `status` field indicates the Celery state of the task. When `status=\"SUCCESS\"`, check `result.status` for the business result (\"SUCCESS\" or \"ERROR\").
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { TaskStatus } from '@factpulse/sdk';
+import { AsyncTaskStatus } from '@factpulse/sdk';
 
-const instance: TaskStatus = {
+const instance: AsyncTaskStatus = {
     taskId,
     status,
     result,

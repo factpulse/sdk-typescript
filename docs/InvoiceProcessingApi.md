@@ -137,7 +137,7 @@ const { status, data } = await apiInstance.generateTestCertificateApiV1Processin
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getTaskStatusApiV1ProcessingTasksTaskIdStatusGet**
-> TaskStatus getTaskStatusApiV1ProcessingTasksTaskIdStatusGet()
+> AsyncTaskStatus getTaskStatusApiV1ProcessingTasksTaskIdStatusGet()
 
 Retrieves the progress status of an invoice generation task.  ## Possible states  The `status` field uses the `CeleryStatus` enum with values: - **PENDING, STARTED, SUCCESS, FAILURE, RETRY**  See the `CeleryStatus` schema documentation for details.  ## Business result  When `status=\"SUCCESS\"`, the `result` field contains: - `status`: \"SUCCESS\" or \"ERROR\" (business result) - `content_b64`: Base64 encoded content (if success) - `errorCode`, `errorMessage`, `details`: AFNOR format (if business error)  ## Usage  Poll this endpoint every 2-3 seconds until `status` is `SUCCESS` or `FAILURE`.
 
@@ -168,7 +168,7 @@ const { status, data } = await apiInstance.getTaskStatusApiV1ProcessingTasksTask
 
 ### Return type
 
-**TaskStatus**
+**AsyncTaskStatus**
 
 ### Authorization
 
