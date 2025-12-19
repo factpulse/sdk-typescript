@@ -55,66 +55,66 @@ export function amount(value: AmountValue): string {
 /** Creates a simplified InvoiceTotals object. */
 export function invoiceTotals(
   exclTax: AmountValue, vat: AmountValue, inclTax: AmountValue, amountDue: AmountValue,
-  options?: { discountInclTax?: AmountValue; discountReason?: string; prepayment?: AmountValue }
+  options?: { globalAllowanceAmount?: AmountValue; globalAllowanceReason?: string; prepayment?: AmountValue }
 ): Record<string, unknown> {
   const result: Record<string, unknown> = {
-    totalExclTax: amount(exclTax), vatAmount: amount(vat),
-    totalInclTax: amount(inclTax), amountDue: amount(amountDue),
+    totalNetAmount: amount(exclTax), vatAmount: amount(vat),
+    totalGrossAmount: amount(inclTax), amountDue: amount(amountDue),
   };
-  if (options?.discountInclTax !== undefined) result.globalDiscountInclTax = amount(options.discountInclTax);
-  if (options?.discountReason !== undefined) result.globalDiscountReason = options.discountReason;
+  if (options?.globalAllowanceAmount !== undefined) result.globalAllowanceAmount = amount(options.globalAllowanceAmount);
+  if (options?.globalAllowanceReason !== undefined) result.globalAllowanceReason = options.globalAllowanceReason;
   if (options?.prepayment !== undefined) result.prepayment = amount(options.prepayment);
   return result;
 }
 
 /** Creates an invoice line (aligned with InvoiceLine in models.py).
- * For VAT rate: either vatRate (code e.g.: "VAT20") or vatRateManual (value e.g.: 20.00) */
+ * For VAT rate: either vatRate (code e.g.: "VAT20") or manualVatRate (value e.g.: 20.00) */
 export function invoiceLine(
-  number: number, description: string, quantity: AmountValue, unitPriceExclTax: AmountValue, lineTotalExclTax: AmountValue,
-  options?: { vatRate?: string; vatRateManual?: AmountValue; vatCategory?: string; unit?: string; reference?: string;
-    discountExclTax?: AmountValue; discountReasonCode?: string; discountReason?: string;
+  lineNumber: number, itemName: string, quantity: AmountValue, unitNetPrice: AmountValue, lineNetAmount: AmountValue,
+  options?: { vatRate?: string; manualVatRate?: AmountValue; vatCategory?: string; unit?: string; reference?: string;
+    lineAllowanceAmount?: AmountValue; allowanceReasonCode?: string; allowanceReason?: string;
     periodStartDate?: string; periodEndDate?: string }
 ): Record<string, unknown> {
   const result: Record<string, unknown> = {
-    number, description, quantity: amount(quantity), unitPriceExclTax: amount(unitPriceExclTax),
-    lineTotalExclTax: amount(lineTotalExclTax),
+    lineNumber, itemName, quantity: amount(quantity), unitNetPrice: amount(unitNetPrice),
+    lineNetAmount: amount(lineNetAmount),
     vatCategory: options?.vatCategory ?? 'S', unit: options?.unit ?? 'LUMP_SUM',
   };
-  // Either vatRate (code) or vatRateManual (value)
+  // Either vatRate (code) or manualVatRate (value)
   if (options?.vatRate) result.vatRate = options.vatRate;
-  else result.vatRateManual = amount(options?.vatRateManual ?? '20.00');
+  else result.manualVatRate = amount(options?.manualVatRate ?? '20.00');
   if (options?.reference) result.reference = options.reference;
-  if (options?.discountExclTax !== undefined) result.discountExclTax = amount(options.discountExclTax);
-  if (options?.discountReasonCode) result.discountReasonCode = options.discountReasonCode;
-  if (options?.discountReason) result.discountReason = options.discountReason;
+  if (options?.lineAllowanceAmount !== undefined) result.lineAllowanceAmount = amount(options.lineAllowanceAmount);
+  if (options?.allowanceReasonCode) result.allowanceReasonCode = options.allowanceReasonCode;
+  if (options?.allowanceReason) result.allowanceReason = options.allowanceReason;
   if (options?.periodStartDate) result.periodStartDate = options.periodStartDate;
   if (options?.periodEndDate) result.periodEndDate = options.periodEndDate;
   return result;
 }
 
-/** Creates a VAT line (aligned with VatLine in models.py).
- * For rate: either rate (code e.g.: "VAT20") or rateManual (value e.g.: 20.00) */
+/** Creates a VAT line (aligned with VATLine in models.py).
+ * For rate: either rate (code e.g.: "VAT20") or manualRate (value e.g.: 20.00) */
 export function vatLine(
-  baseAmountExclTax: AmountValue, vatAmount: AmountValue,
-  options?: { rate?: string; rateManual?: AmountValue; category?: string }
+  taxableAmount: AmountValue, vatAmount: AmountValue,
+  options?: { rate?: string; manualRate?: AmountValue; category?: string }
 ): Record<string, unknown> {
   const result: Record<string, unknown> = {
-    baseAmountExclTax: amount(baseAmountExclTax), vatAmount: amount(vatAmount), category: options?.category ?? 'S',
+    taxableAmount: amount(taxableAmount), vatAmount: amount(vatAmount), category: options?.category ?? 'S',
   };
-  // Either rate (code) or rateManual (value)
+  // Either rate (code) or manualRate (value)
   if (options?.rate) result.rate = options.rate;
-  else result.rateManual = amount(options?.rateManual ?? '20.00');
+  else result.manualRate = amount(options?.manualRate ?? '20.00');
   return result;
 }
 
 /** Creates a postal address for the FactPulse API. */
 export function postalAddress(
-  line1: string, postalCode: string, city: string,
-  options?: { country?: string; line2?: string; line3?: string }
+  lineOne: string, postalCode: string, city: string,
+  options?: { countryCode?: string; lineTwo?: string; lineThree?: string }
 ): Record<string, unknown> {
-  const result: Record<string, unknown> = { line1, postalCode, city, countryCode: options?.country ?? 'FR' };
-  if (options?.line2) result.line2 = options.line2;
-  if (options?.line3) result.line3 = options.line3;
+  const result: Record<string, unknown> = { lineOne, postalCode, city, countryCode: options?.countryCode ?? 'FR' };
+  if (options?.lineTwo) result.lineTwo = options.lineTwo;
+  if (options?.lineThree) result.lineThree = options.lineThree;
   return result;
 }
 
@@ -133,35 +133,35 @@ function computeVatIntra(siren: string): string | null {
 /** Creates a supplier (issuer) with auto-computed SIREN, intra-EU VAT number and addresses. */
 export function supplier(
   name: string, siret: string, addressLine1: string, postalCode: string, city: string,
-  options?: { supplierId?: number; siren?: string; vatIntra?: string; iban?: string; country?: string; addressLine2?: string; serviceCode?: number; bankCoordinatesCode?: number }
+  options?: { supplierId?: number; siren?: string; vatNumber?: string; iban?: string; countryCode?: string; addressLine2?: string; supplierServiceId?: number; supplierBankDetailsCode?: number }
 ): Record<string, unknown> {
   const opts = options ?? {};
   const siren = opts.siren ?? (siret.length === 14 ? siret.slice(0, 9) : undefined);
-  const vatIntra = opts.vatIntra ?? (siren ? computeVatIntra(siren) : null);
+  const vatNumber = opts.vatNumber ?? (siren ? computeVatIntra(siren) : null);
   const result: Record<string, unknown> = {
     name, supplierId: opts.supplierId ?? 0, siret,
     electronicAddress: electronicAddress(siret, '0225'),
-    postalAddress: postalAddress(addressLine1, postalCode, city, { country: opts.country, line2: opts.addressLine2 }),
+    postalAddress: postalAddress(addressLine1, postalCode, city, { countryCode: opts.countryCode, lineTwo: opts.addressLine2 }),
   };
   if (siren) result.siren = siren;
-  if (vatIntra) result.vatIntra = vatIntra;
+  if (vatNumber) result.vatNumber = vatNumber;
   if (opts.iban) result.iban = opts.iban;
-  if (opts.serviceCode) result.supplierServiceId = opts.serviceCode;
-  if (opts.bankCoordinatesCode) result.supplierBankCoordinatesCode = opts.bankCoordinatesCode;
+  if (opts.supplierServiceId) result.supplierServiceId = opts.supplierServiceId;
+  if (opts.supplierBankDetailsCode) result.supplierBankDetailsCode = opts.supplierBankDetailsCode;
   return result;
 }
 
 /** Creates a recipient (customer) with auto-computed SIREN and addresses. */
 export function recipient(
   name: string, siret: string, addressLine1: string, postalCode: string, city: string,
-  options?: { siren?: string; country?: string; addressLine2?: string; executingServiceCode?: string }
+  options?: { siren?: string; countryCode?: string; addressLine2?: string; executingServiceCode?: string }
 ): Record<string, unknown> {
   const opts = options ?? {};
   const siren = opts.siren ?? (siret.length === 14 ? siret.slice(0, 9) : undefined);
   const result: Record<string, unknown> = {
     name, siret,
     electronicAddress: electronicAddress(siret, '0225'),
-    postalAddress: postalAddress(addressLine1, postalCode, city, { country: opts.country, line2: opts.addressLine2 }),
+    postalAddress: postalAddress(addressLine1, postalCode, city, { countryCode: opts.countryCode, lineTwo: opts.addressLine2 }),
   };
   if (siren) result.siren = siren;
   if (opts.executingServiceCode) result.executingServiceCode = opts.executingServiceCode;
@@ -326,16 +326,16 @@ export class FactPulseClient {
     }
   }
 
-  async genererFacturx(factureData: Record<string, unknown> | string, pdfPath: string, profil = 'EN16931', formatSortie = 'pdf', sync = true, timeout?: number): Promise<Buffer | string> {
-    const jsonData = typeof factureData === 'string' ? factureData : JSON.stringify(factureData);
+  async generateFacturx(invoiceData: Record<string, unknown> | string, pdfPath: string, profile = 'EN16931', outputFormat = 'pdf', sync = true, timeout?: number): Promise<Buffer | string> {
+    const jsonData = typeof invoiceData === 'string' ? invoiceData : JSON.stringify(invoiceData);
     let taskId: string | null = null;
 
     for (let attempt = 0; attempt <= this.config.maxRetries; attempt++) {
       await this.ensureAuthenticated();
       const form = new FormData();
       form.append('invoice_data', jsonData);
-      form.append('profile', profil);
-      form.append('output_format', formatSortie);
+      form.append('profile', profile);
+      form.append('output_format', outputFormat);
       form.append('source_pdf', fs.createReadStream(pdfPath), { filename: path.basename(pdfPath), contentType: 'application/pdf' });
       try {
         const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/processing/generate-invoice`, form, {
@@ -346,9 +346,9 @@ export class FactPulseClient {
         const axiosError = error as AxiosError<{ detail?: unknown; errorMessage?: string }>;
         if (axiosError.response?.status === 401 && attempt < this.config.maxRetries) { this.resetAuth(); continue; }
 
-        // Extraire les détails d'erreur du corps de la réponse
+        // Extract error details from response body
         const responseData = axiosError.response?.data;
-        let errorMsg = `Erreur API (${axiosError.response?.status || 'unknown'}): ${axiosError.message}`;
+        let errorMsg = `API Error (${axiosError.response?.status || 'unknown'}): ${axiosError.message}`;
         const errors: ValidationErrorDetail[] = [];
 
         if (responseData) {
@@ -381,11 +381,11 @@ export class FactPulseClient {
     if (!taskId) throw new FactPulseValidationError("No task ID");
     if (!sync) return taskId;
     const result = await this.pollTask(taskId, timeout);
-    if (result.contenu_b64) return Buffer.from(result.contenu_b64 as string, 'base64');
+    if (result.content_b64) return Buffer.from(result.content_b64 as string, 'base64');
     throw new FactPulseValidationError('No content');
   }
 
-  static formatMontant(m: unknown): string {
+  static formatAmount(m: unknown): string {
     if (m === null || m === undefined) return '0.00';
     if (typeof m === 'number') return m.toFixed(2);
     if (typeof m === 'string') return m;
@@ -695,17 +695,17 @@ export class FactPulseClient {
     return null;
   }
 
-  async soumettreFactureChorus(factureData: Record<string, unknown>): Promise<Record<string, unknown>> {
+  async submitInvoiceChorus(invoiceData: Record<string, unknown>): Promise<Record<string, unknown>> {
     await this.ensureAuthenticated();
-    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/chorus/factures/soumettre`, factureData, {
+    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/chorus/factures/soumettre`, invoiceData, {
       headers: { Authorization: `Bearer ${this.accessToken}`, 'Content-Type': 'application/json' },
     });
     return response.data;
   }
 
-  async consulterFactureChorus(identifiantFactureCpp: number): Promise<Record<string, unknown>> {
+  async lookupInvoiceChorus(invoiceIdCpp: number): Promise<Record<string, unknown>> {
     await this.ensureAuthenticated();
-    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/chorus/factures/consulter`, { identifiant_facture_cpp: identifiantFactureCpp }, {
+    const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/chorus/factures/consulter`, { identifiant_facture_cpp: invoiceIdCpp }, {
       headers: { Authorization: `Bearer ${this.accessToken}`, 'Content-Type': 'application/json' },
     });
     return response.data;
@@ -821,10 +821,10 @@ export class FactPulseClient {
     invoiceData: Record<string, unknown>,
     pdfPath: string,
     options: {
-      profil?: string;
-      valider?: boolean;
-      signer?: boolean;
-      soumettreAfnor?: boolean;
+      profile?: string;
+      validate?: boolean;
+      sign?: boolean;
+      submitAfnor?: boolean;
       afnorFlowName?: string;
       afnorTrackingId?: string;
       timeout?: number;
@@ -832,14 +832,14 @@ export class FactPulseClient {
   ): Promise<{
     pdfBuffer: Buffer;
     validation?: Record<string, unknown>;
-    signature?: { signe: boolean };
+    signature?: { signed: boolean };
     afnor?: Record<string, unknown>;
   }> {
     const {
-      profil = 'EN16931',
-      valider = true,
-      signer = false,
-      soumettreAfnor = false,
+      profile = 'EN16931',
+      validate = true,
+      sign = false,
+      submitAfnor = false,
       afnorFlowName,
       afnorTrackingId,
       timeout,
@@ -852,7 +852,7 @@ export class FactPulseClient {
     } = { pdfBuffer: Buffer.alloc(0) };
 
     // 1. Generation
-    const pdfBuffer = await this.genererFacturx(invoiceData, pdfPath, profile, 'pdf', true, timeout) as Buffer;
+    const pdfBuffer = await this.generateFacturx(invoiceData, pdfPath, profile, 'pdf', true, timeout) as Buffer;
     result.pdfBuffer = pdfBuffer;
 
     // 2. Validation
