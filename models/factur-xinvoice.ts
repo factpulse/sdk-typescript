@@ -50,7 +50,7 @@ import type { VATLine } from './vatline';
 /**
  * Data model for an invoice to be converted to Factur-X.
  */
-export interface FactureFacturX {
+export interface FacturXInvoice {
     'invoice_number': string;
     'payment_due_date': string;
     'invoice_date'?: string;

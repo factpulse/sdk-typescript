@@ -24,13 +24,7 @@ export const UnitOfMeasure = {
     Jour: 'JOUR',
     Kilogramme: 'KILOGRAMME',
     Litre: 'LITRE',
-    Forfait: 'FORFAIT',
-    Piece2: 'PIECE',
-    Heure2: 'HEURE',
-    Jour2: 'JOUR',
-    Kilogramme2: 'KILOGRAMME',
-    Litre2: 'LITRE',
-    Forfait2: 'FORFAIT'
+    Forfait: 'FORFAIT'
 } as const;
 
 export type UnitOfMeasure = typeof UnitOfMeasure[keyof typeof UnitOfMeasure];

@@ -1,4 +1,4 @@
-# FactureFacturX
+# FacturXInvoice
 
 Data model for an invoice to be converted to Factur-X.
 
@@ -26,9 +26,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { FactureFacturX } from '@factpulse/sdk';
+import { FacturXInvoice } from '@factpulse/sdk';
 
-const instance: FactureFacturX = {
+const instance: FacturXInvoice = {
     invoice_number,
     payment_due_date,
     invoice_date,

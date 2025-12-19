@@ -24,13 +24,7 @@ export const PaymentMeans = {
     Virement: 'VIREMENT',
     Espece: 'ESPECE',
     Autre: 'AUTRE',
-    Report: 'REPORT',
-    Cheque2: 'CHEQUE',
-    Prelevement2: 'PRELEVEMENT',
-    Virement2: 'VIREMENT',
-    Espece2: 'ESPECE',
-    Autre2: 'AUTRE',
-    Report2: 'REPORT'
+    Report: 'REPORT'
 } as const;
 
 export type PaymentMeans = typeof PaymentMeans[keyof typeof PaymentMeans];

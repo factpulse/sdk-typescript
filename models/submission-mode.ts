@@ -21,10 +21,7 @@
 export const SubmissionMode = {
     SaisieApi: 'SAISIE_API',
     DepotPdfApi: 'DEPOT_PDF_API',
-    DepotPdfSigneApi: 'DEPOT_PDF_SIGNE_API',
-    SaisieApi2: 'SAISIE_API',
-    DepotPdfApi2: 'DEPOT_PDF_API',
-    DepotPdfSigneApi2: 'DEPOT_PDF_SIGNE_API'
+    DepotPdfSigneApi: 'DEPOT_PDF_SIGNE_API'
 } as const;
 
 export type SubmissionMode = typeof SubmissionMode[keyof typeof SubmissionMode];

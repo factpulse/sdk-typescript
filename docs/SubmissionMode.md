@@ -10,10 +10,4 @@ Invoice submission mode on Chorus Pro.
 
 * `DepotPdfSigneApi` (value: `'DEPOT_PDF_SIGNE_API'`)
 
-* `SaisieApi2` (value: `'SAISIE_API'`)
-
-* `DepotPdfApi2` (value: `'DEPOT_PDF_API'`)
-
-* `DepotPdfSigneApi2` (value: `'DEPOT_PDF_SIGNE_API'`)
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
