@@ -7,7 +7,7 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
-## [2.0.47] - 2025-12-19
+## [2.0.48] - 2025-12-19
 
 ### Added
 - Version initiale du SDK typescript
@@ -24,5 +24,5 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Guide d'authentification JWT
 - Configuration avancée (timeout, proxy, debug)
 
-[Unreleased]: https://github.com/factpulse/sdk-typescript/compare/v2.0.47...HEAD
-[2.0.47]: https://github.com/factpulse/sdk-typescript/releases/tag/v2.0.47
+[Unreleased]: https://github.com/factpulse/sdk-typescript/compare/v2.0.48...HEAD
+[2.0.48]: https://github.com/factpulse/sdk-typescript/releases/tag/v2.0.48
