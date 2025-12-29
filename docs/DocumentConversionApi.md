@@ -63,7 +63,7 @@ const { status, data } = await apiInstance.convertDocumentApiV1ConvertPost(
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Conversion réussie |  -  |
+|**200** | Successful Response |  -  |
 |**202** | Données manquantes |  -  |
 |**422** | Validation échouée |  -  |
 |**400** | Fichier invalide |  -  |
@@ -289,7 +289,7 @@ const { status, data } = await apiInstance.resumeConversionApiV1ConvertConversio
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Conversion réussie |  -  |
+|**200** | Successful Response |  -  |
 |**404** | Conversion non trouvée ou expirée |  -  |
 |**422** | Validation toujours en échec |  -  |
 
