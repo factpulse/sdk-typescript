@@ -15,7 +15,7 @@
 
 
 /**
- * Allowance amount before tax. (Accepte number, string ou integer)
+ * Simple line allowance amount (BT-136). (Accepte number, string ou integer)
  */
 export interface InvoiceLineAllowanceAmount {
 }

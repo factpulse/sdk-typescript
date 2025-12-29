@@ -34,25 +34,25 @@ export interface SubmitInvoiceRequest {
     /**
      * Invoice number
      */
-    'invoice_number': string;
+    'invoiceNumber': string;
     /**
      * Invoice date (ISO format: YYYY-MM-DD)
      */
-    'invoice_date': string;
-    'payment_due_date'?: string | null;
+    'invoiceDate': string;
+    'paymentDueDate'?: string | null;
     /**
      * Chorus Pro recipient structure ID
      */
-    'structure_id': number;
-    'service_code'?: string | null;
-    'engagement_number'?: string | null;
-    'total_net_amount': SubmitNetAmount;
-    'vat_amount': SubmitVatAmount;
-    'total_gross_amount': SubmitGrossAmount;
-    'main_attachment_id'?: number | null;
-    'main_attachment_label'?: string | null;
+    'structureId': number;
+    'serviceCode'?: string | null;
+    'engagementNumber'?: string | null;
+    'totalNetAmount': SubmitNetAmount;
+    'vatAmount': SubmitVatAmount;
+    'totalGrossAmount': SubmitGrossAmount;
+    'mainAttachmentId'?: number | null;
+    'mainAttachmentLabel'?: string | null;
     'comment'?: string | null;
-    'purchase_order_reference'?: string | null;
-    'contract_reference'?: string | null;
+    'purchaseOrderReference'?: string | null;
+    'contractReference'?: string | null;
 }
 

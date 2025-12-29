@@ -15,24 +15,35 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { Contact } from './contact';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { ElectronicAddress } from './electronic-address';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { PostalAddress } from './postal-address';
 
 /**
- * Information about the supplier who issues the invoice.
+ * Information about the supplier / seller (BG-4).
  */
 export interface Supplier {
     'electronic_address': ElectronicAddress | null;
     'supplier_id': number;
+    'private_id'?: string | null;
     'supplier_bank_account_code'?: number | null;
     'supplier_service_id'?: number | null;
     'name'?: string | null;
+    'trading_business_name'?: string | null;
+    'legal_description'?: string | null;
     'siren'?: string | null;
     'siret'?: string | null;
     'vat_number'?: string | null;
     'iban'?: string | null;
+    'bic'?: string | null;
+    'bank_account_name'?: string | null;
+    'proprietaryId'?: string | null;
     'postal_address'?: PostalAddress | null;
+    'contact'?: Contact | null;
+    'global_ids'?: Array<ElectronicAddress> | null;
 }
 

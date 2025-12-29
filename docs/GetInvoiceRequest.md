@@ -7,7 +7,7 @@ Get an invoice.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **credentials** | [**FactureElectroniqueRestApiSchemasChorusProChorusProCredentials**](FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md) |  | [optional] [default to undefined]
-**chorus_invoice_id** | **number** | Chorus Pro invoice ID | [default to undefined]
+**chorusInvoiceId** | **number** | Chorus Pro invoice ID | [default to undefined]
 
 ## Example
 
@@ -16,7 +16,7 @@ import { GetInvoiceRequest } from '@factpulse/sdk';
 
 const instance: GetInvoiceRequest = {
     credentials,
-    chorus_invoice_id,
+    chorusInvoiceId,
 };
 ```
 

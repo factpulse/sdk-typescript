@@ -1,6 +1,6 @@
 # Recipient
 
-Information about the invoice recipient (the customer).
+Information about the invoice recipient / buyer (BG-7).
 
 ## Properties
 
@@ -11,7 +11,10 @@ Name | Type | Description | Notes
 **name** | **string** |  | [optional] [default to undefined]
 **siren** | **string** |  | [optional] [default to undefined]
 **siret** | **string** |  | [optional] [default to undefined]
+**vat_number** | **string** |  | [optional] [default to undefined]
 **postal_address** | [**PostalAddress**](PostalAddress.md) |  | [optional] [default to undefined]
+**contact** | [**Contact**](Contact.md) |  | [optional] [default to undefined]
+**global_ids** | [**Array&lt;ElectronicAddress&gt;**](ElectronicAddress.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -24,7 +27,10 @@ const instance: Recipient = {
     name,
     siren,
     siret,
+    vat_number,
     postal_address,
+    contact,
+    global_ids,
 };
 ```
 

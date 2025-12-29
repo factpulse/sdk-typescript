@@ -7,10 +7,10 @@ Search structures by criteria.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **credentials** | [**FactureElectroniqueRestApiSchemasChorusProChorusProCredentials**](FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md) |  | [optional] [default to undefined]
-**structure_identifier** | **string** |  | [optional] [default to undefined]
-**structure_identifier_type** | **string** |  | [optional] [default to undefined]
-**company_name** | **string** |  | [optional] [default to undefined]
-**restrict_private_structures** | **boolean** | Limit search to private structures only | [optional] [default to false]
+**structureIdentifier** | **string** |  | [optional] [default to undefined]
+**structureIdentifierType** | **string** |  | [optional] [default to undefined]
+**companyName** | **string** |  | [optional] [default to undefined]
+**restrictPrivateStructures** | **boolean** | Limit search to private structures only | [optional] [default to false]
 
 ## Example
 
@@ -19,10 +19,10 @@ import { SearchStructureRequest } from '@factpulse/sdk';
 
 const instance: SearchStructureRequest = {
     credentials,
-    structure_identifier,
-    structure_identifier_type,
-    company_name,
-    restrict_private_structures,
+    structureIdentifier,
+    structureIdentifierType,
+    companyName,
+    restrictPrivateStructures,
 };
 ```
 

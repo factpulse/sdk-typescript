@@ -15,13 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { Contact } from './contact';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { ElectronicAddress } from './electronic-address';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { PostalAddress } from './postal-address';
 
 /**
- * Information about the invoice recipient (the customer).
+ * Information about the invoice recipient / buyer (BG-7).
  */
 export interface Recipient {
     'electronic_address': ElectronicAddress | null;
@@ -29,6 +32,9 @@ export interface Recipient {
     'name'?: string | null;
     'siren'?: string | null;
     'siret'?: string | null;
+    'vat_number'?: string | null;
     'postal_address'?: PostalAddress | null;
+    'contact'?: Contact | null;
+    'global_ids'?: Array<ElectronicAddress> | null;
 }
 

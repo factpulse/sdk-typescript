@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **credentials** | [**FactureElectroniqueRestApiSchemasChorusProChorusProCredentials**](FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md) |  | [optional] [default to undefined]
 **siret** | **string** | Structure SIRET (14 digits) | [default to undefined]
-**identifier_type** | **string** | Identifier type (SIRET, SIREN, UE_HORS_FRANCE, etc.) | [optional] [default to 'SIRET']
+**identifierType** | **string** | Identifier type (SIRET, SIREN, UE_HORS_FRANCE, etc.) | [optional] [default to 'SIRET']
 
 ## Example
 
@@ -18,7 +18,7 @@ import { GetChorusProIdRequest } from '@factpulse/sdk';
 const instance: GetChorusProIdRequest = {
     credentials,
     siret,
-    identifier_type,
+    identifierType,
 };
 ```
 

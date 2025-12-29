@@ -15,13 +15,15 @@
 
 
 /**
- * Represents a postal address.
+ * Represents a postal address (BG-5, BG-8, BG-12, BG-15).
  */
 export interface PostalAddress {
     'postalCode'?: string | null;
     'lineOne'?: string | null;
     'lineTwo'?: string | null;
+    'lineThree'?: string | null;
     'city'?: string | null;
     'countryCode'?: string | null;
+    'countrySubdivision'?: string | null;
 }
 

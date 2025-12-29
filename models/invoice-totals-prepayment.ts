@@ -15,7 +15,7 @@
 
 
 /**
- * Prepayment amount. (Accepte number, string ou integer)
+ * Sum of amounts already paid (BT-113). Can be negative for correction invoices.
  */
 export interface InvoiceTotalsPrepayment {
 }

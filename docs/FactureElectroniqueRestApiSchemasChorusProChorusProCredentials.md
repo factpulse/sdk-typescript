@@ -6,10 +6,10 @@ Chorus Pro credentials for Zero-Trust mode.  **Zero-Trust Mode**: Credentials ar
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**piste_client_id** | **string** | PISTE Client ID (government API portal) | [default to undefined]
-**piste_client_secret** | **string** | PISTE Client Secret | [default to undefined]
-**chorus_pro_login** | **string** | Chorus Pro login | [default to undefined]
-**chorus_pro_password** | **string** | Chorus Pro password | [default to undefined]
+**pisteClientId** | **string** | PISTE Client ID (government API portal) | [default to undefined]
+**pisteClientSecret** | **string** | PISTE Client Secret | [default to undefined]
+**chorusProLogin** | **string** | Chorus Pro login | [default to undefined]
+**chorusProPassword** | **string** | Chorus Pro password | [default to undefined]
 **sandbox** | **boolean** | Use sandbox environment (true) or production (false) | [optional] [default to true]
 
 ## Example
@@ -18,10 +18,10 @@ Name | Type | Description | Notes
 import { FactureElectroniqueRestApiSchemasChorusProChorusProCredentials } from '@factpulse/sdk';
 
 const instance: FactureElectroniqueRestApiSchemasChorusProChorusProCredentials = {
-    piste_client_id,
-    piste_client_secret,
-    chorus_pro_login,
-    chorus_pro_password,
+    pisteClientId,
+    pisteClientSecret,
+    chorusProLogin,
+    chorusProPassword,
     sandbox,
 };
 ```

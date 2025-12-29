@@ -25,6 +25,6 @@ export interface GetInvoiceRequest {
     /**
      * Chorus Pro invoice ID
      */
-    'chorus_invoice_id': number;
+    'chorusInvoiceId': number;
 }
 

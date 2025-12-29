@@ -15,17 +15,8 @@
 
 
 /**
- * Factur-X profile for API requests.
+ * Item price base quantity (BT-149). Default is 1.
  */
-
-export const APIProfile = {
-    Minimum: 'MINIMUM',
-    Basic: 'BASIC',
-    En16931: 'EN16931',
-    Extended: 'EXTENDED'
-} as const;
-
-export type APIProfile = typeof APIProfile[keyof typeof APIProfile];
-
-
+export interface PriceBasisQuantity {
+}
 

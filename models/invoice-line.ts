@@ -15,16 +15,40 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { AdditionalDocument } from './additional-document';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { AllowanceCharge } from './allowance-charge';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { AllowanceReasonCode } from './allowance-reason-code';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { GrossUnitPrice } from './gross-unit-price';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { InvoiceLineAllowanceAmount } from './invoice-line-allowance-amount';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { InvoiceNote } from './invoice-note';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { LineNetAmount } from './line-net-amount';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { ManualVatRate } from './manual-vat-rate';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { PriceAllowanceAmount } from './price-allowance-amount';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { PriceBasisQuantity } from './price-basis-quantity';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ProductCharacteristic } from './product-characteristic';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ProductClassification } from './product-classification';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { Quantity } from './quantity';
@@ -39,24 +63,50 @@ import type { UnitOfMeasure } from './unit-of-measure';
 import type { VATCategory } from './vatcategory';
 
 /**
- * Represents a line item in an invoice.
+ * Represents an invoice line item (BG-25).
  */
 export interface InvoiceLine {
+    /**
+     * Invoice line identifier (BT-126).
+     */
     'line_number': number;
+    'line_note'?: string | null;
     'reference'?: string | null;
+    'buyer_assigned_id'?: string | null;
+    'product_global_id'?: string | null;
+    'product_global_id_scheme'?: string | null;
+    /**
+     * Item name (BT-153).
+     */
     'item_name': string;
+    'item_description'?: string | null;
+    'origin_country'?: string | null;
+    'characteristics'?: Array<ProductCharacteristic> | null;
+    'classifications'?: Array<ProductClassification> | null;
     'quantity': Quantity;
+    /**
+     * Invoiced quantity unit of measure code (BT-130).
+     */
     'unit': UnitOfMeasure;
+    'gross_unit_price'?: GrossUnitPrice | null;
     'unit_net_price': UnitNetPrice;
+    'price_basis_quantity'?: PriceBasisQuantity | null;
+    'price_basis_unit'?: string | null;
+    'price_allowance_amount'?: PriceAllowanceAmount | null;
+    'lineNetAmount'?: LineNetAmount | null;
     'allowanceAmount'?: InvoiceLineAllowanceAmount | null;
-    'lineNetAmount'?: LineNetAmount;
+    'allowanceReasonCode'?: AllowanceReasonCode | null;
+    'allowanceReason'?: string | null;
+    'allowances_charges'?: Array<AllowanceCharge> | null;
     'vat_rate'?: string | null;
     'manual_vat_rate'?: ManualVatRate;
     'vat_category'?: VATCategory | null;
-    'periodStartDate'?: string | null;
-    'periodEndDate'?: string | null;
-    'allowanceReasonCode'?: AllowanceReasonCode | null;
-    'allowanceReason'?: string | null;
+    'period_start_date'?: string | null;
+    'period_end_date'?: string | null;
+    'purchase_order_line_ref'?: string | null;
+    'accounting_account'?: string | null;
+    'additional_documents'?: Array<AdditionalDocument> | null;
+    'line_notes'?: Array<InvoiceNote> | null;
 }
 
 

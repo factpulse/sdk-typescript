@@ -1,6 +1,6 @@
 # AmountDue
 
-Amount due for payment. (Accepte number, string ou integer)
+Amount due for payment (BT-115). Can be negative for correction invoices.
 
 ## Properties
 

@@ -15,7 +15,7 @@
 
 
 /**
- * Identification scheme codes (Electronic Address Scheme - EAS), mainly for electronic invoice addressing.  **Possible values:** - `0225`: FR_SIREN - French SIREN (most common for France, replaces old 0002) - `0088`: GLN - Global Location Number - `0060`: DUNS - Data Universal Numbering System - `9957`: FR_VAT_INTRA - French intra-community VAT number - `0199`: GLEIF - Global Legal Entity Identifier Foundation
+ * Identification scheme codes (Electronic Address Scheme - EAS), mainly for electronic invoice addressing.  **Possible values:** - `0225`: FR_SIREN - French SIREN (most common for France) - `0009`: FR_SIRET - French SIRET - `0002`: FR_SIREN_OLD - French SIREN (old code, for legal organization ID) - `0088`: GLN - Global Location Number - `0060`: DUNS - Data Universal Numbering System - `9957`: FR_VAT_INTRA - French intra-community VAT number - `0199`: GLEIF - Global Legal Entity Identifier Foundation - `0231`: DT_DIRECTORY_ID - Directory ID for tax administration - `EM`: EMAIL - Email-based electronic address (BT-34/BT-49)
  */
 
 export const SchemeID = {
@@ -26,19 +26,25 @@ export const SchemeID = {
     /**
     * GLN - Global Location Number (GLN)
     */
-    GLN: '0088',
+    GLN: '0009',
     /**
     * DUNS - Data Universal Numbering System (DUNS)
     */
-    DUNS: '0060',
+    DUNS: '0002',
     /**
     * FR_TVA_INTRA - French intra-community VAT number
     */
-    FR_TVA_INTRA: '9957',
+    FR_TVA_INTRA: '0088',
     /**
     * GLEIF - Global Legal Entity Identifier Foundation (GLEIF)
     */
-    GLEIF: '0199'
+    GLEIF: '0060',
+    _9957: '9957',
+    _0199: '0199',
+    _0231: '0231',
+    Em: 'EM',
+    _0177: '0177',
+    _0224: '0224'
 } as const;
 
 export type SchemeID = typeof SchemeID[keyof typeof SchemeID];

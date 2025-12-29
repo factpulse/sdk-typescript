@@ -27,13 +27,13 @@ import type { FlowType } from './flow-type';
  * Request to search submitted flows.
  */
 export interface SearchFlowRequest {
-    'updated_after'?: string | null;
-    'updated_before'?: string | null;
-    'flow_types'?: Array<FlowType> | null;
-    'flow_directions'?: Array<FlowDirection> | null;
-    'tracking_id'?: string | null;
-    'flow_id'?: string | null;
-    'acknowledgment_status'?: AcknowledgmentStatus | null;
+    'updatedAfter'?: string | null;
+    'updatedBefore'?: string | null;
+    'flowTypes'?: Array<FlowType> | null;
+    'flowDirections'?: Array<FlowDirection> | null;
+    'trackingId'?: string | null;
+    'flowId'?: string | null;
+    'acknowledgmentStatus'?: AcknowledgmentStatus | null;
     /**
      * Offset for pagination
      */

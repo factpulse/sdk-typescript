@@ -25,9 +25,12 @@ import type { VATAmount } from './vatamount';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { VATCategory } from './vatcategory';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { VATPointDateCode } from './vatpoint-date-code';
 
 /**
- * Represents a VAT breakdown line by rate.  For exemptions (categories E, AE, K, G, O), the fields `exemption_reason` and `vatex_code` are required per EN16931.
+ * Represents a VAT breakdown line by rate (BG-23).  For exemptions (categories E, AE, K, G, O), the fields `exemption_reason` and `vatex_code` are required per EN16931.
  */
 export interface VATLine {
     'taxable_amount': TaxableAmount;
@@ -35,6 +38,7 @@ export interface VATLine {
     'rate'?: string | null;
     'manual_rate'?: ManualRate;
     'category'?: VATCategory | null;
+    'due_date_type_code'?: VATPointDateCode | null;
     'exemption_reason'?: string | null;
     'vatex_code'?: string | null;
 }

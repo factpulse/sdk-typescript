@@ -25,10 +25,10 @@ export interface GetStructureRequest {
     /**
      * Chorus Pro structure ID
      */
-    'structure_id': number;
+    'structureId': number;
     /**
      * Language code (fr, en)
      */
-    'language_code'?: string;
+    'languageCode'?: string;
 }
 

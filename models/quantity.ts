@@ -15,7 +15,7 @@
 
 
 /**
- * Invoiced quantity for this line.
+ * Invoiced quantity (BT-129). Can be negative for correction invoices.
  */
 export interface Quantity {
 }

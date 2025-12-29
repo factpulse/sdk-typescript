@@ -15,6 +15,15 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { AdditionalDocument } from './additional-document';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { AllowanceCharge } from './allowance-charge';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { DeliveryParty } from './delivery-party';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { InvoiceLine } from './invoice-line';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -33,6 +42,9 @@ import type { InvoicingFramework } from './invoicing-framework';
 import type { Payee } from './payee';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { PaymentCard } from './payment-card';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { Recipient } from './recipient';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -43,6 +55,9 @@ import type { SupplementaryAttachment } from './supplementary-attachment';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { Supplier } from './supplier';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { TaxRepresentative } from './tax-representative';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { VATLine } from './vatline';
@@ -67,6 +82,20 @@ export interface FacturXInvoice {
     'current_user_id'?: number | null;
     'supplementary_attachments'?: Array<SupplementaryAttachment> | null;
     'payee'?: Payee | null;
+    'delivery_party'?: DeliveryParty | null;
+    'tax_representative'?: TaxRepresentative | null;
+    'delivery_date'?: string | null;
+    'billing_period_start'?: string | null;
+    'billing_period_end'?: string | null;
+    'payment_reference'?: string | null;
+    'creditor_reference_id'?: string | null;
+    'direct_debit_mandate_id'?: string | null;
+    'debtor_iban'?: string | null;
+    'payment_terms'?: string | null;
+    'allowances_charges'?: Array<AllowanceCharge> | null;
+    'additional_documents'?: Array<AdditionalDocument> | null;
+    'buyer_accounting_reference'?: string | null;
+    'payment_card'?: PaymentCard | null;
 }
 
 

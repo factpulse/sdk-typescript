@@ -21,19 +21,19 @@ export interface PDPCredentials {
     /**
      * Base URL of the AFNOR Flow Service
      */
-    'flow_service_url': string;
-    'directory_service_url'?: string | null;
+    'flowServiceUrl': string;
+    'directoryServiceUrl'?: string | null;
     /**
      * OAuth2 server URL
      */
-    'token_url': string;
+    'tokenUrl': string;
     /**
      * OAuth2 Client ID
      */
-    'client_id': string;
+    'clientId': string;
     /**
      * OAuth2 Client Secret (sensitive)
      */
-    'client_secret': string;
+    'clientSecret': string;
 }
 

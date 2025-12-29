@@ -15,7 +15,7 @@
 
 
 /**
- * Total VAT amount. (Accepte number, string ou integer)
+ * Invoice total VAT amount (BT-110). Can be negative for correction invoices.
  */
 export interface TotalVATAmount {
 }

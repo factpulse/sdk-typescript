@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **flowId** | **string** |  | [optional] [default to undefined]
 **sourceFormat** | [**InvoiceFormat**](InvoiceFormat.md) | Invoice source format | [default to undefined]
 **supplierReference** | **string** | Invoice number issued by the supplier (BT-1) | [default to undefined]
-**documentType** | [**DocumentType**](DocumentType.md) | Document type (BT-3) | [optional] [default to undefined]
+**documentType** | [**InvoiceTypeCode**](InvoiceTypeCode.md) | Document type (BT-3) | [optional] [default to undefined]
 **supplier** | [**IncomingSupplier**](IncomingSupplier.md) | Invoice issuer (SellerTradeParty) | [default to undefined]
 **billingSiteName** | **string** | Recipient name / your company (BT-44) | [default to undefined]
 **billingSiteSiret** | **string** |  | [optional] [default to undefined]

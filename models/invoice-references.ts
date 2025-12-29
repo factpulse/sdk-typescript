@@ -27,14 +27,33 @@ import type { VATAccountingCode } from './vataccounting-code';
  * Contains various invoice references (currency, type, etc.).
  */
 export interface InvoiceReferences {
+    'business_process_id'?: string | null;
+    /**
+     * Invoice currency code (BT-5). ISO 4217.
+     */
     'invoice_currency'?: string;
+    /**
+     * Payment means type code (BT-81).
+     */
     'payment_means': PaymentMeans;
+    'payment_means_text'?: string | null;
     'invoice_type': InvoiceTypeCode;
+    /**
+     * VAT accounting code.
+     */
     'vat_accounting_code': VATAccountingCode;
+    'buyer_reference'?: string | null;
     'contract_reference'?: string | null;
-    'vat_exemption_reason'?: string | null;
     'purchase_order_reference'?: string | null;
+    'seller_order_reference'?: string | null;
+    'receiving_advice_reference'?: string | null;
+    'despatch_advice_reference'?: string | null;
+    'tender_reference'?: string | null;
     'preceding_invoice_reference'?: string | null;
+    'preceding_invoice_date'?: string | null;
+    'project_reference'?: string | null;
+    'project_name'?: string | null;
+    'vat_exemption_reason'?: string | null;
 }
 
 

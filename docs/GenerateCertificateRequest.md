@@ -12,11 +12,11 @@ Name | Type | Description | Notes
 **city** | **string** | City (L) | [optional] [default to 'Paris']
 **state** | **string** | State/Province (ST) | [optional] [default to 'Ile-de-France']
 **email** | **string** |  | [optional] [default to undefined]
-**validity_days** | **number** | Validity duration in days | [optional] [default to 365]
-**key_size** | **number** | RSA key size in bits | [optional] [default to 2048]
-**key_passphrase** | **string** |  | [optional] [default to undefined]
-**generate_p12** | **boolean** | Also generate a PKCS#12 (.p12) file | [optional] [default to false]
-**p12_passphrase** | **string** | Passphrase for PKCS#12 file | [optional] [default to 'changeme']
+**validityDays** | **number** | Validity duration in days | [optional] [default to 365]
+**keySize** | **number** | RSA key size in bits | [optional] [default to 2048]
+**keyPassphrase** | **string** |  | [optional] [default to undefined]
+**generateP12** | **boolean** | Also generate a PKCS#12 (.p12) file | [optional] [default to false]
+**p12Passphrase** | **string** | Passphrase for PKCS#12 file | [optional] [default to 'changeme']
 
 ## Example
 
@@ -30,11 +30,11 @@ const instance: GenerateCertificateRequest = {
     city,
     state,
     email,
-    validity_days,
-    key_size,
-    key_passphrase,
-    generate_p12,
-    p12_passphrase,
+    validityDays,
+    keySize,
+    keyPassphrase,
+    generateP12,
+    p12Passphrase,
 };
 ```
 

@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { DocumentType } from './document-type';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { IncomingSupplier } from './incoming-supplier';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { InvoiceFormat } from './invoice-format';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { InvoiceTypeCode } from './invoice-type-code';
 
 /**
  * Invoice received from a supplier via PDP/PA.  This model contains essential metadata extracted from incoming invoices, regardless of their source format (CII, UBL, Factur-X).  Amounts are Decimal in Python but will be serialized as strings in JSON to preserve monetary precision.
@@ -39,7 +39,7 @@ export interface IncomingInvoice {
     /**
      * Document type (BT-3)
      */
-    'documentType'?: DocumentType;
+    'documentType'?: InvoiceTypeCode;
     /**
      * Invoice issuer (SellerTradeParty)
      */

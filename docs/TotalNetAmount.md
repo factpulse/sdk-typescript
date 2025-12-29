@@ -1,6 +1,6 @@
 # TotalNetAmount
 
-Total net amount (before tax). (Accepte number, string ou integer)
+Invoice total amount without VAT (BT-109). Can be negative for correction invoices.
 
 ## Properties
 

@@ -22,12 +22,12 @@ import type { FactureElectroniqueRestApiSchemasChorusProChorusProCredentials } f
  */
 export interface SearchStructureRequest {
     'credentials'?: FactureElectroniqueRestApiSchemasChorusProChorusProCredentials | null;
-    'structure_identifier'?: string | null;
-    'structure_identifier_type'?: string | null;
-    'company_name'?: string | null;
+    'structureIdentifier'?: string | null;
+    'structureIdentifierType'?: string | null;
+    'companyName'?: string | null;
     /**
      * Limit search to private structures only
      */
-    'restrict_private_structures'?: boolean;
+    'restrictPrivateStructures'?: boolean;
 }
 

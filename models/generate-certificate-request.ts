@@ -42,19 +42,19 @@ export interface GenerateCertificateRequest {
     /**
      * Validity duration in days
      */
-    'validity_days'?: number;
+    'validityDays'?: number;
     /**
      * RSA key size in bits
      */
-    'key_size'?: number;
-    'key_passphrase'?: string | null;
+    'keySize'?: number;
+    'keyPassphrase'?: string | null;
     /**
      * Also generate a PKCS#12 (.p12) file
      */
-    'generate_p12'?: boolean;
+    'generateP12'?: boolean;
     /**
      * Passphrase for PKCS#12 file
      */
-    'p12_passphrase'?: string;
+    'p12Passphrase'?: string;
 }
 

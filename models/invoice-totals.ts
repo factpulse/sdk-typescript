@@ -15,13 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { AllowanceTotalAmount } from './allowance-total-amount';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { AmountDue } from './amount-due';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ChargeTotalAmount } from './charge-total-amount';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { GlobalAllowanceAmount } from './global-allowance-amount';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { InvoiceTotalsPrepayment } from './invoice-totals-prepayment';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { LineTotalAmount } from './line-total-amount';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { RoundingAmount } from './rounding-amount';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { TotalGrossAmount } from './total-gross-amount';
@@ -33,14 +45,18 @@ import type { TotalNetAmount } from './total-net-amount';
 import type { TotalVATAmount } from './total-vatamount';
 
 /**
- * Contains all invoice total amounts.
+ * Contains all invoice total amounts (BG-22).
  */
 export interface InvoiceTotals {
+    'line_total_amount'?: LineTotalAmount | null;
+    'allowance_total_amount'?: AllowanceTotalAmount | null;
+    'charge_total_amount'?: ChargeTotalAmount | null;
     'total_net_amount': TotalNetAmount;
     'vat_amount': TotalVATAmount;
     'total_gross_amount': TotalGrossAmount;
-    'amount_due': AmountDue;
     'prepayment'?: InvoiceTotalsPrepayment | null;
+    'rounding_amount'?: RoundingAmount | null;
+    'amount_due': AmountDue;
     'globalAllowanceAmount'?: GlobalAllowanceAmount;
     'globalAllowanceReason'?: string | null;
 }

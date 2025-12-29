@@ -15,33 +15,13 @@
 
 
 /**
- * Commercial document types (UNTDID 1001).  | Code | Name | Description | |------|------|-------------| | 380 | INVOICE | Commercial invoice | | 381 | CREDIT_NOTE | Credit note | | 384 | CORRECTED_INVOICE | Corrected invoice | | 386 | PREPAYMENT | Prepayment invoice | | 389 | SELF_BILLED | Self-billed invoice |
+ * Informations sur un fichier genere (contenu inline en base64).
  */
-
-export const DocumentType = {
+export interface FileInfo {
+    'content_b64'?: string | null;
     /**
-    * Commercial invoice
-    */
-    INVOICE: '380',
-    /**
-    * Credit note
-    */
-    CREDIT_NOTE: '381',
-    /**
-    * Corrected invoice
-    */
-    CORRECTED_INVOICE: '384',
-    /**
-    * Prepayment invoice
-    */
-    PREPAYMENT: '386',
-    /**
-    * Self-billed invoice
-    */
-    SELF_BILLED: '389'
-} as const;
-
-export type DocumentType = typeof DocumentType[keyof typeof DocumentType];
-
-
+     * Taille en bytes
+     */
+    'size_bytes'?: number;
+}
 

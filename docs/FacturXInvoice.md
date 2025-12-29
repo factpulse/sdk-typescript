@@ -22,6 +22,20 @@ Name | Type | Description | Notes
 **current_user_id** | **number** |  | [optional] [default to undefined]
 **supplementary_attachments** | [**Array&lt;SupplementaryAttachment&gt;**](SupplementaryAttachment.md) |  | [optional] [default to undefined]
 **payee** | [**Payee**](Payee.md) |  | [optional] [default to undefined]
+**delivery_party** | [**DeliveryParty**](DeliveryParty.md) |  | [optional] [default to undefined]
+**tax_representative** | [**TaxRepresentative**](TaxRepresentative.md) |  | [optional] [default to undefined]
+**delivery_date** | **string** |  | [optional] [default to undefined]
+**billing_period_start** | **string** |  | [optional] [default to undefined]
+**billing_period_end** | **string** |  | [optional] [default to undefined]
+**payment_reference** | **string** |  | [optional] [default to undefined]
+**creditor_reference_id** | **string** |  | [optional] [default to undefined]
+**direct_debit_mandate_id** | **string** |  | [optional] [default to undefined]
+**debtor_iban** | **string** |  | [optional] [default to undefined]
+**payment_terms** | **string** |  | [optional] [default to undefined]
+**allowances_charges** | [**Array&lt;AllowanceCharge&gt;**](AllowanceCharge.md) |  | [optional] [default to undefined]
+**additional_documents** | [**Array&lt;AdditionalDocument&gt;**](AdditionalDocument.md) |  | [optional] [default to undefined]
+**buyer_accounting_reference** | **string** |  | [optional] [default to undefined]
+**payment_card** | [**PaymentCard**](PaymentCard.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -45,6 +59,20 @@ const instance: FacturXInvoice = {
     current_user_id,
     supplementary_attachments,
     payee,
+    delivery_party,
+    tax_representative,
+    delivery_date,
+    billing_period_start,
+    billing_period_end,
+    payment_reference,
+    creditor_reference_id,
+    direct_debit_mandate_id,
+    debtor_iban,
+    payment_terms,
+    allowances_charges,
+    additional_documents,
+    buyer_accounting_reference,
+    payment_card,
 };
 ```
 

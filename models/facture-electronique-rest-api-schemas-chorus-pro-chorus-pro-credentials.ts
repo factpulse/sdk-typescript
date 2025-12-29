@@ -21,19 +21,19 @@ export interface FactureElectroniqueRestApiSchemasChorusProChorusProCredentials 
     /**
      * PISTE Client ID (government API portal)
      */
-    'piste_client_id': string;
+    'pisteClientId': string;
     /**
      * PISTE Client Secret
      */
-    'piste_client_secret': string;
+    'pisteClientSecret': string;
     /**
      * Chorus Pro login
      */
-    'chorus_pro_login': string;
+    'chorusProLogin': string;
     /**
      * Chorus Pro password
      */
-    'chorus_pro_password': string;
+    'chorusProPassword': string;
     /**
      * Use sandbox environment (true) or production (false)
      */

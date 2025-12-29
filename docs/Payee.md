@@ -7,11 +7,13 @@ Information about the payment beneficiary (BG-10 / PayeeTradeParty).  The payee 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **nom** | **string** | Payee name (BT-59). Mandatory. | [default to undefined]
+**payeeId** | **string** |  | [optional] [default to undefined]
 **siret** | **string** |  | [optional] [default to undefined]
 **siren** | **string** |  | [optional] [default to undefined]
 **electronicAddress** | [**ElectronicAddress**](ElectronicAddress.md) |  | [optional] [default to undefined]
 **iban** | **string** |  | [optional] [default to undefined]
 **bic** | **string** |  | [optional] [default to undefined]
+**global_ids** | [**Array&lt;ElectronicAddress&gt;**](ElectronicAddress.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -20,11 +22,13 @@ import { Payee } from '@factpulse/sdk';
 
 const instance: Payee = {
     nom,
+    payeeId,
     siret,
     siren,
     electronicAddress,
     iban,
     bic,
+    global_ids,
 };
 ```
 

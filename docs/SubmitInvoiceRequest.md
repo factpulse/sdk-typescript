@@ -7,20 +7,20 @@ Submit an invoice to Chorus Pro.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **credentials** | [**FactureElectroniqueRestApiSchemasChorusProChorusProCredentials**](FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md) |  | [optional] [default to undefined]
-**invoice_number** | **string** | Invoice number | [default to undefined]
-**invoice_date** | **string** | Invoice date (ISO format: YYYY-MM-DD) | [default to undefined]
-**payment_due_date** | **string** |  | [optional] [default to undefined]
-**structure_id** | **number** | Chorus Pro recipient structure ID | [default to undefined]
-**service_code** | **string** |  | [optional] [default to undefined]
-**engagement_number** | **string** |  | [optional] [default to undefined]
-**total_net_amount** | [**SubmitNetAmount**](SubmitNetAmount.md) |  | [default to undefined]
-**vat_amount** | [**SubmitVatAmount**](SubmitVatAmount.md) |  | [default to undefined]
-**total_gross_amount** | [**SubmitGrossAmount**](SubmitGrossAmount.md) |  | [default to undefined]
-**main_attachment_id** | **number** |  | [optional] [default to undefined]
-**main_attachment_label** | **string** |  | [optional] [default to undefined]
+**invoiceNumber** | **string** | Invoice number | [default to undefined]
+**invoiceDate** | **string** | Invoice date (ISO format: YYYY-MM-DD) | [default to undefined]
+**paymentDueDate** | **string** |  | [optional] [default to undefined]
+**structureId** | **number** | Chorus Pro recipient structure ID | [default to undefined]
+**serviceCode** | **string** |  | [optional] [default to undefined]
+**engagementNumber** | **string** |  | [optional] [default to undefined]
+**totalNetAmount** | [**SubmitNetAmount**](SubmitNetAmount.md) |  | [default to undefined]
+**vatAmount** | [**SubmitVatAmount**](SubmitVatAmount.md) |  | [default to undefined]
+**totalGrossAmount** | [**SubmitGrossAmount**](SubmitGrossAmount.md) |  | [default to undefined]
+**mainAttachmentId** | **number** |  | [optional] [default to undefined]
+**mainAttachmentLabel** | **string** |  | [optional] [default to undefined]
 **comment** | **string** |  | [optional] [default to undefined]
-**purchase_order_reference** | **string** |  | [optional] [default to undefined]
-**contract_reference** | **string** |  | [optional] [default to undefined]
+**purchaseOrderReference** | **string** |  | [optional] [default to undefined]
+**contractReference** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -29,20 +29,20 @@ import { SubmitInvoiceRequest } from '@factpulse/sdk';
 
 const instance: SubmitInvoiceRequest = {
     credentials,
-    invoice_number,
-    invoice_date,
-    payment_due_date,
-    structure_id,
-    service_code,
-    engagement_number,
-    total_net_amount,
-    vat_amount,
-    total_gross_amount,
-    main_attachment_id,
-    main_attachment_label,
+    invoiceNumber,
+    invoiceDate,
+    paymentDueDate,
+    structureId,
+    serviceCode,
+    engagementNumber,
+    totalNetAmount,
+    vatAmount,
+    totalGrossAmount,
+    mainAttachmentId,
+    mainAttachmentLabel,
     comment,
-    purchase_order_reference,
-    contract_reference,
+    purchaseOrderReference,
+    contractReference,
 };
 ```
 

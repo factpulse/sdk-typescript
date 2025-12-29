@@ -1,6 +1,6 @@
 # VATLine
 
-Represents a VAT breakdown line by rate.  For exemptions (categories E, AE, K, G, O), the fields `exemption_reason` and `vatex_code` are required per EN16931.
+Represents a VAT breakdown line by rate (BG-23).  For exemptions (categories E, AE, K, G, O), the fields `exemption_reason` and `vatex_code` are required per EN16931.
 
 ## Properties
 
@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **rate** | **string** |  | [optional] [default to undefined]
 **manual_rate** | [**ManualRate**](ManualRate.md) |  | [optional] [default to undefined]
 **category** | [**VATCategory**](VATCategory.md) |  | [optional] [default to undefined]
+**due_date_type_code** | [**VATPointDateCode**](VATPointDateCode.md) |  | [optional] [default to undefined]
 **exemption_reason** | **string** |  | [optional] [default to undefined]
 **vatex_code** | **string** |  | [optional] [default to undefined]
 
@@ -25,6 +26,7 @@ const instance: VATLine = {
     rate,
     manual_rate,
     category,
+    due_date_type_code,
     exemption_reason,
     vatex_code,
 };

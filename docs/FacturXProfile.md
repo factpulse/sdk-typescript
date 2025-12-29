@@ -1,6 +1,6 @@
-# APIProfile
+# FacturXProfile
 
-Factur-X profile for API requests.
+Profil Factur-X pour la reponse API.  Note: Simplifie par rapport a utils/facturx.FacturXProfile qui contient aussi les configurations XSLT. Celui-ci est pour l\'API.
 
 ## Enum
 

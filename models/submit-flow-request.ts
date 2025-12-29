@@ -30,15 +30,15 @@ export interface SubmitFlowRequest {
     /**
      * Flow name (e.g., \'Invoice 2025-001\')
      */
-    'flow_name': string;
+    'flowName': string;
     /**
      * Flow syntax (CII for Factur-X)
      */
-    'flow_syntax'?: FlowSyntax;
-    'flow_profile'?: FlowProfile | null;
-    'tracking_id'?: string | null;
-    'request_id'?: string | null;
-    'pdp_credentials'?: PDPCredentials | null;
+    'flowSyntax'?: FlowSyntax;
+    'flowProfile'?: FlowProfile | null;
+    'trackingId'?: string | null;
+    'requestId'?: string | null;
+    'pdpCredentials'?: PDPCredentials | null;
 }
 
 

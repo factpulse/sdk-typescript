@@ -25,10 +25,12 @@ export interface Payee {
      * Payee name (BT-59). Mandatory.
      */
     'nom': string;
+    'payeeId'?: string | null;
     'siret'?: string | null;
     'siren'?: string | null;
     'electronicAddress'?: ElectronicAddress | null;
     'iban'?: string | null;
     'bic'?: string | null;
+    'global_ids'?: Array<ElectronicAddress> | null;
 }
 

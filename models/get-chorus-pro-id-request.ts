@@ -29,6 +29,6 @@ export interface GetChorusProIdRequest {
     /**
      * Identifier type (SIRET, SIREN, UE_HORS_FRANCE, etc.)
      */
-    'identifier_type'?: string;
+    'identifierType'?: string;
 }
 

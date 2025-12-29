@@ -33,7 +33,7 @@ const configuration = new Configuration();
 const apiInstance = new InvoiceProcessingApi(configuration);
 
 let invoiceData: string; //Invoice data in JSON format.              Two formats accepted:             1. **Classic format**: Complete FactureFacturX structure (all fields)             2. **Simplified format** (🆕 P0.1): Minimal structure with auto-enrichment              Format is detected automatically!              (default to undefined)
-let profile: APIProfile; //Factur-X profile: MINIMUM, BASIC, EN16931 or EXTENDED. (optional) (default to undefined)
+let profile: FacturXProfile; //Factur-X profile: MINIMUM, BASIC, EN16931 or EXTENDED. (optional) (default to undefined)
 let outputFormat: OutputFormat; //Output format: \\\'xml\\\' (XML only) or \\\'pdf\\\' (Factur-X PDF with embedded XML). (optional) (default to undefined)
 let autoEnrich: boolean; //🆕 Enable auto-enrichment from SIRET/SIREN (simplified format only) (optional) (default to true)
 let sourcePdf: File; // (optional) (default to undefined)
@@ -52,7 +52,7 @@ const { status, data } = await apiInstance.generateInvoiceApiV1ProcessingGenerat
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **invoiceData** | [**string**] | Invoice data in JSON format.              Two formats accepted:             1. **Classic format**: Complete FactureFacturX structure (all fields)             2. **Simplified format** (🆕 P0.1): Minimal structure with auto-enrichment              Format is detected automatically!              | defaults to undefined|
-| **profile** | **APIProfile** | Factur-X profile: MINIMUM, BASIC, EN16931 or EXTENDED. | (optional) defaults to undefined|
+| **profile** | **FacturXProfile** | Factur-X profile: MINIMUM, BASIC, EN16931 or EXTENDED. | (optional) defaults to undefined|
 | **outputFormat** | **OutputFormat** | Output format: \\\&#39;xml\\\&#39; (XML only) or \\\&#39;pdf\\\&#39; (Factur-X PDF with embedded XML). | (optional) defaults to undefined|
 | **autoEnrich** | [**boolean**] | 🆕 Enable auto-enrichment from SIRET/SIREN (simplified format only) | (optional) defaults to true|
 | **sourcePdf** | [**File**] |  | (optional) defaults to undefined|
@@ -458,7 +458,7 @@ const configuration = new Configuration();
 const apiInstance = new InvoiceProcessingApi(configuration);
 
 let pdfFile: File; //Factur-X PDF file to validate (.pdf format). (default to undefined)
-let profile: APIProfile; // (optional) (default to undefined)
+let profile: FacturXProfile; // (optional) (default to undefined)
 let useVerapdf: boolean; //Enable strict PDF/A validation with VeraPDF (recommended for production). If False, uses basic metadata validation. (optional) (default to false)
 
 const { status, data } = await apiInstance.validateFacturxPdfApiV1ProcessingValidateFacturxPdfPost(
@@ -473,7 +473,7 @@ const { status, data } = await apiInstance.validateFacturxPdfApiV1ProcessingVali
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **pdfFile** | [**File**] | Factur-X PDF file to validate (.pdf format). | defaults to undefined|
-| **profile** | **APIProfile** |  | (optional) defaults to undefined|
+| **profile** | **FacturXProfile** |  | (optional) defaults to undefined|
 | **useVerapdf** | [**boolean**] | Enable strict PDF/A validation with VeraPDF (recommended for production). If False, uses basic metadata validation. | (optional) defaults to false|
 
 
@@ -517,7 +517,7 @@ const configuration = new Configuration();
 const apiInstance = new InvoiceProcessingApi(configuration);
 
 let pdfFile: File; //Factur-X PDF file to validate (.pdf format). (default to undefined)
-let profile: APIProfile; // (optional) (default to undefined)
+let profile: FacturXProfile; // (optional) (default to undefined)
 let useVerapdf: boolean; //Enable strict PDF/A validation with VeraPDF (recommended for production). May take several seconds. (optional) (default to false)
 
 const { status, data } = await apiInstance.validateFacturxPdfAsyncApiV1ProcessingValidateFacturxAsyncPost(
@@ -532,7 +532,7 @@ const { status, data } = await apiInstance.validateFacturxPdfAsyncApiV1Processin
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **pdfFile** | [**File**] | Factur-X PDF file to validate (.pdf format). | defaults to undefined|
-| **profile** | **APIProfile** |  | (optional) defaults to undefined|
+| **profile** | **FacturXProfile** |  | (optional) defaults to undefined|
 | **useVerapdf** | [**boolean**] | Enable strict PDF/A validation with VeraPDF (recommended for production). May take several seconds. | (optional) defaults to false|
 
 
@@ -629,7 +629,7 @@ const configuration = new Configuration();
 const apiInstance = new InvoiceProcessingApi(configuration);
 
 let xmlFile: File; //Factur-X XML file to validate (.xml format). (default to undefined)
-let profile: APIProfile; //Validation profile (MINIMUM, BASIC, EN16931, EXTENDED). (optional) (default to undefined)
+let profile: FacturXProfile; //Validation profile (MINIMUM, BASIC, EN16931, EXTENDED). (optional) (default to undefined)
 
 const { status, data } = await apiInstance.validateXmlApiV1ProcessingValidateXmlPost(
     xmlFile,
@@ -642,7 +642,7 @@ const { status, data } = await apiInstance.validateXmlApiV1ProcessingValidateXml
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **xmlFile** | [**File**] | Factur-X XML file to validate (.xml format). | defaults to undefined|
-| **profile** | **APIProfile** | Validation profile (MINIMUM, BASIC, EN16931, EXTENDED). | (optional) defaults to undefined|
+| **profile** | **FacturXProfile** | Validation profile (MINIMUM, BASIC, EN16931, EXTENDED). | (optional) defaults to undefined|
 
 
 ### Return type
