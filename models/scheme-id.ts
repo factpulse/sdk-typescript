@@ -20,31 +20,49 @@
 
 export const SchemeID = {
     /**
-    * FR_SIREN - French SIREN (most common for France, replaces old 0002)
+    * FR_SIREN - French SIREN (most common for France)
     */
     FR_SIREN: '0225',
     /**
+    * FR_SIRET - French SIRET
+    */
+    FR_SIRET: '0009',
+    /**
+    * FR_SIREN_OLD - French SIREN (old code, for legal organization ID)
+    */
+    FR_SIREN_OLD: '0002',
+    /**
     * GLN - Global Location Number (GLN)
     */
-    GLN: '0009',
+    GLN: '0088',
     /**
     * DUNS - Data Universal Numbering System (DUNS)
     */
-    DUNS: '0002',
+    DUNS: '0060',
     /**
-    * FR_TVA_INTRA - French intra-community VAT number
+    * FR_VAT_INTRA - French intra-community VAT number
     */
-    FR_TVA_INTRA: '0088',
+    FR_VAT_INTRA: '9957',
     /**
     * GLEIF - Global Legal Entity Identifier Foundation (GLEIF)
     */
-    GLEIF: '0060',
-    _9957: '9957',
-    _0199: '0199',
-    _0231: '0231',
-    Em: 'EM',
-    _0177: '0177',
-    _0224: '0224'
+    GLEIF: '0199',
+    /**
+    * DT_DIRECTORY_ID - Directory ID for tax administration
+    */
+    DT_DIRECTORY_ID: '0231',
+    /**
+    * EMAIL - Email-based electronic address (BT-34/BT-49)
+    */
+    EMAIL: 'EM',
+    /**
+    * ODETTE - ODETTE network identifier
+    */
+    ODETTE: '0177',
+    /**
+    * FR_CHORUS_PRO_ROUTING - Chorus Pro routing code
+    */
+    FR_CHORUS_PRO_ROUTING: '0224'
 } as const;
 
 export type SchemeID = typeof SchemeID[keyof typeof SchemeID];
