@@ -23,6 +23,7 @@ docs/AFNORPDPPADirectoryServiceApi.md
 docs/AFNORPDPPAFlowServiceApi.md
 docs/AFNORResult.md
 docs/APIError.md
+docs/APIProfile.md
 docs/AcknowledgmentStatus.md
 docs/AdditionalDocument.md
 docs/AllowanceCharge.md
@@ -56,7 +57,6 @@ docs/ErrorSource.md
 docs/ExtractionInfo.md
 docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
-docs/FacturXProfile.md
 docs/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md
 docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
 docs/FieldStatus.md
@@ -180,6 +180,7 @@ models/allowance-total-amount.ts
 models/amount-due.ts
 models/amount.ts
 models/apierror.ts
+models/apiprofile.ts
 models/async-task-status.ts
 models/base-amount.ts
 models/bounding-box-schema.ts
@@ -204,7 +205,6 @@ models/error-source.ts
 models/extraction-info.ts
 models/factur-xinvoice.ts
 models/factur-xpdfinfo.ts
-models/factur-xprofile.ts
 models/facture-electronique-rest-api-schemas-chorus-pro-chorus-pro-credentials.ts
 models/facture-electronique-rest-api-schemas-processing-chorus-pro-credentials.ts
 models/field-status.ts

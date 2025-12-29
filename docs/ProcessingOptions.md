@@ -6,7 +6,7 @@ Processing options for generation and submission.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**facturxProfile** | [**FacturXProfile**](FacturXProfile.md) | Factur-X profile to use | [optional] [default to undefined]
+**facturxProfile** | [**APIProfile**](APIProfile.md) | Factur-X profile to use | [optional] [default to undefined]
 **autoEnrich** | **boolean** | Auto-enrich data (Company APIs, Chorus Pro, etc.) | [optional] [default to true]
 **validateXml** | **boolean** | Validate Factur-X XML with Schematron | [optional] [default to true]
 **verifyDestinationParameters** | **boolean** | Verify required parameters for destination (e.g., service_code for Chorus) | [optional] [default to true]

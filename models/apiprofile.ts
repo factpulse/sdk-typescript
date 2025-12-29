@@ -15,17 +15,17 @@
 
 
 /**
- * Profil Factur-X pour la reponse API.  Note: Simplifie par rapport a utils/facturx.FacturXProfile qui contient aussi les configurations XSLT. Celui-ci est pour l\'API.
+ * Factur-X profile for API responses.  Note: Simplified compared to utils/facturx.ProfilFacturX which also contains XSLT configurations. This one is for the API.
  */
 
-export const FacturXProfile = {
+export const APIProfile = {
     Minimum: 'MINIMUM',
     Basic: 'BASIC',
     En16931: 'EN16931',
     Extended: 'EXTENDED'
 } as const;
 
-export type FacturXProfile = typeof FacturXProfile[keyof typeof FacturXProfile];
+export type APIProfile = typeof APIProfile[keyof typeof APIProfile];
 
 
 

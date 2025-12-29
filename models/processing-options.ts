@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FacturXProfile } from './factur-xprofile';
+import type { APIProfile } from './apiprofile';
 
 /**
  * Processing options for generation and submission.
@@ -24,7 +24,7 @@ export interface ProcessingOptions {
     /**
      * Factur-X profile to use
      */
-    'facturxProfile'?: FacturXProfile;
+    'facturxProfile'?: APIProfile;
     /**
      * Auto-enrich data (Company APIs, Chorus Pro, etc.)
      */
