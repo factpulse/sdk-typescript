@@ -15,18 +15,17 @@
 
 
 /**
- * Invoice type codes (UNTDID 1001).
+ * Validation error detail.
  */
-
-export const FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = {
-    _380: '380',
-    _381: '381',
-    _384: '384',
-    _389: '389',
-    _386: '386'
-} as const;
-
-export type FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode[keyof typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode];
-
-
+export interface FactureElectroniqueRestApiSchemasEreportingValidationError {
+    /**
+     * Field path with error
+     */
+    'field': string;
+    /**
+     * Error message
+     */
+    'message': string;
+    'code'?: string | null;
+}
 

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ChorusProCredentials } from './chorus-pro-credentials';
+import type { FactureElectroniqueRestApiSchemasChorusProChorusProCredentials } from './facture-electronique-rest-api-schemas-chorus-pro-chorus-pro-credentials';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { SubmitGrossAmount } from './submit-gross-amount';
@@ -30,7 +30,7 @@ import type { SubmitVatAmount } from './submit-vat-amount';
  * Submit an invoice to Chorus Pro.
  */
 export interface SubmitInvoiceRequest {
-    'credentials'?: ChorusProCredentials | null;
+    'credentials'?: FactureElectroniqueRestApiSchemasChorusProChorusProCredentials | null;
     /**
      * Invoice number
      */
