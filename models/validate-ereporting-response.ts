@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FactureElectroniqueRestApiSchemasEreportingValidationError } from './facture-electronique-rest-api-schemas-ereporting-validation-error';
+import type { ValidationError } from './validation-error';
 
 /**
  * Response after validating e-reporting data.
@@ -36,11 +36,11 @@ export interface ValidateEReportingResponse {
     /**
      * List of validation errors (if any)
      */
-    'errors'?: Array<FactureElectroniqueRestApiSchemasEreportingValidationError>;
+    'errors'?: Array<ValidationError>;
     /**
      * List of validation warnings (if any)
      */
-    'warnings'?: Array<FactureElectroniqueRestApiSchemasEreportingValidationError>;
+    'warnings'?: Array<ValidationError>;
     /**
      * Status message
      */

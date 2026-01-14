@@ -15,14 +15,14 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ChorusProCredentials } from './chorus-pro-credentials';
+import type { FactureElectroniqueRestApiSchemasProcessingChorusProCredentials } from './facture-electronique-rest-api-schemas-processing-chorus-pro-credentials';
 
 /**
  * Specific configuration for Chorus Pro destination.
  */
 export interface ChorusProDestination {
     'type'?: ChorusProDestinationTypeEnum;
-    'credentials'?: ChorusProCredentials | null;
+    'credentials'?: FactureElectroniqueRestApiSchemasProcessingChorusProCredentials | null;
 }
 
 export const ChorusProDestinationTypeEnum = {
