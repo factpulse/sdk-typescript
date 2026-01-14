@@ -26,7 +26,7 @@ The `helpers` module provides a simplified API with automatic authentication and
 import {
   FactPulseClient,
   amount,
-  totalAmount,
+  invoiceTotals,
   invoiceLine,
   vatLine,
   supplier,
@@ -42,8 +42,10 @@ const client = new FactPulseClient({
 
 // Build the invoice with helpers
 const invoiceData = {
-  number: 'INV-2025-001',
-  date: '2025-01-15',
+  invoiceNumber: 'INV-2025-001',
+  issueDate: '2025-01-15',
+  dueDate: '2025-02-15',
+  currencyCode: 'EUR',
   supplier: supplier(
     'My Company SAS',
     '12345678901234',
@@ -58,7 +60,7 @@ const invoiceData = {
     '69001',
     'Lyon'
   ),
-  totalAmount: totalAmount(1000.00, 200.00, 1200.00, 1200.00),
+  totals: invoiceTotals(1000.00, 200.00, 1200.00, 1200.00),
   lines: [
     invoiceLine(1, 'Consulting services', 10, 100.00, 1000.00)
   ],
@@ -91,21 +93,21 @@ amount("1234.56");   // "1234.56"
 amount(null);        // "0.00"
 ```
 
-### totalAmount(excludingTax, vat, includingTax, due, options?)
+### invoiceTotals(exclTax, vat, inclTax, amountDue, options?)
 
-Creates a complete TotalAmount object.
+Creates a complete invoice totals object.
 
 ```typescript
-import { totalAmount } from '@factpulse/sdk/helpers';
+import { invoiceTotals } from '@factpulse/sdk/helpers';
 
-const total = totalAmount(1000.00, 200.00, 1200.00, 1200.00, {
-  discountIncludingTax: 50.00,  // Optional
-  discountReason: 'Loyalty',    // Optional
-  prepayment: 100.00,           // Optional
+const totals = invoiceTotals(1000.00, 200.00, 1200.00, 1200.00, {
+  globalAllowanceAmount: 50.00,   // Optional
+  globalAllowanceReason: 'Loyalty', // Optional
+  prepayment: 100.00,             // Optional
 });
 ```
 
-### invoiceLine(number, description, quantity, unitPrice, lineTotal, options?)
+### invoiceLine(lineNumber, itemName, quantity, unitNetPrice, lineNetAmount, options?)
 
 Creates an invoice line.
 
@@ -117,17 +119,17 @@ const line = invoiceLine(
   'Consulting services',
   5,
   200.00,
-  1000.00,  // lineTotal required
+  1000.00,
   {
-    vatRate: 'VAT20',        // Or manualVatRate: '20.00'
+    vatRate: 'TVA20',        // Or manualVatRate: '20.00'
     vatCategory: 'S',        // S, Z, E, AE, K
-    unit: 'HOUR',            // PACKAGE, PIECE, HOUR, DAY...
+    unit: 'HOUR',            // LUMP_SUM, PIECE, HOUR, DAY...
     reference: 'REF-001',    // Optional
   }
 );
 ```
 
-### vatLine(baseAmount, vatAmount, options?)
+### vatLine(taxableAmount, vatAmount, options?)
 
 Creates a VAT breakdown line.
 
@@ -135,7 +137,7 @@ Creates a VAT breakdown line.
 import { vatLine } from '@factpulse/sdk/helpers';
 
 const vat = vatLine(1000.00, 200.00, {
-  rate: 'VAT20',       // Or manualRate: '20.00'
+  rate: 'TVA20',       // Or manualRate: '20.00'
   category: 'S',       // S, Z, E, AE, K
 });
 ```
