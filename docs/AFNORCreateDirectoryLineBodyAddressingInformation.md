@@ -1,40 +1,26 @@
-
 # AFNORCreateDirectoryLineBodyAddressingInformation
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`siren` | string
-`siret` | string
-`routingIdentifier` | string
-`addressingSuffix` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**siren** | **string** | SIREN number | [default to undefined]
+**siret** | **string** | SIRET Number | [optional] [default to undefined]
+**routingIdentifier** | **string** | Routing identifier od a routing code. | [optional] [default to undefined]
+**addressingSuffix** | **string** | suffix of the directory line which defines an address mesh not attached to a facility | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORCreateDirectoryLineBodyAddressingInformation } from ''
+import { AFNORCreateDirectoryLineBodyAddressingInformation } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "siren": 702042755,
-  "siret": 70204275500240,
-  "routingIdentifier": dcsc456sdcsdcs556,
-  "addressingSuffix": dcsc456sdcsdcs556,
-} satisfies AFNORCreateDirectoryLineBodyAddressingInformation
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORCreateDirectoryLineBodyAddressingInformation
-console.log(exampleParsed)
+const instance: AFNORCreateDirectoryLineBodyAddressingInformation = {
+    siren,
+    siret,
+    routingIdentifier,
+    addressingSuffix,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

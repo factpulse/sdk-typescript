@@ -1,43 +1,29 @@
-
 # AFNORDestination
 
 Specific configuration for AFNOR PDP destination.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`type` | string
-`credentials` | [AFNORCredentials](AFNORCredentials.md)
-`flowSyntax` | [FlowSyntax](FlowSyntax.md)
-`trackingId` | string
-`processingRule` | [ProcessingRule](ProcessingRule.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**type** | **string** |  | [optional] [default to TypeEnum_Afnor]
+**credentials** | [**AFNORCredentials**](AFNORCredentials.md) |  | [optional] [default to undefined]
+**flowSyntax** | [**FlowSyntax**](FlowSyntax.md) | Flow syntax (AFNOR XP Z12-013) | [optional] [default to undefined]
+**trackingId** | **string** |  | [optional] [default to undefined]
+**processingRule** | [**ProcessingRule**](ProcessingRule.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORDestination } from ''
+import { AFNORDestination } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "type": null,
-  "credentials": null,
-  "flowSyntax": null,
-  "trackingId": null,
-  "processingRule": null,
-} satisfies AFNORDestination
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORDestination
-console.log(exampleParsed)
+const instance: AFNORDestination = {
+    type,
+    credentials,
+    flowSyntax,
+    trackingId,
+    processingRule,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

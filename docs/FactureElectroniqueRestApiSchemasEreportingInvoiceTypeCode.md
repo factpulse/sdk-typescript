@@ -1,33 +1,17 @@
-
 # FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode
 
 Invoice type codes (UNTDID 1001).
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `_380` (value: `'380'`)
 
-## Example
+* `_381` (value: `'381'`)
 
-```typescript
-import type { FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode } from ''
+* `_384` (value: `'384'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode
+* `_389` (value: `'389'`)
 
-console.log(example)
+* `_386` (value: `'386'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode
-console.log(exampleParsed)
-```
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

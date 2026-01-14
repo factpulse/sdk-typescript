@@ -1,53 +1,39 @@
-
 # VerificationSuccessResponse
 
 Successful verification response with unified data.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`isCompliant` | boolean
-`complianceScore` | number
-`verifiedFieldsCount` | number
-`compliantFieldsCount` | number
-`isFacturx` | boolean
-`facturxProfile` | string
-`fields` | [Array&lt;VerifiedFieldSchema&gt;](VerifiedFieldSchema.md)
-`mandatoryNotes` | [Array&lt;MandatoryNoteSchema&gt;](MandatoryNoteSchema.md)
-`pageDimensions` | [Array&lt;PageDimensionsSchema&gt;](PageDimensionsSchema.md)
-`warnings` | Array&lt;string&gt;
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**isCompliant** | **boolean** | True if no critical discrepancy | [default to undefined]
+**complianceScore** | **number** | Compliance score (0-100%) | [default to undefined]
+**verifiedFieldsCount** | **number** | Number of verified fields | [optional] [default to 0]
+**compliantFieldsCount** | **number** | Number of compliant fields | [optional] [default to 0]
+**isFacturx** | **boolean** | True if PDF contains Factur-X XML | [optional] [default to false]
+**facturxProfile** | **string** |  | [optional] [default to undefined]
+**fields** | [**Array&lt;VerifiedFieldSchema&gt;**](VerifiedFieldSchema.md) | List of verified fields with values, statuses and PDF coordinates | [optional] [default to undefined]
+**mandatoryNotes** | [**Array&lt;MandatoryNoteSchema&gt;**](MandatoryNoteSchema.md) | Mandatory notes (PMT, PMD, AAB) with PDF location | [optional] [default to undefined]
+**pageDimensions** | [**Array&lt;PageDimensionsSchema&gt;**](PageDimensionsSchema.md) | Dimensions of each PDF page (width, height) | [optional] [default to undefined]
+**warnings** | **Array&lt;string&gt;** | Non-blocking warnings | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { VerificationSuccessResponse } from ''
+import { VerificationSuccessResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "isCompliant": null,
-  "complianceScore": null,
-  "verifiedFieldsCount": null,
-  "compliantFieldsCount": null,
-  "isFacturx": null,
-  "facturxProfile": null,
-  "fields": null,
-  "mandatoryNotes": null,
-  "pageDimensions": null,
-  "warnings": null,
-} satisfies VerificationSuccessResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as VerificationSuccessResponse
-console.log(exampleParsed)
+const instance: VerificationSuccessResponse = {
+    isCompliant,
+    complianceScore,
+    verifiedFieldsCount,
+    compliantFieldsCount,
+    isFacturx,
+    facturxProfile,
+    fields,
+    mandatoryNotes,
+    pageDimensions,
+    warnings,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

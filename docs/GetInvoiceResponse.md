@@ -1,51 +1,37 @@
-
 # GetInvoiceResponse
 
 Invoice details.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`returnCode` | number
-`message` | string
-`chorusInvoiceId` | number
-`invoiceNumber` | string
-`invoiceDate` | string
-`totalGrossAmount` | string
-`currentStatus` | [InvoiceStatus](InvoiceStatus.md)
-`recipientStructureId` | number
-`recipientStructureName` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**returnCode** | **number** | Return code (0 &#x3D; success) | [default to undefined]
+**message** | **string** | Response message | [default to undefined]
+**chorusInvoiceId** | **number** |  | [optional] [default to undefined]
+**invoiceNumber** | **string** |  | [optional] [default to undefined]
+**invoiceDate** | **string** |  | [optional] [default to undefined]
+**totalGrossAmount** | **string** |  | [optional] [default to undefined]
+**currentStatus** | [**InvoiceStatus**](InvoiceStatus.md) |  | [optional] [default to undefined]
+**recipientStructureId** | **number** |  | [optional] [default to undefined]
+**recipientStructureName** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { GetInvoiceResponse } from ''
+import { GetInvoiceResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "returnCode": null,
-  "message": null,
-  "chorusInvoiceId": null,
-  "invoiceNumber": null,
-  "invoiceDate": null,
-  "totalGrossAmount": null,
-  "currentStatus": null,
-  "recipientStructureId": null,
-  "recipientStructureName": null,
-} satisfies GetInvoiceResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as GetInvoiceResponse
-console.log(exampleParsed)
+const instance: GetInvoiceResponse = {
+    returnCode,
+    message,
+    chorusInvoiceId,
+    invoiceNumber,
+    invoiceDate,
+    totalGrossAmount,
+    currentStatus,
+    recipientStructureId,
+    recipientStructureName,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,41 +1,27 @@
-
 # ProcessingOptions
 
 Processing options for generation and submission.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`facturxProfile` | [APIProfile](APIProfile.md)
-`autoEnrich` | boolean
-`validateXml` | boolean
-`verifyDestinationParameters` | boolean
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**facturxProfile** | [**APIProfile**](APIProfile.md) | Factur-X profile to use | [optional] [default to undefined]
+**autoEnrich** | **boolean** | Auto-enrich data (Company APIs, Chorus Pro, etc.) | [optional] [default to true]
+**validateXml** | **boolean** | Validate Factur-X XML with Schematron | [optional] [default to true]
+**verifyDestinationParameters** | **boolean** | Verify required parameters for destination (e.g., service_code for Chorus) | [optional] [default to true]
 
 ## Example
 
 ```typescript
-import type { ProcessingOptions } from ''
+import { ProcessingOptions } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "facturxProfile": null,
-  "autoEnrich": null,
-  "validateXml": null,
-  "verifyDestinationParameters": null,
-} satisfies ProcessingOptions
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ProcessingOptions
-console.log(exampleParsed)
+const instance: ProcessingOptions = {
+    facturxProfile,
+    autoEnrich,
+    validateXml,
+    verifyDestinationParameters,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

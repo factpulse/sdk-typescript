@@ -1,39 +1,25 @@
-
 # AsyncTaskStatus
 
 Complete description of an async task status.  The `status` field indicates the Celery state of the task. When `status=\"SUCCESS\"`, check `result.status` for the business result (\"SUCCESS\" or \"ERROR\").
 
 ## Properties
 
-Name | Type
------------- | -------------
-`taskId` | string
-`status` | [CeleryStatus](CeleryStatus.md)
-`result` | { [key: string]: any; }
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**taskId** | **string** | Unique task identifier | [default to undefined]
+**status** | [**CeleryStatus**](CeleryStatus.md) | Celery task status (PENDING, STARTED, SUCCESS, FAILURE, RETRY) | [default to undefined]
+**result** | **{ [key: string]: any; }** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AsyncTaskStatus } from ''
+import { AsyncTaskStatus } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "taskId": null,
-  "status": null,
-  "result": null,
-} satisfies AsyncTaskStatus
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AsyncTaskStatus
-console.log(exampleParsed)
+const instance: AsyncTaskStatus = {
+    taskId,
+    status,
+    result,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

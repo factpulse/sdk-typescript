@@ -2,78 +2,57 @@
 
 All URIs are relative to *https://factpulse.fr*
 
-| Method | HTTP request | Description |
+|Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-| [**createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost**](AFNORPDPPADirectoryServiceApi.md#createdirectorylineproxyapiv1afnordirectoryv1directorylinepost) | **POST** /api/v1/afnor/directory/v1/directory-line | Creating a directory line |
-| [**createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost**](AFNORPDPPADirectoryServiceApi.md#createroutingcodeproxyapiv1afnordirectoryv1routingcodepost) | **POST** /api/v1/afnor/directory/v1/routing-code | Create a routing code |
-| [**deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete**](AFNORPDPPADirectoryServiceApi.md#deletedirectorylineproxyapiv1afnordirectoryv1directorylineidinstanceidinstancedelete) | **DELETE** /api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance} | Delete a directory line |
-| [**directoryHealthcheckProxyApiV1AfnorDirectoryV1HealthcheckGet**](AFNORPDPPADirectoryServiceApi.md#directoryhealthcheckproxyapiv1afnordirectoryv1healthcheckget) | **GET** /api/v1/afnor/directory/v1/healthcheck | Healthcheck Directory Service |
-| [**getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet**](AFNORPDPPADirectoryServiceApi.md#getdirectorylinebycodeproxyapiv1afnordirectoryv1directorylinecodeaddressingidentifierget) | **GET** /api/v1/afnor/directory/v1/directory-line/code:{addressing_identifier} | Get a directory line. |
-| [**getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet**](AFNORPDPPADirectoryServiceApi.md#getdirectorylinebyidinstanceproxyapiv1afnordirectoryv1directorylineidinstanceidinstanceget) | **GET** /api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance} | Get a directory line. |
-| [**getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet**](AFNORPDPPADirectoryServiceApi.md#getroutingcodebyidinstanceproxyapiv1afnordirectoryv1routingcodeidinstanceidinstanceget) | **GET** /api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance} | Get a routing code by instance-id. |
-| [**getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet**](AFNORPDPPADirectoryServiceApi.md#getroutingcodebysiretandcodeproxyapiv1afnordirectoryv1routingcodesiretsiretcoderoutingidentifierget) | **GET** /api/v1/afnor/directory/v1/routing-code/siret:{siret}/code:{routing_identifier} | Get a routing code by SIRET and routing identifier |
-| [**getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet**](AFNORPDPPADirectoryServiceApi.md#getsirenbycodeinseeproxyapiv1afnordirectoryv1sirencodeinseesirenget) | **GET** /api/v1/afnor/directory/v1/siren/code-insee:{siren} | Consult a siren (legal unit) by SIREN number |
-| [**getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet**](AFNORPDPPADirectoryServiceApi.md#getsirenbyidinstanceproxyapiv1afnordirectoryv1sirenidinstanceidinstanceget) | **GET** /api/v1/afnor/directory/v1/siren/id-instance:{id_instance} | Gets a siren (legal unit) by instance ID |
-| [**getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet**](AFNORPDPPADirectoryServiceApi.md#getsiretbycodeinseeproxyapiv1afnordirectoryv1siretcodeinseesiretget) | **GET** /api/v1/afnor/directory/v1/siret/code-insee:{siret} | Gets a siret (facility) by SIRET number |
-| [**getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet**](AFNORPDPPADirectoryServiceApi.md#getsiretbyidinstanceproxyapiv1afnordirectoryv1siretidinstanceidinstanceget) | **GET** /api/v1/afnor/directory/v1/siret/id-instance:{id_instance} | Gets a siret (facility) by id-instance |
-| [**patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch**](AFNORPDPPADirectoryServiceApi.md#patchdirectorylineproxyapiv1afnordirectoryv1directorylineidinstanceidinstancepatch) | **PATCH** /api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance} | Partially updates a directory line.. |
-| [**patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch**](AFNORPDPPADirectoryServiceApi.md#patchroutingcodeproxyapiv1afnordirectoryv1routingcodeidinstanceidinstancepatch) | **PATCH** /api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance} | Partially update a private routing code. |
-| [**putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut**](AFNORPDPPADirectoryServiceApi.md#putroutingcodeproxyapiv1afnordirectoryv1routingcodeidinstanceidinstanceput) | **PUT** /api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance} | Completely update a private routing code. |
-| [**searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost**](AFNORPDPPADirectoryServiceApi.md#searchdirectorylineproxyapiv1afnordirectoryv1directorylinesearchpost) | **POST** /api/v1/afnor/directory/v1/directory-line/search | Search for a directory line |
-| [**searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost**](AFNORPDPPADirectoryServiceApi.md#searchroutingcodeproxyapiv1afnordirectoryv1routingcodesearchpost) | **POST** /api/v1/afnor/directory/v1/routing-code/search | Search for a routing code |
-| [**searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost**](AFNORPDPPADirectoryServiceApi.md#searchsirenproxyapiv1afnordirectoryv1sirensearchpost) | **POST** /api/v1/afnor/directory/v1/siren/search | SIREN search (or legal unit) |
-| [**searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost**](AFNORPDPPADirectoryServiceApi.md#searchsiretproxyapiv1afnordirectoryv1siretsearchpost) | **POST** /api/v1/afnor/directory/v1/siret/search | Search for a SIRET (facility) |
+|[**createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost**](#createdirectorylineproxyapiv1afnordirectoryv1directorylinepost) | **POST** /api/v1/afnor/directory/v1/directory-line | Creating a directory line|
+|[**createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost**](#createroutingcodeproxyapiv1afnordirectoryv1routingcodepost) | **POST** /api/v1/afnor/directory/v1/routing-code | Create a routing code|
+|[**deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete**](#deletedirectorylineproxyapiv1afnordirectoryv1directorylineidinstanceidinstancedelete) | **DELETE** /api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance} | Delete a directory line|
+|[**directoryHealthcheckProxyApiV1AfnorDirectoryV1HealthcheckGet**](#directoryhealthcheckproxyapiv1afnordirectoryv1healthcheckget) | **GET** /api/v1/afnor/directory/v1/healthcheck | Healthcheck Directory Service|
+|[**getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet**](#getdirectorylinebycodeproxyapiv1afnordirectoryv1directorylinecodeaddressingidentifierget) | **GET** /api/v1/afnor/directory/v1/directory-line/code:{addressing_identifier} | Get a directory line.|
+|[**getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet**](#getdirectorylinebyidinstanceproxyapiv1afnordirectoryv1directorylineidinstanceidinstanceget) | **GET** /api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance} | Get a directory line.|
+|[**getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet**](#getroutingcodebyidinstanceproxyapiv1afnordirectoryv1routingcodeidinstanceidinstanceget) | **GET** /api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance} | Get a routing code by instance-id.|
+|[**getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet**](#getroutingcodebysiretandcodeproxyapiv1afnordirectoryv1routingcodesiretsiretcoderoutingidentifierget) | **GET** /api/v1/afnor/directory/v1/routing-code/siret:{siret}/code:{routing_identifier} | Get a routing code by SIRET and routing identifier|
+|[**getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet**](#getsirenbycodeinseeproxyapiv1afnordirectoryv1sirencodeinseesirenget) | **GET** /api/v1/afnor/directory/v1/siren/code-insee:{siren} | Consult a siren (legal unit) by SIREN number|
+|[**getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet**](#getsirenbyidinstanceproxyapiv1afnordirectoryv1sirenidinstanceidinstanceget) | **GET** /api/v1/afnor/directory/v1/siren/id-instance:{id_instance} | Gets a siren (legal unit) by instance ID|
+|[**getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet**](#getsiretbycodeinseeproxyapiv1afnordirectoryv1siretcodeinseesiretget) | **GET** /api/v1/afnor/directory/v1/siret/code-insee:{siret} | Gets a siret (facility) by SIRET number|
+|[**getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet**](#getsiretbyidinstanceproxyapiv1afnordirectoryv1siretidinstanceidinstanceget) | **GET** /api/v1/afnor/directory/v1/siret/id-instance:{id_instance} | Gets a siret (facility) by id-instance|
+|[**patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch**](#patchdirectorylineproxyapiv1afnordirectoryv1directorylineidinstanceidinstancepatch) | **PATCH** /api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance} | Partially updates a directory line..|
+|[**patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch**](#patchroutingcodeproxyapiv1afnordirectoryv1routingcodeidinstanceidinstancepatch) | **PATCH** /api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance} | Partially update a private routing code.|
+|[**putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut**](#putroutingcodeproxyapiv1afnordirectoryv1routingcodeidinstanceidinstanceput) | **PUT** /api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance} | Completely update a private routing code.|
+|[**searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost**](#searchdirectorylineproxyapiv1afnordirectoryv1directorylinesearchpost) | **POST** /api/v1/afnor/directory/v1/directory-line/search | Search for a directory line|
+|[**searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost**](#searchroutingcodeproxyapiv1afnordirectoryv1routingcodesearchpost) | **POST** /api/v1/afnor/directory/v1/routing-code/search | Search for a routing code|
+|[**searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost**](#searchsirenproxyapiv1afnordirectoryv1sirensearchpost) | **POST** /api/v1/afnor/directory/v1/siren/search | SIREN search (or legal unit)|
+|[**searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost**](#searchsiretproxyapiv1afnordirectoryv1siretsearchpost) | **POST** /api/v1/afnor/directory/v1/siret/search | Search for a SIRET (facility)|
 
-
-
-## createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost
-
-> any createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(acceptLanguage)
-
-Creating a directory line
+# **createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost**
+> any createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost()
 
 Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { CreateDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies CreateDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePostRequest;
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
@@ -85,77 +64,57 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
-| **201** | A new resource has been created. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Successful Response |  -  |
+|**201** | A new resource has been created. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost
-
-> any createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(acceptLanguage)
-
-Create a routing code
+# **createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost**
+> any createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost()
 
 Creating a routing code.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { CreateRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies CreateRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePostRequest;
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
@@ -167,80 +126,60 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
-| **201** | A new resource has been created. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Successful Response |  -  |
+|**201** | A new resource has been created. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete
-
-> any deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, acceptLanguage)
-
-Delete a directory line
+# **deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete**
+> any deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete()
 
 Delete a directory line.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { DeleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // string | AFNOR instance ID (UUID)
-    idInstance: idInstance_example,
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies DeleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDeleteRequest;
+let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(
+    idInstance,
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **idInstance** | `string` | AFNOR instance ID (UUID) | [Defaults to `undefined`] |
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
@@ -252,65 +191,50 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
-| **204** | OK. The resource has been deleted. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Successful Response |  -  |
+|**204** | OK. The resource has been deleted. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## directoryHealthcheckProxyApiV1AfnorDirectoryV1HealthcheckGet
-
+# **directoryHealthcheckProxyApiV1AfnorDirectoryV1HealthcheckGet**
 > object directoryHealthcheckProxyApiV1AfnorDirectoryV1HealthcheckGet()
-
-Healthcheck Directory Service
 
 Check Directory Service availability (AFNOR XP Z12-013 compliant)
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { DirectoryHealthcheckProxyApiV1AfnorDirectoryV1HealthcheckGetRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new AFNORPDPPADirectoryServiceApi();
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  try {
-    const data = await api.directoryHealthcheckProxyApiV1AfnorDirectoryV1HealthcheckGet();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.directoryHealthcheckProxyApiV1AfnorDirectoryV1HealthcheckGet();
 ```
 
 ### Parameters
+This endpoint does not have any parameters.
 
-This endpoint does not need any parameter.
 
 ### Return type
 
@@ -322,81 +246,61 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK - Service is operational |  -  |
-| **500** | Internal Server Error. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | OK - Service is operational |  -  |
+|**500** | Internal Server Error. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet
-
-> AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, fields, include, acceptLanguage)
-
-Get a directory line.
+# **getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet**
+> AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet()
 
 Retrieve the data from the directory line corresponding to the identifier passed in parameters.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { GetDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // string | Addressing identifier (SIREN, SIRET or routing code)
-    addressingIdentifier: addressingIdentifier_example,
-    // Array<string> | Fields of the Directory Line resource. (optional)
-    fields: ...,
-    // Array<DirectoryLineInclude> | Relations to include in the response. (optional)
-    include: ...,
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies GetDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGetRequest;
+let addressingIdentifier: string; //Addressing identifier (SIREN, SIRET or routing code) (default to undefined)
+let fields: Array<string>; //Fields of the Directory Line resource. (optional) (default to undefined)
+let include: Array<DirectoryLineInclude>; //Relations to include in the response. (optional) (default to undefined)
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(
+    addressingIdentifier,
+    fields,
+    include,
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **addressingIdentifier** | `string` | Addressing identifier (SIREN, SIRET or routing code) | [Defaults to `undefined`] |
-| **fields** | `Array<string>` | Fields of the Directory Line resource. | [Optional] |
-| **include** | `Array<DirectoryLineInclude>` | Relations to include in the response. | [Optional] |
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **addressingIdentifier** | [**string**] | Addressing identifier (SIREN, SIRET or routing code) | defaults to undefined|
+| **fields** | **Array&lt;string&gt;** | Fields of the Directory Line resource. | (optional) defaults to undefined|
+| **include** | **Array&lt;DirectoryLineInclude&gt;** | Relations to include in the response. | (optional) defaults to undefined|
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode**](AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode.md)
+**AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode**
 
 ### Authorization
 
@@ -404,86 +308,66 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Retourns a directory line. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Retourns a directory line. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet
-
-> AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage)
-
-Get a directory line.
+# **getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet**
+> AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet()
 
 Retrieve the data from the directory line corresponding to the identifier passed in parameters.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { GetDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // string | AFNOR instance ID (UUID)
-    idInstance: idInstance_example,
-    // Array<string> | Fields of the Directory Line resource. (optional)
-    fields: ...,
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies GetDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGetRequest;
+let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
+let fields: Array<string>; //Fields of the Directory Line resource. (optional) (default to undefined)
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(
+    idInstance,
+    fields,
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **idInstance** | `string` | AFNOR instance ID (UUID) | [Defaults to `undefined`] |
-| **fields** | `Array<string>` | Fields of the Directory Line resource. | [Optional] |
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
+| **fields** | **Array&lt;string&gt;** | Fields of the Directory Line resource. | (optional) defaults to undefined|
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode**](AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode.md)
+**AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode**
 
 ### Authorization
 
@@ -491,86 +375,66 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Returns a directory line. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Returns a directory line. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet
-
-> AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage)
-
-Get a routing code by instance-id.
+# **getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet**
+> AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet()
 
 Retrieve the Routing Code data corresponding to the Instance ID.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { GetRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // string | AFNOR instance ID (UUID)
-    idInstance: idInstance_example,
-    // Array<string> | Fields of the Routing Code resource (optional)
-    fields: ...,
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies GetRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGetRequest;
+let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
+let fields: Array<string>; //Fields of the Routing Code resource (optional) (default to undefined)
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(
+    idInstance,
+    fields,
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **idInstance** | `string` | AFNOR instance ID (UUID) | [Defaults to `undefined`] |
-| **fields** | `Array<string>` | Fields of the Routing Code resource | [Optional] |
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
+| **fields** | **Array&lt;string&gt;** | Fields of the Routing Code resource | (optional) defaults to undefined|
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORRoutingCodePayloadHistoryLegalUnitFacility**](AFNORRoutingCodePayloadHistoryLegalUnitFacility.md)
+**AFNORRoutingCodePayloadHistoryLegalUnitFacility**
 
 ### Authorization
 
@@ -578,92 +442,72 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Returns a routing code. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Returns a routing code. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet
-
-> AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier, fields, include, acceptLanguage)
-
-Get a routing code by SIRET and routing identifier
+# **getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet**
+> AFNORRoutingCodePayloadHistoryLegalUnitFacility getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet()
 
 Retrieve the Routing Code data corresponding to the identifier passed in parameters.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { GetRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // string | 14-digit SIRET number (INSEE establishment identifier)
-    siret: siret_example,
-    // string | Routing code identifier
-    routingIdentifier: routingIdentifier_example,
-    // Array<string> | Fields of the Routing Code resource (optional)
-    fields: ...,
-    // Array<RoutingCodeInclude> | Relations to include in the response. (optional)
-    include: ...,
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies GetRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGetRequest;
+let siret: string; //14-digit SIRET number (INSEE establishment identifier) (default to undefined)
+let routingIdentifier: string; //Routing code identifier (default to undefined)
+let fields: Array<string>; //Fields of the Routing Code resource (optional) (default to undefined)
+let include: Array<RoutingCodeInclude>; //Relations to include in the response. (optional) (default to undefined)
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(
+    siret,
+    routingIdentifier,
+    fields,
+    include,
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **siret** | `string` | 14-digit SIRET number (INSEE establishment identifier) | [Defaults to `undefined`] |
-| **routingIdentifier** | `string` | Routing code identifier | [Defaults to `undefined`] |
-| **fields** | `Array<string>` | Fields of the Routing Code resource | [Optional] |
-| **include** | `Array<RoutingCodeInclude>` | Relations to include in the response. | [Optional] |
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **siret** | [**string**] | 14-digit SIRET number (INSEE establishment identifier) | defaults to undefined|
+| **routingIdentifier** | [**string**] | Routing code identifier | defaults to undefined|
+| **fields** | **Array&lt;string&gt;** | Fields of the Routing Code resource | (optional) defaults to undefined|
+| **include** | **Array&lt;RoutingCodeInclude&gt;** | Relations to include in the response. | (optional) defaults to undefined|
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORRoutingCodePayloadHistoryLegalUnitFacility**](AFNORRoutingCodePayloadHistoryLegalUnitFacility.md)
+**AFNORRoutingCodePayloadHistoryLegalUnitFacility**
 
 ### Authorization
 
@@ -671,86 +515,66 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Returns a routing code. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Returns a routing code. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet
-
-> AFNORLegalUnitPayloadHistory getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren, fields, acceptLanguage)
-
-Consult a siren (legal unit) by SIREN number
+# **getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet**
+> AFNORLegalUnitPayloadHistory getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet()
 
 Returns the details of a company (legal unit) identified by the SIREN number passed as a parameter.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { GetSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // string | 9-digit SIREN number (INSEE company identifier)
-    siren: siren_example,
-    // Array<string> | Fields of the SIREN resource (optional)
-    fields: ...,
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies GetSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGetRequest;
+let siren: string; //9-digit SIREN number (INSEE company identifier) (default to undefined)
+let fields: Array<string>; //Fields of the SIREN resource (optional) (default to undefined)
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(
+    siren,
+    fields,
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **siren** | `string` | 9-digit SIREN number (INSEE company identifier) | [Defaults to `undefined`] |
-| **fields** | `Array<string>` | Fields of the SIREN resource | [Optional] |
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **siren** | [**string**] | 9-digit SIREN number (INSEE company identifier) | defaults to undefined|
+| **fields** | **Array&lt;string&gt;** | Fields of the SIREN resource | (optional) defaults to undefined|
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORLegalUnitPayloadHistory**](AFNORLegalUnitPayloadHistory.md)
+**AFNORLegalUnitPayloadHistory**
 
 ### Authorization
 
@@ -758,86 +582,66 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Returns a company. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Returns a company. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet
-
-> AFNORLegalUnitPayloadHistory getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage)
-
-Gets a siren (legal unit) by instance ID
+# **getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet**
+> AFNORLegalUnitPayloadHistory getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet()
 
 Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { GetSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // string | AFNOR instance ID (UUID)
-    idInstance: idInstance_example,
-    // Array<string> | Fields of the SIREN resource (optional)
-    fields: ...,
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies GetSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGetRequest;
+let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
+let fields: Array<string>; //Fields of the SIREN resource (optional) (default to undefined)
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(
+    idInstance,
+    fields,
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **idInstance** | `string` | AFNOR instance ID (UUID) | [Defaults to `undefined`] |
-| **fields** | `Array<string>` | Fields of the SIREN resource | [Optional] |
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
+| **fields** | **Array&lt;string&gt;** | Fields of the SIREN resource | (optional) defaults to undefined|
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORLegalUnitPayloadHistory**](AFNORLegalUnitPayloadHistory.md)
+**AFNORLegalUnitPayloadHistory**
 
 ### Authorization
 
@@ -845,89 +649,69 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Returns a routing code. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Returns a routing code. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet
-
-> AFNORFacilityPayloadHistory getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, fields, include, acceptLanguage)
-
-Gets a siret (facility) by SIRET number
+# **getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet**
+> AFNORFacilityPayloadHistory getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet()
 
 Returns the details of a facility associated to a SIRET.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { GetSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // string | 14-digit SIRET number (INSEE establishment identifier)
-    siret: siret_example,
-    // Array<string> | Fields of a SIRET resource. (optional)
-    fields: ...,
-    // Array<SiretInclude> | Relations to include in the response. (optional)
-    include: ...,
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies GetSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGetRequest;
+let siret: string; //14-digit SIRET number (INSEE establishment identifier) (default to undefined)
+let fields: Array<string>; //Fields of a SIRET resource. (optional) (default to undefined)
+let include: Array<SiretInclude>; //Relations to include in the response. (optional) (default to undefined)
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(
+    siret,
+    fields,
+    include,
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **siret** | `string` | 14-digit SIRET number (INSEE establishment identifier) | [Defaults to `undefined`] |
-| **fields** | `Array<string>` | Fields of a SIRET resource. | [Optional] |
-| **include** | `Array<SiretInclude>` | Relations to include in the response. | [Optional] |
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **siret** | [**string**] | 14-digit SIRET number (INSEE establishment identifier) | defaults to undefined|
+| **fields** | **Array&lt;string&gt;** | Fields of a SIRET resource. | (optional) defaults to undefined|
+| **include** | **Array&lt;SiretInclude&gt;** | Relations to include in the response. | (optional) defaults to undefined|
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORFacilityPayloadHistory**](AFNORFacilityPayloadHistory.md)
+**AFNORFacilityPayloadHistory**
 
 ### Authorization
 
@@ -935,86 +719,66 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Returns a facility. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Returns a facility. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet
-
-> AFNORFacilityPayloadHistory getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage)
-
-Gets a siret (facility) by id-instance
+# **getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet**
+> AFNORFacilityPayloadHistory getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet()
 
 Returns the details of a facility according to an instance-id.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { GetSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // string | AFNOR instance ID (UUID)
-    idInstance: idInstance_example,
-    // Array<string> | Fields of a SIRET resource. (optional)
-    fields: ...,
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies GetSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGetRequest;
+let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
+let fields: Array<string>; //Fields of a SIRET resource. (optional) (default to undefined)
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(
+    idInstance,
+    fields,
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **idInstance** | `string` | AFNOR instance ID (UUID) | [Defaults to `undefined`] |
-| **fields** | `Array<string>` | Fields of a SIRET resource. | [Optional] |
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
+| **fields** | **Array&lt;string&gt;** | Fields of a SIRET resource. | (optional) defaults to undefined|
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORFacilityPayloadHistory**](AFNORFacilityPayloadHistory.md)
+**AFNORFacilityPayloadHistory**
 
 ### Authorization
 
@@ -1022,83 +786,63 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Returns a routing code. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Returns a routing code. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch
-
-> AFNORDirectoryLinePost201Response patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, acceptLanguage)
-
-Partially updates a directory line..
+# **patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch**
+> AFNORDirectoryLinePost201Response patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch()
 
 Partially updates a directory line.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { PatchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // string | AFNOR instance ID (UUID)
-    idInstance: idInstance_example,
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies PatchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatchRequest;
+let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(
+    idInstance,
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **idInstance** | `string` | AFNOR instance ID (UUID) | [Defaults to `undefined`] |
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORDirectoryLinePost201Response**](AFNORDirectoryLinePost201Response.md)
+**AFNORDirectoryLinePost201Response**
 
 ### Authorization
 
@@ -1106,83 +850,63 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Request successful. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Request successful. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch
-
-> AFNORRoutingCodePost201Response patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, acceptLanguage)
-
-Partially update a private routing code.
+# **patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch**
+> AFNORRoutingCodePost201Response patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch()
 
 Partially update a private routing code.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { PatchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // string | AFNOR instance ID (UUID)
-    idInstance: idInstance_example,
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies PatchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatchRequest;
+let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(
+    idInstance,
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **idInstance** | `string` | AFNOR instance ID (UUID) | [Defaults to `undefined`] |
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORRoutingCodePost201Response**](AFNORRoutingCodePost201Response.md)
+**AFNORRoutingCodePost201Response**
 
 ### Authorization
 
@@ -1190,84 +914,64 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Request successful. |  -  |
-| **206** | Request processed without error, but the volume of information returned has been reduced. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Request successful. |  -  |
+|**206** | Request processed without error, but the volume of information returned has been reduced. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut
-
-> AFNORRoutingCodePost201Response putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, acceptLanguage)
-
-Completely update a private routing code.
+# **putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut**
+> AFNORRoutingCodePost201Response putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut()
 
 Completely update a private routing code.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { PutRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // string | AFNOR instance ID (UUID)
-    idInstance: idInstance_example,
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies PutRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePutRequest;
+let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(
+    idInstance,
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **idInstance** | `string` | AFNOR instance ID (UUID) | [Defaults to `undefined`] |
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORRoutingCodePost201Response**](AFNORRoutingCodePost201Response.md)
+**AFNORRoutingCodePost201Response**
 
 ### Authorization
 
@@ -1275,81 +979,61 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Request successful. |  -  |
-| **206** | Request processed without error, but the volume of information returned has been reduced. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Request successful. |  -  |
+|**206** | Request processed without error, but the volume of information returned has been reduced. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost
-
-> AFNORDirectoryLineSearchPost200Response searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(acceptLanguage)
-
-Search for a directory line
+# **searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost**
+> AFNORDirectoryLineSearchPost200Response searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost()
 
 Search for directory lines that meet all the criteria passed as parameters and return the results in the desired format.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { SearchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies SearchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPostRequest;
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORDirectoryLineSearchPost200Response**](AFNORDirectoryLineSearchPost200Response.md)
+**AFNORDirectoryLineSearchPost200Response**
 
 ### Authorization
 
@@ -1357,81 +1041,61 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | returns the directory line(s) matching the search criteria. |  -  |
-| **206** | Request processed without error, but the volume of information returned has been reduced. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | returns the directory line(s) matching the search criteria. |  -  |
+|**206** | Request processed without error, but the volume of information returned has been reduced. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost
-
-> AFNORRoutingCodeSearchPost200Response searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(acceptLanguage)
-
-Search for a routing code
+# **searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost**
+> AFNORRoutingCodeSearchPost200Response searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost()
 
 Search for routing codes that meet all the criteria passed as parameters and return the routing codes in the desired format.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { SearchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies SearchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPostRequest;
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORRoutingCodeSearchPost200Response**](AFNORRoutingCodeSearchPost200Response.md)
+**AFNORRoutingCodeSearchPost200Response**
 
 ### Authorization
 
@@ -1439,81 +1103,61 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Returns the routing code(s) matching the search criteria. |  -  |
-| **206** | Request processed without error, but the volume of information returned has been reduced. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Returns the routing code(s) matching the search criteria. |  -  |
+|**206** | Request processed without error, but the volume of information returned has been reduced. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost
-
-> AFNORSirenSearchPost200Response searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(acceptLanguage)
-
-SIREN search (or legal unit)
+# **searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost**
+> AFNORSirenSearchPost200Response searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost()
 
 Multi-criteria company search.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { SearchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies SearchSirenProxyApiV1AfnorDirectoryV1SirenSearchPostRequest;
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORSirenSearchPost200Response**](AFNORSirenSearchPost200Response.md)
+**AFNORSirenSearchPost200Response**
 
 ### Authorization
 
@@ -1521,81 +1165,61 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Returns one or more companies. |  -  |
-| **206** | Request processed without error, but the volume of information returned has been reduced. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Returns one or more companies. |  -  |
+|**206** | Request processed without error, but the volume of information returned has been reduced. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost
-
-> AFNORSiretSearchPost200Response searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(acceptLanguage)
-
-Search for a SIRET (facility)
+# **searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost**
+> AFNORSiretSearchPost200Response searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost()
 
 Multi-criteria search for facilities.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPADirectoryServiceApi,
-} from '';
-import type { SearchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostRequest } from '';
+    AFNORPDPPADirectoryServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new AFNORPDPPADirectoryServiceApi(config);
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-  const body = {
-    // AcceptLanguage | Specifies the language in which the resource is requested. (optional)
-    acceptLanguage: ...,
-  } satisfies SearchSiretProxyApiV1AfnorDirectoryV1SiretSearchPostRequest;
+let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
-  try {
-    const data = await api.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(
+    acceptLanguage
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | `AcceptLanguage` | Specifies the language in which the resource is requested. | [Optional] [Defaults to `undefined`] [Enum: fr, en] |
+| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORSiretSearchPost200Response**](AFNORSiretSearchPost200Response.md)
+**AFNORSiretSearchPost200Response**
 
 ### Authorization
 
@@ -1603,25 +1227,25 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Returns an establishment as defined on a given observation date or as defined on the current date if the observation date is not specified. |  -  |
-| **206** | Request processed without error, but the volume of information returned has been reduced. |  -  |
-| **400** | Bad request. The request is invalid or cannot be completed. |  -  |
-| **401** | Unauthorized. The request requires user authentication. |  -  |
-| **403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
-| **404** | Not found. There is no resource at the given URI. |  -  |
-| **408** | Request timeout exceeded. |  -  |
-| **422** | Data validation error. |  -  |
-| **429** | The client has issued too many calls within a given time frame. |  -  |
-| **500** | Internal Server Error. |  -  |
-| **501** | Not implemented. |  -  |
-| **503** | Service unavailable. |  -  |
+|**200** | Returns an establishment as defined on a given observation date or as defined on the current date if the observation date is not specified. |  -  |
+|**206** | Request processed without error, but the volume of information returned has been reduced. |  -  |
+|**400** | Bad request. The request is invalid or cannot be completed. |  -  |
+|**401** | Unauthorized. The request requires user authentication. |  -  |
+|**403** | Forbidden. The server understood the request but denied access or access is not authorized. |  -  |
+|**404** | Not found. There is no resource at the given URI. |  -  |
+|**408** | Request timeout exceeded. |  -  |
+|**422** | Data validation error. |  -  |
+|**429** | The client has issued too many calls within a given time frame. |  -  |
+|**500** | Internal Server Error. |  -  |
+|**501** | Not implemented. |  -  |
+|**503** | Service unavailable. |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

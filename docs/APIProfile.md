@@ -1,33 +1,17 @@
-
 # APIProfile
 
 Factur-X profile for API responses.  Note: Simplified compared to utils/facturx.ProfilFacturX which also contains XSLT configurations. This one is for the API.
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `Minimum` (value: `'MINIMUM'`)
 
-## Example
+* `Basicwl` (value: `'BASICWL'`)
 
-```typescript
-import type { APIProfile } from ''
+* `Basic` (value: `'BASIC'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies APIProfile
+* `En16931` (value: `'EN16931'`)
 
-console.log(example)
+* `Extended` (value: `'EXTENDED'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as APIProfile
-console.log(exampleParsed)
-```
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,43 +1,29 @@
-
 # StructureInfo
 
 Structure information.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`structureId` | number
-`structureIdentifier` | string
-`structureName` | string
-`structureIdentifierType` | string
-`status` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**structureId** | **number** | Chorus Pro structure ID | [default to undefined]
+**structureIdentifier** | **string** | Identifier (SIRET, SIREN) | [default to undefined]
+**structureName** | **string** | Structure name | [default to undefined]
+**structureIdentifierType** | **string** | Identifier type | [default to undefined]
+**status** | **string** | Status (ACTIVE, INACTIVE) | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { StructureInfo } from ''
+import { StructureInfo } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "structureId": null,
-  "structureIdentifier": null,
-  "structureName": null,
-  "structureIdentifierType": null,
-  "status": null,
-} satisfies StructureInfo
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as StructureInfo
-console.log(exampleParsed)
+const instance: StructureInfo = {
+    structureId,
+    structureIdentifier,
+    structureName,
+    structureIdentifierType,
+    status,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

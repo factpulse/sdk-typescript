@@ -1,44 +1,30 @@
-
 # AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCodeRoutingCode
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`routingIdentifier` | string
-`routingIdentifierType` | string
-`routingCodeName` | string
-`managesLegalCommitment` | boolean
-`administrativeStatus` | [AFNORRoutingCodeAdministrativeStatus](AFNORRoutingCodeAdministrativeStatus.md)
-`address` | [AFNORAddressRead](AFNORAddressRead.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**routingIdentifier** | **string** | Routing identifier od a routing code. | [optional] [default to undefined]
+**routingIdentifierType** | **string** | Routing Identifier type. | [optional] [default to undefined]
+**routingCodeName** | **string** | Name of the directory line routing code. This attribute is only returned if the directory line is defined at the SIREN / SIRET / Routing code mesh. | [optional] [default to undefined]
+**managesLegalCommitment** | **boolean** | Indicates whether the public structure requires a legal commitment number. This attribute is only returned if the directory line is defined for a public structure at the SIREN / SIRET or SIREN / SIRET / Routing code level. | [optional] [default to undefined]
+**administrativeStatus** | [**AFNORRoutingCodeAdministrativeStatus**](AFNORRoutingCodeAdministrativeStatus.md) |  | [optional] [default to undefined]
+**address** | [**AFNORAddressRead**](AFNORAddressRead.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCodeRoutingCode } from ''
+import { AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCodeRoutingCode } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "routingIdentifier": dcsc456sdcsdcs556,
-  "routingIdentifierType": 0224,
-  "routingCodeName": Libellé Code routage,
-  "managesLegalCommitment": true,
-  "administrativeStatus": null,
-  "address": null,
-} satisfies AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCodeRoutingCode
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCodeRoutingCode
-console.log(exampleParsed)
+const instance: AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCodeRoutingCode = {
+    routingIdentifier,
+    routingIdentifierType,
+    routingCodeName,
+    managesLegalCommitment,
+    administrativeStatus,
+    address,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

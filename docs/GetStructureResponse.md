@@ -1,51 +1,37 @@
-
 # GetStructureResponse
 
 Structure details.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`returnCode` | number
-`message` | string
-`structureId` | number
-`structureIdentifier` | string
-`structureLabel` | string
-`companyName` | string
-`vatNumber` | string
-`structureEmail` | string
-`parameters` | [StructureParameters](StructureParameters.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**returnCode** | **number** | Return code (0 &#x3D; success) | [default to undefined]
+**message** | **string** | Response message | [default to undefined]
+**structureId** | **number** |  | [optional] [default to undefined]
+**structureIdentifier** | **string** |  | [optional] [default to undefined]
+**structureLabel** | **string** |  | [optional] [default to undefined]
+**companyName** | **string** |  | [optional] [default to undefined]
+**vatNumber** | **string** |  | [optional] [default to undefined]
+**structureEmail** | **string** |  | [optional] [default to undefined]
+**parameters** | [**StructureParameters**](StructureParameters.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { GetStructureResponse } from ''
+import { GetStructureResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "returnCode": null,
-  "message": null,
-  "structureId": null,
-  "structureIdentifier": null,
-  "structureLabel": null,
-  "companyName": null,
-  "vatNumber": null,
-  "structureEmail": null,
-  "parameters": null,
-} satisfies GetStructureResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as GetStructureResponse
-console.log(exampleParsed)
+const instance: GetStructureResponse = {
+    returnCode,
+    message,
+    structureId,
+    structureIdentifier,
+    structureLabel,
+    companyName,
+    vatNumber,
+    structureEmail,
+    parameters,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

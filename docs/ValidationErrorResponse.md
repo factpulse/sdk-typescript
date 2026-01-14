@@ -1,35 +1,21 @@
-
 # ValidationErrorResponse
 
 Response for validation errors.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`detail` | Array&lt;string&gt;
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**detail** | **Array&lt;string&gt;** | List of detected validation errors. | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { ValidationErrorResponse } from ''
+import { ValidationErrorResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "detail": null,
-} satisfies ValidationErrorResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ValidationErrorResponse
-console.log(exampleParsed)
+const instance: ValidationErrorResponse = {
+    detail,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,45 +1,31 @@
-
 # SubmitFlowRequest
 
 Request to submit an invoice to a PDP/PA via AFNOR.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`flowName` | string
-`flowSyntax` | [FlowSyntax](FlowSyntax.md)
-`flowProfile` | [FlowProfile](FlowProfile.md)
-`trackingId` | string
-`requestId` | string
-`pdpCredentials` | [PDPCredentials](PDPCredentials.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**flowName** | **string** | Flow name (e.g., \&#39;Invoice 2025-001\&#39;) | [default to undefined]
+**flowSyntax** | [**FlowSyntax**](FlowSyntax.md) | Flow syntax (CII for Factur-X) | [optional] [default to undefined]
+**flowProfile** | [**FlowProfile**](FlowProfile.md) |  | [optional] [default to undefined]
+**trackingId** | **string** |  | [optional] [default to undefined]
+**requestId** | **string** |  | [optional] [default to undefined]
+**pdpCredentials** | [**PDPCredentials**](PDPCredentials.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { SubmitFlowRequest } from ''
+import { SubmitFlowRequest } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "flowName": Invoice 2025-001,
-  "flowSyntax": null,
-  "flowProfile": null,
-  "trackingId": null,
-  "requestId": null,
-  "pdpCredentials": null,
-} satisfies SubmitFlowRequest
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SubmitFlowRequest
-console.log(exampleParsed)
+const instance: SubmitFlowRequest = {
+    flowName,
+    flowSyntax,
+    flowProfile,
+    trackingId,
+    requestId,
+    pdpCredentials,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,39 +1,25 @@
-
 # StructureParameters
 
 Mandatory structure parameters.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`serviceCodeRequired` | boolean
-`engagementNumberRequired` | boolean
-`engagementOrServiceManagement` | boolean
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**serviceCodeRequired** | **boolean** | Service code is mandatory | [optional] [default to false]
+**engagementNumberRequired** | **boolean** | Engagement number is mandatory | [optional] [default to false]
+**engagementOrServiceManagement** | **boolean** | EJ or service code management enabled | [optional] [default to false]
 
 ## Example
 
 ```typescript
-import type { StructureParameters } from ''
+import { StructureParameters } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "serviceCodeRequired": null,
-  "engagementNumberRequired": null,
-  "engagementOrServiceManagement": null,
-} satisfies StructureParameters
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as StructureParameters
-console.log(exampleParsed)
+const instance: StructureParameters = {
+    serviceCodeRequired,
+    engagementNumberRequired,
+    engagementOrServiceManagement,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

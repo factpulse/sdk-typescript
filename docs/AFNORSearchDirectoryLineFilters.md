@@ -1,42 +1,28 @@
-
 # AFNORSearchDirectoryLineFilters
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`addressingIdentifier` | [AFNORSearchDirectoryLineFiltersAddressingIdentifier](AFNORSearchDirectoryLineFiltersAddressingIdentifier.md)
-`siren` | [AFNORSearchSirenFiltersSiren](AFNORSearchSirenFiltersSiren.md)
-`siret` | [AFNORSearchSiretFiltersSiret](AFNORSearchSiretFiltersSiret.md)
-`routingIdentifier` | [AFNORRoutingCodeSearchFiltersRoutingIdentifier](AFNORRoutingCodeSearchFiltersRoutingIdentifier.md)
-`addressingSuffix` | [AFNORSearchDirectoryLineFiltersAddressingSuffix](AFNORSearchDirectoryLineFiltersAddressingSuffix.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**addressingIdentifier** | [**AFNORSearchDirectoryLineFiltersAddressingIdentifier**](AFNORSearchDirectoryLineFiltersAddressingIdentifier.md) |  | [optional] [default to undefined]
+**siren** | [**AFNORSearchSirenFiltersSiren**](AFNORSearchSirenFiltersSiren.md) |  | [optional] [default to undefined]
+**siret** | [**AFNORSearchSiretFiltersSiret**](AFNORSearchSiretFiltersSiret.md) |  | [optional] [default to undefined]
+**routingIdentifier** | [**AFNORRoutingCodeSearchFiltersRoutingIdentifier**](AFNORRoutingCodeSearchFiltersRoutingIdentifier.md) |  | [optional] [default to undefined]
+**addressingSuffix** | [**AFNORSearchDirectoryLineFiltersAddressingSuffix**](AFNORSearchDirectoryLineFiltersAddressingSuffix.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORSearchDirectoryLineFilters } from ''
+import { AFNORSearchDirectoryLineFilters } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "addressingIdentifier": null,
-  "siren": null,
-  "siret": null,
-  "routingIdentifier": null,
-  "addressingSuffix": null,
-} satisfies AFNORSearchDirectoryLineFilters
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORSearchDirectoryLineFilters
-console.log(exampleParsed)
+const instance: AFNORSearchDirectoryLineFilters = {
+    addressingIdentifier,
+    siren,
+    siret,
+    routingIdentifier,
+    addressingSuffix,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,50 +1,36 @@
-
 # AFNORSearchSiretFilters
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`siret` | [AFNORSearchSiretFiltersSiret](AFNORSearchSiretFiltersSiret.md)
-`siren` | [AFNORSearchSirenFiltersSiren](AFNORSearchSirenFiltersSiren.md)
-`facilityType` | [AFNORSearchSiretFiltersFacilityType](AFNORSearchSiretFiltersFacilityType.md)
-`name` | [AFNORSearchSiretFiltersName](AFNORSearchSiretFiltersName.md)
-`addressLines` | [AFNORSearchSiretFiltersAddressLines](AFNORSearchSiretFiltersAddressLines.md)
-`postalCode` | [AFNORSearchSiretFiltersPostalCode](AFNORSearchSiretFiltersPostalCode.md)
-`countrySubdivision` | [AFNORSearchSiretFiltersCountrySubdivision](AFNORSearchSiretFiltersCountrySubdivision.md)
-`locality` | [AFNORSearchSiretFiltersLocality](AFNORSearchSiretFiltersLocality.md)
-`administrativeStatus` | [AFNORSearchSiretFiltersAdministrativeStatus](AFNORSearchSiretFiltersAdministrativeStatus.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**siret** | [**AFNORSearchSiretFiltersSiret**](AFNORSearchSiretFiltersSiret.md) |  | [optional] [default to undefined]
+**siren** | [**AFNORSearchSirenFiltersSiren**](AFNORSearchSirenFiltersSiren.md) |  | [optional] [default to undefined]
+**facilityType** | [**AFNORSearchSiretFiltersFacilityType**](AFNORSearchSiretFiltersFacilityType.md) |  | [optional] [default to undefined]
+**name** | [**AFNORSearchSiretFiltersName**](AFNORSearchSiretFiltersName.md) |  | [optional] [default to undefined]
+**addressLines** | [**AFNORSearchSiretFiltersAddressLines**](AFNORSearchSiretFiltersAddressLines.md) |  | [optional] [default to undefined]
+**postalCode** | [**AFNORSearchSiretFiltersPostalCode**](AFNORSearchSiretFiltersPostalCode.md) |  | [optional] [default to undefined]
+**countrySubdivision** | [**AFNORSearchSiretFiltersCountrySubdivision**](AFNORSearchSiretFiltersCountrySubdivision.md) |  | [optional] [default to undefined]
+**locality** | [**AFNORSearchSiretFiltersLocality**](AFNORSearchSiretFiltersLocality.md) |  | [optional] [default to undefined]
+**administrativeStatus** | [**AFNORSearchSiretFiltersAdministrativeStatus**](AFNORSearchSiretFiltersAdministrativeStatus.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORSearchSiretFilters } from ''
+import { AFNORSearchSiretFilters } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "siret": null,
-  "siren": null,
-  "facilityType": null,
-  "name": null,
-  "addressLines": null,
-  "postalCode": null,
-  "countrySubdivision": null,
-  "locality": null,
-  "administrativeStatus": null,
-} satisfies AFNORSearchSiretFilters
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORSearchSiretFilters
-console.log(exampleParsed)
+const instance: AFNORSearchSiretFilters = {
+    siret,
+    siren,
+    facilityType,
+    name,
+    addressLines,
+    postalCode,
+    countrySubdivision,
+    locality,
+    administrativeStatus,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,93 +1,79 @@
-
 # FacturXInvoice
 
 Data model for an invoice to be converted to Factur-X.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`invoiceNumber` | string
-`paymentDueDate` | string
-`invoiceDate` | string
-`submissionMode` | [SubmissionMode](SubmissionMode.md)
-`recipient` | [Recipient](Recipient.md)
-`supplier` | [Supplier](Supplier.md)
-`invoicingFramework` | [InvoicingFramework](InvoicingFramework.md)
-`references` | [InvoiceReferences](InvoiceReferences.md)
-`totals` | [InvoiceTotals](InvoiceTotals.md)
-`invoiceLines` | [Array&lt;InvoiceLine&gt;](InvoiceLine.md)
-`vatLines` | [Array&lt;VATLine&gt;](VATLine.md)
-`notes` | [Array&lt;InvoiceNote&gt;](InvoiceNote.md)
-`comment` | string
-`currentUserId` | number
-`supplementaryAttachments` | [Array&lt;SupplementaryAttachment&gt;](SupplementaryAttachment.md)
-`payee` | [Payee](Payee.md)
-`deliveryParty` | [DeliveryParty](DeliveryParty.md)
-`taxRepresentative` | [TaxRepresentative](TaxRepresentative.md)
-`deliveryDate` | string
-`billingPeriodStart` | string
-`billingPeriodEnd` | string
-`paymentReference` | string
-`creditorReferenceId` | string
-`directDebitMandateId` | string
-`debtorIban` | string
-`paymentTerms` | string
-`allowancesCharges` | [Array&lt;AllowanceCharge&gt;](AllowanceCharge.md)
-`additionalDocuments` | [Array&lt;AdditionalDocument&gt;](AdditionalDocument.md)
-`buyerAccountingReference` | string
-`paymentCard` | [PaymentCard](PaymentCard.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**invoice_number** | **string** |  | [default to undefined]
+**payment_due_date** | **string** |  | [default to undefined]
+**invoice_date** | **string** |  | [optional] [default to undefined]
+**submission_mode** | [**SubmissionMode**](SubmissionMode.md) |  | [default to undefined]
+**recipient** | [**Recipient**](Recipient.md) |  | [default to undefined]
+**supplier** | [**Supplier**](Supplier.md) |  | [default to undefined]
+**invoicing_framework** | [**InvoicingFramework**](InvoicingFramework.md) |  | [default to undefined]
+**references** | [**InvoiceReferences**](InvoiceReferences.md) |  | [default to undefined]
+**totals** | [**InvoiceTotals**](InvoiceTotals.md) |  | [default to undefined]
+**invoice_lines** | [**Array&lt;InvoiceLine&gt;**](InvoiceLine.md) |  | [optional] [default to undefined]
+**vat_lines** | [**Array&lt;VATLine&gt;**](VATLine.md) |  | [optional] [default to undefined]
+**notes** | [**Array&lt;InvoiceNote&gt;**](InvoiceNote.md) |  | [optional] [default to undefined]
+**comment** | **string** |  | [optional] [default to undefined]
+**current_user_id** | **number** |  | [optional] [default to undefined]
+**supplementary_attachments** | [**Array&lt;SupplementaryAttachment&gt;**](SupplementaryAttachment.md) |  | [optional] [default to undefined]
+**payee** | [**Payee**](Payee.md) |  | [optional] [default to undefined]
+**delivery_party** | [**DeliveryParty**](DeliveryParty.md) |  | [optional] [default to undefined]
+**tax_representative** | [**TaxRepresentative**](TaxRepresentative.md) |  | [optional] [default to undefined]
+**delivery_date** | **string** |  | [optional] [default to undefined]
+**billing_period_start** | **string** |  | [optional] [default to undefined]
+**billing_period_end** | **string** |  | [optional] [default to undefined]
+**payment_reference** | **string** |  | [optional] [default to undefined]
+**creditor_reference_id** | **string** |  | [optional] [default to undefined]
+**direct_debit_mandate_id** | **string** |  | [optional] [default to undefined]
+**debtor_iban** | **string** |  | [optional] [default to undefined]
+**payment_terms** | **string** |  | [optional] [default to undefined]
+**allowances_charges** | [**Array&lt;AllowanceCharge&gt;**](AllowanceCharge.md) |  | [optional] [default to undefined]
+**additional_documents** | [**Array&lt;AdditionalDocument&gt;**](AdditionalDocument.md) |  | [optional] [default to undefined]
+**buyer_accounting_reference** | **string** |  | [optional] [default to undefined]
+**payment_card** | [**PaymentCard**](PaymentCard.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { FacturXInvoice } from ''
+import { FacturXInvoice } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "invoiceNumber": null,
-  "paymentDueDate": null,
-  "invoiceDate": null,
-  "submissionMode": null,
-  "recipient": null,
-  "supplier": null,
-  "invoicingFramework": null,
-  "references": null,
-  "totals": null,
-  "invoiceLines": null,
-  "vatLines": null,
-  "notes": null,
-  "comment": null,
-  "currentUserId": null,
-  "supplementaryAttachments": null,
-  "payee": null,
-  "deliveryParty": null,
-  "taxRepresentative": null,
-  "deliveryDate": null,
-  "billingPeriodStart": null,
-  "billingPeriodEnd": null,
-  "paymentReference": null,
-  "creditorReferenceId": null,
-  "directDebitMandateId": null,
-  "debtorIban": null,
-  "paymentTerms": null,
-  "allowancesCharges": null,
-  "additionalDocuments": null,
-  "buyerAccountingReference": null,
-  "paymentCard": null,
-} satisfies FacturXInvoice
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as FacturXInvoice
-console.log(exampleParsed)
+const instance: FacturXInvoice = {
+    invoice_number,
+    payment_due_date,
+    invoice_date,
+    submission_mode,
+    recipient,
+    supplier,
+    invoicing_framework,
+    references,
+    totals,
+    invoice_lines,
+    vat_lines,
+    notes,
+    comment,
+    current_user_id,
+    supplementary_attachments,
+    payee,
+    delivery_party,
+    tax_representative,
+    delivery_date,
+    billing_period_start,
+    billing_period_end,
+    payment_reference,
+    creditor_reference_id,
+    direct_debit_mandate_id,
+    debtor_iban,
+    payment_terms,
+    allowances_charges,
+    additional_documents,
+    buyer_accounting_reference,
+    payment_card,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

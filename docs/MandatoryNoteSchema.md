@@ -1,47 +1,33 @@
-
 # MandatoryNoteSchema
 
 Mandatory note detected with location and XML/PDF comparison.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`subjectCode` | string
-`label` | string
-`pdfValue` | string
-`xmlValue` | string
-`status` | [FieldStatus](FieldStatus.md)
-`message` | string
-`bbox` | [BoundingBoxSchema](BoundingBoxSchema.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**subjectCode** | **string** | Subject code (PMT, PMD, AAB) | [default to undefined]
+**label** | **string** | Label (e.g., Recovery indemnity) | [default to undefined]
+**pdfValue** | **string** |  | [optional] [default to undefined]
+**xmlValue** | **string** |  | [optional] [default to undefined]
+**status** | [**FieldStatus**](FieldStatus.md) | Compliance status (COMPLIANT if XML found in PDF) | [optional] [default to undefined]
+**message** | **string** |  | [optional] [default to undefined]
+**bbox** | [**BoundingBoxSchema**](BoundingBoxSchema.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { MandatoryNoteSchema } from ''
+import { MandatoryNoteSchema } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "subjectCode": null,
-  "label": null,
-  "pdfValue": null,
-  "xmlValue": null,
-  "status": null,
-  "message": null,
-  "bbox": null,
-} satisfies MandatoryNoteSchema
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as MandatoryNoteSchema
-console.log(exampleParsed)
+const instance: MandatoryNoteSchema = {
+    subjectCode,
+    label,
+    pdfValue,
+    xmlValue,
+    status,
+    message,
+    bbox,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

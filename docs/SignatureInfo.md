@@ -1,39 +1,25 @@
-
 # SignatureInfo
 
 Information about the electronic signature.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`signed` | boolean
-`cn` | string
-`expiration` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**signed** | **boolean** | PDF was signed | [default to undefined]
+**cn** | **string** |  | [optional] [default to undefined]
+**expiration** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { SignatureInfo } from ''
+import { SignatureInfo } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "signed": null,
-  "cn": null,
-  "expiration": null,
-} satisfies SignatureInfo
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SignatureInfo
-console.log(exampleParsed)
+const instance: SignatureInfo = {
+    signed,
+    cn,
+    expiration,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

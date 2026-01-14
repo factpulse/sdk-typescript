@@ -1,34 +1,20 @@
-
 # AFNORUpdatePatchDirectoryLineBody
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`dateTo` | Date
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**dateTo** | **string** | Effective end date of the directory line. | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORUpdatePatchDirectoryLineBody } from ''
+import { AFNORUpdatePatchDirectoryLineBody } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "dateTo": 2023-01-31,
-} satisfies AFNORUpdatePatchDirectoryLineBody
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORUpdatePatchDirectoryLineBody
-console.log(exampleParsed)
+const instance: AFNORUpdatePatchDirectoryLineBody = {
+    dateTo,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

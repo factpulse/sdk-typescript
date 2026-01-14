@@ -1,51 +1,37 @@
-
 # SubmitCompleteInvoiceResponse
 
 Complete response after automated submission.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`success` | boolean
-`destinationType` | string
-`chorusResult` | [ChorusProResult](ChorusProResult.md)
-`afnorResult` | [AFNORResult](AFNORResult.md)
-`enrichedInvoice` | [EnrichedInvoiceInfo](EnrichedInvoiceInfo.md)
-`facturxPdf` | [FacturXPDFInfo](FacturXPDFInfo.md)
-`signature` | [SignatureInfo](SignatureInfo.md)
-`pdfBase64` | string
-`message` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**success** | **boolean** | Invoice was successfully submitted | [default to undefined]
+**destinationType** | **string** | Destination type | [default to undefined]
+**chorusResult** | [**ChorusProResult**](ChorusProResult.md) |  | [optional] [default to undefined]
+**afnorResult** | [**AFNORResult**](AFNORResult.md) |  | [optional] [default to undefined]
+**enrichedInvoice** | [**EnrichedInvoiceInfo**](EnrichedInvoiceInfo.md) | Enriched invoice data | [default to undefined]
+**facturxPdf** | [**FacturXPDFInfo**](FacturXPDFInfo.md) | Generated PDF information | [default to undefined]
+**signature** | [**SignatureInfo**](SignatureInfo.md) |  | [optional] [default to undefined]
+**pdfBase64** | **string** | Generated Factur-X PDF (and signed if requested) base64-encoded | [default to undefined]
+**message** | **string** | Return message | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { SubmitCompleteInvoiceResponse } from ''
+import { SubmitCompleteInvoiceResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "success": null,
-  "destinationType": null,
-  "chorusResult": null,
-  "afnorResult": null,
-  "enrichedInvoice": null,
-  "facturxPdf": null,
-  "signature": null,
-  "pdfBase64": null,
-  "message": null,
-} satisfies SubmitCompleteInvoiceResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SubmitCompleteInvoiceResponse
-console.log(exampleParsed)
+const instance: SubmitCompleteInvoiceResponse = {
+    success,
+    destinationType,
+    chorusResult,
+    afnorResult,
+    enrichedInvoice,
+    facturxPdf,
+    signature,
+    pdfBase64,
+    message,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

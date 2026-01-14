@@ -1,55 +1,41 @@
-
 # InvoiceTotals
 
 Contains all invoice total amounts (BG-22).
 
 ## Properties
 
-Name | Type
------------- | -------------
-`lineTotalAmount` | [LineTotalAmount](LineTotalAmount.md)
-`allowanceTotalAmount` | [AllowanceTotalAmount](AllowanceTotalAmount.md)
-`chargeTotalAmount` | [ChargeTotalAmount](ChargeTotalAmount.md)
-`totalNetAmount` | [TotalNetAmount](TotalNetAmount.md)
-`vatAmount` | [TotalVATAmount](TotalVATAmount.md)
-`totalGrossAmount` | [TotalGrossAmount](TotalGrossAmount.md)
-`prepayment` | [InvoiceTotalsPrepayment](InvoiceTotalsPrepayment.md)
-`roundingAmount` | [RoundingAmount](RoundingAmount.md)
-`amountDue` | [AmountDue](AmountDue.md)
-`globalAllowanceAmount` | [GlobalAllowanceAmount](GlobalAllowanceAmount.md)
-`globalAllowanceReason` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**line_total_amount** | [**LineTotalAmount**](LineTotalAmount.md) |  | [optional] [default to undefined]
+**allowance_total_amount** | [**AllowanceTotalAmount**](AllowanceTotalAmount.md) |  | [optional] [default to undefined]
+**charge_total_amount** | [**ChargeTotalAmount**](ChargeTotalAmount.md) |  | [optional] [default to undefined]
+**total_net_amount** | [**TotalNetAmount**](TotalNetAmount.md) |  | [default to undefined]
+**vat_amount** | [**TotalVATAmount**](TotalVATAmount.md) |  | [default to undefined]
+**total_gross_amount** | [**TotalGrossAmount**](TotalGrossAmount.md) |  | [default to undefined]
+**prepayment** | [**InvoiceTotalsPrepayment**](InvoiceTotalsPrepayment.md) |  | [optional] [default to undefined]
+**rounding_amount** | [**RoundingAmount**](RoundingAmount.md) |  | [optional] [default to undefined]
+**amount_due** | [**AmountDue**](AmountDue.md) |  | [default to undefined]
+**globalAllowanceAmount** | [**GlobalAllowanceAmount**](GlobalAllowanceAmount.md) |  | [optional] [default to undefined]
+**globalAllowanceReason** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { InvoiceTotals } from ''
+import { InvoiceTotals } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "lineTotalAmount": null,
-  "allowanceTotalAmount": null,
-  "chargeTotalAmount": null,
-  "totalNetAmount": null,
-  "vatAmount": null,
-  "totalGrossAmount": null,
-  "prepayment": null,
-  "roundingAmount": null,
-  "amountDue": null,
-  "globalAllowanceAmount": null,
-  "globalAllowanceReason": null,
-} satisfies InvoiceTotals
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as InvoiceTotals
-console.log(exampleParsed)
+const instance: InvoiceTotals = {
+    line_total_amount,
+    allowance_total_amount,
+    charge_total_amount,
+    total_net_amount,
+    vat_amount,
+    total_gross_amount,
+    prepayment,
+    rounding_amount,
+    amount_due,
+    globalAllowanceAmount,
+    globalAllowanceReason,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

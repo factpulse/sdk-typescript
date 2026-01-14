@@ -1,49 +1,35 @@
-
 # AFNORResult
 
 Result of submission to AFNOR PDP.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`flowId` | string
-`trackingId` | string
-`sha256` | string
-`flowSyntax` | string
-`flowProfile` | string
-`flowType` | string
-`processingRule` | string
-`processingRuleSource` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**flowId** | **string** | Submitted flow identifier | [default to undefined]
+**trackingId** | **string** |  | [optional] [default to undefined]
+**sha256** | **string** | SHA-256 hash of submitted file | [default to undefined]
+**flowSyntax** | **string** | Flow syntax | [default to undefined]
+**flowProfile** | **string** |  | [optional] [default to undefined]
+**flowType** | **string** |  | [optional] [default to undefined]
+**processingRule** | **string** |  | [optional] [default to undefined]
+**processingRuleSource** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORResult } from ''
+import { AFNORResult } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "flowId": null,
-  "trackingId": null,
-  "sha256": null,
-  "flowSyntax": null,
-  "flowProfile": null,
-  "flowType": null,
-  "processingRule": null,
-  "processingRuleSource": null,
-} satisfies AFNORResult
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORResult
-console.log(exampleParsed)
+const instance: AFNORResult = {
+    flowId,
+    trackingId,
+    sha256,
+    flowSyntax,
+    flowProfile,
+    flowType,
+    processingRule,
+    processingRuleSource,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,43 +1,29 @@
-
 # SubmitCompleteInvoiceRequest
 
 Request to submit a complete invoice (generation + submission).  Workflow: 1. Auto-enrichment (optional) 2. Factur-X PDF generation 3. Signature (optional) 4. Submission to destination
 
 ## Properties
 
-Name | Type
------------- | -------------
-`invoiceData` | [SimplifiedInvoiceData](SimplifiedInvoiceData.md)
-`sourcePdf` | string
-`destination` | [Destination](Destination.md)
-`signature` | [SignatureParameters](SignatureParameters.md)
-`options` | [ProcessingOptions](ProcessingOptions.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**invoiceData** | [**SimplifiedInvoiceData**](SimplifiedInvoiceData.md) | Invoice data in simplified format (see examples) | [default to undefined]
+**sourcePdf** | **string** | Base64-encoded source PDF (will be transformed to Factur-X) | [default to undefined]
+**destination** | [**Destination**](Destination.md) |  | [default to undefined]
+**signature** | [**SignatureParameters**](SignatureParameters.md) |  | [optional] [default to undefined]
+**_options** | [**ProcessingOptions**](ProcessingOptions.md) | Processing options | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { SubmitCompleteInvoiceRequest } from ''
+import { SubmitCompleteInvoiceRequest } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "invoiceData": null,
-  "sourcePdf": null,
-  "destination": null,
-  "signature": null,
-  "options": null,
-} satisfies SubmitCompleteInvoiceRequest
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SubmitCompleteInvoiceRequest
-console.log(exampleParsed)
+const instance: SubmitCompleteInvoiceRequest = {
+    invoiceData,
+    sourcePdf,
+    destination,
+    signature,
+    _options,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

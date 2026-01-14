@@ -1,50 +1,36 @@
-
 # AFNORFacilityPayloadHistory
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`siret` | string
-`siren` | string
-`name` | string
-`facilityType` | [AFNORFacilityType](AFNORFacilityType.md)
-`diffusible` | [AFNORDiffusionStatus](AFNORDiffusionStatus.md)
-`administrativeStatus` | [AFNORFacilityAdministrativeStatus](AFNORFacilityAdministrativeStatus.md)
-`address` | [AFNORAddressRead](AFNORAddressRead.md)
-`b2gAdditionalData` | [AFNORFacilityPayloadHistoryUleB2gAdditionalData](AFNORFacilityPayloadHistoryUleB2gAdditionalData.md)
-`legalUnit` | [AFNORLegalUnitPayloadIncludedNoSiren](AFNORLegalUnitPayloadIncludedNoSiren.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**siret** | **string** | SIRET Number | [optional] [default to undefined]
+**siren** | **string** | SIREN number | [optional] [default to undefined]
+**name** | **string** | business name | [optional] [default to undefined]
+**facilityType** | [**AFNORFacilityType**](AFNORFacilityType.md) |  | [optional] [default to undefined]
+**diffusible** | [**AFNORDiffusionStatus**](AFNORDiffusionStatus.md) |  | [optional] [default to undefined]
+**administrativeStatus** | [**AFNORFacilityAdministrativeStatus**](AFNORFacilityAdministrativeStatus.md) |  | [optional] [default to undefined]
+**address** | [**AFNORAddressRead**](AFNORAddressRead.md) |  | [optional] [default to undefined]
+**b2gAdditionalData** | [**AFNORFacilityPayloadHistoryUleB2gAdditionalData**](AFNORFacilityPayloadHistoryUleB2gAdditionalData.md) |  | [optional] [default to undefined]
+**legalUnit** | [**AFNORLegalUnitPayloadIncludedNoSiren**](AFNORLegalUnitPayloadIncludedNoSiren.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORFacilityPayloadHistory } from ''
+import { AFNORFacilityPayloadHistory } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "siret": 70204275500240,
-  "siren": 702042755,
-  "name": Boulangerie Pascale,
-  "facilityType": null,
-  "diffusible": null,
-  "administrativeStatus": null,
-  "address": null,
-  "b2gAdditionalData": null,
-  "legalUnit": null,
-} satisfies AFNORFacilityPayloadHistory
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORFacilityPayloadHistory
-console.log(exampleParsed)
+const instance: AFNORFacilityPayloadHistory = {
+    siret,
+    siren,
+    name,
+    facilityType,
+    diffusible,
+    administrativeStatus,
+    address,
+    b2gAdditionalData,
+    legalUnit,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

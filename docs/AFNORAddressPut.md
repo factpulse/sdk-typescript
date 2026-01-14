@@ -1,47 +1,33 @@
-
 # AFNORAddressPut
 
 Wrapper for postal addresses
 
 ## Properties
 
-Name | Type
------------- | -------------
-`ligneAdresse1` | string
-`ligneAdresse2` | string
-`ligneAdresse3` | string
-`postalCode` | string
-`countrySubdivision` | string
-`locality` | string
-`codePays` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**ligneAdresse1** | **string** | Corresponds to the address of the recipient structure having defined the directory line(s). | [default to undefined]
+**ligneAdresse2** | **string** | Corresponds to the address of the recipient structure having defined the directory line(s). | [default to undefined]
+**ligneAdresse3** | **string** | Corresponds to the address of the recipient structure having defined the directory line(s). | [default to undefined]
+**postalCode** | **string** | Service postal code | [default to undefined]
+**countrySubdivision** | **string** | Subdivision of the country | [default to undefined]
+**locality** | **string** | Corresponds to the municipality of the recipient structure having defined the directory line(s). | [default to undefined]
+**codePays** | **string** | Corresponds to the country code of the recipient structure | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORAddressPut } from ''
+import { AFNORAddressPut } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "ligneAdresse1": 16 BIS RUE HENRI BARBUSSE,
-  "ligneAdresse2": CEDEX 1,
-  "ligneAdresse3": Bâtiment le Callipso,
-  "postalCode": 38100,
-  "countrySubdivision": Bretagne,
-  "locality": Grenoble,
-  "codePays": FR,
-} satisfies AFNORAddressPut
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORAddressPut
-console.log(exampleParsed)
+const instance: AFNORAddressPut = {
+    ligneAdresse1,
+    ligneAdresse2,
+    ligneAdresse3,
+    postalCode,
+    countrySubdivision,
+    locality,
+    codePays,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

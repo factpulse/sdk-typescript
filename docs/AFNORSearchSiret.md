@@ -1,44 +1,30 @@
-
 # AFNORSearchSiret
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`filters` | [AFNORSearchSiretFilters](AFNORSearchSiretFilters.md)
-`sorting` | [Array&lt;AFNORSearchSiretSortingInner&gt;](AFNORSearchSiretSortingInner.md)
-`fields` | [Array&lt;AFNORSiretField&gt;](AFNORSiretField.md)
-`include` | Array&lt;string&gt;
-`limit` | number
-`ignore` | number
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**filters** | [**AFNORSearchSiretFilters**](AFNORSearchSiretFilters.md) |  | [optional] [default to undefined]
+**sorting** | [**Array&lt;AFNORSearchSiretSortingInner&gt;**](AFNORSearchSiretSortingInner.md) | Sorting criteria on a field and an order (ascending or descending). | [optional] [default to undefined]
+**fields** | [**Array&lt;AFNORSiretField&gt;**](AFNORSiretField.md) | Allows you to filter the desired fields in the response. | [optional] [default to undefined]
+**include** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
+**limit** | **number** | Maximum number of results | [optional] [default to undefined]
+**ignore** | **number** | Number of results to skip | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORSearchSiret } from ''
+import { AFNORSearchSiret } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "filters": null,
-  "sorting": [{champ=siret, order=ascending}, {champ=name, order=descending}],
-  "fields": [siret, siren, name, facilityType, address, diffusible, administrativeStatus, pmStatus, pmOnly, managesPaymentStatus, managesLegalCommitment, managesLegalCommitmentOrService, serviceCodeStatus, idInstance],
-  "include": [siren],
-  "limit": 50,
-  "ignore": 20,
-} satisfies AFNORSearchSiret
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORSearchSiret
-console.log(exampleParsed)
+const instance: AFNORSearchSiret = {
+    filters,
+    sorting,
+    fields,
+    include,
+    limit,
+    ignore,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

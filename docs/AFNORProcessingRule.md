@@ -1,33 +1,19 @@
-
 # AFNORProcessingRule
 
 - B2B                 : e-invoicing - B2BInt              : International B2B e-reporting - B2C                 : B2C e-reporting - OutOfScope          : Out of scope (not regulated flow) - ArchiveOnly         : Archive only, no transmission - NotApplicable       : Not Applicable 
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `B2B` (value: `'B2B'`)
 
-## Example
+* `B2BInt` (value: `'B2BInt'`)
 
-```typescript
-import type { AFNORProcessingRule } from ''
+* `B2C` (value: `'B2C'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies AFNORProcessingRule
+* `OutOfScope` (value: `'OutOfScope'`)
 
-console.log(example)
+* `ArchiveOnly` (value: `'ArchiveOnly'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
+* `NotApplicable` (value: `'NotApplicable'`)
 
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORProcessingRule
-console.log(exampleParsed)
-```
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

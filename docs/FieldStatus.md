@@ -1,33 +1,17 @@
-
 # FieldStatus
 
 Field compliance status.
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `Compliant` (value: `'COMPLIANT'`)
 
-## Example
+* `Discrepancy` (value: `'DISCREPANCY'`)
 
-```typescript
-import type { FieldStatus } from ''
+* `MissingInPdf` (value: `'MISSING_IN_PDF'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies FieldStatus
+* `MissingInXml` (value: `'MISSING_IN_XML'`)
 
-console.log(example)
+* `NotVerified` (value: `'NOT_VERIFIED'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as FieldStatus
-console.log(exampleParsed)
-```
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

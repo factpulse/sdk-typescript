@@ -1,38 +1,24 @@
-
 # AFNORSiretSearchPost200Response
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`search` | [AFNORSearchSiret](AFNORSearchSiret.md)
-`totalNumberOfResults` | number
-`results` | [Array&lt;AFNORFacilityPayloadHistory&gt;](AFNORFacilityPayloadHistory.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**search** | [**AFNORSearchSiret**](AFNORSearchSiret.md) |  | [optional] [default to undefined]
+**totalNumberOfResults** | **number** | The total number of results | [optional] [default to undefined]
+**results** | [**Array&lt;AFNORFacilityPayloadHistory&gt;**](AFNORFacilityPayloadHistory.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORSiretSearchPost200Response } from ''
+import { AFNORSiretSearchPost200Response } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "search": null,
-  "totalNumberOfResults": 1500,
-  "results": null,
-} satisfies AFNORSiretSearchPost200Response
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORSiretSearchPost200Response
-console.log(exampleParsed)
+const instance: AFNORSiretSearchPost200Response = {
+    search,
+    totalNumberOfResults,
+    results,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

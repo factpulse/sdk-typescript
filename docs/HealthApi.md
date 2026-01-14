@@ -2,49 +2,33 @@
 
 All URIs are relative to *https://factpulse.fr*
 
-| Method | HTTP request | Description |
+|Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-| [**healthcheckHealthcheckGet**](HealthApi.md#healthcheckhealthcheckget) | **GET** /healthcheck | Docker healthcheck endpoint |
-| [**rootGet**](HealthApi.md#rootget) | **GET** / | Check API status |
+|[**healthcheckHealthcheckGet**](#healthcheckhealthcheckget) | **GET** /healthcheck | Docker healthcheck endpoint|
+|[**rootGet**](#rootget) | **GET** / | Check API status|
 
-
-
-## healthcheckHealthcheckGet
-
+# **healthcheckHealthcheckGet**
 > any healthcheckHealthcheckGet()
-
-Docker healthcheck endpoint
 
 Healthcheck endpoint for Docker and load balancers.  Useful for: - Docker healthcheck - Kubernetes liveness/readiness probes - Load balancers (Nginx, HAProxy) - Availability monitoring - Zero downtime deployment  Returns a 200 code if the API is operational.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  HealthApi,
-} from '';
-import type { HealthcheckHealthcheckGetRequest } from '';
+    HealthApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new HealthApi();
+const configuration = new Configuration();
+const apiInstance = new HealthApi(configuration);
 
-  try {
-    const data = await api.healthcheckHealthcheckGet();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.healthcheckHealthcheckGet();
 ```
 
 ### Parameters
+This endpoint does not have any parameters.
 
-This endpoint does not need any parameter.
 
 ### Return type
 
@@ -56,55 +40,40 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | API is healthy |  -  |
-| **500** | Internal server error |  -  |
+|**200** | API is healthy |  -  |
+|**500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## rootGet
-
+# **rootGet**
 > any rootGet()
-
-Check API status
 
 Health check endpoint to verify the API is responding.  Useful for: - Availability monitoring - Integration tests - Load balancers
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  HealthApi,
-} from '';
-import type { RootGetRequest } from '';
+    HealthApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new HealthApi();
+const configuration = new Configuration();
+const apiInstance = new HealthApi(configuration);
 
-  try {
-    const data = await api.rootGet();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.rootGet();
 ```
 
 ### Parameters
+This endpoint does not have any parameters.
 
-This endpoint does not need any parameter.
 
 ### Return type
 
@@ -116,15 +85,15 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | API is operational |  -  |
-| **500** | Internal server error |  -  |
+|**200** | API is operational |  -  |
+|**500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

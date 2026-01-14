@@ -1,47 +1,33 @@
-
 # GenerateAggregatedReportResponse
 
 Response after generating an aggregated e-reporting XML.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`reportId` | string
-`transmissionType` | string
-`flowType` | string
-`xml` | string
-`xmlSize` | number
-`contentSummary` | { [key: string]: any; }
-`message` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**reportId** | **string** | Report identifier | [default to undefined]
+**transmissionType** | **string** | Transmission type (IN or RE) | [default to undefined]
+**flowType** | **string** | AFNOR FlowType determined from content | [default to undefined]
+**xml** | **string** | Generated XML content | [default to undefined]
+**xmlSize** | **number** | XML size in bytes | [default to undefined]
+**contentSummary** | **{ [key: string]: any; }** | Summary of content (counts by flux type) | [default to undefined]
+**message** | **string** | Status message | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { GenerateAggregatedReportResponse } from ''
+import { GenerateAggregatedReportResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "reportId": null,
-  "transmissionType": null,
-  "flowType": null,
-  "xml": null,
-  "xmlSize": null,
-  "contentSummary": null,
-  "message": null,
-} satisfies GenerateAggregatedReportResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as GenerateAggregatedReportResponse
-console.log(exampleParsed)
+const instance: GenerateAggregatedReportResponse = {
+    reportId,
+    transmissionType,
+    flowType,
+    xml,
+    xmlSize,
+    contentSummary,
+    message,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

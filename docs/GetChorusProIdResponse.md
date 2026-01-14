@@ -1,41 +1,27 @@
-
 # GetChorusProIdResponse
 
 Found Chorus Pro ID.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`structureId` | number
-`structureIdentifier` | string
-`structureName` | string
-`message` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**structureId** | **number** | Chorus Pro ID (0 if not found) | [default to undefined]
+**structureIdentifier** | **string** | Searched SIRET/SIREN | [default to undefined]
+**structureName** | **string** |  | [optional] [default to undefined]
+**message** | **string** | Return message | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { GetChorusProIdResponse } from ''
+import { GetChorusProIdResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "structureId": null,
-  "structureIdentifier": null,
-  "structureName": null,
-  "message": null,
-} satisfies GetChorusProIdResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as GetChorusProIdResponse
-console.log(exampleParsed)
+const instance: GetChorusProIdResponse = {
+    structureId,
+    structureIdentifier,
+    structureName,
+    message,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

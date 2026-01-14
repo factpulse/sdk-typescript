@@ -1,45 +1,31 @@
-
 # ValidateEReportingResponse
 
 Response after validating e-reporting data.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`valid` | boolean
-`reportId` | string
-`flowType` | string
-`errors` | [Array&lt;FactureElectroniqueRestApiSchemasEreportingValidationError&gt;](FactureElectroniqueRestApiSchemasEreportingValidationError.md)
-`warnings` | [Array&lt;FactureElectroniqueRestApiSchemasEreportingValidationError&gt;](FactureElectroniqueRestApiSchemasEreportingValidationError.md)
-`message` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**valid** | **boolean** | Whether the data is valid | [default to undefined]
+**reportId** | **string** | Report identifier | [default to undefined]
+**flowType** | **string** | Flux type | [default to undefined]
+**errors** | [**Array&lt;ValidationError&gt;**](ValidationError.md) | List of validation errors (if any) | [optional] [default to undefined]
+**warnings** | [**Array&lt;ValidationError&gt;**](ValidationError.md) | List of validation warnings (if any) | [optional] [default to undefined]
+**message** | **string** | Status message | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { ValidateEReportingResponse } from ''
+import { ValidateEReportingResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "valid": null,
-  "reportId": null,
-  "flowType": null,
-  "errors": null,
-  "warnings": null,
-  "message": null,
-} satisfies ValidateEReportingResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ValidateEReportingResponse
-console.log(exampleParsed)
+const instance: ValidateEReportingResponse = {
+    valid,
+    reportId,
+    flowType,
+    errors,
+    warnings,
+    message,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

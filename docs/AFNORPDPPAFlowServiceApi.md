@@ -2,66 +2,49 @@
 
 All URIs are relative to *https://factpulse.fr*
 
-| Method | HTTP request | Description |
+|Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-| [**downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet**](AFNORPDPPAFlowServiceApi.md#downloadflowproxyapiv1afnorflowv1flowsflowidget) | **GET** /api/v1/afnor/flow/v1/flows/{flowId} | Download a flow |
-| [**flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet**](AFNORPDPPAFlowServiceApi.md#flowhealthcheckproxyapiv1afnorflowv1healthcheckget) | **GET** /api/v1/afnor/flow/v1/healthcheck | Healthcheck Flow Service |
-| [**searchFlowsProxyApiV1AfnorFlowV1FlowsSearchPost**](AFNORPDPPAFlowServiceApi.md#searchflowsproxyapiv1afnorflowv1flowssearchpost) | **POST** /api/v1/afnor/flow/v1/flows/search | Search flows |
-| [**submitFlowProxyApiV1AfnorFlowV1FlowsPost**](AFNORPDPPAFlowServiceApi.md#submitflowproxyapiv1afnorflowv1flowspost) | **POST** /api/v1/afnor/flow/v1/flows | Submit an invoicing flow |
+|[**downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet**](#downloadflowproxyapiv1afnorflowv1flowsflowidget) | **GET** /api/v1/afnor/flow/v1/flows/{flowId} | Download a flow|
+|[**flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet**](#flowhealthcheckproxyapiv1afnorflowv1healthcheckget) | **GET** /api/v1/afnor/flow/v1/healthcheck | Healthcheck Flow Service|
+|[**searchFlowsProxyApiV1AfnorFlowV1FlowsSearchPost**](#searchflowsproxyapiv1afnorflowv1flowssearchpost) | **POST** /api/v1/afnor/flow/v1/flows/search | Search flows|
+|[**submitFlowProxyApiV1AfnorFlowV1FlowsPost**](#submitflowproxyapiv1afnorflowv1flowspost) | **POST** /api/v1/afnor/flow/v1/flows | Submit an invoicing flow|
 
-
-
-## downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet
-
-> AFNORFlow downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet(flowId, docType)
-
-Download a flow
+# **downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet**
+> AFNORFlow downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet()
 
 Download a file related to a given flow (AFNOR XP Z12-013 compliant): - Metadata [Default]: provides the flow metadata as JSON - Original: the document initially sent by the emitter - Converted: the document optionally converted by the system - ReadableView: the document optionally generated as readable file
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPAFlowServiceApi,
-} from '';
-import type { DownloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGetRequest } from '';
+    AFNORPDPPAFlowServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new AFNORPDPPAFlowServiceApi();
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPAFlowServiceApi(configuration);
 
-  const body = {
-    // string | AFNOR flow identifier (UUID)
-    flowId: flowId_example,
-    // DocType | Type of file to download: Metadata (default, JSON), Original, Converted, or ReadableView (optional)
-    docType: ...,
-  } satisfies DownloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGetRequest;
+let flowId: string; //AFNOR flow identifier (UUID) (default to undefined)
+let docType: DocType; //Type of file to download: Metadata (default, JSON), Original, Converted, or ReadableView (optional) (default to undefined)
 
-  try {
-    const data = await api.downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet(
+    flowId,
+    docType
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **flowId** | `string` | AFNOR flow identifier (UUID) | [Defaults to `undefined`] |
-| **docType** | `DocType` | Type of file to download: Metadata (default, JSON), Original, Converted, or ReadableView | [Optional] [Defaults to `undefined`] [Enum: Metadata, Original, Converted, ReadableView] |
+| **flowId** | [**string**] | AFNOR flow identifier (UUID) | defaults to undefined|
+| **docType** | **DocType** | Type of file to download: Metadata (default, JSON), Original, Converted, or ReadableView | (optional) defaults to undefined|
+
 
 ### Return type
 
-[**AFNORFlow**](AFNORFlow.md)
+**AFNORFlow**
 
 ### Authorization
 
@@ -69,62 +52,47 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`, `application/pdf`, `application/xml`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/pdf, application/xml
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK - Flow file or metadata returned |  -  |
-| **400** | Bad request - Invalid input parameters |  -  |
-| **401** | Authentication error - Missing or invalid token |  -  |
-| **403** | Forbidden - Insufficient permissions |  -  |
-| **404** | Resource not found |  -  |
-| **429** | Too many requests - Rate limit exceeded |  -  |
-| **500** | Internal server error |  -  |
-| **503** | Service unavailable - PDP temporarily unavailable |  -  |
-| **422** | Validation Error |  -  |
+|**200** | OK - Flow file or metadata returned |  -  |
+|**400** | Bad request - Invalid input parameters |  -  |
+|**401** | Authentication error - Missing or invalid token |  -  |
+|**403** | Forbidden - Insufficient permissions |  -  |
+|**404** | Resource not found |  -  |
+|**429** | Too many requests - Rate limit exceeded |  -  |
+|**500** | Internal server error |  -  |
+|**503** | Service unavailable - PDP temporarily unavailable |  -  |
+|**422** | Validation Error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet
-
+# **flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet**
 > object flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet()
-
-Healthcheck Flow Service
 
 Check Flow Service availability (AFNOR XP Z12-013 compliant)
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPAFlowServiceApi,
-} from '';
-import type { FlowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGetRequest } from '';
+    AFNORPDPPAFlowServiceApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new AFNORPDPPAFlowServiceApi();
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPAFlowServiceApi(configuration);
 
-  try {
-    const data = await api.flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet();
 ```
 
 ### Parameters
+This endpoint does not have any parameters.
 
-This endpoint does not need any parameter.
 
 ### Return type
 
@@ -136,68 +104,53 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK - Service is operational |  -  |
-| **500** | Internal server error |  -  |
-| **503** | Service unavailable - PDP temporarily unavailable |  -  |
+|**200** | OK - Service is operational |  -  |
+|**500** | Internal server error |  -  |
+|**503** | Service unavailable - PDP temporarily unavailable |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## searchFlowsProxyApiV1AfnorFlowV1FlowsSearchPost
-
+# **searchFlowsProxyApiV1AfnorFlowV1FlowsSearchPost**
 > AFNORSearchFlowContent searchFlowsProxyApiV1AfnorFlowV1FlowsSearchPost(aFNORSearchFlowParams)
-
-Search flows
 
 Search invoicing flows by criteria (AFNOR XP Z12-013 compliant)
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPAFlowServiceApi,
-} from '';
-import type { SearchFlowsProxyApiV1AfnorFlowV1FlowsSearchPostRequest } from '';
+    AFNORPDPPAFlowServiceApi,
+    Configuration,
+    AFNORSearchFlowParams
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new AFNORPDPPAFlowServiceApi();
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPAFlowServiceApi(configuration);
 
-  const body = {
-    // AFNORSearchFlowParams
-    aFNORSearchFlowParams: ...,
-  } satisfies SearchFlowsProxyApiV1AfnorFlowV1FlowsSearchPostRequest;
+let aFNORSearchFlowParams: AFNORSearchFlowParams; //
 
-  try {
-    const data = await api.searchFlowsProxyApiV1AfnorFlowV1FlowsSearchPost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.searchFlowsProxyApiV1AfnorFlowV1FlowsSearchPost(
+    aFNORSearchFlowParams
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **aFNORSearchFlowParams** | [AFNORSearchFlowParams](AFNORSearchFlowParams.md) |  | |
+| **aFNORSearchFlowParams** | **AFNORSearchFlowParams**|  | |
+
 
 ### Return type
 
-[**AFNORSearchFlowContent**](AFNORSearchFlowContent.md)
+**AFNORSearchFlowContent**
 
 ### Authorization
 
@@ -205,71 +158,56 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK - Search results returned |  -  |
-| **400** | Bad request - Invalid input parameters |  -  |
-| **401** | Authentication error - Missing or invalid token |  -  |
-| **403** | Forbidden - Insufficient permissions |  -  |
-| **429** | Too many requests - Rate limit exceeded |  -  |
-| **500** | Internal server error |  -  |
-| **503** | Service unavailable - PDP temporarily unavailable |  -  |
+|**200** | OK - Search results returned |  -  |
+|**400** | Bad request - Invalid input parameters |  -  |
+|**401** | Authentication error - Missing or invalid token |  -  |
+|**403** | Forbidden - Insufficient permissions |  -  |
+|**429** | Too many requests - Rate limit exceeded |  -  |
+|**500** | Internal server error |  -  |
+|**503** | Service unavailable - PDP temporarily unavailable |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-
-## submitFlowProxyApiV1AfnorFlowV1FlowsPost
-
-> any submitFlowProxyApiV1AfnorFlowV1FlowsPost(flowInfo, file)
-
-Submit an invoicing flow
+# **submitFlowProxyApiV1AfnorFlowV1FlowsPost**
+> any submitFlowProxyApiV1AfnorFlowV1FlowsPost()
 
 Submits an electronic invoice to a Partner Dematerialization Platform (PDP) in compliance with the AFNOR XP Z12-013 standard
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  AFNORPDPPAFlowServiceApi,
-} from '';
-import type { SubmitFlowProxyApiV1AfnorFlowV1FlowsPostRequest } from '';
+    AFNORPDPPAFlowServiceApi,
+    Configuration,
+    AFNORFlowInfo
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const api = new AFNORPDPPAFlowServiceApi();
+const configuration = new Configuration();
+const apiInstance = new AFNORPDPPAFlowServiceApi(configuration);
 
-  const body = {
-    // AFNORFlowInfo
-    flowInfo: ...,
-    // Blob | Flow file (PDF/A-3 with embedded XML or XML)
-    file: BINARY_DATA_HERE,
-  } satisfies SubmitFlowProxyApiV1AfnorFlowV1FlowsPostRequest;
+let flowInfo: AFNORFlowInfo; // (default to undefined)
+let file: File; //Flow file (PDF/A-3 with embedded XML or XML) (default to undefined)
 
-  try {
-    const data = await api.submitFlowProxyApiV1AfnorFlowV1FlowsPost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.submitFlowProxyApiV1AfnorFlowV1FlowsPost(
+    flowInfo,
+    file
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **flowInfo** | [AFNORFlowInfo](AFNORFlowInfo.md) |  | [Defaults to `undefined`] |
-| **file** | `Blob` | Flow file (PDF/A-3 with embedded XML or XML) | [Defaults to `undefined`] |
+| **flowInfo** | **AFNORFlowInfo** |  | defaults to undefined|
+| **file** | [**File**] | Flow file (PDF/A-3 with embedded XML or XML) | defaults to undefined|
+
 
 ### Return type
 
@@ -281,24 +219,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: `multipart/form-data`
-- **Accept**: `application/json`
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
-| **202** | OK - Flow has been uploaded and accepted for processing |  -  |
-| **400** | Bad request - Invalid input parameters |  -  |
-| **401** | Authentication error - Missing or invalid token |  -  |
-| **403** | Forbidden - Insufficient permissions |  -  |
-| **404** | Resource not found |  -  |
-| **413** | Payload too large - File exceeds maximum size |  -  |
-| **422** | Unprocessable entity - Business rule validation failed |  -  |
-| **429** | Too many requests - Rate limit exceeded |  -  |
-| **500** | Internal server error |  -  |
-| **503** | Service unavailable - PDP temporarily unavailable |  -  |
+|**200** | Successful Response |  -  |
+|**202** | OK - Flow has been uploaded and accepted for processing |  -  |
+|**400** | Bad request - Invalid input parameters |  -  |
+|**401** | Authentication error - Missing or invalid token |  -  |
+|**403** | Forbidden - Insufficient permissions |  -  |
+|**404** | Resource not found |  -  |
+|**413** | Payload too large - File exceeds maximum size |  -  |
+|**422** | Unprocessable entity - Business rule validation failed |  -  |
+|**429** | Too many requests - Rate limit exceeded |  -  |
+|**500** | Internal server error |  -  |
+|**503** | Service unavailable - PDP temporarily unavailable |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

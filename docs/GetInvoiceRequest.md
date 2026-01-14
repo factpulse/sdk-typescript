@@ -1,37 +1,23 @@
-
 # GetInvoiceRequest
 
 Get an invoice.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`credentials` | [ChorusProCredentials](ChorusProCredentials.md)
-`chorusInvoiceId` | number
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**credentials** | [**ChorusProCredentials**](ChorusProCredentials.md) |  | [optional] [default to undefined]
+**chorusInvoiceId** | **number** | Chorus Pro invoice ID | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { GetInvoiceRequest } from ''
+import { GetInvoiceRequest } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "credentials": null,
-  "chorusInvoiceId": null,
-} satisfies GetInvoiceRequest
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as GetInvoiceRequest
-console.log(exampleParsed)
+const instance: GetInvoiceRequest = {
+    credentials,
+    chorusInvoiceId,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,33 +1,83 @@
-
 # AllowanceChargeReasonCode
 
 Standardized reason codes for document-level allowances and charges.  Codes from UNTDID 5189 (allowances) and UNTDID 7161 (charges).
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `_41` (value: `'41'`)
 
-## Example
+* `_42` (value: `'42'`)
 
-```typescript
-import type { AllowanceChargeReasonCode } from ''
+* `_60` (value: `'60'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies AllowanceChargeReasonCode
+* `_62` (value: `'62'`)
 
-console.log(example)
+* `_63` (value: `'63'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
+* `_64` (value: `'64'`)
 
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AllowanceChargeReasonCode
-console.log(exampleParsed)
-```
+* `_65` (value: `'65'`)
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+* `_66` (value: `'66'`)
 
+* `_67` (value: `'67'`)
 
+* `_68` (value: `'68'`)
+
+* `_70` (value: `'70'`)
+
+* `_71` (value: `'71'`)
+
+* `_88` (value: `'88'`)
+
+* `_95` (value: `'95'`)
+
+* `_100` (value: `'100'`)
+
+* `_102` (value: `'102'`)
+
+* `_103` (value: `'103'`)
+
+* `_104` (value: `'104'`)
+
+* `_105` (value: `'105'`)
+
+* `Aa` (value: `'AA'`)
+
+* `Aaa` (value: `'AAA'`)
+
+* `Aac` (value: `'AAC'`)
+
+* `Aad` (value: `'AAD'`)
+
+* `Aae` (value: `'AAE'`)
+
+* `Aah` (value: `'AAH'`)
+
+* `Aai` (value: `'AAI'`)
+
+* `Aas` (value: `'AAS'`)
+
+* `Abk` (value: `'ABK'`)
+
+* `Abl` (value: `'ABL'`)
+
+* `Abn` (value: `'ABN'`)
+
+* `Abr` (value: `'ABR'`)
+
+* `Adr` (value: `'ADR'`)
+
+* `Adl` (value: `'ADL'`)
+
+* `Adt` (value: `'ADT'`)
+
+* `Fc` (value: `'FC'`)
+
+* `Fi` (value: `'FI'`)
+
+* `La` (value: `'LA'`)
+
+* `Pc` (value: `'PC'`)
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

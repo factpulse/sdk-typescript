@@ -1,39 +1,25 @@
-
 # GetChorusProIdRequest
 
 Get Chorus Pro ID from SIRET.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`credentials` | [ChorusProCredentials](ChorusProCredentials.md)
-`siret` | string
-`identifierType` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**credentials** | [**ChorusProCredentials**](ChorusProCredentials.md) |  | [optional] [default to undefined]
+**siret** | **string** | Structure SIRET (14 digits) | [default to undefined]
+**identifierType** | **string** | Identifier type (SIRET, SIREN, UE_HORS_FRANCE, etc.) | [optional] [default to 'SIRET']
 
 ## Example
 
 ```typescript
-import type { GetChorusProIdRequest } from ''
+import { GetChorusProIdRequest } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "credentials": null,
-  "siret": null,
-  "identifierType": null,
-} satisfies GetChorusProIdRequest
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as GetChorusProIdRequest
-console.log(exampleParsed)
+const instance: GetChorusProIdRequest = {
+    credentials,
+    siret,
+    identifierType,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

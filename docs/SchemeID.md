@@ -1,33 +1,43 @@
-
 # SchemeID
 
 Identification scheme codes (Electronic Address Scheme - EAS), mainly for electronic invoice addressing.  **Possible values:** - `0225`: FR_SIREN - French SIREN (most common for France) - `0009`: FR_SIRET - French SIRET - `0002`: FR_SIREN_OLD - French SIREN (old code, for legal organization ID) - `0088`: GLN - Global Location Number - `0060`: DUNS - Data Universal Numbering System - `9957`: FR_VAT_INTRA - French intra-community VAT number - `0199`: GLEIF - Global Legal Entity Identifier Foundation - `0231`: DT_DIRECTORY_ID - Directory ID for tax administration - `EM`: EMAIL - Email-based electronic address (BT-34/BT-49)
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `FR_SIREN` (value: `'0225'`)
 
-## Example
+* `FR_SIRET` (value: `'0009'`)
 
-```typescript
-import type { SchemeID } from ''
+* `FR_SIREN_OLD` (value: `'0002'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies SchemeID
+* `GLN` (value: `'0088'`)
 
-console.log(example)
+* `DUNS` (value: `'0060'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
+* `FR_VAT_INTRA` (value: `'9957'`)
 
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SchemeID
-console.log(exampleParsed)
-```
+* `GLEIF` (value: `'0199'`)
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+* `DT_DIRECTORY_ID` (value: `'0231'`)
 
+* `EMAIL` (value: `'EM'`)
 
+* `ODETTE` (value: `'0177'`)
+
+* `FR_CHORUS_PRO_ROUTING` (value: `'0224'`)
+
+* `DE_VAT` (value: `'9930'`)
+
+* `AT_VAT` (value: `'9915'`)
+
+* `BE_VAT` (value: `'9956'`)
+
+* `ES_VAT` (value: `'9920'`)
+
+* `IT_VAT` (value: `'9906'`)
+
+* `NL_VAT` (value: `'9944'`)
+
+* `PT_VAT` (value: `'9934'`)
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

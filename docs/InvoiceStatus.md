@@ -1,39 +1,25 @@
-
 # InvoiceStatus
 
 Chorus Pro invoice status.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`code` | string
-`label` | string
-`date` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**code** | **string** | Status code (SOUMISE, VALIDEE, REJETEE, SUSPENDUE, MANDATEE, MISE_EN_PAIEMENT, etc.) | [default to undefined]
+**label** | **string** | Status label | [default to undefined]
+**date** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { InvoiceStatus } from ''
+import { InvoiceStatus } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "code": null,
-  "label": null,
-  "date": null,
-} satisfies InvoiceStatus
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as InvoiceStatus
-console.log(exampleParsed)
+const instance: InvoiceStatus = {
+    code,
+    label,
+    date,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

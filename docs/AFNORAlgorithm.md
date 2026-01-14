@@ -1,32 +1,16 @@
-
 # AFNORAlgorithm
 
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `Rsa` (value: `'RSA'`)
 
-## Example
+* `Ecdsa` (value: `'ECDSA'`)
 
-```typescript
-import type { AFNORAlgorithm } from ''
+* `RsaPss` (value: `'RSA_PSS'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies AFNORAlgorithm
+* `Eddsa25519` (value: `'EDDSA_25519'`)
 
-console.log(example)
+* `Eddsa448` (value: `'EDDSA_448'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORAlgorithm
-console.log(exampleParsed)
-```
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

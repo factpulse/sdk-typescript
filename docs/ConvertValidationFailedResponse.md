@@ -1,51 +1,37 @@
-
 # ConvertValidationFailedResponse
 
 Reponse echec de validation - inclut les donnees extraites pour correction.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`status` | string
-`conversionId` | string
-`message` | string
-`extraction` | [ExtractionInfo](ExtractionInfo.md)
-`extractedData` | { [key: string]: any; }
-`missingFields` | [Array&lt;MissingField&gt;](MissingField.md)
-`validation` | [ValidationInfo](ValidationInfo.md)
-`resumeUrl` | string
-`expiresAt` | Date
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**status** | **string** | Statut de la conversion | [optional] [default to 'validation_failed']
+**conversion_id** | **string** | Identifiant unique de conversion | [default to undefined]
+**message** | **string** | Message explicatif | [optional] [default to 'Donnees extraites avec erreurs de validation. Completez le formulaire et appelez /resume.']
+**extraction** | [**ExtractionInfo**](ExtractionInfo.md) | Informations sur l\&#39;extraction OCR | [default to undefined]
+**extracted_data** | **{ [key: string]: any; }** | Donnees extraites par OCR au format FacturXInvoice (a completer/corriger) | [default to undefined]
+**missing_fields** | [**Array&lt;MissingField&gt;**](MissingField.md) | Champs manquants pour conformite Factur-X | [optional] [default to undefined]
+**validation** | [**ValidationInfo**](ValidationInfo.md) | Resultat de la validation Factur-X | [default to undefined]
+**resume_url** | **string** | URL pour reprendre la conversion avec corrections | [default to undefined]
+**expires_at** | **string** | Expiration de la conversion (1h) | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { ConvertValidationFailedResponse } from ''
+import { ConvertValidationFailedResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "status": null,
-  "conversionId": null,
-  "message": null,
-  "extraction": null,
-  "extractedData": null,
-  "missingFields": null,
-  "validation": null,
-  "resumeUrl": null,
-  "expiresAt": null,
-} satisfies ConvertValidationFailedResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ConvertValidationFailedResponse
-console.log(exampleParsed)
+const instance: ConvertValidationFailedResponse = {
+    status,
+    conversion_id,
+    message,
+    extraction,
+    extracted_data,
+    missing_fields,
+    validation,
+    resume_url,
+    expires_at,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

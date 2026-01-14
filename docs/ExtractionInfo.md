@@ -1,41 +1,27 @@
-
 # ExtractionInfo
 
 Informations sur l\'extraction des donnees.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`confidenceScore` | number
-`fieldsExtracted` | number
-`fieldsEnriched` | number
-`fieldsMissing` | number
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**confidence_score** | **number** | Score de confiance global (0-1) | [default to undefined]
+**fields_extracted** | **number** | Nombre de champs extraits | [default to undefined]
+**fields_enriched** | **number** | Nombre de champs enrichis automatiquement | [optional] [default to 0]
+**fields_missing** | **number** | Nombre de champs manquants | [optional] [default to 0]
 
 ## Example
 
 ```typescript
-import type { ExtractionInfo } from ''
+import { ExtractionInfo } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "confidenceScore": null,
-  "fieldsExtracted": null,
-  "fieldsEnriched": null,
-  "fieldsMissing": null,
-} satisfies ExtractionInfo
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ExtractionInfo
-console.log(exampleParsed)
+const instance: ExtractionInfo = {
+    confidence_score,
+    fields_extracted,
+    fields_enriched,
+    fields_missing,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

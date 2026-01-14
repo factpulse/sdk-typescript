@@ -1,40 +1,26 @@
-
 # AFNORSearchSirenFilters
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`siren` | [AFNORSearchSirenFiltersSiren](AFNORSearchSirenFiltersSiren.md)
-`businessName` | [AFNORSearchSirenFiltersBusinessName](AFNORSearchSirenFiltersBusinessName.md)
-`entityType` | [AFNORSearchSirenFiltersEntityType](AFNORSearchSirenFiltersEntityType.md)
-`administrativeStatus` | [AFNORSearchSirenFiltersAdministrativeStatus](AFNORSearchSirenFiltersAdministrativeStatus.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**siren** | [**AFNORSearchSirenFiltersSiren**](AFNORSearchSirenFiltersSiren.md) |  | [optional] [default to undefined]
+**businessName** | [**AFNORSearchSirenFiltersBusinessName**](AFNORSearchSirenFiltersBusinessName.md) |  | [optional] [default to undefined]
+**entityType** | [**AFNORSearchSirenFiltersEntityType**](AFNORSearchSirenFiltersEntityType.md) |  | [optional] [default to undefined]
+**administrativeStatus** | [**AFNORSearchSirenFiltersAdministrativeStatus**](AFNORSearchSirenFiltersAdministrativeStatus.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORSearchSirenFilters } from ''
+import { AFNORSearchSirenFilters } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "siren": null,
-  "businessName": null,
-  "entityType": null,
-  "administrativeStatus": null,
-} satisfies AFNORSearchSirenFilters
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORSearchSirenFilters
-console.log(exampleParsed)
+const instance: AFNORSearchSirenFilters = {
+    siren,
+    businessName,
+    entityType,
+    administrativeStatus,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

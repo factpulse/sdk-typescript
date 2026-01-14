@@ -1,45 +1,31 @@
-
 # ValidationInfo
 
 Informations sur la validation.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`profile` | string
-`schematronRulesPassed` | number
-`schematronRulesTotal` | number
-`pdfaCompliant` | boolean
-`xmlEmbedded` | boolean
-`errors` | [Array&lt;ValidationError&gt;](ValidationError.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**profile** | **string** | Profil Factur-X utilise | [default to undefined]
+**schematron_rules_passed** | **number** | Regles passees | [default to undefined]
+**schematron_rules_total** | **number** | Total regles | [default to undefined]
+**pdfa_compliant** | **boolean** | PDF/A-3 conforme | [optional] [default to true]
+**xml_embedded** | **boolean** | XML embarque dans PDF | [optional] [default to true]
+**errors** | [**Array&lt;FactureElectroniqueRestApiSchemasConvertValidationError&gt;**](FactureElectroniqueRestApiSchemasConvertValidationError.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { ValidationInfo } from ''
+import { ValidationInfo } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "profile": null,
-  "schematronRulesPassed": null,
-  "schematronRulesTotal": null,
-  "pdfaCompliant": null,
-  "xmlEmbedded": null,
-  "errors": null,
-} satisfies ValidationInfo
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ValidationInfo
-console.log(exampleParsed)
+const instance: ValidationInfo = {
+    profile,
+    schematron_rules_passed,
+    schematron_rules_total,
+    pdfa_compliant,
+    xml_embedded,
+    errors,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,49 +1,35 @@
-
 # AFNORAddressRead
 
 Wrapper for postal addresses
 
 ## Properties
 
-Name | Type
------------- | -------------
-`addressLine1` | string
-`addressLine2` | string
-`addressLine3` | string
-`postalCode` | string
-`countrySubdivision` | string
-`locality` | string
-`countryCode` | string
-`countryName` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**addressLine1** | **string** | Corresponds to the address of the recipient structure having defined the directory line(s). | [optional] [default to undefined]
+**addressLine2** | **string** | Corresponds to the address of the recipient structure having defined the directory line(s). | [optional] [default to undefined]
+**addressLine3** | **string** | Corresponds to the address of the recipient structure having defined the directory line(s). | [optional] [default to undefined]
+**postalCode** | **string** | Service postal code | [optional] [default to undefined]
+**countrySubdivision** | **string** | Subdivision of the country | [optional] [default to undefined]
+**locality** | **string** | Municipality of the recipient structure having defined the directory line(s). | [optional] [default to undefined]
+**countryCode** | **string** | Corresponds to the country of the recipient structure. | [optional] [default to undefined]
+**countryName** | **string** | Corresponds to the country of the recipient structure having defined the directory line(s). | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORAddressRead } from ''
+import { AFNORAddressRead } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "addressLine1": 16 BIS RUE HENRI BARBUSSE,
-  "addressLine2": CEDEX 1,
-  "addressLine3": Bâtiment le Callipso,
-  "postalCode": 38100,
-  "countrySubdivision": Bretagne,
-  "locality": Grenoble,
-  "countryCode": FR,
-  "countryName": France,
-} satisfies AFNORAddressRead
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORAddressRead
-console.log(exampleParsed)
+const instance: AFNORAddressRead = {
+    addressLine1,
+    addressLine2,
+    addressLine3,
+    postalCode,
+    countrySubdivision,
+    locality,
+    countryCode,
+    countryName,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

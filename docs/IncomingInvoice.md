@@ -1,71 +1,57 @@
-
 # IncomingInvoice
 
 Invoice received from a supplier via PDP/PA.  This model contains essential metadata extracted from incoming invoices, regardless of their source format (CII, UBL, Factur-X).  Amounts are Decimal in Python but will be serialized as strings in JSON to preserve monetary precision.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`flowId` | string
-`sourceFormat` | [InvoiceFormat](InvoiceFormat.md)
-`supplierReference` | string
-`documentType` | [InvoiceTypeCodeOutput](InvoiceTypeCodeOutput.md)
-`supplier` | [IncomingSupplier](IncomingSupplier.md)
-`billingSiteName` | string
-`billingSiteSiret` | string
-`issueDate` | string
-`dueDate` | string
-`currency` | string
-`netAmount` | string
-`vatAmount` | string
-`grossAmount` | string
-`purchaseOrderNumber` | string
-`contractReference` | string
-`invoiceSubject` | string
-`documentBase64` | string
-`documentContentType` | string
-`documentFilename` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**flowId** | **string** |  | [optional] [default to undefined]
+**sourceFormat** | [**InvoiceFormat**](InvoiceFormat.md) | Invoice source format | [default to undefined]
+**supplierReference** | **string** | Invoice number issued by the supplier (BT-1) | [default to undefined]
+**documentType** | [**InvoiceTypeCodeOutput**](InvoiceTypeCodeOutput.md) | Document type (BT-3) | [optional] [default to undefined]
+**supplier** | [**IncomingSupplier**](IncomingSupplier.md) | Invoice issuer (SellerTradeParty) | [default to undefined]
+**billingSiteName** | **string** | Recipient name / your company (BT-44) | [default to undefined]
+**billingSiteSiret** | **string** |  | [optional] [default to undefined]
+**issueDate** | **string** | Invoice date (BT-2) - YYYY-MM-DD | [default to undefined]
+**dueDate** | **string** |  | [optional] [default to undefined]
+**currency** | **string** | ISO currency code (BT-5) | [optional] [default to 'EUR']
+**netAmount** | **string** | Total net amount (BT-109) | [default to undefined]
+**vatAmount** | **string** | Total VAT amount (BT-110) | [default to undefined]
+**grossAmount** | **string** | Total gross amount (BT-112) | [default to undefined]
+**purchaseOrderNumber** | **string** |  | [optional] [default to undefined]
+**contractReference** | **string** |  | [optional] [default to undefined]
+**invoiceSubject** | **string** |  | [optional] [default to undefined]
+**documentBase64** | **string** |  | [optional] [default to undefined]
+**documentContentType** | **string** |  | [optional] [default to undefined]
+**documentFilename** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { IncomingInvoice } from ''
+import { IncomingInvoice } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "flowId": null,
-  "sourceFormat": null,
-  "supplierReference": null,
-  "documentType": null,
-  "supplier": null,
-  "billingSiteName": null,
-  "billingSiteSiret": null,
-  "issueDate": null,
-  "dueDate": null,
-  "currency": null,
-  "netAmount": null,
-  "vatAmount": null,
-  "grossAmount": null,
-  "purchaseOrderNumber": null,
-  "contractReference": null,
-  "invoiceSubject": null,
-  "documentBase64": null,
-  "documentContentType": null,
-  "documentFilename": null,
-} satisfies IncomingInvoice
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as IncomingInvoice
-console.log(exampleParsed)
+const instance: IncomingInvoice = {
+    flowId,
+    sourceFormat,
+    supplierReference,
+    documentType,
+    supplier,
+    billingSiteName,
+    billingSiteSiret,
+    issueDate,
+    dueDate,
+    currency,
+    netAmount,
+    vatAmount,
+    grossAmount,
+    purchaseOrderNumber,
+    contractReference,
+    invoiceSubject,
+    documentBase64,
+    documentContentType,
+    documentFilename,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

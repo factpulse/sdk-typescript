@@ -1,37 +1,23 @@
-
 # ElectronicAddress
 
 Represents an electronic invoicing address, composed of an identifier and its scheme (SchemeID) in accordance with EN16931. Example: { \"identifier\": \"123456789\", \"scheme_id\": \"0225\" }
 
 ## Properties
 
-Name | Type
------------- | -------------
-`identifier` | string
-`schemeId` | [SchemeID](SchemeID.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**identifier** | **string** | Electronic address identifier (e.g., SIREN, SIRET, routing code) | [default to undefined]
+**schemeId** | [**SchemeID**](SchemeID.md) | Identification scheme (EAS code) | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { ElectronicAddress } from ''
+import { ElectronicAddress } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "identifier": null,
-  "schemeId": null,
-} satisfies ElectronicAddress
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ElectronicAddress
-console.log(exampleParsed)
+const instance: ElectronicAddress = {
+    identifier,
+    schemeId,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

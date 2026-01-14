@@ -1,49 +1,35 @@
-
 # FlowSummary
 
 Summary of a flow in search results.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`flowId` | string
-`trackingId` | string
-`name` | string
-`flowType` | string
-`flowDirection` | string
-`acknowledgmentStatus` | string
-`createdAt` | string
-`updatedAt` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**flow_id** | **string** | Unique flow identifier | [default to undefined]
+**tracking_id** | **string** |  | [optional] [default to undefined]
+**name** | **string** | Flow name | [default to undefined]
+**flow_type** | **string** |  | [optional] [default to undefined]
+**flow_direction** | **string** |  | [optional] [default to undefined]
+**acknowledgment_status** | **string** |  | [optional] [default to undefined]
+**created_at** | **string** |  | [optional] [default to undefined]
+**updated_at** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { FlowSummary } from ''
+import { FlowSummary } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "flowId": null,
-  "trackingId": null,
-  "name": null,
-  "flowType": null,
-  "flowDirection": null,
-  "acknowledgmentStatus": null,
-  "createdAt": null,
-  "updatedAt": null,
-} satisfies FlowSummary
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as FlowSummary
-console.log(exampleParsed)
+const instance: FlowSummary = {
+    flow_id,
+    tracking_id,
+    name,
+    flow_type,
+    flow_direction,
+    acknowledgment_status,
+    created_at,
+    updated_at,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

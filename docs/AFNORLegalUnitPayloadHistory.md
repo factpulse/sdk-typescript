@@ -1,40 +1,26 @@
-
 # AFNORLegalUnitPayloadHistory
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`siren` | string
-`businessName` | string
-`entityType` | [AFNOREntityType](AFNOREntityType.md)
-`administrativeStatus` | [AFNORLegalUnitAdministrativeStatus](AFNORLegalUnitAdministrativeStatus.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**siren** | **string** | SIREN number | [optional] [default to undefined]
+**businessName** | **string** | Business name | [optional] [default to undefined]
+**entityType** | [**AFNOREntityType**](AFNOREntityType.md) |  | [optional] [default to undefined]
+**administrativeStatus** | [**AFNORLegalUnitAdministrativeStatus**](AFNORLegalUnitAdministrativeStatus.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORLegalUnitPayloadHistory } from ''
+import { AFNORLegalUnitPayloadHistory } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "siren": 702042755,
-  "businessName": Boulangerie Pascale,
-  "entityType": null,
-  "administrativeStatus": null,
-} satisfies AFNORLegalUnitPayloadHistory
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORLegalUnitPayloadHistory
-console.log(exampleParsed)
+const instance: AFNORLegalUnitPayloadHistory = {
+    siren,
+    businessName,
+    entityType,
+    administrativeStatus,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,49 +1,35 @@
-
 # VATLine
 
 Represents a VAT breakdown line by rate (BG-23).  For exemptions (categories E, AE, K, G, O), the fields `exemption_reason` and `vatex_code` are required per EN16931.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`taxableAmount` | [TaxableAmount](TaxableAmount.md)
-`vatAmount` | [VATAmount](VATAmount.md)
-`rate` | string
-`manualRate` | [ManualRate](ManualRate.md)
-`category` | [VATCategory](VATCategory.md)
-`dueDateTypeCode` | [VATPointDateCode](VATPointDateCode.md)
-`exemptionReason` | string
-`vatexCode` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**taxable_amount** | [**TaxableAmount**](TaxableAmount.md) |  | [default to undefined]
+**vat_amount** | [**VATAmount**](VATAmount.md) |  | [default to undefined]
+**rate** | **string** |  | [optional] [default to undefined]
+**manual_rate** | [**ManualRate**](ManualRate.md) |  | [optional] [default to undefined]
+**category** | [**VATCategory**](VATCategory.md) |  | [optional] [default to undefined]
+**due_date_type_code** | [**VATPointDateCode**](VATPointDateCode.md) |  | [optional] [default to undefined]
+**exemption_reason** | **string** |  | [optional] [default to undefined]
+**vatex_code** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { VATLine } from ''
+import { VATLine } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "taxableAmount": null,
-  "vatAmount": null,
-  "rate": null,
-  "manualRate": null,
-  "category": null,
-  "dueDateTypeCode": null,
-  "exemptionReason": null,
-  "vatexCode": null,
-} satisfies VATLine
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as VATLine
-console.log(exampleParsed)
+const instance: VATLine = {
+    taxable_amount,
+    vat_amount,
+    rate,
+    manual_rate,
+    category,
+    due_date_type_code,
+    exemption_reason,
+    vatex_code,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

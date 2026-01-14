@@ -1,37 +1,23 @@
-
 # InvoiceNote
 
 Invoice note (IncludedNote in Factur-X).  Mandatory notes for BR-FR-05 are: - PMT: Fixed recovery fee - PMD: Late payment penalties - AAB: Early payment discount
 
 ## Properties
 
-Name | Type
------------- | -------------
-`subjectCode` | string
-`content` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**subject_code** | **string** |  | [optional] [default to undefined]
+**content** | **string** | Note content | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { InvoiceNote } from ''
+import { InvoiceNote } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "subjectCode": null,
-  "content": null,
-} satisfies InvoiceNote
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as InvoiceNote
-console.log(exampleParsed)
+const instance: InvoiceNote = {
+    subject_code,
+    content,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

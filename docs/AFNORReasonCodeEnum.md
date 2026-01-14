@@ -1,33 +1,37 @@
-
 # AFNORReasonCodeEnum
 
 - `EmptyAttachement`      : One or more attachments are empty. (ie IRR_VID_PJ) - `AttachmentTypeError`   : The type and/or extension of one or more attachments is not compliant. (ie IRR_EXT_DOC) - `EmptyFlow`             : The binary flow is empty. (ie IRR_VID_F) - `OtherTechnicalError`   : Other technical error. (ie AUTRE) - `InvalidSchema`         : Invalid XML schema. (ie IRR_SYNTAX) - `FileSizeExceeded`      : File size limit reached. (ie IRR_TAILLE_F) - `FlowTypeError`         : The flow type and/or extension are not compliant. (ie IRR_TYPE_F) - `AlreadyExistingFlow`   : The flow has already been sent and received. (ie N/A) - `VirusFound`            : Presence of a virus. (ie IRR_ANTIVIRUS) - `ChecksumMismatch`      : Checksum provided is different from computed one - `InvoiceLCInvalidStatus`: One or more statuses are inconsistent - `InvoiceLCStatusError`  : One or more statuses are incorrect or not allowed - `InvoiceLCRuleError`    : One or more rules are not matched - `InvoiceLCAccessDenied` : One of the request is not authorized and requests permissions - `InvoiceLCAmountError`  : One or more amounts are not consistent in regards to the VAT 
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `EmptyAttachement` (value: `'EmptyAttachement'`)
 
-## Example
+* `AttachmentTypeError` (value: `'AttachmentTypeError'`)
 
-```typescript
-import type { AFNORReasonCodeEnum } from ''
+* `EmptyFlow` (value: `'EmptyFlow'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies AFNORReasonCodeEnum
+* `OtherTechnicalError` (value: `'OtherTechnicalError'`)
 
-console.log(example)
+* `InvalidSchema` (value: `'InvalidSchema'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
+* `FileSizeExceeded` (value: `'FileSizeExceeded'`)
 
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORReasonCodeEnum
-console.log(exampleParsed)
-```
+* `FlowTypeError` (value: `'FlowTypeError'`)
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+* `AlreadyExistingFlow` (value: `'AlreadyExistingFlow'`)
 
+* `VirusFound` (value: `'VirusFound'`)
 
+* `ChecksumMismatch` (value: `'ChecksumMismatch'`)
+
+* `InvoiceLcInvalidStatus` (value: `'InvoiceLCInvalidStatus'`)
+
+* `InvoiceLcStatusError` (value: `'InvoiceLCStatusError'`)
+
+* `InvoiceLcRuleError` (value: `'InvoiceLCRuleError'`)
+
+* `InvoiceLcAccessDenied` (value: `'InvoiceLCAccessDenied'`)
+
+* `InvoiceLcAmountError` (value: `'InvoiceLCAmountError'`)
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

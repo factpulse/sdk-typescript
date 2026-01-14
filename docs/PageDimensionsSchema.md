@@ -1,37 +1,23 @@
-
 # PageDimensionsSchema
 
 PDF page dimensions.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`width` | number
-`height` | number
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**width** | **number** | Width in PDF points | [default to undefined]
+**height** | **number** | Height in PDF points | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { PageDimensionsSchema } from ''
+import { PageDimensionsSchema } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "width": null,
-  "height": null,
-} satisfies PageDimensionsSchema
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as PageDimensionsSchema
-console.log(exampleParsed)
+const instance: PageDimensionsSchema = {
+    width,
+    height,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

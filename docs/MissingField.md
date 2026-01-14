@@ -1,45 +1,31 @@
-
 # MissingField
 
 Champ manquant requis pour la conformite.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`field` | string
-`btCode` | string
-`description` | string
-`requiredFor` | Array&lt;string&gt;
-`suggestedValue` | string
-`confidence` | number
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**field** | **string** | Nom du champ | [default to undefined]
+**bt_code** | **string** | Code Business Term (BT-XX) | [default to undefined]
+**description** | **string** | Description du champ | [default to undefined]
+**required_for** | **Array&lt;string&gt;** | Profils necessitant ce champ | [default to undefined]
+**suggested_value** | **string** |  | [optional] [default to undefined]
+**confidence** | **number** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { MissingField } from ''
+import { MissingField } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "field": null,
-  "btCode": null,
-  "description": null,
-  "requiredFor": null,
-  "suggestedValue": null,
-  "confidence": null,
-} satisfies MissingField
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as MissingField
-console.log(exampleParsed)
+const instance: MissingField = {
+    field,
+    bt_code,
+    description,
+    required_for,
+    suggested_value,
+    confidence,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

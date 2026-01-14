@@ -1,43 +1,29 @@
-
 # PDPCredentials
 
 PDP credentials for zero-storage strategy (Strategy B).  Allows providing PDP credentials directly in the request instead of storing them in Django.  Useful for: - Ad-hoc tests without persisting credentials - Temporary integrations - Development environments
 
 ## Properties
 
-Name | Type
------------- | -------------
-`flowServiceUrl` | string
-`directoryServiceUrl` | string
-`tokenUrl` | string
-`clientId` | string
-`clientSecret` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**flowServiceUrl** | **string** | Base URL of the AFNOR Flow Service | [default to undefined]
+**directoryServiceUrl** | **string** |  | [optional] [default to undefined]
+**tokenUrl** | **string** | OAuth2 server URL | [default to undefined]
+**clientId** | **string** | OAuth2 Client ID | [default to undefined]
+**clientSecret** | **string** | OAuth2 Client Secret (sensitive) | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { PDPCredentials } from ''
+import { PDPCredentials } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "flowServiceUrl": https://api.pdp-example.fr/flow/v1,
-  "directoryServiceUrl": null,
-  "tokenUrl": https://auth.pdp-example.fr/oauth/token,
-  "clientId": factpulse_prod_abc123,
-  "clientSecret": secret_xyz789,
-} satisfies PDPCredentials
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as PDPCredentials
-console.log(exampleParsed)
+const instance: PDPCredentials = {
+    flowServiceUrl,
+    directoryServiceUrl,
+    tokenUrl,
+    clientId,
+    clientSecret,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

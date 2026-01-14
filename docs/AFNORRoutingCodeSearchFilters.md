@@ -1,46 +1,32 @@
-
 # AFNORRoutingCodeSearchFilters
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`routingIdentifier` | [AFNORRoutingCodeSearchFiltersRoutingIdentifier](AFNORRoutingCodeSearchFiltersRoutingIdentifier.md)
-`siret` | [AFNORSearchSiretFiltersSiret](AFNORSearchSiretFiltersSiret.md)
-`routingCodeName` | [AFNORRoutingCodeSearchFiltersRoutingCodeName](AFNORRoutingCodeSearchFiltersRoutingCodeName.md)
-`administrativeStatus` | [AFNORRoutingCodeSearchFiltersAdministrativeStatus](AFNORRoutingCodeSearchFiltersAdministrativeStatus.md)
-`addressLines` | [AFNORSearchSiretFiltersAddressLines](AFNORSearchSiretFiltersAddressLines.md)
-`postalCode` | [AFNORSearchSiretFiltersPostalCode](AFNORSearchSiretFiltersPostalCode.md)
-`locality` | [AFNORSearchSiretFiltersLocality](AFNORSearchSiretFiltersLocality.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**routingIdentifier** | [**AFNORRoutingCodeSearchFiltersRoutingIdentifier**](AFNORRoutingCodeSearchFiltersRoutingIdentifier.md) |  | [optional] [default to undefined]
+**siret** | [**AFNORSearchSiretFiltersSiret**](AFNORSearchSiretFiltersSiret.md) |  | [optional] [default to undefined]
+**routingCodeName** | [**AFNORRoutingCodeSearchFiltersRoutingCodeName**](AFNORRoutingCodeSearchFiltersRoutingCodeName.md) |  | [optional] [default to undefined]
+**administrativeStatus** | [**AFNORRoutingCodeSearchFiltersAdministrativeStatus**](AFNORRoutingCodeSearchFiltersAdministrativeStatus.md) |  | [optional] [default to undefined]
+**addressLines** | [**AFNORSearchSiretFiltersAddressLines**](AFNORSearchSiretFiltersAddressLines.md) |  | [optional] [default to undefined]
+**postalCode** | [**AFNORSearchSiretFiltersPostalCode**](AFNORSearchSiretFiltersPostalCode.md) |  | [optional] [default to undefined]
+**locality** | [**AFNORSearchSiretFiltersLocality**](AFNORSearchSiretFiltersLocality.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORRoutingCodeSearchFilters } from ''
+import { AFNORRoutingCodeSearchFilters } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "routingIdentifier": null,
-  "siret": null,
-  "routingCodeName": null,
-  "administrativeStatus": null,
-  "addressLines": null,
-  "postalCode": null,
-  "locality": null,
-} satisfies AFNORRoutingCodeSearchFilters
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORRoutingCodeSearchFilters
-console.log(exampleParsed)
+const instance: AFNORRoutingCodeSearchFilters = {
+    routingIdentifier,
+    siret,
+    routingCodeName,
+    administrativeStatus,
+    addressLines,
+    postalCode,
+    locality,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

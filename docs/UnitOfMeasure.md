@@ -1,33 +1,19 @@
-
 # UnitOfMeasure
 
 Enumeration of invoicing units of measure.
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `Piece` (value: `'PIECE'`)
 
-## Example
+* `Heure` (value: `'HEURE'`)
 
-```typescript
-import type { UnitOfMeasure } from ''
+* `Jour` (value: `'JOUR'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies UnitOfMeasure
+* `Kilogramme` (value: `'KILOGRAMME'`)
 
-console.log(example)
+* `Litre` (value: `'LITRE'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
+* `Forfait` (value: `'FORFAIT'`)
 
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as UnitOfMeasure
-console.log(exampleParsed)
-```
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

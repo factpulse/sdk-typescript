@@ -1,33 +1,113 @@
-
 # CurrencyCode
 
 ISO 4217 currency codes.  Most common currencies used in e-reporting and invoicing. This is not an exhaustive list but covers all practical use cases for French e-reporting (EUR zone + major trading partners).
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `Eur` (value: `'EUR'`)
 
-## Example
+* `Usd` (value: `'USD'`)
 
-```typescript
-import type { CurrencyCode } from ''
+* `Gbp` (value: `'GBP'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies CurrencyCode
+* `Jpy` (value: `'JPY'`)
 
-console.log(example)
+* `Chf` (value: `'CHF'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
+* `Cad` (value: `'CAD'`)
 
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as CurrencyCode
-console.log(exampleParsed)
-```
+* `Aud` (value: `'AUD'`)
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+* `Nzd` (value: `'NZD'`)
 
+* `Cny` (value: `'CNY'`)
 
+* `Hkd` (value: `'HKD'`)
+
+* `Sgd` (value: `'SGD'`)
+
+* `Dkk` (value: `'DKK'`)
+
+* `Sek` (value: `'SEK'`)
+
+* `Nok` (value: `'NOK'`)
+
+* `Pln` (value: `'PLN'`)
+
+* `Czk` (value: `'CZK'`)
+
+* `Huf` (value: `'HUF'`)
+
+* `Ron` (value: `'RON'`)
+
+* `Bgn` (value: `'BGN'`)
+
+* `Hrk` (value: `'HRK'`)
+
+* `Isk` (value: `'ISK'`)
+
+* `Rsd` (value: `'RSD'`)
+
+* `Rub` (value: `'RUB'`)
+
+* `Uah` (value: `'UAH'`)
+
+* `Try` (value: `'TRY'`)
+
+* `Mxn` (value: `'MXN'`)
+
+* `Brl` (value: `'BRL'`)
+
+* `Ars` (value: `'ARS'`)
+
+* `Clp` (value: `'CLP'`)
+
+* `Cop` (value: `'COP'`)
+
+* `Pen` (value: `'PEN'`)
+
+* `Inr` (value: `'INR'`)
+
+* `Krw` (value: `'KRW'`)
+
+* `Twd` (value: `'TWD'`)
+
+* `Thb` (value: `'THB'`)
+
+* `Myr` (value: `'MYR'`)
+
+* `Idr` (value: `'IDR'`)
+
+* `Php` (value: `'PHP'`)
+
+* `Vnd` (value: `'VND'`)
+
+* `Aed` (value: `'AED'`)
+
+* `Sar` (value: `'SAR'`)
+
+* `Ils` (value: `'ILS'`)
+
+* `Zar` (value: `'ZAR'`)
+
+* `Egp` (value: `'EGP'`)
+
+* `Mad` (value: `'MAD'`)
+
+* `Tnd` (value: `'TND'`)
+
+* `Dzd` (value: `'DZD'`)
+
+* `Ngn` (value: `'NGN'`)
+
+* `Kes` (value: `'KES'`)
+
+* `Xpf` (value: `'XPF'`)
+
+* `Xaf` (value: `'XAF'`)
+
+* `Xof` (value: `'XOF'`)
+
+* `Xdr` (value: `'XDR'`)
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,33 +1,25 @@
-
 # VATCategory
 
 Standardized VAT categories for Factur-X (EN 16931 standard).  **Possible values:** - `S`: STANDARD - Standard VAT rate - `Z`: ZERO - Zero VAT rate - `E`: EXEMPT - VAT exemption - `AE`: REVERSE_CHARGE - Reverse charge (auto-liquidation) - `K`: INTRA_COMMUNITY - Intra-community supply - `G`: EXPORT - Export outside EU - `O`: OUT_OF_SCOPE - Outside VAT scope - `L`: CANARY_ISLANDS - Canary Islands VAT - `M`: CEUTA_MELILLA - Ceuta/Melilla VAT
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `S` (value: `'S'`)
 
-## Example
+* `Z` (value: `'Z'`)
 
-```typescript
-import type { VATCategory } from ''
+* `E` (value: `'E'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies VATCategory
+* `Ae` (value: `'AE'`)
 
-console.log(example)
+* `K` (value: `'K'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
+* `G` (value: `'G'`)
 
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as VATCategory
-console.log(exampleParsed)
-```
+* `O` (value: `'O'`)
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+* `L` (value: `'L'`)
 
+* `M` (value: `'M'`)
 
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

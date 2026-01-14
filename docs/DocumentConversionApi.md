@@ -2,72 +2,51 @@
 
 All URIs are relative to *https://factpulse.fr*
 
-| Method | HTTP request | Description |
+|Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-| [**convertDocumentAsyncApiV1ConvertAsyncPost**](DocumentConversionApi.md#convertdocumentasyncapiv1convertasyncpost) | **POST** /api/v1/convert/async | Convertir un document en Factur-X (mode asynchrone) |
-| [**downloadFileApiV1ConvertConversionIdDownloadFilenameGet**](DocumentConversionApi.md#downloadfileapiv1convertconversioniddownloadfilenameget) | **GET** /api/v1/convert/{conversion_id}/download/{filename} | Télécharger un fichier généré |
-| [**getConversionStatusApiV1ConvertConversionIdStatusGet**](DocumentConversionApi.md#getconversionstatusapiv1convertconversionidstatusget) | **GET** /api/v1/convert/{conversion_id}/status | Vérifier le statut d\&#39;une conversion |
-| [**resumeConversionApiV1ConvertConversionIdResumePost**](DocumentConversionApi.md#resumeconversionapiv1convertconversionidresumepost) | **POST** /api/v1/convert/{conversion_id}/resume | Reprendre une conversion avec corrections |
+|[**convertDocumentAsyncApiV1ConvertAsyncPost**](#convertdocumentasyncapiv1convertasyncpost) | **POST** /api/v1/convert/async | Convertir un document en Factur-X (mode asynchrone)|
+|[**downloadFileApiV1ConvertConversionIdDownloadFilenameGet**](#downloadfileapiv1convertconversioniddownloadfilenameget) | **GET** /api/v1/convert/{conversion_id}/download/{filename} | Télécharger un fichier généré|
+|[**getConversionStatusApiV1ConvertConversionIdStatusGet**](#getconversionstatusapiv1convertconversionidstatusget) | **GET** /api/v1/convert/{conversion_id}/status | Vérifier le statut d\&#39;une conversion|
+|[**resumeConversionApiV1ConvertConversionIdResumePost**](#resumeconversionapiv1convertconversionidresumepost) | **POST** /api/v1/convert/{conversion_id}/resume | Reprendre une conversion avec corrections|
 
+# **convertDocumentAsyncApiV1ConvertAsyncPost**
+> any convertDocumentAsyncApiV1ConvertAsyncPost()
 
-
-## convertDocumentAsyncApiV1ConvertAsyncPost
-
-> any convertDocumentAsyncApiV1ConvertAsyncPost(file, output, callbackUrl, webhookMode)
-
-Convertir un document en Factur-X (mode asynchrone)
-
-Lance une conversion asynchrone via Celery.  ## Workflow  1. **Upload** : Le document est envoyé en multipart/form-data 2. **Task Celery** : La tâche est mise en file d\&#39;attente 3. **Callback** : Notification par webhook à la fin  ## Réponses possibles  - **202** : Tâche acceptée, en cours de traitement - **400** : Fichier invalide
+Lance une conversion asynchrone via Celery.  ## Workflow  1. **Upload** : Le document est envoyé en multipart/form-data 2. **Task Celery** : La tâche est mise en file d\'attente 3. **Callback** : Notification par webhook à la fin  ## Réponses possibles  - **202** : Tâche acceptée, en cours de traitement - **400** : Fichier invalide
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  DocumentConversionApi,
-} from '';
-import type { ConvertDocumentAsyncApiV1ConvertAsyncPostRequest } from '';
+    DocumentConversionApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new DocumentConversionApi(config);
+const configuration = new Configuration();
+const apiInstance = new DocumentConversionApi(configuration);
 
-  const body = {
-    // Blob | Document à convertir (PDF, DOCX, XLSX, JPG, PNG)
-    file: BINARY_DATA_HERE,
-    // string | Format de sortie: pdf, xml, both (optional)
-    output: output_example,
-    // string (optional)
-    callbackUrl: callbackUrl_example,
-    // string | Mode de livraison du contenu: \\\'inline\\\' (base64 dans webhook) ou \\\'download_url\\\' (URL temporaire 1h) (optional)
-    webhookMode: webhookMode_example,
-  } satisfies ConvertDocumentAsyncApiV1ConvertAsyncPostRequest;
+let file: File; //Document à convertir (PDF, DOCX, XLSX, JPG, PNG) (default to undefined)
+let output: string; //Format de sortie: pdf, xml, both (optional) (default to 'pdf')
+let callbackUrl: string; // (optional) (default to undefined)
+let webhookMode: string; //Mode de livraison du contenu: \\\'inline\\\' (base64 dans webhook) ou \\\'download_url\\\' (URL temporaire 1h) (optional) (default to 'inline')
 
-  try {
-    const data = await api.convertDocumentAsyncApiV1ConvertAsyncPost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.convertDocumentAsyncApiV1ConvertAsyncPost(
+    file,
+    output,
+    callbackUrl,
+    webhookMode
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **file** | `Blob` | Document à convertir (PDF, DOCX, XLSX, JPG, PNG) | [Defaults to `undefined`] |
-| **output** | `string` | Format de sortie: pdf, xml, both | [Optional] [Defaults to `&#39;pdf&#39;`] |
-| **callbackUrl** | `string` |  | [Optional] [Defaults to `undefined`] |
-| **webhookMode** | `string` | Mode de livraison du contenu: \\\&#39;inline\\\&#39; (base64 dans webhook) ou \\\&#39;download_url\\\&#39; (URL temporaire 1h) | [Optional] [Defaults to `&#39;inline&#39;`] |
+| **file** | [**File**] | Document à convertir (PDF, DOCX, XLSX, JPG, PNG) | defaults to undefined|
+| **output** | [**string**] | Format de sortie: pdf, xml, both | (optional) defaults to 'pdf'|
+| **callbackUrl** | [**string**] |  | (optional) defaults to undefined|
+| **webhookMode** | [**string**] | Mode de livraison du contenu: \\\&#39;inline\\\&#39; (base64 dans webhook) ou \\\&#39;download_url\\\&#39; (URL temporaire 1h) | (optional) defaults to 'inline'|
+
 
 ### Return type
 
@@ -79,73 +58,53 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: `multipart/form-data`
-- **Accept**: `application/json`
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
-| **202** | Tâche acceptée |  -  |
-| **400** | Fichier invalide |  -  |
-| **422** | Validation Error |  -  |
-| **401** | Authentication required - Invalid or missing JWT token |  -  |
+|**200** | Successful Response |  -  |
+|**202** | Tâche acceptée |  -  |
+|**400** | Fichier invalide |  -  |
+|**422** | Validation Error |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **downloadFileApiV1ConvertConversionIdDownloadFilenameGet**
+> any downloadFileApiV1ConvertConversionIdDownloadFilenameGet()
 
-## downloadFileApiV1ConvertConversionIdDownloadFilenameGet
-
-> any downloadFileApiV1ConvertConversionIdDownloadFilenameGet(conversionId, filename)
-
-Télécharger un fichier généré
-
-Télécharge le fichier Factur-X PDF ou XML généré.  ## Fichiers disponibles  - &#x60;facturx.pdf&#x60; : PDF/A-3 avec XML embarqué - &#x60;facturx.xml&#x60; : XML CII seul (Cross Industry Invoice)  Les fichiers sont disponibles pendant 24 heures après génération.
+Télécharge le fichier Factur-X PDF ou XML généré.  ## Fichiers disponibles  - `facturx.pdf` : PDF/A-3 avec XML embarqué - `facturx.xml` : XML CII seul (Cross Industry Invoice)  Les fichiers sont disponibles pendant 24 heures après génération.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  DocumentConversionApi,
-} from '';
-import type { DownloadFileApiV1ConvertConversionIdDownloadFilenameGetRequest } from '';
+    DocumentConversionApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new DocumentConversionApi(config);
+const configuration = new Configuration();
+const apiInstance = new DocumentConversionApi(configuration);
 
-  const body = {
-    // string | Conversion ID returned by POST /convert (UUID format)
-    conversionId: conversionId_example,
-    // string | File to download: \'facturx.pdf\' or \'facturx.xml\'
-    filename: filename_example,
-  } satisfies DownloadFileApiV1ConvertConversionIdDownloadFilenameGetRequest;
+let conversionId: string; //Conversion ID returned by POST /convert (UUID format) (default to undefined)
+let filename: string; //File to download: \'facturx.pdf\' or \'facturx.xml\' (default to undefined)
 
-  try {
-    const data = await api.downloadFileApiV1ConvertConversionIdDownloadFilenameGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.downloadFileApiV1ConvertConversionIdDownloadFilenameGet(
+    conversionId,
+    filename
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **conversionId** | `string` | Conversion ID returned by POST /convert (UUID format) | [Defaults to `undefined`] |
-| **filename** | `string` | File to download: \&#39;facturx.pdf\&#39; or \&#39;facturx.xml\&#39; | [Defaults to `undefined`] |
+| **conversionId** | [**string**] | Conversion ID returned by POST /convert (UUID format) | defaults to undefined|
+| **filename** | [**string**] | File to download: \&#39;facturx.pdf\&#39; or \&#39;facturx.xml\&#39; | defaults to undefined|
+
 
 ### Return type
 
@@ -157,69 +116,49 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Fichier téléchargé |  -  |
-| **404** | Fichier non trouvé ou expiré |  -  |
-| **422** | Validation Error |  -  |
-| **401** | Authentication required - Invalid or missing JWT token |  -  |
+|**200** | Fichier téléchargé |  -  |
+|**404** | Fichier non trouvé ou expiré |  -  |
+|**422** | Validation Error |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getConversionStatusApiV1ConvertConversionIdStatusGet**
+> { [key: string]: any; } getConversionStatusApiV1ConvertConversionIdStatusGet()
 
-## getConversionStatusApiV1ConvertConversionIdStatusGet
-
-> { [key: string]: any; } getConversionStatusApiV1ConvertConversionIdStatusGet(conversionId)
-
-Vérifier le statut d\&#39;une conversion
-
-Retourne le statut actuel d\&#39;une conversion asynchrone.
+Retourne le statut actuel d\'une conversion asynchrone.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  DocumentConversionApi,
-} from '';
-import type { GetConversionStatusApiV1ConvertConversionIdStatusGetRequest } from '';
+    DocumentConversionApi,
+    Configuration
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new DocumentConversionApi(config);
+const configuration = new Configuration();
+const apiInstance = new DocumentConversionApi(configuration);
 
-  const body = {
-    // string | Conversion ID returned by POST /convert (UUID format)
-    conversionId: conversionId_example,
-  } satisfies GetConversionStatusApiV1ConvertConversionIdStatusGetRequest;
+let conversionId: string; //Conversion ID returned by POST /convert (UUID format) (default to undefined)
 
-  try {
-    const data = await api.getConversionStatusApiV1ConvertConversionIdStatusGet(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.getConversionStatusApiV1ConvertConversionIdStatusGet(
+    conversionId
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **conversionId** | `string` | Conversion ID returned by POST /convert (UUID format) | [Defaults to `undefined`] |
+| **conversionId** | [**string**] | Conversion ID returned by POST /convert (UUID format) | defaults to undefined|
+
 
 ### Return type
 
@@ -231,75 +170,56 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: `application/json`
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
-| **422** | Validation Error |  -  |
-| **401** | Authentication required - Invalid or missing JWT token |  -  |
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **resumeConversionApiV1ConvertConversionIdResumePost**
+> ConvertSuccessResponse resumeConversionApiV1ConvertConversionIdResumePost(convertResumeRequest)
 
-## resumeConversionApiV1ConvertConversionIdResumePost
-
-> ConvertSuccessResponse resumeConversionApiV1ConvertConversionIdResumePost(conversionId, convertResumeRequest)
-
-Reprendre une conversion avec corrections
-
-Reprend une conversion après complétion des données manquantes ou correction des erreurs.  L\&#39;extraction OCR est conservée, les données sont mises à jour avec les corrections, puis une nouvelle validation Schematron est effectuée.
+Reprend une conversion après complétion des données manquantes ou correction des erreurs.  L\'extraction OCR est conservée, les données sont mises à jour avec les corrections, puis une nouvelle validation Schematron est effectuée.
 
 ### Example
 
-```ts
+```typescript
 import {
-  Configuration,
-  DocumentConversionApi,
-} from '';
-import type { ResumeConversionApiV1ConvertConversionIdResumePostRequest } from '';
+    DocumentConversionApi,
+    Configuration,
+    ConvertResumeRequest
+} from '@factpulse/sdk';
 
-async function example() {
-  console.log("🚀 Testing  SDK...");
-  const config = new Configuration({ 
-    // Configure HTTP bearer authorization: HTTPBearer
-    accessToken: "YOUR BEARER TOKEN",
-  });
-  const api = new DocumentConversionApi(config);
+const configuration = new Configuration();
+const apiInstance = new DocumentConversionApi(configuration);
 
-  const body = {
-    // string | Conversion ID returned by POST /convert (UUID format)
-    conversionId: conversionId_example,
-    // ConvertResumeRequest
-    convertResumeRequest: ...,
-  } satisfies ResumeConversionApiV1ConvertConversionIdResumePostRequest;
+let conversionId: string; //Conversion ID returned by POST /convert (UUID format) (default to undefined)
+let convertResumeRequest: ConvertResumeRequest; //
 
-  try {
-    const data = await api.resumeConversionApiV1ConvertConversionIdResumePost(body);
-    console.log(data);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// Run the test
-example().catch(console.error);
+const { status, data } = await apiInstance.resumeConversionApiV1ConvertConversionIdResumePost(
+    conversionId,
+    convertResumeRequest
+);
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
+|Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **conversionId** | `string` | Conversion ID returned by POST /convert (UUID format) | [Defaults to `undefined`] |
-| **convertResumeRequest** | [ConvertResumeRequest](ConvertResumeRequest.md) |  | |
+| **convertResumeRequest** | **ConvertResumeRequest**|  | |
+| **conversionId** | [**string**] | Conversion ID returned by POST /convert (UUID format) | defaults to undefined|
+
 
 ### Return type
 
-[**ConvertSuccessResponse**](ConvertSuccessResponse.md)
+**ConvertSuccessResponse**
 
 ### Authorization
 
@@ -307,17 +227,17 @@ example().catch(console.error);
 
 ### HTTP request headers
 
-- **Content-Type**: `application/json`
-- **Accept**: `application/json`
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful Response |  -  |
-| **404** | Conversion non trouvée ou expirée |  -  |
-| **422** | Validation toujours en échec |  -  |
-| **401** | Authentication required - Invalid or missing JWT token |  -  |
+|**200** | Successful Response |  -  |
+|**404** | Conversion non trouvée ou expirée |  -  |
+|**422** | Validation toujours en échec |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

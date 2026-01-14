@@ -1,47 +1,33 @@
-
 # AFNORSearchFlowFilters
 
 Filtering criteria, at least one is required
 
 ## Properties
 
-Name | Type
------------- | -------------
-`updatedAfter` | Date
-`updatedBefore` | Date
-`processingRule` | [Array&lt;AFNORProcessingRule&gt;](AFNORProcessingRule.md)
-`flowType` | [Array&lt;AFNORFlowType&gt;](AFNORFlowType.md)
-`flowDirection` | [Array&lt;AFNORFlowDirection&gt;](AFNORFlowDirection.md)
-`trackingId` | string
-`ackStatus` | [AFNORFlowAckStatus](AFNORFlowAckStatus.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**updatedAfter** | **string** |  | [optional] [default to undefined]
+**updatedBefore** | **string** |  | [optional] [default to undefined]
+**processingRule** | [**Array&lt;AFNORProcessingRule&gt;**](AFNORProcessingRule.md) |  | [optional] [default to undefined]
+**flowType** | [**Array&lt;AFNORFlowType&gt;**](AFNORFlowType.md) |  | [optional] [default to undefined]
+**flowDirection** | [**Array&lt;AFNORFlowDirection&gt;**](AFNORFlowDirection.md) |  | [optional] [default to undefined]
+**trackingId** | **string** | Unique identifier supporting UUID but not only, for flexibility purpose | [optional] [default to undefined]
+**ackStatus** | [**AFNORFlowAckStatus**](AFNORFlowAckStatus.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORSearchFlowFilters } from ''
+import { AFNORSearchFlowFilters } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "updatedAfter": null,
-  "updatedBefore": null,
-  "processingRule": null,
-  "flowType": null,
-  "flowDirection": null,
-  "trackingId": null,
-  "ackStatus": null,
-} satisfies AFNORSearchFlowFilters
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORSearchFlowFilters
-console.log(exampleParsed)
+const instance: AFNORSearchFlowFilters = {
+    updatedAfter,
+    updatedBefore,
+    processingRule,
+    flowType,
+    flowDirection,
+    trackingId,
+    ackStatus,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,33 +1,19 @@
-
 # Amount1
 
 Allowance/charge amount (BT-92/99/136/141).
 
 ## Properties
 
-Name | Type
------------- | -------------
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
 
 ## Example
 
 ```typescript
-import type { Amount1 } from ''
+import { Amount1 } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies Amount1
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as Amount1
-console.log(exampleParsed)
+const instance: Amount1 = {
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

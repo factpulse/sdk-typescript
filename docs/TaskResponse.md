@@ -1,35 +1,21 @@
-
 # TaskResponse
 
 Immediate response after submitting an async task.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`taskId` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**taskId** | **string** | Unique task identifier for polling | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { TaskResponse } from ''
+import { TaskResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "taskId": null,
-} satisfies TaskResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as TaskResponse
-console.log(exampleParsed)
+const instance: TaskResponse = {
+    taskId,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

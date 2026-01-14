@@ -1,48 +1,34 @@
-
 # AFNORCreateRoutingCodeBody
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`facilityNature` | [AFNORFacilityNature](AFNORFacilityNature.md)
-`routingIdentifier` | string
-`siret` | string
-`routingIdentifierType` | string
-`routingCodeName` | string
-`managesLegalCommitmentCode` | boolean
-`administrativeStatus` | [AFNORRoutingCodeAdministrativeStatus](AFNORRoutingCodeAdministrativeStatus.md)
-`address` | [AFNORAddressEdit](AFNORAddressEdit.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**facilityNature** | [**AFNORFacilityNature**](AFNORFacilityNature.md) |  | [default to undefined]
+**routingIdentifier** | **string** | Routing identifier od a routing code. | [default to undefined]
+**siret** | **string** | SIRET Number | [default to undefined]
+**routingIdentifierType** | **string** | Routing Identifier type. | [optional] [default to undefined]
+**routingCodeName** | **string** | Name of the directory line routing code. This attribute is only returned if the directory line is defined at the SIREN / SIRET / Routing code mesh. | [default to undefined]
+**managesLegalCommitmentCode** | **boolean** | Indicates whether the public structure requires a legal commitment number. This attribute is only returned if the directory line is defined for a public structure at the SIREN / SIRET or SIREN / SIRET / Routing code level. | [optional] [default to undefined]
+**administrativeStatus** | [**AFNORRoutingCodeAdministrativeStatus**](AFNORRoutingCodeAdministrativeStatus.md) |  | [default to undefined]
+**address** | [**AFNORAddressEdit**](AFNORAddressEdit.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORCreateRoutingCodeBody } from ''
+import { AFNORCreateRoutingCodeBody } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "facilityNature": null,
-  "routingIdentifier": dcsc456sdcsdcs556,
-  "siret": 70204275500240,
-  "routingIdentifierType": 0224,
-  "routingCodeName": Libellé Code routage,
-  "managesLegalCommitmentCode": true,
-  "administrativeStatus": null,
-  "address": null,
-} satisfies AFNORCreateRoutingCodeBody
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORCreateRoutingCodeBody
-console.log(exampleParsed)
+const instance: AFNORCreateRoutingCodeBody = {
+    facilityNature,
+    routingIdentifier,
+    siret,
+    routingIdentifierType,
+    routingCodeName,
+    managesLegalCommitmentCode,
+    administrativeStatus,
+    address,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,39 +1,25 @@
-
 # TaxRepresentative
 
 Seller tax representative (BG-11).  The tax representative is required when the seller is not established in the country where VAT is due.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`name` | string
-`vatNumber` | string
-`postalAddress` | [PostalAddress](PostalAddress.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**name** | **string** | Tax representative name (BT-62). | [default to undefined]
+**vat_number** | **string** | Tax representative VAT identifier (BT-63). | [default to undefined]
+**postal_address** | [**PostalAddress**](PostalAddress.md) | Tax representative postal address (BG-12). | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { TaxRepresentative } from ''
+import { TaxRepresentative } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "name": null,
-  "vatNumber": null,
-  "postalAddress": null,
-} satisfies TaxRepresentative
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as TaxRepresentative
-console.log(exampleParsed)
+const instance: TaxRepresentative = {
+    name,
+    vat_number,
+    postal_address,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

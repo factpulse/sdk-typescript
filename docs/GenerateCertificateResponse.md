@@ -1,49 +1,31 @@
-
 # GenerateCertificateResponse
 
 Response after generating a test certificate.  Contains certificate PEM, private key PEM, and optionally PKCS#12.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`status` | string
-`certificatePem` | string
-`privateKeyPem` | string
-`pkcs12Base64` | string
-`info` | [CertificateInfoResponse](CertificateInfoResponse.md)
-`warning` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**status** | **string** | Operation status | [optional] [default to 'success']
+**certificatePem** | **string** | X.509 certificate in PEM format | [default to undefined]
+**privateKeyPem** | **string** | RSA private key in PEM format | [default to undefined]
+**pkcs12Base64** | **string** |  | [optional] [default to undefined]
+**info** | [**CertificateInfoResponse**](CertificateInfoResponse.md) | Generated certificate information | [default to undefined]
+**warning** | **string** | Warning about certificate usage | [optional] [default to 'WARNING: This certificate is SELF-SIGNED and intended for TESTING only. DO NOT use in production. eIDAS level: SES (Simple Electronic Signature)']
 
 ## Example
 
 ```typescript
-import type { GenerateCertificateResponse } from ''
+import { GenerateCertificateResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "status": success,
-  "certificatePem": -----BEGIN CERTIFICATE-----
-MIID...
------END CERTIFICATE-----,
-  "privateKeyPem": -----BEGIN PRIVATE KEY-----
-MIIE...
------END PRIVATE KEY-----,
-  "pkcs12Base64": null,
-  "info": null,
-  "warning": null,
-} satisfies GenerateCertificateResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as GenerateCertificateResponse
-console.log(exampleParsed)
+const instance: GenerateCertificateResponse = {
+    status,
+    certificatePem,
+    privateKeyPem,
+    pkcs12Base64,
+    info,
+    warning,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

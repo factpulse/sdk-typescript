@@ -1,36 +1,22 @@
-
 # AFNORCreateDirectoryLineBodyPeriod
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`dateFrom` | Date
-`dateTo` | Date
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**dateFrom** | **string** | Effective start date of the directory line.. | [default to undefined]
+**dateTo** | **string** | Effective end date of the directory line. | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORCreateDirectoryLineBodyPeriod } from ''
+import { AFNORCreateDirectoryLineBodyPeriod } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "dateFrom": 2023-01-01,
-  "dateTo": 2023-01-31,
-} satisfies AFNORCreateDirectoryLineBodyPeriod
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORCreateDirectoryLineBodyPeriod
-console.log(exampleParsed)
+const instance: AFNORCreateDirectoryLineBodyPeriod = {
+    dateFrom,
+    dateTo,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

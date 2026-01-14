@@ -1,38 +1,24 @@
-
 # AFNORRoutingCodeSearchPost200Response
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`search` | [AFNORRoutingCodeSearch](AFNORRoutingCodeSearch.md)
-`totalNumberOfResults` | number
-`results` | [Array&lt;AFNORRoutingCodePayloadHistoryLegalUnitFacility&gt;](AFNORRoutingCodePayloadHistoryLegalUnitFacility.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**search** | [**AFNORRoutingCodeSearch**](AFNORRoutingCodeSearch.md) |  | [optional] [default to undefined]
+**totalNumberOfResults** | **number** | The total number of results | [optional] [default to undefined]
+**results** | [**Array&lt;AFNORRoutingCodePayloadHistoryLegalUnitFacility&gt;**](AFNORRoutingCodePayloadHistoryLegalUnitFacility.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORRoutingCodeSearchPost200Response } from ''
+import { AFNORRoutingCodeSearchPost200Response } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "search": null,
-  "totalNumberOfResults": 1500,
-  "results": null,
-} satisfies AFNORRoutingCodeSearchPost200Response
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORRoutingCodeSearchPost200Response
-console.log(exampleParsed)
+const instance: AFNORRoutingCodeSearchPost200Response = {
+    search,
+    totalNumberOfResults,
+    results,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

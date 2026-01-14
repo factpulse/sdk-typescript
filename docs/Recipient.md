@@ -1,51 +1,37 @@
-
 # Recipient
 
 Information about the invoice recipient / buyer (BG-7).
 
 ## Properties
 
-Name | Type
------------- | -------------
-`electronicAddress` | [ElectronicAddress](ElectronicAddress.md)
-`executingServiceCode` | string
-`name` | string
-`siren` | string
-`siret` | string
-`vatNumber` | string
-`postalAddress` | [PostalAddress](PostalAddress.md)
-`contact` | [Contact](Contact.md)
-`globalIds` | [Array&lt;ElectronicAddress&gt;](ElectronicAddress.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**electronic_address** | [**ElectronicAddress**](ElectronicAddress.md) |  | [default to undefined]
+**executing_service_code** | **string** |  | [optional] [default to undefined]
+**name** | **string** |  | [optional] [default to undefined]
+**siren** | **string** |  | [optional] [default to undefined]
+**siret** | **string** |  | [optional] [default to undefined]
+**vat_number** | **string** |  | [optional] [default to undefined]
+**postal_address** | [**PostalAddress**](PostalAddress.md) |  | [optional] [default to undefined]
+**contact** | [**Contact**](Contact.md) |  | [optional] [default to undefined]
+**global_ids** | [**Array&lt;ElectronicAddress&gt;**](ElectronicAddress.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { Recipient } from ''
+import { Recipient } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "electronicAddress": null,
-  "executingServiceCode": null,
-  "name": null,
-  "siren": null,
-  "siret": null,
-  "vatNumber": null,
-  "postalAddress": null,
-  "contact": null,
-  "globalIds": null,
-} satisfies Recipient
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as Recipient
-console.log(exampleParsed)
+const instance: Recipient = {
+    electronic_address,
+    executing_service_code,
+    name,
+    siren,
+    siret,
+    vat_number,
+    postal_address,
+    contact,
+    global_ids,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

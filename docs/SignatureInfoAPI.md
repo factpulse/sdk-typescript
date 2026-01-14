@@ -1,45 +1,31 @@
-
 # SignatureInfoAPI
 
 Information about an electronic signature in a PDF.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`fieldName` | string
-`signer` | string
-`signingDate` | string
-`reason` | string
-`location` | string
-`isValid` | boolean
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**fieldName** | **string** | Signature field name in the PDF | [default to undefined]
+**signer** | **string** |  | [optional] [default to undefined]
+**signingDate** | **string** |  | [optional] [default to undefined]
+**reason** | **string** |  | [optional] [default to undefined]
+**location** | **string** |  | [optional] [default to undefined]
+**isValid** | **boolean** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { SignatureInfoAPI } from ''
+import { SignatureInfoAPI } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "fieldName": null,
-  "signer": null,
-  "signingDate": null,
-  "reason": null,
-  "location": null,
-  "isValid": null,
-} satisfies SignatureInfoAPI
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SignatureInfoAPI
-console.log(exampleParsed)
+const instance: SignatureInfoAPI = {
+    fieldName,
+    signer,
+    signingDate,
+    reason,
+    location,
+    isValid,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

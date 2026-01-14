@@ -1,49 +1,35 @@
-
 # SubmitEReportingResponse
 
 Response after submitting e-reporting to PA/PDP.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`flowId` | string
-`reportId` | string
-`trackingId` | string
-`flowType` | string
-`sha256` | string
-`afnorFlowType` | string
-`afnorResponse` | { [key: string]: any; }
-`message` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**flowId** | **string** | Flow identifier from PA/PDP | [default to undefined]
+**reportId** | **string** | Report identifier | [default to undefined]
+**trackingId** | **string** |  | [optional] [default to undefined]
+**flowType** | **string** | Flux type | [default to undefined]
+**sha256** | **string** | SHA256 hash of submitted XML | [default to undefined]
+**afnorFlowType** | **string** |  | [optional] [default to undefined]
+**afnorResponse** | **{ [key: string]: any; }** |  | [optional] [default to undefined]
+**message** | **string** | Status message | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { SubmitEReportingResponse } from ''
+import { SubmitEReportingResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "flowId": null,
-  "reportId": null,
-  "trackingId": null,
-  "flowType": null,
-  "sha256": null,
-  "afnorFlowType": null,
-  "afnorResponse": null,
-  "message": null,
-} satisfies SubmitEReportingResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SubmitEReportingResponse
-console.log(exampleParsed)
+const instance: SubmitEReportingResponse = {
+    flowId,
+    reportId,
+    trackingId,
+    flowType,
+    sha256,
+    afnorFlowType,
+    afnorResponse,
+    message,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,33 +1,33 @@
-
 # FlowType
 
 AFNOR XP Z12-013 FlowType enum.  Values from swagger specification v1.1.0: - Invoice flows (factures) - Lifecycle flows (cycle de vie) - E-reporting flows (transactions/paiements)
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `CustomerInvoice` (value: `'CustomerInvoice'`)
 
-## Example
+* `SupplierInvoice` (value: `'SupplierInvoice'`)
 
-```typescript
-import type { FlowType } from ''
+* `StateInvoice` (value: `'StateInvoice'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies FlowType
+* `CustomerInvoiceLc` (value: `'CustomerInvoiceLC'`)
 
-console.log(example)
+* `SupplierInvoiceLc` (value: `'SupplierInvoiceLC'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
+* `StateCustomerInvoiceLc` (value: `'StateCustomerInvoiceLC'`)
 
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as FlowType
-console.log(exampleParsed)
-```
+* `StateSupplierInvoiceLc` (value: `'StateSupplierInvoiceLC'`)
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+* `UnitaryCustomerTransactionReport` (value: `'UnitaryCustomerTransactionReport'`)
 
+* `AggregatedCustomerTransactionReport` (value: `'AggregatedCustomerTransactionReport'`)
 
+* `UnitarySupplierTransactionReport` (value: `'UnitarySupplierTransactionReport'`)
+
+* `UnitaryCustomerPaymentReport` (value: `'UnitaryCustomerPaymentReport'`)
+
+* `AggregatedCustomerPaymentReport` (value: `'AggregatedCustomerPaymentReport'`)
+
+* `MultiFlowReport` (value: `'MultiFlowReport'`)
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,59 +1,45 @@
-
 # SimplifiedInvoiceData
 
 Simplified invoice data (minimal format for auto-enrichment).
 
 ## Properties
 
-Name | Type
------------- | -------------
-`number` | string
-`supplier` | { [key: string]: any; }
-`recipient` | { [key: string]: any; }
-`lines` | Array&lt;{ [key: string]: any; }&gt;
-`date` | string
-`dueDays` | number
-`comment` | string
-`purchaseOrderReference` | string
-`contractReference` | string
-`invoiceType` | [InvoiceTypeCode](InvoiceTypeCode.md)
-`precedingInvoiceReference` | string
-`operationNature` | [OperationNature](OperationNature.md)
-`invoicingFramework` | [InvoicingFrameworkCode](InvoicingFrameworkCode.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**number** | **string** | Unique invoice number | [default to undefined]
+**supplier** | **{ [key: string]: any; }** | Supplier information (siret, iban, ...) | [default to undefined]
+**recipient** | **{ [key: string]: any; }** | Recipient information (siret, ...) | [default to undefined]
+**lines** | **Array&lt;{ [key: string]: any; }&gt;** | Invoice lines | [default to undefined]
+**date** | **string** |  | [optional] [default to undefined]
+**dueDays** | **number** | Due date in days (default: 30) | [optional] [default to 30]
+**comment** | **string** |  | [optional] [default to undefined]
+**purchaseOrderReference** | **string** |  | [optional] [default to undefined]
+**contractReference** | **string** |  | [optional] [default to undefined]
+**invoiceType** | [**InvoiceTypeCode**](InvoiceTypeCode.md) | Document type (UNTDID 1001). Default: 380 (Invoice). | [optional] [default to undefined]
+**precedingInvoiceReference** | **string** |  | [optional] [default to undefined]
+**operationNature** | [**OperationNature**](OperationNature.md) |  | [optional] [default to undefined]
+**invoicingFramework** | [**InvoicingFrameworkCode**](InvoicingFrameworkCode.md) |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { SimplifiedInvoiceData } from ''
+import { SimplifiedInvoiceData } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "number": null,
-  "supplier": null,
-  "recipient": null,
-  "lines": null,
-  "date": null,
-  "dueDays": null,
-  "comment": null,
-  "purchaseOrderReference": null,
-  "contractReference": null,
-  "invoiceType": null,
-  "precedingInvoiceReference": null,
-  "operationNature": null,
-  "invoicingFramework": null,
-} satisfies SimplifiedInvoiceData
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SimplifiedInvoiceData
-console.log(exampleParsed)
+const instance: SimplifiedInvoiceData = {
+    number,
+    supplier,
+    recipient,
+    lines,
+    date,
+    dueDays,
+    comment,
+    purchaseOrderReference,
+    contractReference,
+    invoiceType,
+    precedingInvoiceReference,
+    operationNature,
+    invoicingFramework,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

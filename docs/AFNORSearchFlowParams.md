@@ -1,36 +1,22 @@
-
 # AFNORSearchFlowParams
 
 
 ## Properties
 
-Name | Type
------------- | -------------
-`limit` | number
-`where` | [AFNORSearchFlowFilters](AFNORSearchFlowFilters.md)
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**limit** | **number** | Maximum number of results that may be returned | [optional] [default to 25]
+**where** | [**AFNORSearchFlowFilters**](AFNORSearchFlowFilters.md) |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { AFNORSearchFlowParams } from ''
+import { AFNORSearchFlowParams } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "limit": null,
-  "where": null,
-} satisfies AFNORSearchFlowParams
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORSearchFlowParams
-console.log(exampleParsed)
+const instance: AFNORSearchFlowParams = {
+    limit,
+    where,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

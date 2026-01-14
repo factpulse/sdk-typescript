@@ -1,53 +1,39 @@
-
 # ConvertSuccessResponse
 
 Reponse succes de conversion.  Le champ `invoice` contient les donnees de la facture au format FacturXInvoice (cf. facture_electronique.models.FacturXInvoice). Ce modele est le meme que celui utilise pour la generation Factur-X, garantissant une coherence totale.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`status` | string
-`conversionId` | string
-`documentType` | [DocumentTypeInfo](DocumentTypeInfo.md)
-`invoice` | { [key: string]: any; }
-`extraction` | [ExtractionInfo](ExtractionInfo.md)
-`validation` | [ValidationInfo](ValidationInfo.md)
-`files` | [FilesInfo](FilesInfo.md)
-`processingTimeMs` | number
-`pdfRegenerated` | boolean
-`pdfRegeneratedReason` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**status** | **string** | Statut de la conversion | [optional] [default to 'success']
+**conversion_id** | **string** | Identifiant unique de conversion | [default to undefined]
+**document_type** | [**DocumentTypeInfo**](DocumentTypeInfo.md) |  | [default to undefined]
+**invoice** | **{ [key: string]: any; }** | Donnees facture au format FacturXInvoice (cf. models.py) | [default to undefined]
+**extraction** | [**ExtractionInfo**](ExtractionInfo.md) |  | [default to undefined]
+**validation** | [**ValidationInfo**](ValidationInfo.md) |  | [default to undefined]
+**files** | [**FilesInfo**](FilesInfo.md) |  | [default to undefined]
+**processing_time_ms** | **number** | Temps de traitement en ms | [default to undefined]
+**pdf_regenerated** | **boolean** | True si le PDF a ete regenere (source non exploitable) | [optional] [default to false]
+**pdf_regenerated_reason** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { ConvertSuccessResponse } from ''
+import { ConvertSuccessResponse } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "status": null,
-  "conversionId": null,
-  "documentType": null,
-  "invoice": null,
-  "extraction": null,
-  "validation": null,
-  "files": null,
-  "processingTimeMs": null,
-  "pdfRegenerated": null,
-  "pdfRegeneratedReason": null,
-} satisfies ConvertSuccessResponse
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ConvertSuccessResponse
-console.log(exampleParsed)
+const instance: ConvertSuccessResponse = {
+    status,
+    conversion_id,
+    document_type,
+    invoice,
+    extraction,
+    validation,
+    files,
+    processing_time_ms,
+    pdf_regenerated,
+    pdf_regenerated_reason,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

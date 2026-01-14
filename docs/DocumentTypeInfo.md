@@ -1,39 +1,25 @@
-
 # DocumentTypeInfo
 
 Informations sur le type de document detecte.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`code` | number
-`label` | string
-`detectedAs` | string
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**code** | **number** | Code UNTDID 1001 | [default to undefined]
+**label** | **string** | Libelle (Facture, Avoir, etc.) | [default to undefined]
+**detected_as** | **string** | Classification interne | [default to undefined]
 
 ## Example
 
 ```typescript
-import type { DocumentTypeInfo } from ''
+import { DocumentTypeInfo } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "code": null,
-  "label": null,
-  "detectedAs": null,
-} satisfies DocumentTypeInfo
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as DocumentTypeInfo
-console.log(exampleParsed)
+const instance: DocumentTypeInfo = {
+    code,
+    label,
+    detected_as,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

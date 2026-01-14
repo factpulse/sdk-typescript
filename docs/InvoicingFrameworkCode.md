@@ -1,33 +1,15 @@
-
 # InvoicingFrameworkCode
 
 Chorus Pro codes for invoicing framework (B2G usage).
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `A1FactureFournisseur` (value: `'A1_FACTURE_FOURNISSEUR'`)
 
-## Example
+* `A2FactureFournisseurDejaPayee` (value: `'A2_FACTURE_FOURNISSEUR_DEJA_PAYEE'`)
 
-```typescript
-import type { InvoicingFrameworkCode } from ''
+* `A9FactureSoustraitant` (value: `'A9_FACTURE_SOUSTRAITANT'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies InvoicingFrameworkCode
+* `A12FactureCotraitant` (value: `'A12_FACTURE_COTRAITANT'`)
 
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as InvoicingFrameworkCode
-console.log(exampleParsed)
-```
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

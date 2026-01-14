@@ -1,51 +1,37 @@
-
 # SearchFlowRequest
 
 Request to search submitted flows.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`updatedAfter` | Date
-`updatedBefore` | Date
-`flowTypes` | [Array&lt;FlowType&gt;](FlowType.md)
-`flowDirections` | [Array&lt;FlowDirection&gt;](FlowDirection.md)
-`trackingId` | string
-`flowId` | string
-`acknowledgmentStatus` | [AcknowledgmentStatus](AcknowledgmentStatus.md)
-`offset` | number
-`limit` | number
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**updatedAfter** | **string** |  | [optional] [default to undefined]
+**updatedBefore** | **string** |  | [optional] [default to undefined]
+**flowTypes** | [**Array&lt;FlowType&gt;**](FlowType.md) |  | [optional] [default to undefined]
+**flowDirections** | [**Array&lt;FlowDirection&gt;**](FlowDirection.md) |  | [optional] [default to undefined]
+**trackingId** | **string** |  | [optional] [default to undefined]
+**flowId** | **string** |  | [optional] [default to undefined]
+**acknowledgmentStatus** | [**AcknowledgmentStatus**](AcknowledgmentStatus.md) |  | [optional] [default to undefined]
+**offset** | **number** | Offset for pagination | [optional] [default to 0]
+**limit** | **number** | Maximum number of results (max 100) | [optional] [default to 25]
 
 ## Example
 
 ```typescript
-import type { SearchFlowRequest } from ''
+import { SearchFlowRequest } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "updatedAfter": null,
-  "updatedBefore": null,
-  "flowTypes": null,
-  "flowDirections": null,
-  "trackingId": null,
-  "flowId": null,
-  "acknowledgmentStatus": null,
-  "offset": null,
-  "limit": null,
-} satisfies SearchFlowRequest
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as SearchFlowRequest
-console.log(exampleParsed)
+const instance: SearchFlowRequest = {
+    updatedAfter,
+    updatedBefore,
+    flowTypes,
+    flowDirections,
+    trackingId,
+    flowId,
+    acknowledgmentStatus,
+    offset,
+    limit,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,32 +1,22 @@
-
 # ErrorSource
 
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `Schematron` (value: `'schematron'`)
 
-## Example
+* `Pdfa` (value: `'pdfa'`)
 
-```typescript
-import type { ErrorSource } from ''
+* `Pydantic` (value: `'pydantic'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies ErrorSource
+* `Xmp` (value: `'xmp'`)
 
-console.log(example)
+* `Signature` (value: `'signature'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
+* `Afnor` (value: `'afnor'`)
 
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as ErrorSource
-console.log(exampleParsed)
-```
+* `ChorusPro` (value: `'chorus_pro'`)
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+* `System` (value: `'system'`)
 
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

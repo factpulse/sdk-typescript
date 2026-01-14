@@ -1,65 +1,51 @@
-
 # InvoiceInput
 
 Invoice for B2B international reporting (flux 10.1).  Used for unitary declaration of international B2B invoices.
 
 ## Properties
 
-Name | Type
------------- | -------------
-`invoiceId` | string
-`issueDate` | Date
-`typeCode` | [FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode](FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md)
-`currency` | [Currency](Currency.md)
-`dueDate` | Date
-`sellerSiren` | string
-`sellerVatId` | string
-`sellerCountry` | [Sellercountry](Sellercountry.md)
-`buyerId` | string
-`buyerVatId` | string
-`buyerCountry` | [Buyercountry](Buyercountry.md)
-`taxExclusiveAmount` | [Taxexclusiveamount1](Taxexclusiveamount1.md)
-`taxAmount` | [Taxamount1](Taxamount1.md)
-`taxBreakdown` | [Array&lt;TaxBreakdownInput&gt;](TaxBreakdownInput.md)
-`referencedInvoiceId` | string
-`referencedInvoiceDate` | Date
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**invoiceId** | **string** | Invoice identifier | [default to undefined]
+**issueDate** | **string** | Invoice issue date | [default to undefined]
+**typeCode** | [**FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode**](FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md) | Invoice type code | [optional] [default to undefined]
+**currency** | [**Currency**](Currency.md) |  | [optional] [default to undefined]
+**dueDate** | **string** |  | [optional] [default to undefined]
+**sellerSiren** | **string** | Seller SIREN/SIRET | [default to undefined]
+**sellerVatId** | **string** |  | [optional] [default to undefined]
+**sellerCountry** | [**Sellercountry**](Sellercountry.md) |  | [optional] [default to undefined]
+**buyerId** | **string** |  | [optional] [default to undefined]
+**buyerVatId** | **string** |  | [optional] [default to undefined]
+**buyerCountry** | [**Buyercountry**](Buyercountry.md) |  | [default to undefined]
+**taxExclusiveAmount** | [**Taxexclusiveamount1**](Taxexclusiveamount1.md) |  | [default to undefined]
+**taxAmount** | [**Taxamount1**](Taxamount1.md) |  | [default to undefined]
+**taxBreakdown** | [**Array&lt;TaxBreakdownInput&gt;**](TaxBreakdownInput.md) | VAT breakdown | [default to undefined]
+**referencedInvoiceId** | **string** |  | [optional] [default to undefined]
+**referencedInvoiceDate** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
 ```typescript
-import type { InvoiceInput } from ''
+import { InvoiceInput } from '@factpulse/sdk';
 
-// TODO: Update the object below with actual values
-const example = {
-  "invoiceId": FAC-2025-001,
-  "issueDate": 2025-01-15,
-  "typeCode": null,
-  "currency": null,
-  "dueDate": null,
-  "sellerSiren": 123456789,
-  "sellerVatId": null,
-  "sellerCountry": null,
-  "buyerId": null,
-  "buyerVatId": null,
-  "buyerCountry": null,
-  "taxExclusiveAmount": null,
-  "taxAmount": null,
-  "taxBreakdown": null,
-  "referencedInvoiceId": null,
-  "referencedInvoiceDate": null,
-} satisfies InvoiceInput
-
-console.log(example)
-
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
-
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as InvoiceInput
-console.log(exampleParsed)
+const instance: InvoiceInput = {
+    invoiceId,
+    issueDate,
+    typeCode,
+    currency,
+    dueDate,
+    sellerSiren,
+    sellerVatId,
+    sellerCountry,
+    buyerId,
+    buyerVatId,
+    buyerCountry,
+    taxExclusiveAmount,
+    taxAmount,
+    taxBreakdown,
+    referencedInvoiceId,
+    referencedInvoiceDate,
+};
 ```
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

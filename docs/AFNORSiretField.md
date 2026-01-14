@@ -1,33 +1,35 @@
-
 # AFNORSiretField
 
 Fields of the Siret resource.
 
-## Properties
+## Enum
 
-Name | Type
------------- | -------------
+* `Siret` (value: `'siret'`)
 
-## Example
+* `Siren` (value: `'siren'`)
 
-```typescript
-import type { AFNORSiretField } from ''
+* `Name` (value: `'name'`)
 
-// TODO: Update the object below with actual values
-const example = {
-} satisfies AFNORSiretField
+* `FacilityType` (value: `'facilityType'`)
 
-console.log(example)
+* `Address` (value: `'address'`)
 
-// Convert the instance to a JSON string
-const exampleJSON: string = JSON.stringify(example)
-console.log(exampleJSON)
+* `Diffusible` (value: `'diffusible'`)
 
-// Parse the JSON string back to an object
-const exampleParsed = JSON.parse(exampleJSON) as AFNORSiretField
-console.log(exampleParsed)
-```
+* `AdministrativeStatus` (value: `'administrativeStatus'`)
 
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+* `PmStatus` (value: `'pmStatus'`)
 
+* `PmOnly` (value: `'pmOnly'`)
 
+* `ManagesPaymentStatus` (value: `'managesPaymentStatus'`)
+
+* `ManagesLegalCommitment` (value: `'managesLegalCommitment'`)
+
+* `ManagesLegalCommitmentOrService` (value: `'managesLegalCommitmentOrService'`)
+
+* `ServiceCodeStatus` (value: `'serviceCodeStatus'`)
+
+* `IdInstance` (value: `'idInstance'`)
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
