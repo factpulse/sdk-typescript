@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **schematron_rules_total** | **number** | Total regles | [default to undefined]
 **pdfa_compliant** | **boolean** | PDF/A-3 conforme | [optional] [default to true]
 **xml_embedded** | **boolean** | XML embarque dans PDF | [optional] [default to true]
-**errors** | [**Array&lt;ValidationError&gt;**](ValidationError.md) |  | [optional] [default to undefined]
+**errors** | [**Array&lt;FactureElectroniqueRestApiSchemasConvertValidationError&gt;**](FactureElectroniqueRestApiSchemasConvertValidationError.md) |  | [optional] [default to undefined]
 
 ## Example
 
