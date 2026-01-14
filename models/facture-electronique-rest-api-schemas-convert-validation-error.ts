@@ -15,17 +15,25 @@
 
 
 /**
- * Validation error detail.
+ * Erreur de validation Schematron avec suggestion de correction.
  */
-export interface FactureElectroniqueRestApiSchemasEreportingValidationError {
+export interface FactureElectroniqueRestApiSchemasConvertValidationError {
     /**
-     * Field path with error
+     * Code de la regle (BR-XX, BR-FR-XX)
      */
-    'field': string;
+    'rule': string;
+    'bt_code'?: string | null;
     /**
-     * Error message
+     * Gravite: error, warning
+     */
+    'severity': string;
+    /**
+     * Message d\'erreur
      */
     'message': string;
-    'code'?: string | null;
+    'suggested_value'?: string | null;
+    'suggested_field'?: string | null;
+    'explanation'?: string | null;
+    'confidence'?: number | null;
 }
 
