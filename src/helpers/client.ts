@@ -312,7 +312,7 @@ export class FactPulseClient {
         if (status === 'FAILURE') {
           // Format AFNOR: errorMessage, details
           const failureResult = result as Record<string, unknown> | undefined;
-          const errors: ValidationErrorDetail[] = Array.isArray(result?.details) ? result.details.filter((e): e is ValidationErrorDetail => typeof e === 'object' && e !== null) : [];
+          const errors: ValidationErrorDetail[] = Array.isArray(result?.details) ? result.details.filter((e: unknown): e is ValidationErrorDetail => typeof e === 'object' && e !== null) : [];
           throw new FactPulseValidationError(`Task ${taskId} failed: ${result?.errorMessage || 'Unknown error'}`, errors);
         }
         await new Promise(resolve => setTimeout(resolve, currentInterval));
