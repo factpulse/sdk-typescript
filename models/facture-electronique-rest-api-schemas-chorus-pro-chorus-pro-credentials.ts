@@ -15,17 +15,28 @@
 
 
 /**
- * Relations to include for directory-line responses.
+ * Chorus Pro credentials for Zero-Trust mode.  **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.  **Security**: - Credentials are never persisted in the database - They are used only for the duration of the request - Secure transmission via HTTPS  **Use cases**: - High-security environments (banks, administrations) - Strict GDPR compliance - Tests with temporary credentials - Users who don\'t want to store their credentials
  */
-
-export const DirectoryLineInclude = {
-    Siren: 'siren',
-    Siret: 'siret',
-    RoutingCode: 'routingCode',
-    Platform: 'platform'
-} as const;
-
-export type DirectoryLineInclude = typeof DirectoryLineInclude[keyof typeof DirectoryLineInclude];
-
-
+export interface FactureElectroniqueRestApiSchemasChorusProChorusProCredentials {
+    /**
+     * PISTE Client ID (government API portal)
+     */
+    'pisteClientId': string;
+    /**
+     * PISTE Client Secret
+     */
+    'pisteClientSecret': string;
+    /**
+     * Chorus Pro login
+     */
+    'chorusProLogin': string;
+    /**
+     * Chorus Pro password
+     */
+    'chorusProPassword': string;
+    /**
+     * Use sandbox environment (true) or production (false)
+     */
+    'sandbox'?: boolean;
+}
 

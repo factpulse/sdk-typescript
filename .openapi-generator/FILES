@@ -117,7 +117,6 @@ docs/AFNORUpdatePutRoutingCodeBody.md
 docs/AFNORWebhookCallbackContent.md
 docs/APIError.md
 docs/APIProfile.md
-docs/AcceptLanguage.md
 docs/AcknowledgmentStatus.md
 docs/AdditionalDocument.md
 docs/AggregatedPaymentInput.md
@@ -151,7 +150,6 @@ docs/Currency.md
 docs/CurrencyCode.md
 docs/DeliveryParty.md
 docs/Destination.md
-docs/DirectoryLineInclude.md
 docs/DocType.md
 docs/DocumentConversionApi.md
 docs/DocumentTypeInfo.md
@@ -166,8 +164,8 @@ docs/ErrorSource.md
 docs/ExtractionInfo.md
 docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
+docs/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md
 docs/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md
-docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
 docs/FieldStatus.md
 docs/FileInfo.md
 docs/FilesInfo.md
@@ -240,7 +238,6 @@ docs/Recipient.md
 docs/ReportPeriod.md
 docs/ReportSender.md
 docs/RoundingAmount.md
-docs/RoutingCodeInclude.md
 docs/SchematronValidationError.md
 docs/SchemeID.md
 docs/SearchFlowRequest.md
@@ -253,7 +250,6 @@ docs/SignatureInfo.md
 docs/SignatureInfoAPI.md
 docs/SignatureParameters.md
 docs/SimplifiedInvoiceData.md
-docs/SiretInclude.md
 docs/StructureInfo.md
 docs/StructureParameters.md
 docs/StructureService.md
@@ -308,7 +304,6 @@ docs/VerificationSuccessResponse.md
 docs/VerifiedFieldSchema.md
 git_push.sh
 index.ts
-models/accept-language.ts
 models/acknowledgment-status.ts
 models/additional-document.ts
 models/afnoracknowledgement-detail.ts
@@ -438,7 +433,6 @@ models/currency-code.ts
 models/currency.ts
 models/delivery-party.ts
 models/destination.ts
-models/directory-line-include.ts
 models/doc-type.ts
 models/document-type-info.ts
 models/electronic-address.ts
@@ -450,8 +444,8 @@ models/error-source.ts
 models/extraction-info.ts
 models/factur-xinvoice.ts
 models/factur-xpdfinfo.ts
+models/facture-electronique-rest-api-schemas-chorus-pro-chorus-pro-credentials.ts
 models/facture-electronique-rest-api-schemas-ereporting-invoice-type-code.ts
-models/facture-electronique-rest-api-schemas-processing-chorus-pro-credentials.ts
 models/field-status.ts
 models/file-info.ts
 models/files-info.ts
@@ -522,7 +516,6 @@ models/recipient.ts
 models/report-period.ts
 models/report-sender.ts
 models/rounding-amount.ts
-models/routing-code-include.ts
 models/schematron-validation-error.ts
 models/scheme-id.ts
 models/search-flow-request.ts
@@ -535,7 +528,6 @@ models/signature-info-api.ts
 models/signature-info.ts
 models/signature-parameters.ts
 models/simplified-invoice-data.ts
-models/siret-include.ts
 models/structure-info.ts
 models/structure-parameters.ts
 models/structure-service.ts

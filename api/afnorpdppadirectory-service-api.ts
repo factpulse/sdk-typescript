@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction , replaceWithSerializableTypeIfNeeded } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -41,14 +41,6 @@ import type { AFNORRoutingCodeSearchPost200Response } from '../models';
 import type { AFNORSirenSearchPost200Response } from '../models';
 // @ts-ignore
 import type { AFNORSiretSearchPost200Response } from '../models';
-// @ts-ignore
-import type { AcceptLanguage } from '../models';
-// @ts-ignore
-import type { DirectoryLineInclude } from '../models';
-// @ts-ignore
-import type { RoutingCodeInclude } from '../models';
-// @ts-ignore
-import type { SiretInclude } from '../models';
 /**
  * AFNORPDPPADirectoryServiceApi - axios parameter creator
  */
@@ -57,11 +49,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
         /**
          * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
          * @summary Creating a directory line
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost: async (acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/afnor/directory/v1/directory-line`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -74,17 +65,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -97,11 +79,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
         /**
          * Creating a routing code.
          * @summary Create a routing code
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost: async (acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/afnor/directory/v1/routing-code`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -114,17 +95,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -138,11 +110,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
          * Delete a directory line.
          * @summary Delete a directory line
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete: async (idInstance: string, acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'idInstance' is not null or undefined
             assertParamExists('deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete', 'idInstance', idInstance)
             const localVarPath = `/api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance}`
@@ -158,17 +129,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -212,13 +174,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
          * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
          * @summary Get a directory line.
          * @param {string} addressingIdentifier Addressing identifier (SIREN, SIRET or routing code)
-         * @param {Array<string> | null} [fields] Fields of the Directory Line resource.
-         * @param {Array<DirectoryLineInclude> | null} [include] Relations to include in the response.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet: async (addressingIdentifier: string, fields?: Array<string> | null, include?: Array<DirectoryLineInclude> | null, acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet: async (addressingIdentifier: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'addressingIdentifier' is not null or undefined
             assertParamExists('getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet', 'addressingIdentifier', addressingIdentifier)
             const localVarPath = `/api/v1/afnor/directory/v1/directory-line/code:{addressing_identifier}`
@@ -234,25 +193,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (fields) {
-                localVarQueryParameter['fields'] = fields;
-            }
-
-            if (include) {
-                localVarQueryParameter['include'] = include;
-            }
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -266,12 +208,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
          * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
          * @summary Get a directory line.
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {Array<string> | null} [fields] Fields of the Directory Line resource.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet: async (idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'idInstance' is not null or undefined
             assertParamExists('getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet', 'idInstance', idInstance)
             const localVarPath = `/api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance}`
@@ -287,21 +227,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (fields) {
-                localVarQueryParameter['fields'] = fields;
-            }
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -315,12 +242,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
          * Retrieve the Routing Code data corresponding to the Instance ID.
          * @summary Get a routing code by instance-id.
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {Array<string> | null} [fields] Fields of the Routing Code resource
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet: async (idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'idInstance' is not null or undefined
             assertParamExists('getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet', 'idInstance', idInstance)
             const localVarPath = `/api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance}`
@@ -336,21 +261,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (fields) {
-                localVarQueryParameter['fields'] = fields;
-            }
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -365,13 +277,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
          * @summary Get a routing code by SIRET and routing identifier
          * @param {string} siret 14-digit SIRET number (INSEE establishment identifier)
          * @param {string} routingIdentifier Routing code identifier
-         * @param {Array<string> | null} [fields] Fields of the Routing Code resource
-         * @param {Array<RoutingCodeInclude> | null} [include] Relations to include in the response.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet: async (siret: string, routingIdentifier: string, fields?: Array<string> | null, include?: Array<RoutingCodeInclude> | null, acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet: async (siret: string, routingIdentifier: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'siret' is not null or undefined
             assertParamExists('getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet', 'siret', siret)
             // verify required parameter 'routingIdentifier' is not null or undefined
@@ -390,25 +299,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (fields) {
-                localVarQueryParameter['fields'] = fields;
-            }
-
-            if (include) {
-                localVarQueryParameter['include'] = include;
-            }
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -422,12 +314,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
          * Returns the details of a company (legal unit) identified by the SIREN number passed as a parameter.
          * @summary Consult a siren (legal unit) by SIREN number
          * @param {string} siren 9-digit SIREN number (INSEE company identifier)
-         * @param {Array<string> | null} [fields] Fields of the SIREN resource
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet: async (siren: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet: async (siren: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'siren' is not null or undefined
             assertParamExists('getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet', 'siren', siren)
             const localVarPath = `/api/v1/afnor/directory/v1/siren/code-insee:{siren}`
@@ -443,21 +333,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (fields) {
-                localVarQueryParameter['fields'] = fields;
-            }
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -471,12 +348,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
          * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
          * @summary Gets a siren (legal unit) by instance ID
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {Array<string> | null} [fields] Fields of the SIREN resource
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet: async (idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'idInstance' is not null or undefined
             assertParamExists('getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet', 'idInstance', idInstance)
             const localVarPath = `/api/v1/afnor/directory/v1/siren/id-instance:{id_instance}`
@@ -492,21 +367,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (fields) {
-                localVarQueryParameter['fields'] = fields;
-            }
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -520,13 +382,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
          * Returns the details of a facility associated to a SIRET.
          * @summary Gets a siret (facility) by SIRET number
          * @param {string} siret 14-digit SIRET number (INSEE establishment identifier)
-         * @param {Array<string> | null} [fields] Fields of a SIRET resource.
-         * @param {Array<SiretInclude> | null} [include] Relations to include in the response.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet: async (siret: string, fields?: Array<string> | null, include?: Array<SiretInclude> | null, acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet: async (siret: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'siret' is not null or undefined
             assertParamExists('getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet', 'siret', siret)
             const localVarPath = `/api/v1/afnor/directory/v1/siret/code-insee:{siret}`
@@ -542,25 +401,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (fields) {
-                localVarQueryParameter['fields'] = fields;
-            }
-
-            if (include) {
-                localVarQueryParameter['include'] = include;
-            }
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -574,12 +416,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
          * Returns the details of a facility according to an instance-id.
          * @summary Gets a siret (facility) by id-instance
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {Array<string> | null} [fields] Fields of a SIRET resource.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet: async (idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'idInstance' is not null or undefined
             assertParamExists('getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet', 'idInstance', idInstance)
             const localVarPath = `/api/v1/afnor/directory/v1/siret/id-instance:{id_instance}`
@@ -595,21 +435,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (fields) {
-                localVarQueryParameter['fields'] = fields;
-            }
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -623,11 +450,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
          * Partially updates a directory line.
          * @summary Partially updates a directory line..
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch: async (idInstance: string, acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'idInstance' is not null or undefined
             assertParamExists('patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch', 'idInstance', idInstance)
             const localVarPath = `/api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance}`
@@ -643,17 +469,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -667,11 +484,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
          * Partially update a private routing code.
          * @summary Partially update a private routing code.
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch: async (idInstance: string, acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'idInstance' is not null or undefined
             assertParamExists('patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch', 'idInstance', idInstance)
             const localVarPath = `/api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance}`
@@ -687,17 +503,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -711,11 +518,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
          * Completely update a private routing code.
          * @summary Completely update a private routing code.
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut: async (idInstance: string, acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'idInstance' is not null or undefined
             assertParamExists('putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut', 'idInstance', idInstance)
             const localVarPath = `/api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance}`
@@ -731,17 +537,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -754,11 +551,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
         /**
          * Search for directory lines that meet all the criteria passed as parameters and return the results in the desired format.
          * @summary Search for a directory line
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost: async (acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/afnor/directory/v1/directory-line/search`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -771,17 +567,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -794,11 +581,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
         /**
          * Search for routing codes that meet all the criteria passed as parameters and return the routing codes in the desired format.
          * @summary Search for a routing code
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost: async (acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/afnor/directory/v1/routing-code/search`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -811,17 +597,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -834,11 +611,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
         /**
          * Multi-criteria company search.
          * @summary SIREN search (or legal unit)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost: async (acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/afnor/directory/v1/siren/search`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -851,17 +627,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -874,11 +641,10 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
         /**
          * Multi-criteria search for facilities.
          * @summary Search for a SIRET (facility)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost: async (acceptLanguage?: AcceptLanguage, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/afnor/directory/v1/siret/search`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -891,17 +657,8 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
             localVarHeaderParameter['Accept'] = 'application/json';
 
-            if (acceptLanguage != null) {
-                localVarHeaderParameter['Accept-Language'] = typeof acceptLanguage === 'string'
-                    ? acceptLanguage
-                    : JSON.stringify(acceptLanguage, replaceWithSerializableTypeIfNeeded);
-            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -923,12 +680,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
         /**
          * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
          * @summary Creating a directory line
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(acceptLanguage, options);
+        async createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -936,12 +692,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
         /**
          * Creating a routing code.
          * @summary Create a routing code
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(acceptLanguage, options);
+        async createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -950,12 +705,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * Delete a directory line.
          * @summary Delete a directory line
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance: string, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, acceptLanguage, options);
+        async deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -976,14 +730,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
          * @summary Get a directory line.
          * @param {string} addressingIdentifier Addressing identifier (SIREN, SIRET or routing code)
-         * @param {Array<string> | null} [fields] Fields of the Directory Line resource.
-         * @param {Array<DirectoryLineInclude> | null} [include] Relations to include in the response.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier: string, fields?: Array<string> | null, include?: Array<DirectoryLineInclude> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, fields, include, acceptLanguage, options);
+        async getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -992,13 +743,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
          * @summary Get a directory line.
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {Array<string> | null} [fields] Fields of the Directory Line resource.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage, options);
+        async getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1007,13 +756,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * Retrieve the Routing Code data corresponding to the Instance ID.
          * @summary Get a routing code by instance-id.
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {Array<string> | null} [fields] Fields of the Routing Code resource
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodePayloadHistoryLegalUnitFacility>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage, options);
+        async getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodePayloadHistoryLegalUnitFacility>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1023,14 +770,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * @summary Get a routing code by SIRET and routing identifier
          * @param {string} siret 14-digit SIRET number (INSEE establishment identifier)
          * @param {string} routingIdentifier Routing code identifier
-         * @param {Array<string> | null} [fields] Fields of the Routing Code resource
-         * @param {Array<RoutingCodeInclude> | null} [include] Relations to include in the response.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret: string, routingIdentifier: string, fields?: Array<string> | null, include?: Array<RoutingCodeInclude> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodePayloadHistoryLegalUnitFacility>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier, fields, include, acceptLanguage, options);
+        async getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret: string, routingIdentifier: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodePayloadHistoryLegalUnitFacility>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1039,13 +783,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * Returns the details of a company (legal unit) identified by the SIREN number passed as a parameter.
          * @summary Consult a siren (legal unit) by SIREN number
          * @param {string} siren 9-digit SIREN number (INSEE company identifier)
-         * @param {Array<string> | null} [fields] Fields of the SIREN resource
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORLegalUnitPayloadHistory>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren, fields, acceptLanguage, options);
+        async getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORLegalUnitPayloadHistory>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1054,13 +796,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
          * @summary Gets a siren (legal unit) by instance ID
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {Array<string> | null} [fields] Fields of the SIREN resource
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORLegalUnitPayloadHistory>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage, options);
+        async getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORLegalUnitPayloadHistory>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1069,14 +809,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * Returns the details of a facility associated to a SIRET.
          * @summary Gets a siret (facility) by SIRET number
          * @param {string} siret 14-digit SIRET number (INSEE establishment identifier)
-         * @param {Array<string> | null} [fields] Fields of a SIRET resource.
-         * @param {Array<SiretInclude> | null} [include] Relations to include in the response.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret: string, fields?: Array<string> | null, include?: Array<SiretInclude> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORFacilityPayloadHistory>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, fields, include, acceptLanguage, options);
+        async getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORFacilityPayloadHistory>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1085,13 +822,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * Returns the details of a facility according to an instance-id.
          * @summary Gets a siret (facility) by id-instance
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {Array<string> | null} [fields] Fields of a SIRET resource.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORFacilityPayloadHistory>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage, options);
+        async getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORFacilityPayloadHistory>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1100,12 +835,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * Partially updates a directory line.
          * @summary Partially updates a directory line..
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance: string, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORDirectoryLinePost201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, acceptLanguage, options);
+        async patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORDirectoryLinePost201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1114,12 +848,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * Partially update a private routing code.
          * @summary Partially update a private routing code.
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance: string, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodePost201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, acceptLanguage, options);
+        async patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodePost201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1128,12 +861,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * Completely update a private routing code.
          * @summary Completely update a private routing code.
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance: string, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodePost201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, acceptLanguage, options);
+        async putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodePost201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1141,12 +873,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
         /**
          * Search for directory lines that meet all the criteria passed as parameters and return the results in the desired format.
          * @summary Search for a directory line
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORDirectoryLineSearchPost200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(acceptLanguage, options);
+        async searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORDirectoryLineSearchPost200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1154,12 +885,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
         /**
          * Search for routing codes that meet all the criteria passed as parameters and return the routing codes in the desired format.
          * @summary Search for a routing code
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodeSearchPost200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(acceptLanguage, options);
+        async searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodeSearchPost200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1167,12 +897,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
         /**
          * Multi-criteria company search.
          * @summary SIREN search (or legal unit)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORSirenSearchPost200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(acceptLanguage, options);
+        async searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORSirenSearchPost200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1180,12 +909,11 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
         /**
          * Multi-criteria search for facilities.
          * @summary Search for a SIRET (facility)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORSiretSearchPost200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(acceptLanguage, options);
+        async searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORSiretSearchPost200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1202,33 +930,30 @@ export const AFNORPDPPADirectoryServiceApiFactory = function (configuration?: Co
         /**
          * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
          * @summary Creating a directory line
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(acceptLanguage, options).then((request) => request(axios, basePath));
+        createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(options).then((request) => request(axios, basePath));
         },
         /**
          * Creating a routing code.
          * @summary Create a routing code
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(acceptLanguage, options).then((request) => request(axios, basePath));
+        createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(options).then((request) => request(axios, basePath));
         },
         /**
          * Delete a directory line.
          * @summary Delete a directory line
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance: string, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, acceptLanguage, options).then((request) => request(axios, basePath));
+        deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, options).then((request) => request(axios, basePath));
         },
         /**
          * Check Directory Service availability (AFNOR XP Z12-013 compliant)
@@ -1243,174 +968,148 @@ export const AFNORPDPPADirectoryServiceApiFactory = function (configuration?: Co
          * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
          * @summary Get a directory line.
          * @param {string} addressingIdentifier Addressing identifier (SIREN, SIRET or routing code)
-         * @param {Array<string> | null} [fields] Fields of the Directory Line resource.
-         * @param {Array<DirectoryLineInclude> | null} [include] Relations to include in the response.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier: string, fields?: Array<string> | null, include?: Array<DirectoryLineInclude> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> {
-            return localVarFp.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, fields, include, acceptLanguage, options).then((request) => request(axios, basePath));
+        getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> {
+            return localVarFp.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
          * @summary Get a directory line.
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {Array<string> | null} [fields] Fields of the Directory Line resource.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> {
-            return localVarFp.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage, options).then((request) => request(axios, basePath));
+        getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> {
+            return localVarFp.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve the Routing Code data corresponding to the Instance ID.
          * @summary Get a routing code by instance-id.
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {Array<string> | null} [fields] Fields of the Routing Code resource
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodePayloadHistoryLegalUnitFacility> {
-            return localVarFp.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage, options).then((request) => request(axios, basePath));
+        getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodePayloadHistoryLegalUnitFacility> {
+            return localVarFp.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve the Routing Code data corresponding to the identifier passed in parameters.
          * @summary Get a routing code by SIRET and routing identifier
          * @param {string} siret 14-digit SIRET number (INSEE establishment identifier)
          * @param {string} routingIdentifier Routing code identifier
-         * @param {Array<string> | null} [fields] Fields of the Routing Code resource
-         * @param {Array<RoutingCodeInclude> | null} [include] Relations to include in the response.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret: string, routingIdentifier: string, fields?: Array<string> | null, include?: Array<RoutingCodeInclude> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodePayloadHistoryLegalUnitFacility> {
-            return localVarFp.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier, fields, include, acceptLanguage, options).then((request) => request(axios, basePath));
+        getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret: string, routingIdentifier: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodePayloadHistoryLegalUnitFacility> {
+            return localVarFp.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the details of a company (legal unit) identified by the SIREN number passed as a parameter.
          * @summary Consult a siren (legal unit) by SIREN number
          * @param {string} siren 9-digit SIREN number (INSEE company identifier)
-         * @param {Array<string> | null} [fields] Fields of the SIREN resource
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORLegalUnitPayloadHistory> {
-            return localVarFp.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren, fields, acceptLanguage, options).then((request) => request(axios, basePath));
+        getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORLegalUnitPayloadHistory> {
+            return localVarFp.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
          * @summary Gets a siren (legal unit) by instance ID
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {Array<string> | null} [fields] Fields of the SIREN resource
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORLegalUnitPayloadHistory> {
-            return localVarFp.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage, options).then((request) => request(axios, basePath));
+        getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORLegalUnitPayloadHistory> {
+            return localVarFp.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the details of a facility associated to a SIRET.
          * @summary Gets a siret (facility) by SIRET number
          * @param {string} siret 14-digit SIRET number (INSEE establishment identifier)
-         * @param {Array<string> | null} [fields] Fields of a SIRET resource.
-         * @param {Array<SiretInclude> | null} [include] Relations to include in the response.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret: string, fields?: Array<string> | null, include?: Array<SiretInclude> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORFacilityPayloadHistory> {
-            return localVarFp.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, fields, include, acceptLanguage, options).then((request) => request(axios, basePath));
+        getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORFacilityPayloadHistory> {
+            return localVarFp.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the details of a facility according to an instance-id.
          * @summary Gets a siret (facility) by id-instance
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {Array<string> | null} [fields] Fields of a SIRET resource.
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORFacilityPayloadHistory> {
-            return localVarFp.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage, options).then((request) => request(axios, basePath));
+        getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORFacilityPayloadHistory> {
+            return localVarFp.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, options).then((request) => request(axios, basePath));
         },
         /**
          * Partially updates a directory line.
          * @summary Partially updates a directory line..
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance: string, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORDirectoryLinePost201Response> {
-            return localVarFp.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, acceptLanguage, options).then((request) => request(axios, basePath));
+        patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORDirectoryLinePost201Response> {
+            return localVarFp.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, options).then((request) => request(axios, basePath));
         },
         /**
          * Partially update a private routing code.
          * @summary Partially update a private routing code.
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance: string, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodePost201Response> {
-            return localVarFp.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, acceptLanguage, options).then((request) => request(axios, basePath));
+        patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodePost201Response> {
+            return localVarFp.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, options).then((request) => request(axios, basePath));
         },
         /**
          * Completely update a private routing code.
          * @summary Completely update a private routing code.
          * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance: string, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodePost201Response> {
-            return localVarFp.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, acceptLanguage, options).then((request) => request(axios, basePath));
+        putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodePost201Response> {
+            return localVarFp.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, options).then((request) => request(axios, basePath));
         },
         /**
          * Search for directory lines that meet all the criteria passed as parameters and return the results in the desired format.
          * @summary Search for a directory line
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORDirectoryLineSearchPost200Response> {
-            return localVarFp.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(acceptLanguage, options).then((request) => request(axios, basePath));
+        searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(options?: RawAxiosRequestConfig): AxiosPromise<AFNORDirectoryLineSearchPost200Response> {
+            return localVarFp.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(options).then((request) => request(axios, basePath));
         },
         /**
          * Search for routing codes that meet all the criteria passed as parameters and return the routing codes in the desired format.
          * @summary Search for a routing code
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodeSearchPost200Response> {
-            return localVarFp.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(acceptLanguage, options).then((request) => request(axios, basePath));
+        searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodeSearchPost200Response> {
+            return localVarFp.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(options).then((request) => request(axios, basePath));
         },
         /**
          * Multi-criteria company search.
          * @summary SIREN search (or legal unit)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORSirenSearchPost200Response> {
-            return localVarFp.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(acceptLanguage, options).then((request) => request(axios, basePath));
+        searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(options?: RawAxiosRequestConfig): AxiosPromise<AFNORSirenSearchPost200Response> {
+            return localVarFp.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(options).then((request) => request(axios, basePath));
         },
         /**
          * Multi-criteria search for facilities.
          * @summary Search for a SIRET (facility)
-         * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig): AxiosPromise<AFNORSiretSearchPost200Response> {
-            return localVarFp.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(acceptLanguage, options).then((request) => request(axios, basePath));
+        searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(options?: RawAxiosRequestConfig): AxiosPromise<AFNORSiretSearchPost200Response> {
+            return localVarFp.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1422,35 +1121,32 @@ export class AFNORPDPPADirectoryServiceApi extends BaseAPI {
     /**
      * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
      * @summary Creating a directory line
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Creating a routing code.
      * @summary Create a routing code
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Delete a directory line.
      * @summary Delete a directory line
      * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance: string, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1467,40 +1163,33 @@ export class AFNORPDPPADirectoryServiceApi extends BaseAPI {
      * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
      * @summary Get a directory line.
      * @param {string} addressingIdentifier Addressing identifier (SIREN, SIRET or routing code)
-     * @param {Array<string> | null} [fields] Fields of the Directory Line resource.
-     * @param {Array<DirectoryLineInclude> | null} [include] Relations to include in the response.
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier: string, fields?: Array<string> | null, include?: Array<DirectoryLineInclude> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, fields, include, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
      * @summary Get a directory line.
      * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {Array<string> | null} [fields] Fields of the Directory Line resource.
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Retrieve the Routing Code data corresponding to the Instance ID.
      * @summary Get a routing code by instance-id.
      * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {Array<string> | null} [fields] Fields of the Routing Code resource
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1508,147 +1197,128 @@ export class AFNORPDPPADirectoryServiceApi extends BaseAPI {
      * @summary Get a routing code by SIRET and routing identifier
      * @param {string} siret 14-digit SIRET number (INSEE establishment identifier)
      * @param {string} routingIdentifier Routing code identifier
-     * @param {Array<string> | null} [fields] Fields of the Routing Code resource
-     * @param {Array<RoutingCodeInclude> | null} [include] Relations to include in the response.
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret: string, routingIdentifier: string, fields?: Array<string> | null, include?: Array<RoutingCodeInclude> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier, fields, include, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret: string, routingIdentifier: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(siret, routingIdentifier, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns the details of a company (legal unit) identified by the SIREN number passed as a parameter.
      * @summary Consult a siren (legal unit) by SIREN number
      * @param {string} siren 9-digit SIREN number (INSEE company identifier)
-     * @param {Array<string> | null} [fields] Fields of the SIREN resource
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren, fields, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
      * @summary Gets a siren (legal unit) by instance ID
      * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {Array<string> | null} [fields] Fields of the SIREN resource
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns the details of a facility associated to a SIRET.
      * @summary Gets a siret (facility) by SIRET number
      * @param {string} siret 14-digit SIRET number (INSEE establishment identifier)
-     * @param {Array<string> | null} [fields] Fields of a SIRET resource.
-     * @param {Array<SiretInclude> | null} [include] Relations to include in the response.
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret: string, fields?: Array<string> | null, include?: Array<SiretInclude> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, fields, include, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Returns the details of a facility according to an instance-id.
      * @summary Gets a siret (facility) by id-instance
      * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {Array<string> | null} [fields] Fields of a SIRET resource.
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance: string, fields?: Array<string> | null, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, fields, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Partially updates a directory line.
      * @summary Partially updates a directory line..
      * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance: string, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Partially update a private routing code.
      * @summary Partially update a private routing code.
      * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance: string, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Completely update a private routing code.
      * @summary Completely update a private routing code.
      * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance: string, acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Search for directory lines that meet all the criteria passed as parameters and return the results in the desired format.
      * @summary Search for a directory line
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Search for routing codes that meet all the criteria passed as parameters and return the routing codes in the desired format.
      * @summary Search for a routing code
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Multi-criteria company search.
      * @summary SIREN search (or legal unit)
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Multi-criteria search for facilities.
      * @summary Search for a SIRET (facility)
-     * @param {AcceptLanguage} [acceptLanguage] Specifies the language in which the resource is requested.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(acceptLanguage?: AcceptLanguage, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(acceptLanguage, options).then((request) => request(this.axios, this.basePath));
+    public searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(options?: RawAxiosRequestConfig) {
+        return AFNORPDPPADirectoryServiceApiFp(this.configuration).searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(options).then((request) => request(this.axios, this.basePath));
     }
 }
 

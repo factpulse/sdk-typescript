@@ -40,18 +40,11 @@ import {
 const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(
-    acceptLanguage
-);
+const { status, data } = await apiInstance.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost();
 ```
 
 ### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+This endpoint does not have any parameters.
 
 
 ### Return type
@@ -60,7 +53,7 @@ const { status, data } = await apiInstance.createDirectoryLineProxyApiV1AfnorDir
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -102,18 +95,11 @@ import {
 const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(
-    acceptLanguage
-);
+const { status, data } = await apiInstance.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost();
 ```
 
 ### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+This endpoint does not have any parameters.
 
 
 ### Return type
@@ -122,7 +108,7 @@ const { status, data } = await apiInstance.createRoutingCodeProxyApiV1AfnorDirec
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -165,11 +151,9 @@ const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
 let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(
-    idInstance,
-    acceptLanguage
+    idInstance
 );
 ```
 
@@ -178,7 +162,6 @@ const { status, data } = await apiInstance.deleteDirectoryLineProxyApiV1AfnorDir
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -187,7 +170,7 @@ const { status, data } = await apiInstance.deleteDirectoryLineProxyApiV1AfnorDir
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -276,15 +259,9 @@ const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
 let addressingIdentifier: string; //Addressing identifier (SIREN, SIRET or routing code) (default to undefined)
-let fields: Array<string>; //Fields of the Directory Line resource. (optional) (default to undefined)
-let include: Array<DirectoryLineInclude>; //Relations to include in the response. (optional) (default to undefined)
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(
-    addressingIdentifier,
-    fields,
-    include,
-    acceptLanguage
+    addressingIdentifier
 );
 ```
 
@@ -293,9 +270,6 @@ const { status, data } = await apiInstance.getDirectoryLineByCodeProxyApiV1Afnor
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **addressingIdentifier** | [**string**] | Addressing identifier (SIREN, SIRET or routing code) | defaults to undefined|
-| **fields** | **Array&lt;string&gt;** | Fields of the Directory Line resource. | (optional) defaults to undefined|
-| **include** | **Array&lt;DirectoryLineInclude&gt;** | Relations to include in the response. | (optional) defaults to undefined|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -304,7 +278,7 @@ const { status, data } = await apiInstance.getDirectoryLineByCodeProxyApiV1Afnor
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -346,13 +320,9 @@ const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
 let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
-let fields: Array<string>; //Fields of the Directory Line resource. (optional) (default to undefined)
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(
-    idInstance,
-    fields,
-    acceptLanguage
+    idInstance
 );
 ```
 
@@ -361,8 +331,6 @@ const { status, data } = await apiInstance.getDirectoryLineByIdInstanceProxyApiV
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
-| **fields** | **Array&lt;string&gt;** | Fields of the Directory Line resource. | (optional) defaults to undefined|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -371,7 +339,7 @@ const { status, data } = await apiInstance.getDirectoryLineByIdInstanceProxyApiV
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -413,13 +381,9 @@ const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
 let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
-let fields: Array<string>; //Fields of the Routing Code resource (optional) (default to undefined)
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(
-    idInstance,
-    fields,
-    acceptLanguage
+    idInstance
 );
 ```
 
@@ -428,8 +392,6 @@ const { status, data } = await apiInstance.getRoutingCodeByIdInstanceProxyApiV1A
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
-| **fields** | **Array&lt;string&gt;** | Fields of the Routing Code resource | (optional) defaults to undefined|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -438,7 +400,7 @@ const { status, data } = await apiInstance.getRoutingCodeByIdInstanceProxyApiV1A
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -481,16 +443,10 @@ const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
 let siret: string; //14-digit SIRET number (INSEE establishment identifier) (default to undefined)
 let routingIdentifier: string; //Routing code identifier (default to undefined)
-let fields: Array<string>; //Fields of the Routing Code resource (optional) (default to undefined)
-let include: Array<RoutingCodeInclude>; //Relations to include in the response. (optional) (default to undefined)
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getRoutingCodeBySiretAndCodeProxyApiV1AfnorDirectoryV1RoutingCodeSiretSiretCodeRoutingIdentifierGet(
     siret,
-    routingIdentifier,
-    fields,
-    include,
-    acceptLanguage
+    routingIdentifier
 );
 ```
 
@@ -500,9 +456,6 @@ const { status, data } = await apiInstance.getRoutingCodeBySiretAndCodeProxyApiV
 |------------- | ------------- | ------------- | -------------|
 | **siret** | [**string**] | 14-digit SIRET number (INSEE establishment identifier) | defaults to undefined|
 | **routingIdentifier** | [**string**] | Routing code identifier | defaults to undefined|
-| **fields** | **Array&lt;string&gt;** | Fields of the Routing Code resource | (optional) defaults to undefined|
-| **include** | **Array&lt;RoutingCodeInclude&gt;** | Relations to include in the response. | (optional) defaults to undefined|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -511,7 +464,7 @@ const { status, data } = await apiInstance.getRoutingCodeBySiretAndCodeProxyApiV
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -553,13 +506,9 @@ const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
 let siren: string; //9-digit SIREN number (INSEE company identifier) (default to undefined)
-let fields: Array<string>; //Fields of the SIREN resource (optional) (default to undefined)
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(
-    siren,
-    fields,
-    acceptLanguage
+    siren
 );
 ```
 
@@ -568,8 +517,6 @@ const { status, data } = await apiInstance.getSirenByCodeInseeProxyApiV1AfnorDir
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **siren** | [**string**] | 9-digit SIREN number (INSEE company identifier) | defaults to undefined|
-| **fields** | **Array&lt;string&gt;** | Fields of the SIREN resource | (optional) defaults to undefined|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -578,7 +525,7 @@ const { status, data } = await apiInstance.getSirenByCodeInseeProxyApiV1AfnorDir
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -620,13 +567,9 @@ const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
 let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
-let fields: Array<string>; //Fields of the SIREN resource (optional) (default to undefined)
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(
-    idInstance,
-    fields,
-    acceptLanguage
+    idInstance
 );
 ```
 
@@ -635,8 +578,6 @@ const { status, data } = await apiInstance.getSirenByIdInstanceProxyApiV1AfnorDi
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
-| **fields** | **Array&lt;string&gt;** | Fields of the SIREN resource | (optional) defaults to undefined|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -645,7 +586,7 @@ const { status, data } = await apiInstance.getSirenByIdInstanceProxyApiV1AfnorDi
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -687,15 +628,9 @@ const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
 let siret: string; //14-digit SIRET number (INSEE establishment identifier) (default to undefined)
-let fields: Array<string>; //Fields of a SIRET resource. (optional) (default to undefined)
-let include: Array<SiretInclude>; //Relations to include in the response. (optional) (default to undefined)
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(
-    siret,
-    fields,
-    include,
-    acceptLanguage
+    siret
 );
 ```
 
@@ -704,9 +639,6 @@ const { status, data } = await apiInstance.getSiretByCodeInseeProxyApiV1AfnorDir
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **siret** | [**string**] | 14-digit SIRET number (INSEE establishment identifier) | defaults to undefined|
-| **fields** | **Array&lt;string&gt;** | Fields of a SIRET resource. | (optional) defaults to undefined|
-| **include** | **Array&lt;SiretInclude&gt;** | Relations to include in the response. | (optional) defaults to undefined|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -715,7 +647,7 @@ const { status, data } = await apiInstance.getSiretByCodeInseeProxyApiV1AfnorDir
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -757,13 +689,9 @@ const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
 let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
-let fields: Array<string>; //Fields of a SIRET resource. (optional) (default to undefined)
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(
-    idInstance,
-    fields,
-    acceptLanguage
+    idInstance
 );
 ```
 
@@ -772,8 +700,6 @@ const { status, data } = await apiInstance.getSiretByIdInstanceProxyApiV1AfnorDi
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
-| **fields** | **Array&lt;string&gt;** | Fields of a SIRET resource. | (optional) defaults to undefined|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -782,7 +708,7 @@ const { status, data } = await apiInstance.getSiretByIdInstanceProxyApiV1AfnorDi
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -824,11 +750,9 @@ const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
 let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(
-    idInstance,
-    acceptLanguage
+    idInstance
 );
 ```
 
@@ -837,7 +761,6 @@ const { status, data } = await apiInstance.patchDirectoryLineProxyApiV1AfnorDire
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -846,7 +769,7 @@ const { status, data } = await apiInstance.patchDirectoryLineProxyApiV1AfnorDire
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -888,11 +811,9 @@ const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
 let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(
-    idInstance,
-    acceptLanguage
+    idInstance
 );
 ```
 
@@ -901,7 +822,6 @@ const { status, data } = await apiInstance.patchRoutingCodeProxyApiV1AfnorDirect
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -910,7 +830,7 @@ const { status, data } = await apiInstance.patchRoutingCodeProxyApiV1AfnorDirect
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -953,11 +873,9 @@ const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
 let idInstance: string; //AFNOR instance ID (UUID) (default to undefined)
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(
-    idInstance,
-    acceptLanguage
+    idInstance
 );
 ```
 
@@ -966,7 +884,6 @@ const { status, data } = await apiInstance.putRoutingCodeProxyApiV1AfnorDirector
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **idInstance** | [**string**] | AFNOR instance ID (UUID) | defaults to undefined|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -975,7 +892,7 @@ const { status, data } = await apiInstance.putRoutingCodeProxyApiV1AfnorDirector
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -1017,18 +934,11 @@ import {
 const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost(
-    acceptLanguage
-);
+const { status, data } = await apiInstance.searchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineSearchPost();
 ```
 
 ### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+This endpoint does not have any parameters.
 
 
 ### Return type
@@ -1037,7 +947,7 @@ const { status, data } = await apiInstance.searchDirectoryLineProxyApiV1AfnorDir
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -1079,18 +989,11 @@ import {
 const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost(
-    acceptLanguage
-);
+const { status, data } = await apiInstance.searchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeSearchPost();
 ```
 
 ### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+This endpoint does not have any parameters.
 
 
 ### Return type
@@ -1099,7 +1002,7 @@ const { status, data } = await apiInstance.searchRoutingCodeProxyApiV1AfnorDirec
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -1141,18 +1044,11 @@ import {
 const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost(
-    acceptLanguage
-);
+const { status, data } = await apiInstance.searchSirenProxyApiV1AfnorDirectoryV1SirenSearchPost();
 ```
 
 ### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+This endpoint does not have any parameters.
 
 
 ### Return type
@@ -1161,7 +1057,7 @@ const { status, data } = await apiInstance.searchSirenProxyApiV1AfnorDirectoryV1
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -1203,18 +1099,11 @@ import {
 const configuration = new Configuration();
 const apiInstance = new AFNORPDPPADirectoryServiceApi(configuration);
 
-let acceptLanguage: AcceptLanguage; //Specifies the language in which the resource is requested. (optional) (default to undefined)
-
-const { status, data } = await apiInstance.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost(
-    acceptLanguage
-);
+const { status, data } = await apiInstance.searchSiretProxyApiV1AfnorDirectoryV1SiretSearchPost();
 ```
 
 ### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **acceptLanguage** | **AcceptLanguage** | Specifies the language in which the resource is requested. | (optional) defaults to undefined|
+This endpoint does not have any parameters.
 
 
 ### Return type
@@ -1223,7 +1112,7 @@ const { status, data } = await apiInstance.searchSiretProxyApiV1AfnorDirectoryV1
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+No authorization required
 
 ### HTTP request headers
 
