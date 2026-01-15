@@ -307,11 +307,11 @@ export class FactPulseClient {
         const response = await this.httpClient.get(`${this.config.apiUrl}/api/v1/processing/tasks/${taskId}/status`, {
           headers: { Authorization: `Bearer ${this.accessToken}` },
         });
-        const { statut, resultat } = response.data;
-        if (statut === 'SUCCESS') return (resultat as Record<string, unknown>) || {};
-        if (statut === 'FAILURE') {
+        const { status, result } = response.data;
+        if (status === 'SUCCESS') return (result as Record<string, unknown>) || {};
+        if (status === 'FAILURE') {
           // Format AFNOR: errorMessage, details
-          const result = resultat as Record<string, unknown> | undefined;
+          const failureResult = result as Record<string, unknown> | undefined;
           const errors: ValidationErrorDetail[] = Array.isArray(result?.details) ? result.details.filter((e): e is ValidationErrorDetail => typeof e === 'object' && e !== null) : [];
           throw new FactPulseValidationError(`Task ${taskId} failed: ${result?.errorMessage || 'Unknown error'}`, errors);
         }
