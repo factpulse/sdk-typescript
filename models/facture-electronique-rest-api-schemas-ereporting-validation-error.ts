@@ -15,16 +15,17 @@
 
 
 /**
- * Optional Chorus Pro credentials.  **MODE 1 - JWT retrieval (recommended):** Do not provide this `credentials` field in the payload. Credentials will be automatically retrieved via client_uid from JWT (0-trust).  **MODE 2 - Credentials in payload:** Provide all required fields below. Useful for tests or third-party integrations.
+ * Validation error detail.
  */
-export interface FactureElectroniqueRestApiSchemasProcessingChorusProCredentials {
-    'pisteClientId'?: string | null;
-    'pisteClientSecret'?: string | null;
-    'chorusLogin'?: string | null;
-    'chorusPassword'?: string | null;
+export interface FactureElectroniqueRestApiSchemasEreportingValidationError {
     /**
-     * [MODE 2] Use sandbox mode (default: True)
+     * Field path with error
      */
-    'sandboxMode'?: boolean;
+    'field': string;
+    /**
+     * Error message
+     */
+    'message': string;
+    'code'?: string | null;
 }
 

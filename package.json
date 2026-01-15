@@ -5,7 +5,7 @@
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+    "url": "https://github.com/factpulse/sdk-typescript.git"
   },
   "keywords": [
     "axios",
@@ -29,5 +29,17 @@
   "devDependencies": {
     "@types/node": "12.11.5 - 12.20.42",
     "typescript": "^4.0 || ^5.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./helpers": {
+      "import": "./dist/esm/src/helpers/index.js",
+      "require": "./dist/src/helpers/index.js",
+      "types": "./dist/src/helpers/index.d.ts"
+    }
   }
 }

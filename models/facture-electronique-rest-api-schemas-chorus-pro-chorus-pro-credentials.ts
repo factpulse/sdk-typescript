@@ -15,25 +15,28 @@
 
 
 /**
- * Erreur de validation Schematron avec suggestion de correction.
+ * Chorus Pro credentials for Zero-Trust mode.  **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.  **Security**: - Credentials are never persisted in the database - They are used only for the duration of the request - Secure transmission via HTTPS  **Use cases**: - High-security environments (banks, administrations) - Strict GDPR compliance - Tests with temporary credentials - Users who don\'t want to store their credentials
  */
-export interface FactureElectroniqueRestApiSchemasConvertValidationError {
+export interface FactureElectroniqueRestApiSchemasChorusProChorusProCredentials {
     /**
-     * Code de la regle (BR-XX, BR-FR-XX)
+     * PISTE Client ID (government API portal)
      */
-    'rule': string;
-    'bt_code'?: string | null;
+    'pisteClientId': string;
     /**
-     * Gravite: error, warning
+     * PISTE Client Secret
      */
-    'severity': string;
+    'pisteClientSecret': string;
     /**
-     * Message d\'erreur
+     * Chorus Pro login
      */
-    'message': string;
-    'suggested_value'?: string | null;
-    'suggested_field'?: string | null;
-    'explanation'?: string | null;
-    'confidence'?: number | null;
+    'chorusProLogin': string;
+    /**
+     * Chorus Pro password
+     */
+    'chorusProPassword': string;
+    /**
+     * Use sandbox environment (true) or production (false)
+     */
+    'sandbox'?: boolean;
 }
 
