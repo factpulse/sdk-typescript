@@ -1,6 +1,6 @@
-# FactureElectroniqueRestApiSchemasEreportingValidationError
+# EReportingValidationError
 
-Validation error detail.
+Validation error detail for E-Reporting.
 
 ## Properties
 
@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { FactureElectroniqueRestApiSchemasEreportingValidationError } from '@factpulse/sdk';
+import { EReportingValidationError } from '@factpulse/sdk';
 
-const instance: FactureElectroniqueRestApiSchemasEreportingValidationError = {
+const instance: EReportingValidationError = {
     field,
     message,
     code,

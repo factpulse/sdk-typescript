@@ -15,9 +15,9 @@
 
 
 /**
- * Validation error detail.
+ * Validation error detail for E-Reporting.
  */
-export interface FactureElectroniqueRestApiSchemasEreportingValidationError {
+export interface EReportingValidationError {
     /**
      * Field path with error
      */

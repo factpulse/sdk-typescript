@@ -158,6 +158,7 @@ docs/DocumentTypeInfo.md
 docs/DownloadsApi.md
 docs/EReportingApi.md
 docs/EReportingFlowType.md
+docs/EReportingValidationError.md
 docs/ElectronicAddress.md
 docs/EnrichedInvoiceInfo.md
 docs/ErrorLevel.md
@@ -165,8 +166,7 @@ docs/ErrorSource.md
 docs/ExtractionInfo.md
 docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
-docs/FactureElectroniqueModelsInvoiceTypeCode.md
-docs/FactureElectroniqueRestApiSchemasEreportingValidationError.md
+docs/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md
 docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
 docs/FieldStatus.md
 docs/FileInfo.md
@@ -241,6 +241,7 @@ docs/ReportPeriod.md
 docs/ReportSender.md
 docs/RoundingAmount.md
 docs/RoutingCodeInclude.md
+docs/SchematronValidationError.md
 docs/SchemeID.md
 docs/SearchFlowRequest.md
 docs/SearchFlowResponse.md
@@ -443,13 +444,13 @@ models/document-type-info.ts
 models/electronic-address.ts
 models/enriched-invoice-info.ts
 models/ereporting-flow-type.ts
+models/ereporting-validation-error.ts
 models/error-level.ts
 models/error-source.ts
 models/extraction-info.ts
 models/factur-xinvoice.ts
 models/factur-xpdfinfo.ts
-models/facture-electronique-models-invoice-type-code.ts
-models/facture-electronique-rest-api-schemas-ereporting-validation-error.ts
+models/facture-electronique-rest-api-schemas-ereporting-invoice-type-code.ts
 models/facture-electronique-rest-api-schemas-processing-chorus-pro-credentials.ts
 models/field-status.ts
 models/file-info.ts
@@ -522,6 +523,7 @@ models/report-period.ts
 models/report-sender.ts
 models/rounding-amount.ts
 models/routing-code-include.ts
+models/schematron-validation-error.ts
 models/scheme-id.ts
 models/search-flow-request.ts
 models/search-flow-response.ts

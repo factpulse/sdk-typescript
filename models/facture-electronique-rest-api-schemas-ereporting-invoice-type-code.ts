@@ -13,52 +13,20 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { InvoiceTypeCode } from './invoice-type-code';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { InvoicingFrameworkCode } from './invoicing-framework-code';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { OperationNature } from './operation-nature';
 
 /**
- * Simplified invoice data (minimal format for auto-enrichment).
+ * Invoice type codes (UNTDID 1001).
  */
-export interface SimplifiedInvoiceData {
-    /**
-     * Unique invoice number
-     */
-    'number': string;
-    /**
-     * Supplier information (siret, iban, ...)
-     */
-    'supplier': { [key: string]: any; };
-    /**
-     * Recipient information (siret, ...)
-     */
-    'recipient': { [key: string]: any; };
-    /**
-     * Invoice lines
-     */
-    'lines': Array<{ [key: string]: any; }>;
-    'date'?: string | null;
-    /**
-     * Due date in days (default: 30)
-     */
-    'dueDays'?: number;
-    'comment'?: string | null;
-    'purchaseOrderReference'?: string | null;
-    'contractReference'?: string | null;
-    /**
-     * Document type (UNTDID 1001). Default: 380 (Invoice).
-     */
-    'invoiceType'?: InvoiceTypeCode;
-    'precedingInvoiceReference'?: string | null;
-    'operationNature'?: OperationNature | null;
-    'invoicingFramework'?: InvoicingFrameworkCode | null;
-}
+
+export const FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = {
+    _380: '380',
+    _381: '381',
+    _384: '384',
+    _389: '389',
+    _386: '386'
+} as const;
+
+export type FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode[keyof typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode];
 
 
 

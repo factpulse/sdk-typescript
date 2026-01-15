@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ValidationError } from './validation-error';
+import type { SchematronValidationError } from './schematron-validation-error';
 
 /**
  * Informations sur la validation.
@@ -41,6 +41,6 @@ export interface ValidationInfo {
      * XML embarque dans PDF
      */
     'xml_embedded'?: boolean;
-    'errors'?: Array<ValidationError>;
+    'errors'?: Array<SchematronValidationError>;
 }
 
