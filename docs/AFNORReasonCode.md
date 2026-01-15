@@ -1,0 +1,19 @@
+# AFNORReasonCode
+
+A predefined set of reason code values + ability to extend this set
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+
+## Example
+
+```typescript
+import { AFNORReasonCode } from '@factpulse/sdk';
+
+const instance: AFNORReasonCode = {
+};
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

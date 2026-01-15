@@ -1,0 +1,353 @@
+# PDFXMLVerificationApi
+
+All URIs are relative to *https://factpulse.fr*
+
+|Method | HTTP request | Description|
+|------------- | ------------- | -------------|
+|[**getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet**](#getverificationstatusapiv1verificationverifyasynctaskidstatusget) | **GET** /api/v1/verification/verify-async/{task_id}/status | Get status of an asynchronous verification|
+|[**getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0**](#getverificationstatusapiv1verificationverifyasynctaskidstatusget_0) | **GET** /api/v1/verification/verify-async/{task_id}/status | Get status of an asynchronous verification|
+|[**verifyPdfAsyncApiV1VerificationVerifyAsyncPost**](#verifypdfasyncapiv1verificationverifyasyncpost) | **POST** /api/v1/verification/verify-async | Verify PDF/XML Factur-X compliance (asynchronous)|
+|[**verifyPdfAsyncApiV1VerificationVerifyAsyncPost_0**](#verifypdfasyncapiv1verificationverifyasyncpost_0) | **POST** /api/v1/verification/verify-async | Verify PDF/XML Factur-X compliance (asynchronous)|
+|[**verifyPdfSyncApiV1VerificationVerifyPost**](#verifypdfsyncapiv1verificationverifypost) | **POST** /api/v1/verification/verify | Verify PDF/XML Factur-X compliance (synchronous)|
+|[**verifyPdfSyncApiV1VerificationVerifyPost_0**](#verifypdfsyncapiv1verificationverifypost_0) | **POST** /api/v1/verification/verify | Verify PDF/XML Factur-X compliance (synchronous)|
+
+# **getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet**
+> AsyncTaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet()
+
+Retrieves the status and result of an asynchronous verification task.  **Possible statuses:** - `PENDING`: Task waiting in queue - `STARTED`: Task currently running - `SUCCESS`: Task completed successfully (see `result`) - `FAILURE`: System error (unhandled exception)  **Note:** The `result.status` field can be \"SUCCESS\" or \"ERROR\" independently of Celery status (which will always be SUCCESS if the task ran).
+
+### Example
+
+```typescript
+import {
+    PDFXMLVerificationApi,
+    Configuration
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new PDFXMLVerificationApi(configuration);
+
+let taskId: string; //Celery task ID returned by /verify-async endpoint (default to undefined)
+
+const { status, data } = await apiInstance.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(
+    taskId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **taskId** | [**string**] | Celery task ID returned by /verify-async endpoint | defaults to undefined|
+
+
+### Return type
+
+**AsyncTaskStatus**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0**
+> AsyncTaskStatus getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0()
+
+Retrieves the status and result of an asynchronous verification task.  **Possible statuses:** - `PENDING`: Task waiting in queue - `STARTED`: Task currently running - `SUCCESS`: Task completed successfully (see `result`) - `FAILURE`: System error (unhandled exception)  **Note:** The `result.status` field can be \"SUCCESS\" or \"ERROR\" independently of Celery status (which will always be SUCCESS if the task ran).
+
+### Example
+
+```typescript
+import {
+    PDFXMLVerificationApi,
+    Configuration
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new PDFXMLVerificationApi(configuration);
+
+let taskId: string; //Celery task ID returned by /verify-async endpoint (default to undefined)
+
+const { status, data } = await apiInstance.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet_0(
+    taskId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **taskId** | [**string**] | Celery task ID returned by /verify-async endpoint | defaults to undefined|
+
+
+### Return type
+
+**AsyncTaskStatus**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **verifyPdfAsyncApiV1VerificationVerifyAsyncPost**
+> TaskResponse verifyPdfAsyncApiV1VerificationVerifyAsyncPost()
+
+Verifies PDF/XML Factur-X compliance asynchronously.  **IMPORTANT**: Only Factur-X PDFs (with embedded XML) are accepted. PDFs without Factur-X XML will return a `NOT_FACTURX` error in the result.  This version uses a Celery task and can call the OCR service if the PDF is an image or if `force_ocr=true`.  **Returns immediately** a task ID. Use `/verify-async/{task_id}/status` to retrieve the result.  **Verification principle (Factur-X 1.08):** - Principle #2: XML can only contain info present in the PDF - Principle #4: All XML info must be present and compliant in the PDF  **Verified fields:** - Identification: BT-1 (invoice #), BT-2 (date), BT-3 (type), BT-5 (currency), BT-23 (framework) - Seller: BT-27 (name), BT-29 (SIRET), BT-30 (SIREN), BT-31 (VAT) - Buyer: BT-44 (name), BT-46 (SIRET), BT-47 (SIREN), BT-48 (VAT) - Amounts: BT-109 (excl. tax), BT-110 (VAT), BT-112 (incl. tax), BT-115 (amount due) - VAT breakdown: BT-116, BT-117, BT-118, BT-119 - Invoice lines: BT-153, BT-129, BT-146, BT-131 - Mandatory notes: PMT, PMD, AAB - Rule BR-FR-09: SIRET/SIREN consistency  **Advantages over synchronous version:** - OCR support for image PDFs (via DocTR service) - Longer timeout for large documents - Doesn\'t block the server  ## Webhook notification (recommended)  Instead of polling, you can receive a webhook notification when verification completes:  ``` callback_url=https://your-server.com/webhook ```  The webhook will POST a JSON payload with: - `event_type`: `verification.completed` or `verification.failed` - `data.is_compliant`: Whether the PDF/XML are consistent - `data.compliance_score`: Compliance score (0-1) - `X-Webhook-Signature` header for HMAC verification
+
+### Example
+
+```typescript
+import {
+    PDFXMLVerificationApi,
+    Configuration
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new PDFXMLVerificationApi(configuration);
+
+let pdfFile: File; //Factur-X PDF file to verify (default to undefined)
+let forceOcr: boolean; //Force OCR usage even if PDF contains native text (optional) (default to false)
+let callbackUrl: string; // (optional) (default to undefined)
+let webhookMode: string; //Webhook content delivery: \\\'inline\\\' (base64 in payload) or \\\'download_url\\\' (temporary URL, 1h TTL) (optional) (default to 'inline')
+
+const { status, data } = await apiInstance.verifyPdfAsyncApiV1VerificationVerifyAsyncPost(
+    pdfFile,
+    forceOcr,
+    callbackUrl,
+    webhookMode
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **pdfFile** | [**File**] | Factur-X PDF file to verify | defaults to undefined|
+| **forceOcr** | [**boolean**] | Force OCR usage even if PDF contains native text | (optional) defaults to false|
+| **callbackUrl** | [**string**] |  | (optional) defaults to undefined|
+| **webhookMode** | [**string**] | Webhook content delivery: \\\&#39;inline\\\&#39; (base64 in payload) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL) | (optional) defaults to 'inline'|
+
+
+### Return type
+
+**TaskResponse**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**202** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **verifyPdfAsyncApiV1VerificationVerifyAsyncPost_0**
+> TaskResponse verifyPdfAsyncApiV1VerificationVerifyAsyncPost_0()
+
+Verifies PDF/XML Factur-X compliance asynchronously.  **IMPORTANT**: Only Factur-X PDFs (with embedded XML) are accepted. PDFs without Factur-X XML will return a `NOT_FACTURX` error in the result.  This version uses a Celery task and can call the OCR service if the PDF is an image or if `force_ocr=true`.  **Returns immediately** a task ID. Use `/verify-async/{task_id}/status` to retrieve the result.  **Verification principle (Factur-X 1.08):** - Principle #2: XML can only contain info present in the PDF - Principle #4: All XML info must be present and compliant in the PDF  **Verified fields:** - Identification: BT-1 (invoice #), BT-2 (date), BT-3 (type), BT-5 (currency), BT-23 (framework) - Seller: BT-27 (name), BT-29 (SIRET), BT-30 (SIREN), BT-31 (VAT) - Buyer: BT-44 (name), BT-46 (SIRET), BT-47 (SIREN), BT-48 (VAT) - Amounts: BT-109 (excl. tax), BT-110 (VAT), BT-112 (incl. tax), BT-115 (amount due) - VAT breakdown: BT-116, BT-117, BT-118, BT-119 - Invoice lines: BT-153, BT-129, BT-146, BT-131 - Mandatory notes: PMT, PMD, AAB - Rule BR-FR-09: SIRET/SIREN consistency  **Advantages over synchronous version:** - OCR support for image PDFs (via DocTR service) - Longer timeout for large documents - Doesn\'t block the server  ## Webhook notification (recommended)  Instead of polling, you can receive a webhook notification when verification completes:  ``` callback_url=https://your-server.com/webhook ```  The webhook will POST a JSON payload with: - `event_type`: `verification.completed` or `verification.failed` - `data.is_compliant`: Whether the PDF/XML are consistent - `data.compliance_score`: Compliance score (0-1) - `X-Webhook-Signature` header for HMAC verification
+
+### Example
+
+```typescript
+import {
+    PDFXMLVerificationApi,
+    Configuration
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new PDFXMLVerificationApi(configuration);
+
+let pdfFile: File; //Factur-X PDF file to verify (default to undefined)
+let forceOcr: boolean; //Force OCR usage even if PDF contains native text (optional) (default to false)
+let callbackUrl: string; // (optional) (default to undefined)
+let webhookMode: string; //Webhook content delivery: \\\'inline\\\' (base64 in payload) or \\\'download_url\\\' (temporary URL, 1h TTL) (optional) (default to 'inline')
+
+const { status, data } = await apiInstance.verifyPdfAsyncApiV1VerificationVerifyAsyncPost_0(
+    pdfFile,
+    forceOcr,
+    callbackUrl,
+    webhookMode
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **pdfFile** | [**File**] | Factur-X PDF file to verify | defaults to undefined|
+| **forceOcr** | [**boolean**] | Force OCR usage even if PDF contains native text | (optional) defaults to false|
+| **callbackUrl** | [**string**] |  | (optional) defaults to undefined|
+| **webhookMode** | [**string**] | Webhook content delivery: \\\&#39;inline\\\&#39; (base64 in payload) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL) | (optional) defaults to 'inline'|
+
+
+### Return type
+
+**TaskResponse**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**202** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **verifyPdfSyncApiV1VerificationVerifyPost**
+> VerificationSuccessResponse verifyPdfSyncApiV1VerificationVerifyPost()
+
+Verifies compliance between the PDF and its embedded Factur-X XML.  **IMPORTANT**: Only Factur-X PDFs (with embedded XML) are accepted. PDFs without Factur-X XML will be rejected with a 400 error.  This synchronous version uses only native PDF extraction (pdfplumber). For image PDFs requiring OCR, use the `/verify-async` endpoint.  **Verification principle (Factur-X 1.08):** - Principle #2: XML can only contain info present in the PDF - Principle #4: All XML info must be present and compliant in the PDF  **Verified fields:** - Identification: BT-1 (invoice #), BT-2 (date), BT-3 (type), BT-5 (currency), BT-23 (framework) - Seller: BT-27 (name), BT-29 (SIRET), BT-30 (SIREN), BT-31 (VAT) - Buyer: BT-44 (name), BT-46 (SIRET), BT-47 (SIREN), BT-48 (VAT) - Amounts: BT-109 (excl. tax), BT-110 (VAT), BT-112 (incl. tax), BT-115 (amount due) - VAT breakdown: BT-116, BT-117, BT-118, BT-119 - Invoice lines: BT-153, BT-129, BT-146, BT-131 - Mandatory notes: PMT, PMD, AAB - Rule BR-FR-09: SIRET/SIREN consistency
+
+### Example
+
+```typescript
+import {
+    PDFXMLVerificationApi,
+    Configuration
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new PDFXMLVerificationApi(configuration);
+
+let pdfFile: File; //Factur-X PDF file to verify (default to undefined)
+
+const { status, data } = await apiInstance.verifyPdfSyncApiV1VerificationVerifyPost(
+    pdfFile
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **pdfFile** | [**File**] | Factur-X PDF file to verify | defaults to undefined|
+
+
+### Return type
+
+**VerificationSuccessResponse**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Verification successful |  -  |
+|**400** | Verification error (non Factur-X PDF, invalid, etc.) |  -  |
+|**413** | PDF too large or too many pages |  -  |
+|**422** | Validation Error |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **verifyPdfSyncApiV1VerificationVerifyPost_0**
+> VerificationSuccessResponse verifyPdfSyncApiV1VerificationVerifyPost_0()
+
+Verifies compliance between the PDF and its embedded Factur-X XML.  **IMPORTANT**: Only Factur-X PDFs (with embedded XML) are accepted. PDFs without Factur-X XML will be rejected with a 400 error.  This synchronous version uses only native PDF extraction (pdfplumber). For image PDFs requiring OCR, use the `/verify-async` endpoint.  **Verification principle (Factur-X 1.08):** - Principle #2: XML can only contain info present in the PDF - Principle #4: All XML info must be present and compliant in the PDF  **Verified fields:** - Identification: BT-1 (invoice #), BT-2 (date), BT-3 (type), BT-5 (currency), BT-23 (framework) - Seller: BT-27 (name), BT-29 (SIRET), BT-30 (SIREN), BT-31 (VAT) - Buyer: BT-44 (name), BT-46 (SIRET), BT-47 (SIREN), BT-48 (VAT) - Amounts: BT-109 (excl. tax), BT-110 (VAT), BT-112 (incl. tax), BT-115 (amount due) - VAT breakdown: BT-116, BT-117, BT-118, BT-119 - Invoice lines: BT-153, BT-129, BT-146, BT-131 - Mandatory notes: PMT, PMD, AAB - Rule BR-FR-09: SIRET/SIREN consistency
+
+### Example
+
+```typescript
+import {
+    PDFXMLVerificationApi,
+    Configuration
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new PDFXMLVerificationApi(configuration);
+
+let pdfFile: File; //Factur-X PDF file to verify (default to undefined)
+
+const { status, data } = await apiInstance.verifyPdfSyncApiV1VerificationVerifyPost_0(
+    pdfFile
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **pdfFile** | [**File**] | Factur-X PDF file to verify | defaults to undefined|
+
+
+### Return type
+
+**VerificationSuccessResponse**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Verification successful |  -  |
+|**400** | Verification error (non Factur-X PDF, invalid, etc.) |  -  |
+|**413** | PDF too large or too many pages |  -  |
+|**422** | Validation Error |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
