@@ -341,7 +341,7 @@ export class FactPulseClient {
         const response = await this.httpClient.post(`${this.config.apiUrl}/api/v1/processing/generate-invoice`, form, {
           headers: { ...form.getHeaders(), Authorization: `Bearer ${this.accessToken}` }, timeout: 60000,
         });
-        taskId = response.data.task_id; break;
+        taskId = response.data.taskId; break;
       } catch (error) {
         const axiosError = error as AxiosError<{ detail?: unknown; errorMessage?: string }>;
         if (axiosError.response?.status === 401 && attempt < this.config.maxRetries) { this.resetAuth(); continue; }
