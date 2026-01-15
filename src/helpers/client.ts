@@ -537,16 +537,35 @@ export class FactPulseClient {
 
   // ==================== AFNOR Directory ====================
 
-  async rechercherSiretAfnor(siret: string): Promise<Record<string, unknown>> {
-    return this.makeAfnorRequest('GET', `/directory/siret/${siret}`);
+  /** Gets a facility by SIRET in the AFNOR directory. */
+  async getSiretAfnor(siret: string): Promise<Record<string, unknown>> {
+    return this.makeAfnorRequest('GET', `/directory/v1/siret/code-insee:${siret}`);
   }
 
-  async rechercherSirenAfnor(siren: string): Promise<Record<string, unknown>> {
-    return this.makeAfnorRequest('GET', `/directory/siren/${siren}`);
+  /** Gets a legal unit by SIREN in the AFNOR directory. */
+  async getSirenAfnor(siren: string): Promise<Record<string, unknown>> {
+    return this.makeAfnorRequest('GET', `/directory/v1/siren/code-insee:${siren}`);
   }
 
-  async listerCodesRoutageAfnor(siren: string): Promise<unknown[]> {
-    return this.makeAfnorRequest('GET', `/directory/siren/${siren}/routing-codes`);
+  /** Searches for legal units (SIREN) in the AFNOR directory. */
+  async searchSirenAfnor(
+    options: { filters?: Record<string, unknown>; limit?: number } = {}
+  ): Promise<Record<string, unknown>> {
+    const { filters = {}, limit = 25 } = options;
+    return this.makeAfnorRequest('POST', '/directory/v1/siren/search', { filters, limit });
+  }
+
+  /** Searches for routing codes in the AFNOR directory. */
+  async searchRoutingCodesAfnor(
+    options: { filters?: Record<string, unknown>; limit?: number } = {}
+  ): Promise<Record<string, unknown>> {
+    const { filters = {}, limit = 25 } = options;
+    return this.makeAfnorRequest('POST', '/directory/v1/routing-code/search', { filters, limit });
+  }
+
+  /** Gets a routing code by SIRET and routing identifier. */
+  async getRoutingCodeAfnor(siret: string, routingIdentifier: string): Promise<Record<string, unknown>> {
+    return this.makeAfnorRequest('GET', `/directory/v1/routing-code/siret:${siret}/code:${routingIdentifier}`);
   }
 
   // ==================== AFNOR Flow ====================
