@@ -552,7 +552,7 @@ export class FactPulseClient {
     options: { filters?: Record<string, unknown>; limit?: number } = {}
   ): Promise<Record<string, unknown>> {
     const { filters = {}, limit = 25 } = options;
-    return this.makeAfnorRequest('POST', '/directory/v1/siren/search', { filters, limit });
+    return this.makeAfnorRequest('POST', '/directory/v1/siren/search', { data: { filters, limit } });
   }
 
   /** Searches for routing codes in the AFNOR directory. */
@@ -560,7 +560,7 @@ export class FactPulseClient {
     options: { filters?: Record<string, unknown>; limit?: number } = {}
   ): Promise<Record<string, unknown>> {
     const { filters = {}, limit = 25 } = options;
-    return this.makeAfnorRequest('POST', '/directory/v1/routing-code/search', { filters, limit });
+    return this.makeAfnorRequest('POST', '/directory/v1/routing-code/search', { data: { filters, limit } });
   }
 
   /** Gets a routing code by SIRET and routing identifier. */
