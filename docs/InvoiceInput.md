@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **invoiceId** | **string** | Invoice identifier | [default to undefined]
 **issueDate** | **string** | Invoice issue date | [default to undefined]
-**typeCode** | [**InvoiceTypeCode**](InvoiceTypeCode.md) | Invoice type code | [optional] [default to undefined]
+**typeCode** | [**FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode**](FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md) | Invoice type code | [optional] [default to undefined]
 **currency** | [**Currency**](Currency.md) |  | [optional] [default to undefined]
 **dueDate** | **string** |  | [optional] [default to undefined]
 **sellerSiren** | **string** | Seller SIREN/SIRET | [default to undefined]
