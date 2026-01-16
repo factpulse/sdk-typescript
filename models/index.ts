@@ -138,7 +138,7 @@ export * from './error-source';
 export * from './extraction-info';
 export * from './factur-xinvoice';
 export * from './factur-xpdfinfo';
-export * from './facture-electronique-models-invoice-type-code';
+export * from './facture-electronique-rest-api-schemas-ereporting-invoice-type-code';
 export * from './facture-electronique-rest-api-schemas-processing-chorus-pro-credentials';
 export * from './field-status';
 export * from './file-info';
