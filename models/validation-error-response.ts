@@ -15,21 +15,12 @@
 
 
 /**
- * Erreur de validation.
+ * Response for validation errors.
  */
 export interface ValidationErrorResponse {
     /**
-     * Champ concerné
+     * List of detected validation errors.
      */
-    'field': string;
-    /**
-     * Message d\'erreur
-     */
-    'message': string;
-    'rule'?: string | null;
-    /**
-     * Sévérité (error/warning)
-     */
-    'severity'?: string;
+    'detail': Array<string>;
 }
 
