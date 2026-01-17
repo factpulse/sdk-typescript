@@ -28,6 +28,8 @@ import type { APIProfile } from '../models';
 // @ts-ignore
 import type { AsyncTaskStatus } from '../models';
 // @ts-ignore
+import type { FactureElectroniqueRestApiSchemasValidationValidationErrorResponse } from '../models';
+// @ts-ignore
 import type { GenerateCertificateRequest } from '../models';
 // @ts-ignore
 import type { GenerateCertificateResponse } from '../models';
@@ -43,8 +45,6 @@ import type { SubmitCompleteInvoiceRequest } from '../models';
 import type { SubmitCompleteInvoiceResponse } from '../models';
 // @ts-ignore
 import type { TaskResponse } from '../models';
-// @ts-ignore
-import type { ValidationErrorResponse } from '../models';
 // @ts-ignore
 import type { ValidationSuccessResponse } from '../models';
 /**
