@@ -333,7 +333,7 @@ export class FactPulseClient {
     for (let attempt = 0; attempt <= this.config.maxRetries; attempt++) {
       await this.ensureAuthenticated();
       const form = new FormData();
-      form.append('invoice_data', jsonData, { contentType: 'application/json', filename: 'invoice.json' });
+      form.append('invoice_data', Buffer.from(jsonData, 'utf-8'), { contentType: 'application/json' });
       form.append('profile', profile);
       form.append('output_format', outputFormat);
       form.append('source_pdf', fs.createReadStream(pdfPath), { filename: path.basename(pdfPath), contentType: 'application/pdf' });

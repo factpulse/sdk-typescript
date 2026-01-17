@@ -15,28 +15,18 @@
 
 
 /**
- * Chorus Pro credentials for Zero-Trust mode.  **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.  **Security**: - Credentials are never persisted in the database - They are used only for the duration of the request - Secure transmission via HTTPS  **Use cases**: - High-security environments (banks, administrations) - Strict GDPR compliance - Tests with temporary credentials - Users who don\'t want to store their credentials
+ * Invoice type codes (UNTDID 1001).
  */
-export interface FactureElectroniqueRestApiSchemasChorusProChorusProCredentials {
-    /**
-     * PISTE Client ID (government API portal)
-     */
-    'pisteClientId': string;
-    /**
-     * PISTE Client Secret
-     */
-    'pisteClientSecret': string;
-    /**
-     * Chorus Pro login
-     */
-    'chorusProLogin': string;
-    /**
-     * Chorus Pro password
-     */
-    'chorusProPassword': string;
-    /**
-     * Use sandbox environment (true) or production (false)
-     */
-    'sandbox'?: boolean;
-}
+
+export const FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = {
+    _380: '380',
+    _381: '381',
+    _384: '384',
+    _389: '389',
+    _386: '386'
+} as const;
+
+export type FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode[keyof typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode];
+
+
 
