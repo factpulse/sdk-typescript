@@ -381,6 +381,16 @@ export class FactPulseClient {
     if (!taskId) throw new FactPulseValidationError("No task ID");
     if (!sync) return taskId;
     const result = await this.pollTask(taskId, timeout);
+
+    // Check for business error (task succeeded but business result is ERROR)
+    if (result.status === 'ERROR') {
+      const errorMsg = (result.errorMessage as string) || 'Business error';
+      const errors: ValidationErrorDetail[] = Array.isArray(result.details)
+        ? result.details.filter((e: unknown): e is ValidationErrorDetail => typeof e === 'object' && e !== null)
+        : [];
+      throw new FactPulseValidationError(errorMsg, errors);
+    }
+
     if (result.content_b64) return Buffer.from(result.content_b64 as string, 'base64');
     throw new FactPulseValidationError('No content');
   }
