@@ -844,7 +844,7 @@ export class FactPulseClient {
    * @param invoiceData Invoice data
    * @param pdfPath Path to the source PDF
    * @param options Workflow options
-   * @returns Result with pdfBuffer, validation, signature and afnor
+   * @returns Result with pdfBytes, validation, signature and afnor
    */
   async generateCompleteFacturx(
     invoiceData: Record<string, unknown>,
@@ -859,7 +859,7 @@ export class FactPulseClient {
       timeout?: number;
     } = {}
   ): Promise<{
-    pdfBuffer: Buffer;
+    pdfBytes: Buffer;
     validation?: Record<string, unknown>;
     signature?: { signed: boolean };
     afnor?: Record<string, unknown>;
@@ -874,19 +874,19 @@ export class FactPulseClient {
       timeout,
     } = options;
     const result: {
-      pdfBuffer: Buffer;
+      pdfBytes: Buffer;
       validation?: Record<string, unknown>;
       signature?: { signed: boolean };
       afnor?: Record<string, unknown>;
-    } = { pdfBuffer: Buffer.alloc(0) };
+    } = { pdfBytes: Buffer.alloc(0) };
 
     // 1. Generation
-    const pdfBuffer = await this.generateFacturx(invoiceData, pdfPath, profile, 'pdf', true, timeout) as Buffer;
-    result.pdfBuffer = pdfBuffer;
+    const pdfBytes = await this.generateFacturx(invoiceData, pdfPath, profile, 'pdf', true, timeout) as Buffer;
+    result.pdfBytes = pdfBytes;
 
     // 2. Validation
     if (validate) {
-      const validation = await this.validateFacturxPdf(pdfBuffer, { profile });
+      const validation = await this.validateFacturxPdf(pdfBytes, { profile });
       result.validation = validation;
       if (!(validation as { isCompliant?: boolean }).isCompliant) {
         return result;
@@ -895,8 +895,8 @@ export class FactPulseClient {
 
     // 3. Signature (uses the server-configured certificate)
     if (sign) {
-      const signedPdf = await this.signPdf(result.pdfBuffer);
-      result.pdfBuffer = signedPdf;
+      const signedPdf = await this.signPdf(result.pdfBytes);
+      result.pdfBytes = signedPdf;
       result.signature = { signed: true };
     }
 
@@ -905,7 +905,7 @@ export class FactPulseClient {
       const invoiceNumber = (invoiceData.invoiceNumber || invoiceData.invoice_number || 'INVOICE') as string;
       const flowName = afnorFlowName || `Invoice ${invoiceNumber}`;
       const trackingId = afnorTrackingId || invoiceNumber;
-      const afnorResult = await this.submitInvoiceAfnor(result.pdfBuffer, flowName, { trackingId });
+      const afnorResult = await this.submitInvoiceAfnor(result.pdfBytes, flowName, { trackingId });
       result.afnor = afnorResult;
     }
 
