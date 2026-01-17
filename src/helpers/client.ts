@@ -878,6 +878,9 @@ export class FactPulseClient {
     if (validate) {
       const validation = await this.validateFacturxPdf(pdfBuffer, { profile });
       result.validation = validation;
+      if (!(validation as { isCompliant?: boolean }).isCompliant) {
+        return result;
+      }
     }
 
     // 3. Signature (uses the server-configured certificate)

@@ -18,7 +18,7 @@ import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
-import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction, replaceWithSerializableTypeIfNeeded } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
@@ -27,6 +27,8 @@ import type { APIError } from '../models';
 import type { APIProfile } from '../models';
 // @ts-ignore
 import type { AsyncTaskStatus } from '../models';
+// @ts-ignore
+import type { FactureElectroniqueRestApiSchemasValidationValidationErrorResponse } from '../models';
 // @ts-ignore
 import type { GenerateCertificateRequest } from '../models';
 // @ts-ignore
@@ -43,8 +45,6 @@ import type { SubmitCompleteInvoiceRequest } from '../models';
 import type { SubmitCompleteInvoiceResponse } from '../models';
 // @ts-ignore
 import type { TaskResponse } from '../models';
-// @ts-ignore
-import type { ValidationErrorResponse } from '../models';
 // @ts-ignore
 import type { ValidationSuccessResponse } from '../models';
 /**

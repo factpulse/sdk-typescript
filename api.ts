@@ -17,6 +17,7 @@
 export * from './api/afnorpdppaapi';
 export * from './api/afnorpdppadirectory-service-api';
 export * from './api/afnorpdppaflow-service-api';
+export * from './api/cdarcycle-de-vie-api';
 export * from './api/chorus-pro-api';
 export * from './api/document-conversion-api';
 export * from './api/downloads-api';
