@@ -27,7 +27,7 @@ import type { PostalAddress } from './postal-address';
  * Information about the supplier / seller (BG-4).
  */
 export interface Supplier {
-    'electronic_address': ElectronicAddress | null;
+    'electronic_address'?: ElectronicAddress | null;
     'supplier_id': number;
     'private_id'?: string | null;
     'supplier_bank_account_code'?: number | null;

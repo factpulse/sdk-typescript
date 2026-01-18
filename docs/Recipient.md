@@ -6,7 +6,7 @@ Information about the invoice recipient / buyer (BG-7).
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**electronic_address** | [**ElectronicAddress**](ElectronicAddress.md) |  | [default to undefined]
+**electronic_address** | [**ElectronicAddress**](ElectronicAddress.md) |  | [optional] [default to undefined]
 **executing_service_code** | **string** |  | [optional] [default to undefined]
 **name** | **string** |  | [optional] [default to undefined]
 **siren** | **string** |  | [optional] [default to undefined]

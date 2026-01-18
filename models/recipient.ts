@@ -27,7 +27,7 @@ import type { PostalAddress } from './postal-address';
  * Information about the invoice recipient / buyer (BG-7).
  */
 export interface Recipient {
-    'electronic_address': ElectronicAddress | null;
+    'electronic_address'?: ElectronicAddress | null;
     'executing_service_code'?: string | null;
     'name'?: string | null;
     'siren'?: string | null;
