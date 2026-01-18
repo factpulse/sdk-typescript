@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ValidationErrorResponse } from './validation-error-response';
+import type { FactureElectroniqueRestApiSchemasCdarValidationErrorResponse } from './facture-electronique-rest-api-schemas-cdar-validation-error-response';
 
 /**
  * Réponse de validation CDAR.
@@ -28,10 +28,10 @@ export interface ValidateCDARResponse {
     /**
      * Liste des erreurs
      */
-    'errors'?: Array<ValidationErrorResponse>;
+    'errors'?: Array<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse>;
     /**
      * Liste des avertissements
      */
-    'warnings'?: Array<ValidationErrorResponse>;
+    'warnings'?: Array<FactureElectroniqueRestApiSchemasCdarValidationErrorResponse>;
 }
 
