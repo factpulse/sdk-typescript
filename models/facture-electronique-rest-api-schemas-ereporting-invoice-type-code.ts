@@ -15,21 +15,18 @@
 
 
 /**
- * Erreur de validation.
+ * Invoice type codes (UNTDID 1001).
  */
-export interface FactureElectroniqueRestApiSchemasCdarValidationErrorResponse {
-    /**
-     * Champ concerné
-     */
-    'field': string;
-    /**
-     * Message d\'erreur
-     */
-    'message': string;
-    'rule'?: string | null;
-    /**
-     * Sévérité (error/warning)
-     */
-    'severity'?: string;
-}
+
+export const FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = {
+    _380: '380',
+    _381: '381',
+    _384: '384',
+    _389: '389',
+    _386: '386'
+} as const;
+
+export type FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode[keyof typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode];
+
+
 

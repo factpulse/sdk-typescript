@@ -5,7 +5,7 @@
  *   const client = new FactPulseClient({ email: 'user@example.com', password: 'secret', clientUid: 'xxx' });
  *
  *   // POST /api/v1/processing/invoices/submit-complete-async
- *   const result = await client.processing.invoices.submit_complete_async({
+ *   const result = await client.post('processing/invoices/submit-complete-async', {
  *     invoiceData: {...},
  *     sourcePdf: Buffer.from(pdf).toString('base64'),
  *     destination: { type: 'afnor' }
@@ -13,7 +13,7 @@
  *   const pdfBytes = result.content; // auto-decoded, auto-polled
  *
  *   // GET /api/v1/chorus-pro/structures/123
- *   const structure = await client.chorus_pro.structures['123'].get();
+ *   const structure = await client.get('chorus-pro/structures/123');
  */
 import axios, { AxiosInstance, AxiosError } from 'axios';
 
@@ -64,7 +64,17 @@ export class FactPulseClient {
     });
   }
 
-  // Dynamic endpoint builder
+  /** POST request to /api/v1/{path} */
+  async post(path: string, data?: Record<string, unknown>): Promise<unknown> {
+    return this._doRequest('POST', path, data, true);
+  }
+
+  /** GET request to /api/v1/{path} */
+  async get(path: string, params?: Record<string, unknown>): Promise<unknown> {
+    return this._doRequest('GET', path, params, true);
+  }
+
+  // Dynamic endpoint builder (alternative syntax)
   get processing() { return this._endpoint('processing'); }
   get chorus_pro() { return this._endpoint('chorus-pro'); }
   get afnor() { return this._endpoint('afnor'); }
