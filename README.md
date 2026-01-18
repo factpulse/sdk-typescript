@@ -8,7 +8,7 @@ Official TypeScript/JavaScript client for the FactPulse API - French electronic 
 - **Chorus Pro**: Integration with the French public invoicing platform
 - **AFNOR PDP/PA**: Submission of flows compliant with XP Z12-013 standard
 - **Electronic signature**: PDF signing (PAdES-B-B, PAdES-B-T, PAdES-B-LT)
-- **Simplified client**: JWT authentication and polling integrated via `helpers`
+- **Thin HTTP wrapper**: Generic `post()` and `get()` methods with automatic JWT auth and polling
 
 ## Installation
 
@@ -20,8 +20,6 @@ yarn add @factpulse/sdk
 
 ## Quick Start
 
-The `helpers` module provides a simplified API with automatic authentication and polling:
-
 ```typescript
 import { FactPulseClient } from '@factpulse/sdk/helpers';
 import * as fs from 'fs';
@@ -29,194 +27,184 @@ import * as fs from 'fs';
 // Create the client
 const client = new FactPulseClient({
   email: 'your_email@example.com',
-  password: 'your_password'
-});
-
-// Build the invoice using simplified format (auto-calculates totals)
-const invoiceData = {
-  number: 'INV-2025-001',
-  supplier: {
-    name: 'My Company SAS',
-    siret: '12345678901234',
-    iban: 'FR7630001007941234567890185',
-  },
-  recipient: {
-    name: 'Client SARL',
-    siret: '98765432109876',
-  },
-  lines: [
-    {
-      description: 'Consulting services',
-      quantity: 10,
-      unitPrice: 100.0,
-      vatRate: 20,
-    }
-  ],
-};
-
-// Generate the Factur-X PDF
-const pdfBytes = await client.generateFacturx(invoiceData, 'source_invoice.pdf');
-
-fs.writeFileSync('facturx_invoice.pdf', pdfBytes);
-```
-
-## Available Helpers
-
-### amount(value)
-
-Converts a value to a formatted string for monetary amounts.
-
-```typescript
-import { amount } from '@factpulse/sdk/helpers';
-
-amount(1234.5);      // "1234.50"
-amount("1234.56");   // "1234.56"
-amount(null);        // "0.00"
-```
-
-### invoiceTotals(exclTax, vat, inclTax, amountDue, options?)
-
-Creates a complete invoice totals object.
-
-```typescript
-import { invoiceTotals } from '@factpulse/sdk/helpers';
-
-const totals = invoiceTotals(1000.00, 200.00, 1200.00, 1200.00, {
-  globalAllowanceAmount: 50.00,   // Optional
-  globalAllowanceReason: 'Loyalty', // Optional
-  prepayment: 100.00,             // Optional
-});
-```
-
-### invoiceLine(lineNumber, itemName, quantity, unitNetPrice, lineNetAmount, options?)
-
-Creates an invoice line.
-
-```typescript
-import { invoiceLine } from '@factpulse/sdk/helpers';
-
-const line = invoiceLine(
-  1,
-  'Consulting services',
-  5,
-  200.00,
-  1000.00,
-  {
-    vatRate: 'TVA20',        // Or manualVatRate: '20.00'
-    vatCategory: 'S',        // S, Z, E, AE, K
-    unit: 'HOUR',            // LUMP_SUM, PIECE, HOUR, DAY...
-    reference: 'REF-001',    // Optional
-  }
-);
-```
-
-### vatLine(taxableAmount, vatAmount, options?)
-
-Creates a VAT breakdown line.
-
-```typescript
-import { vatLine } from '@factpulse/sdk/helpers';
-
-const vat = vatLine(1000.00, 200.00, {
-  rate: 'TVA20',       // Or manualRate: '20.00'
-  category: 'S',       // S, Z, E, AE, K
-});
-```
-
-### postalAddress(line1, postalCode, city, options?)
-
-Creates a structured postal address.
-
-```typescript
-import { postalAddress } from '@factpulse/sdk/helpers';
-
-const address = postalAddress('123 Republic Street', '75001', 'Paris', {
-  country: 'FR',       // Default: 'FR'
-  line2: 'Building A'  // Optional
-});
-```
-
-### electronicAddress(identifier, schemeId?)
-
-Creates an electronic address (digital identifier).
-
-```typescript
-import { electronicAddress } from '@factpulse/sdk/helpers';
-
-// SIRET (schemeId="0225")
-const address = electronicAddress('12345678901234', '0225');
-
-// SIREN (schemeId="0009", default)
-const address = electronicAddress('123456789');
-```
-
-### supplier(name, siret, addressLine1, postalCode, city, options?)
-
-Creates a complete supplier with automatic SIREN and intra-EU VAT calculation.
-
-```typescript
-import { supplier } from '@factpulse/sdk/helpers';
-
-const s = supplier(
-  'My Company SAS',
-  '12345678901234',
-  '123 Example Street',
-  '75001',
-  'Paris',
-  { iban: 'FR7630006000011234567890189' }
-);
-// SIREN and intra-EU VAT number calculated automatically
-```
-
-### recipient(name, siret, addressLine1, postalCode, city, options?)
-
-Creates a recipient (customer) with automatic SIREN calculation.
-
-```typescript
-import { recipient } from '@factpulse/sdk/helpers';
-
-const r = recipient(
-  'Client SARL',
-  '98765432109876',
-  '456 Test Avenue',
-  '69001',
-  'Lyon'
-);
-```
-
-## Zero-Trust Mode (Chorus Pro / AFNOR)
-
-To pass your own credentials without server-side storage:
-
-```typescript
-import {
-  FactPulseClient,
-  ChorusProCredentials,
-  AFNORCredentials,
-} from '@factpulse/sdk/helpers';
-
-const client = new FactPulseClient({
-  email: 'your_email@example.com',
   password: 'your_password',
-  chorusCredentials: {
-    pisteClientId: 'your_client_id',
-    pisteClientSecret: 'your_client_secret',
-    chorusProLogin: 'your_login',
-    chorusProPassword: 'your_password',
-    sandbox: true,
+  clientUid: 'your-client-uuid', // From dashboard: Configuration > Clients
+});
+
+// Read your source PDF
+const pdfB64 = fs.readFileSync('source_invoice.pdf').toString('base64');
+
+// Generate Factur-X and submit to PDP in one call
+const result = await client.post('processing/invoices/submit-complete-async', {
+  invoiceData: {
+    number: 'INV-2025-001',
+    supplier: {
+      siret: '12345678901234',
+      iban: 'FR7630001007941234567890185',
+      routingAddress: '12345678901234',
+    },
+    recipient: {
+      siret: '98765432109876',
+      routingAddress: '98765432109876',
+    },
+    lines: [
+      {
+        description: 'Consulting services',
+        quantity: 10,
+        unitPrice: 100.0,
+        vatRate: 20.0,
+      },
+    ],
   },
-  afnorCredentials: {
-    flowServiceUrl: 'https://api.pdp.fr/flow/v1',
-    tokenUrl: 'https://auth.pdp.fr/oauth/token',
-    clientId: 'your_client_id',
-    clientSecret: 'your_client_secret',
+  sourcePdf: pdfB64,
+  profile: 'EN16931',
+  destination: { type: 'afnor' },
+});
+
+// PDF is in result.content (auto-polled, auto-decoded from base64)
+fs.writeFileSync('facturx_invoice.pdf', result.content);
+
+console.log(`Flow ID: ${result.afnorResult?.flowId}`);
+```
+
+## API Methods
+
+The SDK provides two generic methods that map directly to API endpoints:
+
+```typescript
+// POST /api/v1/{path}
+const result = await client.post('path/to/endpoint', { key1: value1, key2: value2 });
+
+// GET /api/v1/{path}
+const result = await client.get('path/to/endpoint', { param1: value1 });
+```
+
+### Common Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `processing/invoices/submit-complete-async` | POST | Generate Factur-X + submit to PDP |
+| `processing/generate-invoice` | POST | Generate Factur-X XML or PDF |
+| `processing/validate-xml` | POST | Validate Factur-X XML |
+| `processing/validate-facturx-pdf` | POST | Validate Factur-X PDF |
+| `processing/sign-pdf` | POST | Sign PDF with certificate |
+| `afnor/flow/v1/flows` | POST | Submit flow to AFNOR PDP |
+| `afnor/incoming-flows/{flow_id}` | GET | Get incoming invoice |
+| `chorus-pro/factures/soumettre` | POST | Submit to Chorus Pro |
+
+## Webhooks
+
+Instead of polling, you can receive results via webhook by adding `callbackUrl`:
+
+```typescript
+// Submit with webhook - returns immediately
+const result = await client.post('processing/invoices/submit-complete-async', {
+  invoiceData,
+  sourcePdf: pdfB64,
+  destination: { type: 'afnor' },
+  callbackUrl: 'https://your-server.com/webhook/factpulse',
+  webhookMode: 'INLINE', // or 'DOWNLOAD_URL'
+});
+
+const taskId = result.taskId;
+// Result will be POSTed to your webhook URL
+```
+
+### Webhook Receiver Example (Express.js)
+
+```typescript
+import express from 'express';
+import crypto from 'crypto';
+
+const app = express();
+app.use(express.json({ verify: (req, res, buf) => (req.rawBody = buf) }));
+
+const WEBHOOK_SECRET = 'your-shared-secret';
+
+function verifySignature(payload: Buffer, signature: string): boolean {
+  if (!signature.startsWith('sha256=')) return false;
+  const expected = crypto
+    .createHmac('sha256', WEBHOOK_SECRET)
+    .update(payload)
+    .digest('hex');
+  return crypto.timingSafeEqual(
+    Buffer.from(signature.slice(7)),
+    Buffer.from(expected)
+  );
+}
+
+app.post('/webhook/factpulse', (req, res) => {
+  const signature = req.headers['x-webhook-signature'] as string || '';
+  if (!verifySignature(req.rawBody, signature)) {
+    return res.status(401).json({ error: 'Invalid signature' });
+  }
+
+  const event = req.body;
+  const eventType = event.event_type;
+  const data = event.data;
+
+  if (eventType === 'submission.completed') {
+    console.log(`Invoice submitted: ${data.afnorResult?.flowId}`);
+  } else if (eventType === 'submission.failed') {
+    console.log(`Submission failed: ${data.error}`);
+  }
+
+  res.json({ status: 'received' });
+});
+
+app.listen(3000);
+```
+
+### Webhook Event Types
+
+| Event | Description |
+|-------|-------------|
+| `generation.completed` | Factur-X generated successfully |
+| `generation.failed` | Generation failed |
+| `validation.completed` | Validation passed |
+| `validation.failed` | Validation failed |
+| `signature.completed` | PDF signed |
+| `submission.completed` | Submitted to PDP/Chorus |
+| `submission.failed` | Submission failed |
+
+## Zero-Storage Mode
+
+Pass PDP credentials directly in the request (no server-side storage):
+
+```typescript
+const result = await client.post('processing/invoices/submit-complete-async', {
+  invoiceData,
+  sourcePdf: pdfB64,
+  destination: {
+    type: 'afnor',
+    flowServiceUrl: 'https://api.pdp.example.com/flow/v1',
+    tokenUrl: 'https://auth.pdp.example.com/oauth/token',
+    clientId: 'your_pdp_client_id',
+    clientSecret: 'your_pdp_client_secret',
   },
 });
+```
+
+## Error Handling
+
+```typescript
+import { FactPulseClient, FactPulseError } from '@factpulse/sdk/helpers';
+
+try {
+  const result = await client.post('processing/validate-xml', { xmlContent });
+} catch (e) {
+  if (e instanceof FactPulseError) {
+    console.log(`Error: ${e.message}`);
+    console.log(`Status code: ${e.statusCode}`);
+    console.log(`Details: ${e.details}`); // Validation errors list
+  }
+}
 ```
 
 ## Resources
 
 - **API Documentation**: https://factpulse.fr/api/facturation/documentation
+- **Webhooks Guide**: https://factpulse.fr/docs/webhooks
 - **Support**: contact@factpulse.fr
 
 ## License

@@ -276,7 +276,7 @@ const EndpointProxy = new Proxy(Endpoint, {
         if (typeof prop === 'string' && !prop.startsWith('_') && !(prop in obj)) {
           return new EndpointProxy(obj['client'], `${obj['path']}/${prop.replace(/_/g, '-')}`);
         }
-        return (obj as Record<string | symbol, unknown>)[prop];
+        return (obj as unknown as Record<string | symbol, unknown>)[prop];
       }
     });
   }
