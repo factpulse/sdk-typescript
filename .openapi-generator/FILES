@@ -173,8 +173,8 @@ docs/ErrorSource.md
 docs/ExtractionInfo.md
 docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
-docs/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md
-docs/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md
+docs/FactureElectroniqueModelsInvoiceTypeCode.md
+docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
 docs/FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.md
 docs/FieldStatus.md
 docs/FileInfo.md
@@ -472,8 +472,8 @@ models/error-source.ts
 models/extraction-info.ts
 models/factur-xinvoice.ts
 models/factur-xpdfinfo.ts
-models/facture-electronique-rest-api-schemas-chorus-pro-chorus-pro-credentials.ts
-models/facture-electronique-rest-api-schemas-ereporting-invoice-type-code.ts
+models/facture-electronique-models-invoice-type-code.ts
+models/facture-electronique-rest-api-schemas-processing-chorus-pro-credentials.ts
 models/facture-electronique-rest-api-schemas-validation-validation-error-response.ts
 models/field-status.ts
 models/file-info.ts

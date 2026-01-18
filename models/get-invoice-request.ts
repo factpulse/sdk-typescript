@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FactureElectroniqueRestApiSchemasChorusProChorusProCredentials } from './facture-electronique-rest-api-schemas-chorus-pro-chorus-pro-credentials';
+import type { ChorusProCredentials } from './chorus-pro-credentials';
 
 /**
  * Get an invoice.
  */
 export interface GetInvoiceRequest {
-    'credentials'?: FactureElectroniqueRestApiSchemasChorusProChorusProCredentials | null;
+    'credentials'?: ChorusProCredentials | null;
     /**
      * Chorus Pro invoice ID
      */
