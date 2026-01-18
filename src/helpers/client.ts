@@ -108,16 +108,24 @@ export class FactPulseClient {
 
     const result = this._parseResponse(response.status, response.data);
 
-    // Auto-poll if taskId present
-    if (result && typeof result === 'object' && 'taskId' in result) {
-      return this._poll((result as { taskId: string }).taskId);
+    // Auto-poll: support both taskId (camelCase) and task_id (snake_case)
+    if (result && typeof result === 'object') {
+      const r = result as Record<string, unknown>;
+      const taskId = r.taskId ?? r.task_id;
+      if (taskId) {
+        return this._poll(taskId as string);
+      }
     }
 
-    // Auto-decode base64
-    if (result && typeof result === 'object' && 'content_b64' in result) {
+    // Auto-decode: support both content_b64 and contentB64
+    if (result && typeof result === 'object') {
       const r = result as Record<string, unknown>;
-      r.content = Buffer.from(r.content_b64 as string, 'base64');
-      delete r.content_b64;
+      const b64Content = r.content_b64 ?? r.contentB64;
+      if (b64Content) {
+        r.content = Buffer.from(b64Content as string, 'base64');
+        delete r.content_b64;
+        delete r.contentB64;
+      }
     }
 
     return result;

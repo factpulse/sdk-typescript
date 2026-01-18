@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FactureElectroniqueModelsInvoiceTypeCode } from './facture-electronique-models-invoice-type-code';
+import type { InvoiceTypeCode } from './invoice-type-code';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { InvoicingFrameworkCode } from './invoicing-framework-code';
@@ -54,7 +54,7 @@ export interface SimplifiedInvoiceData {
     /**
      * Document type (UNTDID 1001). Default: 380 (Invoice).
      */
-    'invoiceType'?: FactureElectroniqueModelsInvoiceTypeCode;
+    'invoiceType'?: InvoiceTypeCode;
     'precedingInvoiceReference'?: string | null;
     'operationNature'?: OperationNature | null;
     'invoicingFramework'?: InvoicingFrameworkCode | null;

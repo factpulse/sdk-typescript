@@ -55,7 +55,7 @@ export interface SubmitCompleteInvoiceResponse {
     /**
      * Generated Factur-X PDF (and signed if requested) base64-encoded
      */
-    'pdfBase64': string;
+    'contentB64': string;
     /**
      * Return message
      */

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **enrichedInvoice** | [**EnrichedInvoiceInfo**](EnrichedInvoiceInfo.md) | Enriched invoice data | [default to undefined]
 **facturxPdf** | [**FacturXPDFInfo**](FacturXPDFInfo.md) | Generated PDF information | [default to undefined]
 **signature** | [**SignatureInfo**](SignatureInfo.md) |  | [optional] [default to undefined]
-**pdfBase64** | **string** | Generated Factur-X PDF (and signed if requested) base64-encoded | [default to undefined]
+**contentB64** | **string** | Generated Factur-X PDF (and signed if requested) base64-encoded | [default to undefined]
 **message** | **string** | Return message | [default to undefined]
 
 ## Example
@@ -29,7 +29,7 @@ const instance: SubmitCompleteInvoiceResponse = {
     enrichedInvoice,
     facturxPdf,
     signature,
-    pdfBase64,
+    contentB64,
     message,
 };
 ```
