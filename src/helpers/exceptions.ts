@@ -1,5 +1,13 @@
 export class FactPulseError extends Error {
-  constructor(message: string) { super(message); this.name = 'FactPulseError'; Object.setPrototypeOf(this, FactPulseError.prototype); }
+  statusCode?: number;
+  details?: unknown[];
+  constructor(message: string, statusCode?: number, details?: unknown[]) {
+    super(message);
+    this.name = 'FactPulseError';
+    this.statusCode = statusCode;
+    this.details = details ?? [];
+    Object.setPrototypeOf(this, FactPulseError.prototype);
+  }
 }
 
 export class FactPulseAuthError extends FactPulseError {
