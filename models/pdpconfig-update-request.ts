@@ -13,15 +13,34 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PDPCredentials } from './pdpcredentials';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { SubmitCDARRequest } from './submit-cdarrequest';
 
-export interface BodySubmitCdarApiV1CdarSubmitPost {
-    'request': SubmitCDARRequest;
-    'pdp_credentials'?: PDPCredentials | null;
+/**
+ * PDP configuration update request.
+ */
+export interface PDPConfigUpdateRequest {
+    /**
+     * Whether config is active
+     */
+    'isActive'?: boolean;
+    /**
+     * Sandbox mode
+     */
+    'modeSandbox'?: boolean;
+    /**
+     * PDP Flow Service URL
+     */
+    'flowServiceUrl': string;
+    /**
+     * PDP OAuth token URL
+     */
+    'tokenUrl': string;
+    /**
+     * OAuth Client ID
+     */
+    'oauthClientId': string;
+    /**
+     * OAuth Client Secret (sent but never returned)
+     */
+    'clientSecret': string;
 }
 

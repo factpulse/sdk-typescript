@@ -25,6 +25,10 @@ Name | Type | Description | Notes
 **actionCode** | **string** |  | [optional] [default to undefined]
 **encaisseAmount** | [**Encaisseamount**](Encaisseamount.md) |  | [optional] [default to undefined]
 **flowType** | **string** | Type de flux AFNOR (CustomerInvoiceLC, SupplierInvoiceLC, etc.) | [optional] [default to 'CustomerInvoiceLC']
+**pdpFlowServiceUrl** | **string** |  | [optional] [default to undefined]
+**pdpTokenUrl** | **string** |  | [optional] [default to undefined]
+**pdpClientId** | **string** |  | [optional] [default to undefined]
+**pdpClientSecret** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -51,6 +55,10 @@ const instance: SubmitCDARRequest = {
     actionCode,
     encaisseAmount,
     flowType,
+    pdpFlowServiceUrl,
+    pdpTokenUrl,
+    pdpClientId,
+    pdpClientSecret,
 };
 ```
 

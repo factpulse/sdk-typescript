@@ -15,8 +15,40 @@
 
 
 /**
- * Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+ * Detailed client view (same fields for now).
  */
-export interface Amount {
+export interface ClientDetail {
+    /**
+     * Unique client identifier
+     */
+    'uid': string;
+    /**
+     * Client name
+     */
+    'name': string;
+    'siret'?: string | null;
+    'description'?: string | null;
+    /**
+     * Whether the client is active
+     */
+    'isActive': boolean;
+    /**
+     * Whether PDP config exists
+     */
+    'hasConfigPdp': boolean;
+    'pdpIsActive'?: boolean | null;
+    'pdpIsMock'?: boolean | null;
+    /**
+     * Whether Chorus Pro config exists
+     */
+    'hasConfigChorus': boolean;
+    /**
+     * Creation date
+     */
+    'createdAt': string;
+    /**
+     * Last update date
+     */
+    'updatedAt': string;
 }
 

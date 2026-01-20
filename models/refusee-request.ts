@@ -15,8 +15,30 @@
 
 
 /**
- * Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+ * Requête simplifiée pour soumettre un statut REFUSÉE (210).  Statut obligatoire PPF - Le destinataire refuse la facture. Un code motif est OBLIGATOIRE (BR-FR-CDV-15).  Codes motif autorisés (BR-FR-CDV-CL-09_MDT-113_210): - TX_TVA_ERR: Taux de TVA erroné - MONTANTTOTAL_ERR: Montant total erroné - CALCUL_ERR: Erreur de calcul - NON_CONFORME: Non conforme - DOUBLON: Doublon - DEST_ERR: Destinataire erroné - TRANSAC_INC: Transaction incomplète - EMMET_INC: Émetteur inconnu - CONTRAT_TERM: Contrat terminé - DOUBLE_FACT: Double facturation - CMD_ERR: Commande erronée - ADR_ERR: Adresse erronée - REF_CT_ABSENT: Référence contrat absente
  */
-export interface Amount {
+export interface RefuseeRequest {
+    /**
+     * Identifiant de la facture (BT-1)
+     */
+    'invoiceId': string;
+    /**
+     * Date d\'émission de la facture (YYYY-MM-DD)
+     */
+    'invoiceIssueDate': string;
+    'senderSiren'?: string | null;
+    /**
+     * Type de flux: SupplierInvoiceLC (acheteur) ou CustomerInvoiceLC (vendeur)
+     */
+    'flowType'?: string;
+    'pdpFlowServiceUrl'?: string | null;
+    'pdpTokenUrl'?: string | null;
+    'pdpClientId'?: string | null;
+    'pdpClientSecret'?: string | null;
+    /**
+     * Code motif du refus (obligatoire). Valeurs autorisées: TX_TVA_ERR, MONTANTTOTAL_ERR, CALCUL_ERR, NON_CONFORME, DOUBLON, DEST_ERR, TRANSAC_INC, EMMET_INC, CONTRAT_TERM, DOUBLE_FACT, CMD_ERR, ADR_ERR, REF_CT_ABSENT
+     */
+    'reasonCode': string;
+    'reasonText'?: string | null;
 }
 

@@ -13,10 +13,29 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { ClientSummary } from './client-summary';
 
 /**
- * Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+ * Paginated client list response.
  */
-export interface Amount {
+export interface ClientListResponse {
+    /**
+     * List of clients
+     */
+    'results': Array<ClientSummary>;
+    /**
+     * Total number of clients
+     */
+    'total': number;
+    /**
+     * Current page
+     */
+    'page': number;
+    /**
+     * Page size
+     */
+    'pageSize': number;
 }
 

@@ -15,8 +15,20 @@
 
 
 /**
- * Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+ * Client activation/deactivation response.
  */
-export interface Amount {
+export interface ClientActivateResponse {
+    /**
+     * Unique client identifier
+     */
+    'uid': string;
+    /**
+     * New status
+     */
+    'isActive': boolean;
+    /**
+     * Confirmation message
+     */
+    'message': string;
 }
 

@@ -13,15 +13,10 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { PDPCredentials } from './pdpcredentials';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { SubmitCDARXMLRequest } from './submit-cdarxmlrequest';
 
-export interface BodySubmitCdarXmlApiV1CdarSubmitXmlPost {
-    'request': SubmitCDARXMLRequest;
-    'pdp_credentials'?: PDPCredentials | null;
+/**
+ * Allowance/charge amount (BT-92/99/136/141).
+ */
+export interface Amount2 {
 }
 

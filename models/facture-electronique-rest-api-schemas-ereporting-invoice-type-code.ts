@@ -15,8 +15,18 @@
 
 
 /**
- * Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+ * Invoice type codes (UNTDID 1001).
  */
-export interface Amount {
-}
+
+export const FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = {
+    _380: '380',
+    _381: '381',
+    _384: '384',
+    _389: '389',
+    _386: '386'
+} as const;
+
+export type FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode[keyof typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode];
+
+
 

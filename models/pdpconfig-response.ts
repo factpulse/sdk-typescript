@@ -13,10 +13,30 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SecretStatus } from './secret-status';
 
 /**
- * Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+ * PDP configuration (secrets masked).
  */
-export interface Amount {
+export interface PDPConfigResponse {
+    /**
+     * Whether PDP config exists
+     */
+    'isConfigured': boolean;
+    'id'?: number | null;
+    'isActive'?: boolean | null;
+    'modeSandbox'?: boolean | null;
+    'flowServiceUrl'?: string | null;
+    'tokenUrl'?: string | null;
+    'oauthClientId'?: string | null;
+    'secretStatus'?: SecretStatus | null;
+    'lastTestAt'?: string | null;
+    'lastTestSuccess'?: boolean | null;
+    'lastTestError'?: string | null;
+    'createdAt'?: string | null;
+    'updatedAt'?: string | null;
+    'message'?: string | null;
 }
 

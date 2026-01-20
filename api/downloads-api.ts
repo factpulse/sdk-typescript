@@ -67,44 +67,6 @@ export const DownloadsApiAxiosParamCreator = function (configuration?: Configura
             };
         },
         /**
-         * Check if a temporary file exists and get its metadata without downloading.  Useful for: - Verifying a download URL is still valid - Getting file size before downloading - Checking expiration time  **Security**: Requires authentication, only file owner can check.
-         * @summary Check if a file exists
-         * @param {string} downloadId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        checkFileApiV1DownloadDownloadIdHead_1: async (downloadId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'downloadId' is not null or undefined
-            assertParamExists('checkFileApiV1DownloadDownloadIdHead_1', 'downloadId', downloadId)
-            const localVarPath = `/api/v1/download/{download_id}`
-                .replace(`{${"download_id"}}`, encodeURIComponent(String(downloadId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'HEAD', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using `webhook_mode: \"download_url\"` - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
          * @summary Download a temporary file
          * @param {string} downloadId 
@@ -115,49 +77,6 @@ export const DownloadsApiAxiosParamCreator = function (configuration?: Configura
         downloadFileApiV1DownloadDownloadIdGet: async (downloadId: string, deleteAfter?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'downloadId' is not null or undefined
             assertParamExists('downloadFileApiV1DownloadDownloadIdGet', 'downloadId', downloadId)
-            const localVarPath = `/api/v1/download/{download_id}`
-                .replace(`{${"download_id"}}`, encodeURIComponent(String(downloadId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication HTTPBearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (deleteAfter !== undefined) {
-                localVarQueryParameter['delete_after'] = deleteAfter;
-            }
-
-            localVarHeaderParameter['Accept'] = 'application/json,application/pdf,application/xml,application/octet-stream';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using `webhook_mode: \"download_url\"` - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
-         * @summary Download a temporary file
-         * @param {string} downloadId 
-         * @param {boolean} [deleteAfter] If true, delete the file after download (one-time download)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        downloadFileApiV1DownloadDownloadIdGet_2: async (downloadId: string, deleteAfter?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'downloadId' is not null or undefined
-            assertParamExists('downloadFileApiV1DownloadDownloadIdGet_2', 'downloadId', downloadId)
             const localVarPath = `/api/v1/download/{download_id}`
                 .replace(`{${"download_id"}}`, encodeURIComponent(String(downloadId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -213,19 +132,6 @@ export const DownloadsApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Check if a temporary file exists and get its metadata without downloading.  Useful for: - Verifying a download URL is still valid - Getting file size before downloading - Checking expiration time  **Security**: Requires authentication, only file owner can check.
-         * @summary Check if a file exists
-         * @param {string} downloadId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async checkFileApiV1DownloadDownloadIdHead_1(downloadId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.checkFileApiV1DownloadDownloadIdHead_1(downloadId, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DownloadsApi.checkFileApiV1DownloadDownloadIdHead_1']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using `webhook_mode: \"download_url\"` - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
          * @summary Download a temporary file
          * @param {string} downloadId 
@@ -237,20 +143,6 @@ export const DownloadsApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.downloadFileApiV1DownloadDownloadIdGet(downloadId, deleteAfter, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['DownloadsApi.downloadFileApiV1DownloadDownloadIdGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using `webhook_mode: \"download_url\"` - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
-         * @summary Download a temporary file
-         * @param {string} downloadId 
-         * @param {boolean} [deleteAfter] If true, delete the file after download (one-time download)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async downloadFileApiV1DownloadDownloadIdGet_2(downloadId: string, deleteAfter?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.downloadFileApiV1DownloadDownloadIdGet_2(downloadId, deleteAfter, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['DownloadsApi.downloadFileApiV1DownloadDownloadIdGet_2']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -273,16 +165,6 @@ export const DownloadsApiFactory = function (configuration?: Configuration, base
             return localVarFp.checkFileApiV1DownloadDownloadIdHead(downloadId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Check if a temporary file exists and get its metadata without downloading.  Useful for: - Verifying a download URL is still valid - Getting file size before downloading - Checking expiration time  **Security**: Requires authentication, only file owner can check.
-         * @summary Check if a file exists
-         * @param {string} downloadId 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        checkFileApiV1DownloadDownloadIdHead_1(downloadId: string, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.checkFileApiV1DownloadDownloadIdHead_1(downloadId, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using `webhook_mode: \"download_url\"` - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
          * @summary Download a temporary file
          * @param {string} downloadId 
@@ -292,17 +174,6 @@ export const DownloadsApiFactory = function (configuration?: Configuration, base
          */
         downloadFileApiV1DownloadDownloadIdGet(downloadId: string, deleteAfter?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<any> {
             return localVarFp.downloadFileApiV1DownloadDownloadIdGet(downloadId, deleteAfter, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using `webhook_mode: \"download_url\"` - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
-         * @summary Download a temporary file
-         * @param {string} downloadId 
-         * @param {boolean} [deleteAfter] If true, delete the file after download (one-time download)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        downloadFileApiV1DownloadDownloadIdGet_2(downloadId: string, deleteAfter?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.downloadFileApiV1DownloadDownloadIdGet_2(downloadId, deleteAfter, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -323,17 +194,6 @@ export class DownloadsApi extends BaseAPI {
     }
 
     /**
-     * Check if a temporary file exists and get its metadata without downloading.  Useful for: - Verifying a download URL is still valid - Getting file size before downloading - Checking expiration time  **Security**: Requires authentication, only file owner can check.
-     * @summary Check if a file exists
-     * @param {string} downloadId 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public checkFileApiV1DownloadDownloadIdHead_1(downloadId: string, options?: RawAxiosRequestConfig) {
-        return DownloadsApiFp(this.configuration).checkFileApiV1DownloadDownloadIdHead_1(downloadId, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using `webhook_mode: \"download_url\"` - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
      * @summary Download a temporary file
      * @param {string} downloadId 
@@ -343,18 +203,6 @@ export class DownloadsApi extends BaseAPI {
      */
     public downloadFileApiV1DownloadDownloadIdGet(downloadId: string, deleteAfter?: boolean, options?: RawAxiosRequestConfig) {
         return DownloadsApiFp(this.configuration).downloadFileApiV1DownloadDownloadIdGet(downloadId, deleteAfter, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using `webhook_mode: \"download_url\"` - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
-     * @summary Download a temporary file
-     * @param {string} downloadId 
-     * @param {boolean} [deleteAfter] If true, delete the file after download (one-time download)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public downloadFileApiV1DownloadDownloadIdGet_2(downloadId: string, deleteAfter?: boolean, options?: RawAxiosRequestConfig) {
-        return DownloadsApiFp(this.configuration).downloadFileApiV1DownloadDownloadIdGet_2(downloadId, deleteAfter, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

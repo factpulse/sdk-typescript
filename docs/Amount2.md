@@ -1,22 +1,18 @@
-# PaymentAmountByRate
+# Amount2
 
-Payment amount for a specific VAT rate.
+Allowance/charge amount (BT-92/99/136/141).
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rate** | [**Rate**](Rate.md) |  | [default to undefined]
-**amount** | [**Amount1**](Amount1.md) |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { PaymentAmountByRate } from '@factpulse/sdk';
+import { Amount2 } from '@factpulse/sdk';
 
-const instance: PaymentAmountByRate = {
-    rate,
-    amount,
+const instance: Amount2 = {
 };
 ```
 

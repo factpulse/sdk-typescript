@@ -15,8 +15,14 @@
 
 
 /**
- * Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+ * Client creation request.
  */
-export interface Amount {
+export interface ClientCreateRequest {
+    /**
+     * Client name
+     */
+    'name': string;
+    'description'?: string | null;
+    'siret'?: string | null;
 }
 

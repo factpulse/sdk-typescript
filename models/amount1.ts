@@ -15,7 +15,7 @@
 
 
 /**
- * Allowance/charge amount (BT-92/99/136/141).
+ * Payment amount
  */
 export interface Amount1 {
 }

@@ -10,6 +10,8 @@ All URIs are relative to *https://factpulse.fr*
 |[**getStatusCodesApiV1CdarStatusCodesGet**](#getstatuscodesapiv1cdarstatuscodesget) | **GET** /api/v1/cdar/status-codes | Liste des codes statut CDAR|
 |[**submitCdarApiV1CdarSubmitPost**](#submitcdarapiv1cdarsubmitpost) | **POST** /api/v1/cdar/submit | Générer et soumettre un message CDAR|
 |[**submitCdarXmlApiV1CdarSubmitXmlPost**](#submitcdarxmlapiv1cdarsubmitxmlpost) | **POST** /api/v1/cdar/submit-xml | Soumettre un XML CDAR pré-généré|
+|[**submitEncaisseeApiV1CdarEncaisseePost**](#submitencaisseeapiv1cdarencaisseepost) | **POST** /api/v1/cdar/encaissee | [Simplifié] Soumettre un statut ENCAISSÉE (212)|
+|[**submitRefuseeApiV1CdarRefuseePost**](#submitrefuseeapiv1cdarrefuseepost) | **POST** /api/v1/cdar/refusee | [Simplifié] Soumettre un statut REFUSÉE (210)|
 |[**validateCdarApiV1CdarValidatePost**](#validatecdarapiv1cdarvalidatepost) | **POST** /api/v1/cdar/validate | Valider des données CDAR|
 
 # **generateCdarApiV1CdarGeneratePost**
@@ -210,9 +212,9 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submitCdarApiV1CdarSubmitPost**
-> SubmitCDARResponse submitCdarApiV1CdarSubmitPost(bodySubmitCdarApiV1CdarSubmitPost)
+> SubmitCDARResponse submitCdarApiV1CdarSubmitPost(submitCDARRequest)
 
-Génère un message CDAR et le soumet à la plateforme PA/PDP.  Nécessite une authentification AFNOR valide.  **Types de flux (flowType):** - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur) - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
+Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d\'authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur) - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
 
 ### Example
 
@@ -220,22 +222,16 @@ Génère un message CDAR et le soumet à la plateforme PA/PDP.  Nécessite une a
 import {
     CDARCycleDeVieApi,
     Configuration,
-    BodySubmitCdarApiV1CdarSubmitPost
+    SubmitCDARRequest
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new CDARCycleDeVieApi(configuration);
 
-let userId: number; // (default to undefined)
-let bodySubmitCdarApiV1CdarSubmitPost: BodySubmitCdarApiV1CdarSubmitPost; //
-let jwtToken: string; // (optional) (default to undefined)
-let clientUid: string; // (optional) (default to undefined)
+let submitCDARRequest: SubmitCDARRequest; //
 
 const { status, data } = await apiInstance.submitCdarApiV1CdarSubmitPost(
-    userId,
-    bodySubmitCdarApiV1CdarSubmitPost,
-    jwtToken,
-    clientUid
+    submitCDARRequest
 );
 ```
 
@@ -243,10 +239,7 @@ const { status, data } = await apiInstance.submitCdarApiV1CdarSubmitPost(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodySubmitCdarApiV1CdarSubmitPost** | **BodySubmitCdarApiV1CdarSubmitPost**|  | |
-| **userId** | [**number**] |  | defaults to undefined|
-| **jwtToken** | [**string**] |  | (optional) defaults to undefined|
-| **clientUid** | [**string**] |  | (optional) defaults to undefined|
+| **submitCDARRequest** | **SubmitCDARRequest**|  | |
 
 
 ### Return type
@@ -275,9 +268,9 @@ const { status, data } = await apiInstance.submitCdarApiV1CdarSubmitPost(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **submitCdarXmlApiV1CdarSubmitXmlPost**
-> SubmitCDARResponse submitCdarXmlApiV1CdarSubmitXmlPost(bodySubmitCdarXmlApiV1CdarSubmitXmlPost)
+> SubmitCDARResponse submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest)
 
-Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d\'autres systèmes.
+Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d\'autres systèmes.  **Stratégies d\'authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
 
 ### Example
 
@@ -285,22 +278,16 @@ Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour s
 import {
     CDARCycleDeVieApi,
     Configuration,
-    BodySubmitCdarXmlApiV1CdarSubmitXmlPost
+    SubmitCDARXMLRequest
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
 const apiInstance = new CDARCycleDeVieApi(configuration);
 
-let userId: number; // (default to undefined)
-let bodySubmitCdarXmlApiV1CdarSubmitXmlPost: BodySubmitCdarXmlApiV1CdarSubmitXmlPost; //
-let jwtToken: string; // (optional) (default to undefined)
-let clientUid: string; // (optional) (default to undefined)
+let submitCDARXMLRequest: SubmitCDARXMLRequest; //
 
 const { status, data } = await apiInstance.submitCdarXmlApiV1CdarSubmitXmlPost(
-    userId,
-    bodySubmitCdarXmlApiV1CdarSubmitXmlPost,
-    jwtToken,
-    clientUid
+    submitCDARXMLRequest
 );
 ```
 
@@ -308,15 +295,124 @@ const { status, data } = await apiInstance.submitCdarXmlApiV1CdarSubmitXmlPost(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **bodySubmitCdarXmlApiV1CdarSubmitXmlPost** | **BodySubmitCdarXmlApiV1CdarSubmitXmlPost**|  | |
-| **userId** | [**number**] |  | defaults to undefined|
-| **jwtToken** | [**string**] |  | (optional) defaults to undefined|
-| **clientUid** | [**string**] |  | (optional) defaults to undefined|
+| **submitCDARXMLRequest** | **SubmitCDARXMLRequest**|  | |
 
 
 ### Return type
 
 **SubmitCDARResponse**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**400** | Requête invalide |  -  |
+|**422** | Erreur de validation |  -  |
+|**500** | Erreur serveur |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **submitEncaisseeApiV1CdarEncaisseePost**
+> SimplifiedCDARResponse submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest)
+
+**Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d\'usage:** L\'acheteur confirme le paiement d\'une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+
+### Example
+
+```typescript
+import {
+    CDARCycleDeVieApi,
+    Configuration,
+    EncaisseeRequest
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new CDARCycleDeVieApi(configuration);
+
+let encaisseeRequest: EncaisseeRequest; //
+
+const { status, data } = await apiInstance.submitEncaisseeApiV1CdarEncaisseePost(
+    encaisseeRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **encaisseeRequest** | **EncaisseeRequest**|  | |
+
+
+### Return type
+
+**SimplifiedCDARResponse**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**400** | Requête invalide |  -  |
+|**422** | Erreur de validation |  -  |
+|**500** | Erreur serveur |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **submitRefuseeApiV1CdarRefuseePost**
+> SimplifiedCDARResponse submitRefuseeApiV1CdarRefuseePost(refuseeRequest)
+
+**Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d\'usage:** L\'acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - `TX_TVA_ERR`: Taux de TVA erroné - `MONTANTTOTAL_ERR`: Montant total erroné - `CALCUL_ERR`: Erreur de calcul - `NON_CONFORME`: Non conforme - `DOUBLON`: Doublon - `DEST_ERR`: Destinataire erroné - `TRANSAC_INC`: Transaction incomplète - `EMMET_INC`: Émetteur inconnu - `CONTRAT_TERM`: Contrat terminé - `DOUBLE_FACT`: Double facturation - `CMD_ERR`: Commande erronée - `ADR_ERR`: Adresse erronée - `REF_CT_ABSENT`: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+
+### Example
+
+```typescript
+import {
+    CDARCycleDeVieApi,
+    Configuration,
+    RefuseeRequest
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new CDARCycleDeVieApi(configuration);
+
+let refuseeRequest: RefuseeRequest; //
+
+const { status, data } = await apiInstance.submitRefuseeApiV1CdarRefuseePost(
+    refuseeRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **refuseeRequest** | **RefuseeRequest**|  | |
+
+
+### Return type
+
+**SimplifiedCDARResponse**
 
 ### Authorization
 

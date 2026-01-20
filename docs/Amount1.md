@@ -1,6 +1,6 @@
 # Amount1
 
-Allowance/charge amount (BT-92/99/136/141).
+Payment amount
 
 ## Properties
 

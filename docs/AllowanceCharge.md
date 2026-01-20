@@ -7,7 +7,7 @@ Document-level or line-level allowance/charge.  Represents BG-20 (Document level
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **is_charge** | **boolean** | True for charge, False for allowance (ChargeIndicator). | [default to undefined]
-**amount** | [**Amount1**](Amount1.md) |  | [default to undefined]
+**amount** | [**Amount2**](Amount2.md) |  | [default to undefined]
 **base_amount** | [**BaseAmount**](BaseAmount.md) |  | [optional] [default to undefined]
 **percentage** | [**Percentage**](Percentage.md) |  | [optional] [default to undefined]
 **reason** | **string** |  | [optional] [default to undefined]

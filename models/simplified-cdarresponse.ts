@@ -15,8 +15,28 @@
 
 
 /**
- * Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+ * Réponse pour les endpoints CDAR simplifiés.
  */
-export interface Amount {
+export interface SimplifiedCDARResponse {
+    /**
+     * Identifiant du flux AFNOR
+     */
+    'flowId': string;
+    /**
+     * Identifiant du message CDAR généré
+     */
+    'documentId': string;
+    /**
+     * Code statut soumis (210 ou 212)
+     */
+    'status': string;
+    /**
+     * Identifiant de la facture
+     */
+    'invoiceId': string;
+    /**
+     * Message de confirmation
+     */
+    'message': string;
 }
 

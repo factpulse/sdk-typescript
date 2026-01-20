@@ -9,6 +9,10 @@ Name | Type | Description | Notes
 **xml** | **string** | XML CDAR à soumettre | [default to undefined]
 **flowType** | **string** | Type de flux AFNOR | [optional] [default to 'CustomerInvoiceLC']
 **filename** | **string** |  | [optional] [default to undefined]
+**pdpFlowServiceUrl** | **string** |  | [optional] [default to undefined]
+**pdpTokenUrl** | **string** |  | [optional] [default to undefined]
+**pdpClientId** | **string** |  | [optional] [default to undefined]
+**pdpClientSecret** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -19,6 +23,10 @@ const instance: SubmitCDARXMLRequest = {
     xml,
     flowType,
     filename,
+    pdpFlowServiceUrl,
+    pdpTokenUrl,
+    pdpClientId,
+    pdpClientSecret,
 };
 ```
 

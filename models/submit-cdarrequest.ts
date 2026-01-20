@@ -76,5 +76,9 @@ export interface SubmitCDARRequest {
      * Type de flux AFNOR (CustomerInvoiceLC, SupplierInvoiceLC, etc.)
      */
     'flowType'?: string;
+    'pdpFlowServiceUrl'?: string | null;
+    'pdpTokenUrl'?: string | null;
+    'pdpClientId'?: string | null;
+    'pdpClientSecret'?: string | null;
 }
 

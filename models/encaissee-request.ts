@@ -13,10 +13,35 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { Amount } from './amount';
 
 /**
- * Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+ * Requête simplifiée pour soumettre un statut ENCAISSÉE (212).  Statut obligatoire PPF - Le paiement a été effectué. Le montant encaissé est OBLIGATOIRE (BR-FR-CDV-14).
  */
-export interface Amount {
+export interface EncaisseeRequest {
+    /**
+     * Identifiant de la facture (BT-1)
+     */
+    'invoiceId': string;
+    /**
+     * Date d\'émission de la facture (YYYY-MM-DD)
+     */
+    'invoiceIssueDate': string;
+    'senderSiren'?: string | null;
+    /**
+     * Type de flux: SupplierInvoiceLC (acheteur) ou CustomerInvoiceLC (vendeur)
+     */
+    'flowType'?: string;
+    'pdpFlowServiceUrl'?: string | null;
+    'pdpTokenUrl'?: string | null;
+    'pdpClientId'?: string | null;
+    'pdpClientSecret'?: string | null;
+    'amount': Amount;
+    /**
+     * Code devise ISO 4217
+     */
+    'currency'?: string;
 }
 

@@ -26,19 +26,25 @@ import type { APIError } from '../models';
 // @ts-ignore
 import type { ActionCodesResponse } from '../models';
 // @ts-ignore
-import type { BodySubmitCdarApiV1CdarSubmitPost } from '../models';
-// @ts-ignore
-import type { BodySubmitCdarXmlApiV1CdarSubmitXmlPost } from '../models';
-// @ts-ignore
 import type { CreateCDARRequest } from '../models';
+// @ts-ignore
+import type { EncaisseeRequest } from '../models';
 // @ts-ignore
 import type { GenerateCDARResponse } from '../models';
 // @ts-ignore
 import type { ReasonCodesResponse } from '../models';
 // @ts-ignore
+import type { RefuseeRequest } from '../models';
+// @ts-ignore
+import type { SimplifiedCDARResponse } from '../models';
+// @ts-ignore
 import type { StatusCodesResponse } from '../models';
 // @ts-ignore
+import type { SubmitCDARRequest } from '../models';
+// @ts-ignore
 import type { SubmitCDARResponse } from '../models';
+// @ts-ignore
+import type { SubmitCDARXMLRequest } from '../models';
 // @ts-ignore
 import type { ValidateCDARRequest } from '../models';
 // @ts-ignore
@@ -178,20 +184,15 @@ export const CDARCycleDeVieApiAxiosParamCreator = function (configuration?: Conf
             };
         },
         /**
-         * Génère un message CDAR et le soumet à la plateforme PA/PDP.  Nécessite une authentification AFNOR valide.  **Types de flux (flowType):** - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur) - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
+         * Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d\'authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur) - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
          * @summary Générer et soumettre un message CDAR
-         * @param {number} userId 
-         * @param {BodySubmitCdarApiV1CdarSubmitPost} bodySubmitCdarApiV1CdarSubmitPost 
-         * @param {string | null} [jwtToken] 
-         * @param {string | null} [clientUid] 
+         * @param {SubmitCDARRequest} submitCDARRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitCdarApiV1CdarSubmitPost: async (userId: number, bodySubmitCdarApiV1CdarSubmitPost: BodySubmitCdarApiV1CdarSubmitPost, jwtToken?: string | null, clientUid?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'userId' is not null or undefined
-            assertParamExists('submitCdarApiV1CdarSubmitPost', 'userId', userId)
-            // verify required parameter 'bodySubmitCdarApiV1CdarSubmitPost' is not null or undefined
-            assertParamExists('submitCdarApiV1CdarSubmitPost', 'bodySubmitCdarApiV1CdarSubmitPost', bodySubmitCdarApiV1CdarSubmitPost)
+        submitCdarApiV1CdarSubmitPost: async (submitCDARRequest: SubmitCDARRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'submitCDARRequest' is not null or undefined
+            assertParamExists('submitCdarApiV1CdarSubmitPost', 'submitCDARRequest', submitCDARRequest)
             const localVarPath = `/api/v1/cdar/submit`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -208,25 +209,13 @@ export const CDARCycleDeVieApiAxiosParamCreator = function (configuration?: Conf
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (userId !== undefined) {
-                localVarQueryParameter['user_id'] = userId;
-            }
-
-            if (jwtToken !== undefined) {
-                localVarQueryParameter['jwt_token'] = jwtToken;
-            }
-
-            if (clientUid !== undefined) {
-                localVarQueryParameter['client_uid'] = clientUid;
-            }
-
             localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarHeaderParameter['Accept'] = 'application/json';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodySubmitCdarApiV1CdarSubmitPost, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(submitCDARRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -234,20 +223,15 @@ export const CDARCycleDeVieApiAxiosParamCreator = function (configuration?: Conf
             };
         },
         /**
-         * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d\'autres systèmes.
+         * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d\'autres systèmes.  **Stratégies d\'authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
          * @summary Soumettre un XML CDAR pré-généré
-         * @param {number} userId 
-         * @param {BodySubmitCdarXmlApiV1CdarSubmitXmlPost} bodySubmitCdarXmlApiV1CdarSubmitXmlPost 
-         * @param {string | null} [jwtToken] 
-         * @param {string | null} [clientUid] 
+         * @param {SubmitCDARXMLRequest} submitCDARXMLRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitCdarXmlApiV1CdarSubmitXmlPost: async (userId: number, bodySubmitCdarXmlApiV1CdarSubmitXmlPost: BodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken?: string | null, clientUid?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'userId' is not null or undefined
-            assertParamExists('submitCdarXmlApiV1CdarSubmitXmlPost', 'userId', userId)
-            // verify required parameter 'bodySubmitCdarXmlApiV1CdarSubmitXmlPost' is not null or undefined
-            assertParamExists('submitCdarXmlApiV1CdarSubmitXmlPost', 'bodySubmitCdarXmlApiV1CdarSubmitXmlPost', bodySubmitCdarXmlApiV1CdarSubmitXmlPost)
+        submitCdarXmlApiV1CdarSubmitXmlPost: async (submitCDARXMLRequest: SubmitCDARXMLRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'submitCDARXMLRequest' is not null or undefined
+            assertParamExists('submitCdarXmlApiV1CdarSubmitXmlPost', 'submitCDARXMLRequest', submitCDARXMLRequest)
             const localVarPath = `/api/v1/cdar/submit-xml`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -264,17 +248,44 @@ export const CDARCycleDeVieApiAxiosParamCreator = function (configuration?: Conf
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (userId !== undefined) {
-                localVarQueryParameter['user_id'] = userId;
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(submitCDARXMLRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d\'usage:** L\'acheteur confirme le paiement d\'une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+         * @summary [Simplifié] Soumettre un statut ENCAISSÉE (212)
+         * @param {EncaisseeRequest} encaisseeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        submitEncaisseeApiV1CdarEncaisseePost: async (encaisseeRequest: EncaisseeRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'encaisseeRequest' is not null or undefined
+            assertParamExists('submitEncaisseeApiV1CdarEncaisseePost', 'encaisseeRequest', encaisseeRequest)
+            const localVarPath = `/api/v1/cdar/encaissee`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
             }
 
-            if (jwtToken !== undefined) {
-                localVarQueryParameter['jwt_token'] = jwtToken;
-            }
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
-            if (clientUid !== undefined) {
-                localVarQueryParameter['client_uid'] = clientUid;
-            }
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarHeaderParameter['Accept'] = 'application/json';
@@ -282,7 +293,46 @@ export const CDARCycleDeVieApiAxiosParamCreator = function (configuration?: Conf
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(bodySubmitCdarXmlApiV1CdarSubmitXmlPost, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(encaisseeRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d\'usage:** L\'acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - `TX_TVA_ERR`: Taux de TVA erroné - `MONTANTTOTAL_ERR`: Montant total erroné - `CALCUL_ERR`: Erreur de calcul - `NON_CONFORME`: Non conforme - `DOUBLON`: Doublon - `DEST_ERR`: Destinataire erroné - `TRANSAC_INC`: Transaction incomplète - `EMMET_INC`: Émetteur inconnu - `CONTRAT_TERM`: Contrat terminé - `DOUBLE_FACT`: Double facturation - `CMD_ERR`: Commande erronée - `ADR_ERR`: Adresse erronée - `REF_CT_ABSENT`: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+         * @summary [Simplifié] Soumettre un statut REFUSÉE (210)
+         * @param {RefuseeRequest} refuseeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        submitRefuseeApiV1CdarRefuseePost: async (refuseeRequest: RefuseeRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'refuseeRequest' is not null or undefined
+            assertParamExists('submitRefuseeApiV1CdarRefuseePost', 'refuseeRequest', refuseeRequest)
+            const localVarPath = `/api/v1/cdar/refusee`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(refuseeRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -387,35 +437,55 @@ export const CDARCycleDeVieApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Génère un message CDAR et le soumet à la plateforme PA/PDP.  Nécessite une authentification AFNOR valide.  **Types de flux (flowType):** - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur) - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
+         * Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d\'authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur) - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
          * @summary Générer et soumettre un message CDAR
-         * @param {number} userId 
-         * @param {BodySubmitCdarApiV1CdarSubmitPost} bodySubmitCdarApiV1CdarSubmitPost 
-         * @param {string | null} [jwtToken] 
-         * @param {string | null} [clientUid] 
+         * @param {SubmitCDARRequest} submitCDARRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async submitCdarApiV1CdarSubmitPost(userId: number, bodySubmitCdarApiV1CdarSubmitPost: BodySubmitCdarApiV1CdarSubmitPost, jwtToken?: string | null, clientUid?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitCDARResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.submitCdarApiV1CdarSubmitPost(userId, bodySubmitCdarApiV1CdarSubmitPost, jwtToken, clientUid, options);
+        async submitCdarApiV1CdarSubmitPost(submitCDARRequest: SubmitCDARRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitCDARResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.submitCdarApiV1CdarSubmitPost(submitCDARRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CDARCycleDeVieApi.submitCdarApiV1CdarSubmitPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d\'autres systèmes.
+         * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d\'autres systèmes.  **Stratégies d\'authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
          * @summary Soumettre un XML CDAR pré-généré
-         * @param {number} userId 
-         * @param {BodySubmitCdarXmlApiV1CdarSubmitXmlPost} bodySubmitCdarXmlApiV1CdarSubmitXmlPost 
-         * @param {string | null} [jwtToken] 
-         * @param {string | null} [clientUid] 
+         * @param {SubmitCDARXMLRequest} submitCDARXMLRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async submitCdarXmlApiV1CdarSubmitXmlPost(userId: number, bodySubmitCdarXmlApiV1CdarSubmitXmlPost: BodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken?: string | null, clientUid?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitCDARResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.submitCdarXmlApiV1CdarSubmitXmlPost(userId, bodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken, clientUid, options);
+        async submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest: SubmitCDARXMLRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitCDARResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CDARCycleDeVieApi.submitCdarXmlApiV1CdarSubmitXmlPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d\'usage:** L\'acheteur confirme le paiement d\'une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+         * @summary [Simplifié] Soumettre un statut ENCAISSÉE (212)
+         * @param {EncaisseeRequest} encaisseeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest: EncaisseeRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimplifiedCDARResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CDARCycleDeVieApi.submitEncaisseeApiV1CdarEncaisseePost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d\'usage:** L\'acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - `TX_TVA_ERR`: Taux de TVA erroné - `MONTANTTOTAL_ERR`: Montant total erroné - `CALCUL_ERR`: Erreur de calcul - `NON_CONFORME`: Non conforme - `DOUBLON`: Doublon - `DEST_ERR`: Destinataire erroné - `TRANSAC_INC`: Transaction incomplète - `EMMET_INC`: Émetteur inconnu - `CONTRAT_TERM`: Contrat terminé - `DOUBLE_FACT`: Double facturation - `CMD_ERR`: Commande erronée - `ADR_ERR`: Adresse erronée - `REF_CT_ABSENT`: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+         * @summary [Simplifié] Soumettre un statut REFUSÉE (210)
+         * @param {RefuseeRequest} refuseeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async submitRefuseeApiV1CdarRefuseePost(refuseeRequest: RefuseeRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimplifiedCDARResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.submitRefuseeApiV1CdarRefuseePost(refuseeRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CDARCycleDeVieApi.submitRefuseeApiV1CdarRefuseePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -478,30 +548,44 @@ export const CDARCycleDeVieApiFactory = function (configuration?: Configuration,
             return localVarFp.getStatusCodesApiV1CdarStatusCodesGet(options).then((request) => request(axios, basePath));
         },
         /**
-         * Génère un message CDAR et le soumet à la plateforme PA/PDP.  Nécessite une authentification AFNOR valide.  **Types de flux (flowType):** - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur) - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
+         * Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d\'authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur) - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
          * @summary Générer et soumettre un message CDAR
-         * @param {number} userId 
-         * @param {BodySubmitCdarApiV1CdarSubmitPost} bodySubmitCdarApiV1CdarSubmitPost 
-         * @param {string | null} [jwtToken] 
-         * @param {string | null} [clientUid] 
+         * @param {SubmitCDARRequest} submitCDARRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitCdarApiV1CdarSubmitPost(userId: number, bodySubmitCdarApiV1CdarSubmitPost: BodySubmitCdarApiV1CdarSubmitPost, jwtToken?: string | null, clientUid?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SubmitCDARResponse> {
-            return localVarFp.submitCdarApiV1CdarSubmitPost(userId, bodySubmitCdarApiV1CdarSubmitPost, jwtToken, clientUid, options).then((request) => request(axios, basePath));
+        submitCdarApiV1CdarSubmitPost(submitCDARRequest: SubmitCDARRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubmitCDARResponse> {
+            return localVarFp.submitCdarApiV1CdarSubmitPost(submitCDARRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d\'autres systèmes.
+         * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d\'autres systèmes.  **Stratégies d\'authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
          * @summary Soumettre un XML CDAR pré-généré
-         * @param {number} userId 
-         * @param {BodySubmitCdarXmlApiV1CdarSubmitXmlPost} bodySubmitCdarXmlApiV1CdarSubmitXmlPost 
-         * @param {string | null} [jwtToken] 
-         * @param {string | null} [clientUid] 
+         * @param {SubmitCDARXMLRequest} submitCDARXMLRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitCdarXmlApiV1CdarSubmitXmlPost(userId: number, bodySubmitCdarXmlApiV1CdarSubmitXmlPost: BodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken?: string | null, clientUid?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SubmitCDARResponse> {
-            return localVarFp.submitCdarXmlApiV1CdarSubmitXmlPost(userId, bodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken, clientUid, options).then((request) => request(axios, basePath));
+        submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest: SubmitCDARXMLRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubmitCDARResponse> {
+            return localVarFp.submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d\'usage:** L\'acheteur confirme le paiement d\'une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+         * @summary [Simplifié] Soumettre un statut ENCAISSÉE (212)
+         * @param {EncaisseeRequest} encaisseeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest: EncaisseeRequest, options?: RawAxiosRequestConfig): AxiosPromise<SimplifiedCDARResponse> {
+            return localVarFp.submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d\'usage:** L\'acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - `TX_TVA_ERR`: Taux de TVA erroné - `MONTANTTOTAL_ERR`: Montant total erroné - `CALCUL_ERR`: Erreur de calcul - `NON_CONFORME`: Non conforme - `DOUBLON`: Doublon - `DEST_ERR`: Destinataire erroné - `TRANSAC_INC`: Transaction incomplète - `EMMET_INC`: Émetteur inconnu - `CONTRAT_TERM`: Contrat terminé - `DOUBLE_FACT`: Double facturation - `CMD_ERR`: Commande erronée - `ADR_ERR`: Adresse erronée - `REF_CT_ABSENT`: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+         * @summary [Simplifié] Soumettre un statut REFUSÉE (210)
+         * @param {RefuseeRequest} refuseeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        submitRefuseeApiV1CdarRefuseePost(refuseeRequest: RefuseeRequest, options?: RawAxiosRequestConfig): AxiosPromise<SimplifiedCDARResponse> {
+            return localVarFp.submitRefuseeApiV1CdarRefuseePost(refuseeRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Valide les données CDAR sans générer le XML.  Vérifie: - Les formats des champs (SIREN, dates, etc.) - Les codes enums (statut, motif, action) - Les règles métier BR-FR-CDV-*
@@ -562,31 +646,47 @@ export class CDARCycleDeVieApi extends BaseAPI {
     }
 
     /**
-     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  Nécessite une authentification AFNOR valide.  **Types de flux (flowType):** - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur) - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
+     * Génère un message CDAR et le soumet à la plateforme PA/PDP.  **Stratégies d\'authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête  **Types de flux (flowType):** - `CustomerInvoiceLC`: Cycle de vie côté client (acheteur) - `SupplierInvoiceLC`: Cycle de vie côté fournisseur (vendeur)
      * @summary Générer et soumettre un message CDAR
-     * @param {number} userId 
-     * @param {BodySubmitCdarApiV1CdarSubmitPost} bodySubmitCdarApiV1CdarSubmitPost 
-     * @param {string | null} [jwtToken] 
-     * @param {string | null} [clientUid] 
+     * @param {SubmitCDARRequest} submitCDARRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public submitCdarApiV1CdarSubmitPost(userId: number, bodySubmitCdarApiV1CdarSubmitPost: BodySubmitCdarApiV1CdarSubmitPost, jwtToken?: string | null, clientUid?: string | null, options?: RawAxiosRequestConfig) {
-        return CDARCycleDeVieApiFp(this.configuration).submitCdarApiV1CdarSubmitPost(userId, bodySubmitCdarApiV1CdarSubmitPost, jwtToken, clientUid, options).then((request) => request(this.axios, this.basePath));
+    public submitCdarApiV1CdarSubmitPost(submitCDARRequest: SubmitCDARRequest, options?: RawAxiosRequestConfig) {
+        return CDARCycleDeVieApiFp(this.configuration).submitCdarApiV1CdarSubmitPost(submitCDARRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d\'autres systèmes.
+     * Soumet un message XML CDAR pré-généré à la plateforme PA/PDP.  Utile pour soumettre des XML générés par d\'autres systèmes.  **Stratégies d\'authentification:** 1. **JWT avec client_uid** (recommandé): credentials PDP récupérés du backend 2. **Zero-storage**: Fournir pdpFlowServiceUrl, pdpClientId, pdpClientSecret dans la requête
      * @summary Soumettre un XML CDAR pré-généré
-     * @param {number} userId 
-     * @param {BodySubmitCdarXmlApiV1CdarSubmitXmlPost} bodySubmitCdarXmlApiV1CdarSubmitXmlPost 
-     * @param {string | null} [jwtToken] 
-     * @param {string | null} [clientUid] 
+     * @param {SubmitCDARXMLRequest} submitCDARXMLRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public submitCdarXmlApiV1CdarSubmitXmlPost(userId: number, bodySubmitCdarXmlApiV1CdarSubmitXmlPost: BodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken?: string | null, clientUid?: string | null, options?: RawAxiosRequestConfig) {
-        return CDARCycleDeVieApiFp(this.configuration).submitCdarXmlApiV1CdarSubmitXmlPost(userId, bodySubmitCdarXmlApiV1CdarSubmitXmlPost, jwtToken, clientUid, options).then((request) => request(this.axios, this.basePath));
+    public submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest: SubmitCDARXMLRequest, options?: RawAxiosRequestConfig) {
+        return CDARCycleDeVieApiFp(this.configuration).submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * **Endpoint simplifié pour OD** - Soumet un statut ENCAISSÉE (212) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-14 requiert le montant encaissé).  **Cas d\'usage:** L\'acheteur confirme le paiement d\'une facture.  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * @summary [Simplifié] Soumettre un statut ENCAISSÉE (212)
+     * @param {EncaisseeRequest} encaisseeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest: EncaisseeRequest, options?: RawAxiosRequestConfig) {
+        return CDARCycleDeVieApiFp(this.configuration).submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * **Endpoint simplifié pour OD** - Soumet un statut REFUSÉE (210) pour une facture.  Ce statut est **obligatoire pour le PPF** (BR-FR-CDV-15 requiert un code motif).  **Cas d\'usage:** L\'acheteur refuse une facture reçue.  **Codes motif autorisés (BR-FR-CDV-CL-09):** - `TX_TVA_ERR`: Taux de TVA erroné - `MONTANTTOTAL_ERR`: Montant total erroné - `CALCUL_ERR`: Erreur de calcul - `NON_CONFORME`: Non conforme - `DOUBLON`: Doublon - `DEST_ERR`: Destinataire erroné - `TRANSAC_INC`: Transaction incomplète - `EMMET_INC`: Émetteur inconnu - `CONTRAT_TERM`: Contrat terminé - `DOUBLE_FACT`: Double facturation - `CMD_ERR`: Commande erronée - `ADR_ERR`: Adresse erronée - `REF_CT_ABSENT`: Référence contrat absente  **Authentification:** JWT Bearer (recommandé) ou credentials PDP dans la requête.
+     * @summary [Simplifié] Soumettre un statut REFUSÉE (210)
+     * @param {RefuseeRequest} refuseeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public submitRefuseeApiV1CdarRefuseePost(refuseeRequest: RefuseeRequest, options?: RawAxiosRequestConfig) {
+        return CDARCycleDeVieApiFp(this.configuration).submitRefuseeApiV1CdarRefuseePost(refuseeRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

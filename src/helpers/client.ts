@@ -64,9 +64,14 @@ export class FactPulseClient {
     });
   }
 
-  /** POST request to /api/v1/{path} */
+  /** POST request to /api/v1/{path} (JSON body) */
   async post(path: string, data?: Record<string, unknown>): Promise<unknown> {
     return this._doRequest('POST', path, data, true);
+  }
+
+  /** POST request with multipart/form-data (for file uploads) */
+  async postMultipart(path: string, data?: Record<string, string>, files?: Record<string, Buffer>): Promise<unknown> {
+    return this._doRequest('POST_MULTIPART', path, { data: data ?? {}, files: files ?? {} }, true);
   }
 
   /** GET request to /api/v1/{path} */
@@ -87,16 +92,29 @@ export class FactPulseClient {
     return this._doRequest(method, path, data, true);
   }
 
-  private async _doRequest(method: 'GET' | 'POST', path: string, data: Record<string, unknown> | undefined, retryAuth: boolean): Promise<unknown> {
+  private async _doRequest(method: 'GET' | 'POST' | 'POST_MULTIPART', path: string, data: Record<string, unknown> | undefined, retryAuth: boolean): Promise<unknown> {
     await this._ensureAuth();
     const url = `${this.apiUrl}/api/v1/${path}`;
-    const headers = { Authorization: `Bearer ${this.token}` };
+    const headers: Record<string, string> = { Authorization: `Bearer ${this.token}` };
 
     let response;
     try {
-      response = method === 'GET'
-        ? await this.httpClient.get(url, { headers, params: data })
-        : await this.httpClient.post(url, data, { headers });
+      if (method === 'GET') {
+        response = await this.httpClient.get(url, { headers, params: data });
+      } else if (method === 'POST_MULTIPART') {
+        const FormData = (await import('form-data')).default;
+        const form = new FormData();
+        const payload = data as { data?: Record<string, string>; files?: Record<string, Buffer> };
+        for (const [key, value] of Object.entries(payload.data ?? {})) {
+          form.append(key, value);
+        }
+        for (const [key, value] of Object.entries(payload.files ?? {})) {
+          form.append(key, value, { filename: key });
+        }
+        response = await this.httpClient.post(url, form, { headers: { ...headers, ...form.getHeaders() } });
+      } else {
+        response = await this.httpClient.post(url, data, { headers });
+      }
     } catch (e) {
       throw new FactPulseError(`Network error: ${(e as Error).message}`);
     }

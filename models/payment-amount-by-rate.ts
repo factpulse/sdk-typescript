@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Amount } from './amount';
+import type { Amount1 } from './amount1';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { Rate } from './rate';
@@ -25,6 +25,6 @@ import type { Rate } from './rate';
  */
 export interface PaymentAmountByRate {
     'rate': Rate;
-    'amount': Amount;
+    'amount': Amount1;
 }
 

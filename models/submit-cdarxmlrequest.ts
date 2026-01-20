@@ -27,5 +27,9 @@ export interface SubmitCDARXMLRequest {
      */
     'flowType'?: string;
     'filename'?: string | null;
+    'pdpFlowServiceUrl'?: string | null;
+    'pdpTokenUrl'?: string | null;
+    'pdpClientId'?: string | null;
+    'pdpClientSecret'?: string | null;
 }
 

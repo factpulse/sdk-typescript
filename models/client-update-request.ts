@@ -15,8 +15,11 @@
 
 
 /**
- * Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+ * Partial client update request.
  */
-export interface Amount {
+export interface ClientUpdateRequest {
+    'name'?: string | null;
+    'description'?: string | null;
+    'siret'?: string | null;
 }
 

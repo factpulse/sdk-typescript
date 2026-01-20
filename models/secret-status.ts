@@ -15,8 +15,16 @@
 
 
 /**
- * Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+ * Secret status (never exposes the secret itself).
  */
-export interface Amount {
+export interface SecretStatus {
+    /**
+     * Secret status: \'active\', \'missing\', etc.
+     */
+    'status': string;
+    /**
+     * Descriptive status message
+     */
+    'message': string;
 }
 
