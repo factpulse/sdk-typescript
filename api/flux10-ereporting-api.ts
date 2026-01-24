@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * FactPulse REST API
- *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X Invoice Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Validation and Compliance - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata, electronic signatures - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules) - **Asynchronous Processing**: Celery support for heavy validations (VeraPDF)  ### 📡 AFNOR PDP/PA Integration (XP Z12-013) - **Flow Submission**: Send invoices to Partner Dematerialization Platforms - **Flow Search**: View submitted invoices - **Download**: Retrieve PDF/A-3 with XML - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user (stored credentials or zero-storage)  ### ✍️ PDF Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification - **Certificate Generation**: Self-signed X.509 certificates for testing  ### 🔄 Asynchronous Processing - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **No timeout**: Ideal for large files or heavy validations  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d \'{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }\' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d \'{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }\' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
+ *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X - Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Factur-X - Validation - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)  ### ✍️ Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification  ### 📋 Flux 6 - Invoice Lifecycle (CDAR) - **CDAR Messages**: Acknowledgements, invoice statuses - **PPF Statuses**: REFUSED (210), PAID (212)  ### 📊 Flux 10 - E-Reporting - **Tax Declarations**: International B2B, B2C - **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4 (B2C payments)  ### 📡 AFNOR PDP/PA (XP Z12-013) - **Flow Service**: Submit and search flows to PDPs - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user  ### 🏛️ Chorus Pro - **Public Sector Invoicing**: Complete API for Chorus Pro  ### ⏳ Async Tasks - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **Webhooks**: Automatic notifications when tasks complete  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d \'{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }\' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d \'{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }\' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: contact@factpulse.fr
@@ -42,9 +42,9 @@ import type { ValidateEReportingRequest } from '../models';
 // @ts-ignore
 import type { ValidateEReportingResponse } from '../models';
 /**
- * EReportingApi - axios parameter creator
+ * Flux10EReportingApi - axios parameter creator
  */
-export const EReportingApiAxiosParamCreator = function (configuration?: Configuration) {
+export const Flux10EReportingApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * Generate a PPF-compliant aggregated e-reporting XML containing multiple flux types in a single file.  This endpoint creates a Report XML that can contain: - **TransactionsReport**: Invoice (10.1) AND/OR Transactions (10.3) - **PaymentsReport**: Invoice payments (10.2) AND/OR Transaction payments (10.4)  The AFNOR FlowType is automatically determined based on content: - Single type → Specific FlowType (e.g., AggregatedCustomerTransactionReport) - Multiple types → MultiFlowReport  **CategoryCode (TT-81)** must use PPF-compliant values: - TLB1: Goods deliveries - TPS1: Service provisions - TNT1: Non-taxed transactions - TMA1: Mixed transactions
@@ -459,14 +459,15 @@ export const EReportingApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Validates an e-reporting XML file against:  1. **XSD schemas**: Official PPF e-reporting XSD (structure, types, cardinality) 2. **Business rules**: ISO codes and enum validation    - Currency codes (ISO 4217: EUR, USD, GBP, etc.)    - Country codes (ISO 3166-1 alpha-2: FR, DE, US, etc.)    - Scheme IDs (0009=SIRET, 0002=SIREN, etc.)    - Role codes (UNCL 3035: SE=Seller, BY=Buyer, WK=Working party, etc.)  Returns validation status and detailed error messages if invalid.
-         * @summary Validate e-reporting XML against PPF XSD schemas and business rules
+         * Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals = sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002=SIREN, 0009=SIRET, 0224=RoutingCode, etc. - RoleCode (UNCL 3035): SE=Seller, BY=Buyer, WK=Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
+         * @summary Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
          * @param {File} xmlFile E-reporting XML file to validate
-         * @param {boolean} [validateBusinessRules] Also validate business rules (ISO codes, enums)
+         * @param {boolean} [validateCoherence] Validate data coherence (REJ_COH)
+         * @param {boolean} [validatePeriod] Validate period coherence (REJ_PER)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateXmlEreportingApiV1EreportingValidateXmlPost: async (xmlFile: File, validateBusinessRules?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        validateXmlEreportingApiV1EreportingValidateXmlPost: async (xmlFile: File, validateCoherence?: boolean, validatePeriod?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'xmlFile' is not null or undefined
             assertParamExists('validateXmlEreportingApiV1EreportingValidateXmlPost', 'xmlFile', xmlFile)
             const localVarPath = `/api/v1/ereporting/validate-xml`;
@@ -486,8 +487,12 @@ export const EReportingApiAxiosParamCreator = function (configuration?: Configur
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
-            if (validateBusinessRules !== undefined) {
-                localVarQueryParameter['validate_business_rules'] = validateBusinessRules;
+            if (validateCoherence !== undefined) {
+                localVarQueryParameter['validate_coherence'] = validateCoherence;
+            }
+
+            if (validatePeriod !== undefined) {
+                localVarQueryParameter['validate_period'] = validatePeriod;
             }
 
 
@@ -511,10 +516,10 @@ export const EReportingApiAxiosParamCreator = function (configuration?: Configur
 };
 
 /**
- * EReportingApi - functional programming interface
+ * Flux10EReportingApi - functional programming interface
  */
-export const EReportingApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = EReportingApiAxiosParamCreator(configuration)
+export const Flux10EReportingApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = Flux10EReportingApiAxiosParamCreator(configuration)
     return {
         /**
          * Generate a PPF-compliant aggregated e-reporting XML containing multiple flux types in a single file.  This endpoint creates a Report XML that can contain: - **TransactionsReport**: Invoice (10.1) AND/OR Transactions (10.3) - **PaymentsReport**: Invoice payments (10.2) AND/OR Transaction payments (10.4)  The AFNOR FlowType is automatically determined based on content: - Single type → Specific FlowType (e.g., AggregatedCustomerTransactionReport) - Multiple types → MultiFlowReport  **CategoryCode (TT-81)** must use PPF-compliant values: - TLB1: Goods deliveries - TPS1: Service provisions - TNT1: Non-taxed transactions - TMA1: Mixed transactions
@@ -526,7 +531,7 @@ export const EReportingApiFp = function(configuration?: Configuration) {
         async generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost(createAggregatedReportRequest: CreateAggregatedReportRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenerateAggregatedReportResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost(createAggregatedReportRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['EReportingApi.generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -539,7 +544,7 @@ export const EReportingApiFp = function(configuration?: Configuration) {
         async generateEreportingApiV1EreportingGeneratePost(createEReportingRequest: CreateEReportingRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenerateEReportingResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.generateEreportingApiV1EreportingGeneratePost(createEReportingRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['EReportingApi.generateEreportingApiV1EreportingGeneratePost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.generateEreportingApiV1EreportingGeneratePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -553,7 +558,7 @@ export const EReportingApiFp = function(configuration?: Configuration) {
         async generateEreportingDownloadApiV1EreportingGenerateDownloadPost(createEReportingRequest: CreateEReportingRequest, filename?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.generateEreportingDownloadApiV1EreportingGenerateDownloadPost(createEReportingRequest, filename, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['EReportingApi.generateEreportingDownloadApiV1EreportingGenerateDownloadPost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.generateEreportingDownloadApiV1EreportingGenerateDownloadPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -565,7 +570,7 @@ export const EReportingApiFp = function(configuration?: Configuration) {
         async listCategoryCodesApiV1EreportingCategoryCodesGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listCategoryCodesApiV1EreportingCategoryCodesGet(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['EReportingApi.listCategoryCodesApiV1EreportingCategoryCodesGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.listCategoryCodesApiV1EreportingCategoryCodesGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -577,7 +582,7 @@ export const EReportingApiFp = function(configuration?: Configuration) {
         async listFlowTypesApiV1EreportingFlowTypesGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listFlowTypesApiV1EreportingFlowTypesGet(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['EReportingApi.listFlowTypesApiV1EreportingFlowTypesGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.listFlowTypesApiV1EreportingFlowTypesGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -590,7 +595,7 @@ export const EReportingApiFp = function(configuration?: Configuration) {
         async submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest: SubmitAggregatedReportRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitEReportingResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['EReportingApi.submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -603,7 +608,7 @@ export const EReportingApiFp = function(configuration?: Configuration) {
         async submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest: SubmitEReportingRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitEReportingResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['EReportingApi.submitEreportingApiV1EreportingSubmitPost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.submitEreportingApiV1EreportingSubmitPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -622,7 +627,7 @@ export const EReportingApiFp = function(configuration?: Configuration) {
         async submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: File, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitEReportingResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['EReportingApi.submitXmlEreportingApiV1EreportingSubmitXmlPost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.submitXmlEreportingApiV1EreportingSubmitXmlPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -635,7 +640,7 @@ export const EReportingApiFp = function(configuration?: Configuration) {
         async validateAggregatedEreportingApiV1EreportingValidateAggregatedPost(createAggregatedReportRequest: CreateAggregatedReportRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.validateAggregatedEreportingApiV1EreportingValidateAggregatedPost(createAggregatedReportRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['EReportingApi.validateAggregatedEreportingApiV1EreportingValidateAggregatedPost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.validateAggregatedEreportingApiV1EreportingValidateAggregatedPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -648,31 +653,32 @@ export const EReportingApiFp = function(configuration?: Configuration) {
         async validateEreportingApiV1EreportingValidatePost(validateEReportingRequest: ValidateEReportingRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ValidateEReportingResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.validateEreportingApiV1EreportingValidatePost(validateEReportingRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['EReportingApi.validateEreportingApiV1EreportingValidatePost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.validateEreportingApiV1EreportingValidatePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Validates an e-reporting XML file against:  1. **XSD schemas**: Official PPF e-reporting XSD (structure, types, cardinality) 2. **Business rules**: ISO codes and enum validation    - Currency codes (ISO 4217: EUR, USD, GBP, etc.)    - Country codes (ISO 3166-1 alpha-2: FR, DE, US, etc.)    - Scheme IDs (0009=SIRET, 0002=SIREN, etc.)    - Role codes (UNCL 3035: SE=Seller, BY=Buyer, WK=Working party, etc.)  Returns validation status and detailed error messages if invalid.
-         * @summary Validate e-reporting XML against PPF XSD schemas and business rules
+         * Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals = sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002=SIREN, 0009=SIRET, 0224=RoutingCode, etc. - RoleCode (UNCL 3035): SE=Seller, BY=Buyer, WK=Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
+         * @summary Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
          * @param {File} xmlFile E-reporting XML file to validate
-         * @param {boolean} [validateBusinessRules] Also validate business rules (ISO codes, enums)
+         * @param {boolean} [validateCoherence] Validate data coherence (REJ_COH)
+         * @param {boolean} [validatePeriod] Validate period coherence (REJ_PER)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile: File, validateBusinessRules?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateBusinessRules, options);
+        async validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile: File, validateCoherence?: boolean, validatePeriod?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateCoherence, validatePeriod, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['EReportingApi.validateXmlEreportingApiV1EreportingValidateXmlPost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.validateXmlEreportingApiV1EreportingValidateXmlPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
 
 /**
- * EReportingApi - factory interface
+ * Flux10EReportingApi - factory interface
  */
-export const EReportingApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = EReportingApiFp(configuration)
+export const Flux10EReportingApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = Flux10EReportingApiFp(configuration)
     return {
         /**
          * Generate a PPF-compliant aggregated e-reporting XML containing multiple flux types in a single file.  This endpoint creates a Report XML that can contain: - **TransactionsReport**: Invoice (10.1) AND/OR Transactions (10.3) - **PaymentsReport**: Invoice payments (10.2) AND/OR Transaction payments (10.4)  The AFNOR FlowType is automatically determined based on content: - Single type → Specific FlowType (e.g., AggregatedCustomerTransactionReport) - Multiple types → MultiFlowReport  **CategoryCode (TT-81)** must use PPF-compliant values: - TLB1: Goods deliveries - TPS1: Service provisions - TNT1: Non-taxed transactions - TMA1: Mixed transactions
@@ -780,23 +786,24 @@ export const EReportingApiFactory = function (configuration?: Configuration, bas
             return localVarFp.validateEreportingApiV1EreportingValidatePost(validateEReportingRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Validates an e-reporting XML file against:  1. **XSD schemas**: Official PPF e-reporting XSD (structure, types, cardinality) 2. **Business rules**: ISO codes and enum validation    - Currency codes (ISO 4217: EUR, USD, GBP, etc.)    - Country codes (ISO 3166-1 alpha-2: FR, DE, US, etc.)    - Scheme IDs (0009=SIRET, 0002=SIREN, etc.)    - Role codes (UNCL 3035: SE=Seller, BY=Buyer, WK=Working party, etc.)  Returns validation status and detailed error messages if invalid.
-         * @summary Validate e-reporting XML against PPF XSD schemas and business rules
+         * Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals = sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002=SIREN, 0009=SIRET, 0224=RoutingCode, etc. - RoleCode (UNCL 3035): SE=Seller, BY=Buyer, WK=Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
+         * @summary Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
          * @param {File} xmlFile E-reporting XML file to validate
-         * @param {boolean} [validateBusinessRules] Also validate business rules (ISO codes, enums)
+         * @param {boolean} [validateCoherence] Validate data coherence (REJ_COH)
+         * @param {boolean} [validatePeriod] Validate period coherence (REJ_PER)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile: File, validateBusinessRules?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
-            return localVarFp.validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateBusinessRules, options).then((request) => request(axios, basePath));
+        validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile: File, validateCoherence?: boolean, validatePeriod?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
+            return localVarFp.validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateCoherence, validatePeriod, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * EReportingApi - object-oriented interface
+ * Flux10EReportingApi - object-oriented interface
  */
-export class EReportingApi extends BaseAPI {
+export class Flux10EReportingApi extends BaseAPI {
     /**
      * Generate a PPF-compliant aggregated e-reporting XML containing multiple flux types in a single file.  This endpoint creates a Report XML that can contain: - **TransactionsReport**: Invoice (10.1) AND/OR Transactions (10.3) - **PaymentsReport**: Invoice payments (10.2) AND/OR Transaction payments (10.4)  The AFNOR FlowType is automatically determined based on content: - Single type → Specific FlowType (e.g., AggregatedCustomerTransactionReport) - Multiple types → MultiFlowReport  **CategoryCode (TT-81)** must use PPF-compliant values: - TLB1: Goods deliveries - TPS1: Service provisions - TNT1: Non-taxed transactions - TMA1: Mixed transactions
      * @summary Generate aggregated e-reporting XML (PPF-compliant)
@@ -805,7 +812,7 @@ export class EReportingApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost(createAggregatedReportRequest: CreateAggregatedReportRequest, options?: RawAxiosRequestConfig) {
-        return EReportingApiFp(this.configuration).generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost(createAggregatedReportRequest, options).then((request) => request(this.axios, this.basePath));
+        return Flux10EReportingApiFp(this.configuration).generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost(createAggregatedReportRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -816,7 +823,7 @@ export class EReportingApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public generateEreportingApiV1EreportingGeneratePost(createEReportingRequest: CreateEReportingRequest, options?: RawAxiosRequestConfig) {
-        return EReportingApiFp(this.configuration).generateEreportingApiV1EreportingGeneratePost(createEReportingRequest, options).then((request) => request(this.axios, this.basePath));
+        return Flux10EReportingApiFp(this.configuration).generateEreportingApiV1EreportingGeneratePost(createEReportingRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -828,7 +835,7 @@ export class EReportingApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public generateEreportingDownloadApiV1EreportingGenerateDownloadPost(createEReportingRequest: CreateEReportingRequest, filename?: string | null, options?: RawAxiosRequestConfig) {
-        return EReportingApiFp(this.configuration).generateEreportingDownloadApiV1EreportingGenerateDownloadPost(createEReportingRequest, filename, options).then((request) => request(this.axios, this.basePath));
+        return Flux10EReportingApiFp(this.configuration).generateEreportingDownloadApiV1EreportingGenerateDownloadPost(createEReportingRequest, filename, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -838,7 +845,7 @@ export class EReportingApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public listCategoryCodesApiV1EreportingCategoryCodesGet(options?: RawAxiosRequestConfig) {
-        return EReportingApiFp(this.configuration).listCategoryCodesApiV1EreportingCategoryCodesGet(options).then((request) => request(this.axios, this.basePath));
+        return Flux10EReportingApiFp(this.configuration).listCategoryCodesApiV1EreportingCategoryCodesGet(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -848,7 +855,7 @@ export class EReportingApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public listFlowTypesApiV1EreportingFlowTypesGet(options?: RawAxiosRequestConfig) {
-        return EReportingApiFp(this.configuration).listFlowTypesApiV1EreportingFlowTypesGet(options).then((request) => request(this.axios, this.basePath));
+        return Flux10EReportingApiFp(this.configuration).listFlowTypesApiV1EreportingFlowTypesGet(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -859,7 +866,7 @@ export class EReportingApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest: SubmitAggregatedReportRequest, options?: RawAxiosRequestConfig) {
-        return EReportingApiFp(this.configuration).submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest, options).then((request) => request(this.axios, this.basePath));
+        return Flux10EReportingApiFp(this.configuration).submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -870,7 +877,7 @@ export class EReportingApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest: SubmitEReportingRequest, options?: RawAxiosRequestConfig) {
-        return EReportingApiFp(this.configuration).submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest, options).then((request) => request(this.axios, this.basePath));
+        return Flux10EReportingApiFp(this.configuration).submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -887,7 +894,7 @@ export class EReportingApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: File, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig) {
-        return EReportingApiFp(this.configuration).submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options).then((request) => request(this.axios, this.basePath));
+        return Flux10EReportingApiFp(this.configuration).submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -898,7 +905,7 @@ export class EReportingApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public validateAggregatedEreportingApiV1EreportingValidateAggregatedPost(createAggregatedReportRequest: CreateAggregatedReportRequest, options?: RawAxiosRequestConfig) {
-        return EReportingApiFp(this.configuration).validateAggregatedEreportingApiV1EreportingValidateAggregatedPost(createAggregatedReportRequest, options).then((request) => request(this.axios, this.basePath));
+        return Flux10EReportingApiFp(this.configuration).validateAggregatedEreportingApiV1EreportingValidateAggregatedPost(createAggregatedReportRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -909,19 +916,20 @@ export class EReportingApi extends BaseAPI {
      * @throws {RequiredError}
      */
     public validateEreportingApiV1EreportingValidatePost(validateEReportingRequest: ValidateEReportingRequest, options?: RawAxiosRequestConfig) {
-        return EReportingApiFp(this.configuration).validateEreportingApiV1EreportingValidatePost(validateEReportingRequest, options).then((request) => request(this.axios, this.basePath));
+        return Flux10EReportingApiFp(this.configuration).validateEreportingApiV1EreportingValidatePost(validateEReportingRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Validates an e-reporting XML file against:  1. **XSD schemas**: Official PPF e-reporting XSD (structure, types, cardinality) 2. **Business rules**: ISO codes and enum validation    - Currency codes (ISO 4217: EUR, USD, GBP, etc.)    - Country codes (ISO 3166-1 alpha-2: FR, DE, US, etc.)    - Scheme IDs (0009=SIRET, 0002=SIREN, etc.)    - Role codes (UNCL 3035: SE=Seller, BY=Buyer, WK=Working party, etc.)  Returns validation status and detailed error messages if invalid.
-     * @summary Validate e-reporting XML against PPF XSD schemas and business rules
+     * Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals = sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002=SIREN, 0009=SIRET, 0224=RoutingCode, etc. - RoleCode (UNCL 3035): SE=Seller, BY=Buyer, WK=Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
+     * @summary Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
      * @param {File} xmlFile E-reporting XML file to validate
-     * @param {boolean} [validateBusinessRules] Also validate business rules (ISO codes, enums)
+     * @param {boolean} [validateCoherence] Validate data coherence (REJ_COH)
+     * @param {boolean} [validatePeriod] Validate period coherence (REJ_PER)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile: File, validateBusinessRules?: boolean, options?: RawAxiosRequestConfig) {
-        return EReportingApiFp(this.configuration).validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateBusinessRules, options).then((request) => request(this.axios, this.basePath));
+    public validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile: File, validateCoherence?: boolean, validatePeriod?: boolean, options?: RawAxiosRequestConfig) {
+        return Flux10EReportingApiFp(this.configuration).validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateCoherence, validatePeriod, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

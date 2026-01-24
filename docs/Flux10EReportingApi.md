@@ -1,4 +1,4 @@
-# EReportingApi
+# Flux10EReportingApi
 
 All URIs are relative to *https://factpulse.fr*
 
@@ -14,7 +14,7 @@ All URIs are relative to *https://factpulse.fr*
 |[**submitXmlEreportingApiV1EreportingSubmitXmlPost**](#submitxmlereportingapiv1ereportingsubmitxmlpost) | **POST** /api/v1/ereporting/submit-xml | Submit pre-generated e-reporting XML|
 |[**validateAggregatedEreportingApiV1EreportingValidateAggregatedPost**](#validateaggregatedereportingapiv1ereportingvalidateaggregatedpost) | **POST** /api/v1/ereporting/validate-aggregated | Validate aggregated e-reporting data|
 |[**validateEreportingApiV1EreportingValidatePost**](#validateereportingapiv1ereportingvalidatepost) | **POST** /api/v1/ereporting/validate | Validate e-reporting data|
-|[**validateXmlEreportingApiV1EreportingValidateXmlPost**](#validatexmlereportingapiv1ereportingvalidatexmlpost) | **POST** /api/v1/ereporting/validate-xml | Validate e-reporting XML against PPF XSD schemas and business rules|
+|[**validateXmlEreportingApiV1EreportingValidateXmlPost**](#validatexmlereportingapiv1ereportingvalidatexmlpost) | **POST** /api/v1/ereporting/validate-xml | Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)|
 
 # **generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost**
 > GenerateAggregatedReportResponse generateAggregatedEreportingApiV1EreportingGenerateAggregatedPost(createAggregatedReportRequest)
@@ -25,13 +25,13 @@ Generate a PPF-compliant aggregated e-reporting XML containing multiple flux typ
 
 ```typescript
 import {
-    EReportingApi,
+    Flux10EReportingApi,
     Configuration,
     CreateAggregatedReportRequest
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
-const apiInstance = new EReportingApi(configuration);
+const apiInstance = new Flux10EReportingApi(configuration);
 
 let createAggregatedReportRequest: CreateAggregatedReportRequest; //
 
@@ -81,13 +81,13 @@ Generate e-reporting XML (FRR format) from structured data.  Supports all four f
 
 ```typescript
 import {
-    EReportingApi,
+    Flux10EReportingApi,
     Configuration,
     CreateEReportingRequest
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
-const apiInstance = new EReportingApi(configuration);
+const apiInstance = new Flux10EReportingApi(configuration);
 
 let createEReportingRequest: CreateEReportingRequest; //
 
@@ -137,13 +137,13 @@ Generate e-reporting XML and return as downloadable file.
 
 ```typescript
 import {
-    EReportingApi,
+    Flux10EReportingApi,
     Configuration,
     CreateEReportingRequest
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
-const apiInstance = new EReportingApi(configuration);
+const apiInstance = new Flux10EReportingApi(configuration);
 
 let createEReportingRequest: CreateEReportingRequest; //
 let filename: string; //Output filename (default: ereporting_{reportId}.xml) (optional) (default to undefined)
@@ -196,12 +196,12 @@ Returns the list of valid CategoryCode values (TT-81) for e-reporting transactio
 
 ```typescript
 import {
-    EReportingApi,
+    Flux10EReportingApi,
     Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
-const apiInstance = new EReportingApi(configuration);
+const apiInstance = new Flux10EReportingApi(configuration);
 
 const { status, data } = await apiInstance.listCategoryCodesApiV1EreportingCategoryCodesGet();
 ```
@@ -243,12 +243,12 @@ Returns the list of supported e-reporting flow types with descriptions.
 
 ```typescript
 import {
-    EReportingApi,
+    Flux10EReportingApi,
     Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
-const apiInstance = new EReportingApi(configuration);
+const apiInstance = new Flux10EReportingApi(configuration);
 
 const { status, data } = await apiInstance.listFlowTypesApiV1EreportingFlowTypesGet();
 ```
@@ -290,13 +290,13 @@ Generate and submit a PPF-compliant aggregated e-reporting to a PA/PDP.  Combine
 
 ```typescript
 import {
-    EReportingApi,
+    Flux10EReportingApi,
     Configuration,
     SubmitAggregatedReportRequest
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
-const apiInstance = new EReportingApi(configuration);
+const apiInstance = new Flux10EReportingApi(configuration);
 
 let submitAggregatedReportRequest: SubmitAggregatedReportRequest; //
 
@@ -346,13 +346,13 @@ Generate and submit e-reporting to a PA (Plateforme Agréée).  Authentication s
 
 ```typescript
 import {
-    EReportingApi,
+    Flux10EReportingApi,
     Configuration,
     SubmitEReportingRequest
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
-const apiInstance = new EReportingApi(configuration);
+const apiInstance = new Flux10EReportingApi(configuration);
 
 let submitEReportingRequest: SubmitEReportingRequest; //
 
@@ -402,12 +402,12 @@ Submit a pre-generated e-reporting XML file directly to a PA/PDP.  This endpoint
 
 ```typescript
 import {
-    EReportingApi,
+    Flux10EReportingApi,
     Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
-const apiInstance = new EReportingApi(configuration);
+const apiInstance = new Flux10EReportingApi(configuration);
 
 let xmlFile: File; //E-reporting XML file (default to undefined)
 let trackingId: string; // (optional) (default to undefined)
@@ -475,13 +475,13 @@ Validates aggregated e-reporting data without generating XML.
 
 ```typescript
 import {
-    EReportingApi,
+    Flux10EReportingApi,
     Configuration,
     CreateAggregatedReportRequest
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
-const apiInstance = new EReportingApi(configuration);
+const apiInstance = new Flux10EReportingApi(configuration);
 
 let createAggregatedReportRequest: CreateAggregatedReportRequest; //
 
@@ -531,13 +531,13 @@ Validate e-reporting data without generating or submitting.  Performs: - Schema 
 
 ```typescript
 import {
-    EReportingApi,
+    Flux10EReportingApi,
     Configuration,
     ValidateEReportingRequest
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
-const apiInstance = new EReportingApi(configuration);
+const apiInstance = new Flux10EReportingApi(configuration);
 
 let validateEReportingRequest: ValidateEReportingRequest; //
 
@@ -581,25 +581,27 @@ const { status, data } = await apiInstance.validateEreportingApiV1EreportingVali
 # **validateXmlEreportingApiV1EreportingValidateXmlPost**
 > { [key: string]: any; } validateXmlEreportingApiV1EreportingValidateXmlPost()
 
-Validates an e-reporting XML file against:  1. **XSD schemas**: Official PPF e-reporting XSD (structure, types, cardinality) 2. **Business rules**: ISO codes and enum validation    - Currency codes (ISO 4217: EUR, USD, GBP, etc.)    - Country codes (ISO 3166-1 alpha-2: FR, DE, US, etc.)    - Scheme IDs (0009=SIRET, 0002=SIREN, etc.)    - Role codes (UNCL 3035: SE=Seller, BY=Buyer, WK=Working party, etc.)  Returns validation status and detailed error messages if invalid.
+Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals = sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002=SIREN, 0009=SIRET, 0224=RoutingCode, etc. - RoleCode (UNCL 3035): SE=Seller, BY=Buyer, WK=Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
 
 ### Example
 
 ```typescript
 import {
-    EReportingApi,
+    Flux10EReportingApi,
     Configuration
 } from '@factpulse/sdk';
 
 const configuration = new Configuration();
-const apiInstance = new EReportingApi(configuration);
+const apiInstance = new Flux10EReportingApi(configuration);
 
 let xmlFile: File; //E-reporting XML file to validate (default to undefined)
-let validateBusinessRules: boolean; //Also validate business rules (ISO codes, enums) (optional) (default to true)
+let validateCoherence: boolean; //Validate data coherence (REJ_COH) (optional) (default to true)
+let validatePeriod: boolean; //Validate period coherence (REJ_PER) (optional) (default to true)
 
 const { status, data } = await apiInstance.validateXmlEreportingApiV1EreportingValidateXmlPost(
     xmlFile,
-    validateBusinessRules
+    validateCoherence,
+    validatePeriod
 );
 ```
 
@@ -608,7 +610,8 @@ const { status, data } = await apiInstance.validateXmlEreportingApiV1EreportingV
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **xmlFile** | [**File**] | E-reporting XML file to validate | defaults to undefined|
-| **validateBusinessRules** | [**boolean**] | Also validate business rules (ISO codes, enums) | (optional) defaults to true|
+| **validateCoherence** | [**boolean**] | Validate data coherence (REJ_COH) | (optional) defaults to true|
+| **validatePeriod** | [**boolean**] | Validate period coherence (REJ_PER) | (optional) defaults to true|
 
 
 ### Return type

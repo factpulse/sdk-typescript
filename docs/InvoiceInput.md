@@ -1,6 +1,6 @@
 # InvoiceInput
 
-Invoice for B2B international reporting (flux 10.1).  Used for unitary declaration of international B2B invoices.
+Invoice for B2B international reporting (flux 10.1).  Used for unitary declaration of international B2B invoices. Supports three scenarios: - B2Bi: French seller → Foreign buyer (issuer role = SE) - Bi2B: Foreign seller → French buyer (issuer role = BY) - Bi2Bi: Foreign seller → Foreign buyer (issuer role = SE or BY)  Source: Annexe 6 v1.9, bloc TG-8 \"Invoice\"
 
 ## Properties
 
@@ -11,7 +11,8 @@ Name | Type | Description | Notes
 **typeCode** | [**FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode**](FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md) | Invoice type code | [optional] [default to undefined]
 **currency** | [**Currency**](Currency.md) |  | [optional] [default to undefined]
 **dueDate** | **string** |  | [optional] [default to undefined]
-**sellerSiren** | **string** | Seller SIREN/SIRET | [default to undefined]
+**sellerId** | **string** |  | [optional] [default to undefined]
+**sellerSiren** | **string** |  | [optional] [default to undefined]
 **sellerVatId** | **string** |  | [optional] [default to undefined]
 **sellerCountry** | [**Sellercountry**](Sellercountry.md) |  | [optional] [default to undefined]
 **buyerId** | **string** |  | [optional] [default to undefined]
@@ -34,6 +35,7 @@ const instance: InvoiceInput = {
     typeCode,
     currency,
     dueDate,
+    sellerId,
     sellerSiren,
     sellerVatId,
     sellerCountry,

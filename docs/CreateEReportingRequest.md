@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **reportName** | **string** |  | [optional] [default to undefined]
 **flowType** | [**EReportingFlowType**](EReportingFlowType.md) | E-Reporting flux type (for internal routing) | [default to undefined]
 **transmissionType** | [**TransmissionTypeCode**](TransmissionTypeCode.md) | Transmission type (TT-4 TypeCode): IN&#x3D;Initial, RE&#x3D;Rectificative | [optional] [default to undefined]
-**sender** | [**ReportSender**](ReportSender.md) | Report sender (declarant) | [default to undefined]
+**sender** | [**ReportSender**](ReportSender.md) | Report sender (PA transmitting the report) | [default to undefined]
+**issuer** | [**ReportIssuer**](ReportIssuer.md) |  | [optional] [default to undefined]
 **period** | [**ReportPeriod**](ReportPeriod.md) | Reporting period | [default to undefined]
 **invoices** | [**Array&lt;InvoiceInput&gt;**](InvoiceInput.md) |  | [optional] [default to undefined]
 **transactions** | [**Array&lt;AggregatedTransactionInput&gt;**](AggregatedTransactionInput.md) |  | [optional] [default to undefined]
@@ -28,6 +29,7 @@ const instance: CreateEReportingRequest = {
     flowType,
     transmissionType,
     sender,
+    issuer,
     period,
     invoices,
     transactions,

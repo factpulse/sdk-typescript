@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **invoice_number** | **string** |  | [default to undefined]
 **payment_due_date** | **string** |  | [default to undefined]
 **invoice_date** | **string** |  | [optional] [default to undefined]
-**submission_mode** | [**SubmissionMode**](SubmissionMode.md) |  | [default to undefined]
+**submission_mode** | [**SubmissionMode**](SubmissionMode.md) |  | [optional] [default to undefined]
 **recipient** | [**Recipient**](Recipient.md) |  | [default to undefined]
 **supplier** | [**Supplier**](Supplier.md) |  | [default to undefined]
 **invoicing_framework** | [**InvoicingFramework**](InvoicingFramework.md) |  | [default to undefined]
