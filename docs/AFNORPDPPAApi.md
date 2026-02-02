@@ -25,10 +25,12 @@ const apiInstance = new AFNORPDPPAApi(configuration);
 
 let flowId: string; //AFNOR flow ID (UUID format) (default to undefined)
 let includeDocument: boolean; //Include base64-encoded document in response (optional) (default to false)
+let xEncryptionKey: string; //Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode=\'double\'. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(
     flowId,
-    includeDocument
+    includeDocument,
+    xEncryptionKey
 );
 ```
 
@@ -38,6 +40,7 @@ const { status, data } = await apiInstance.getFluxEntrantApiV1AfnorIncomingFlows
 |------------- | ------------- | ------------- | -------------|
 | **flowId** | [**string**] | AFNOR flow ID (UUID format) | defaults to undefined|
 | **includeDocument** | [**boolean**] | Include base64-encoded document in response | (optional) defaults to false|
+| **xEncryptionKey** | [**string**] | Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -46,7 +49,7 @@ const { status, data } = await apiInstance.getFluxEntrantApiV1AfnorIncomingFlows
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 

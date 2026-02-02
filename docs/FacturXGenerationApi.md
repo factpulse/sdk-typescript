@@ -65,7 +65,7 @@ const { status, data } = await apiInstance.generateInvoiceApiV1ProcessingGenerat
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -120,7 +120,7 @@ const { status, data } = await apiInstance.submitCompleteInvoiceApiV1ProcessingI
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -180,7 +180,7 @@ const { status, data } = await apiInstance.submitCompleteInvoiceAsyncApiV1Proces
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 

@@ -31,6 +31,7 @@ export interface PDPConfigResponse {
     'flowServiceUrl'?: string | null;
     'tokenUrl'?: string | null;
     'oauthClientId'?: string | null;
+    'encryptionMode'?: string | null;
     'secretStatus'?: SecretStatus | null;
     'lastTestAt'?: string | null;
     'lastTestSuccess'?: boolean | null;

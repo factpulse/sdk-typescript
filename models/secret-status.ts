@@ -26,5 +26,7 @@ export interface SecretStatus {
      * Descriptive status message
      */
     'message': string;
+    'encryptionMode'?: string | null;
+    'requiresClientKey'?: boolean | null;
 }
 

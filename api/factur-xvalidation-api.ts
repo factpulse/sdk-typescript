@@ -26,13 +26,13 @@ import type { APIError } from '../models';
 // @ts-ignore
 import type { APIProfile } from '../models';
 // @ts-ignore
+import type { FactureElectroniqueRestApiSchemasValidationValidationErrorResponse } from '../models';
+// @ts-ignore
 import type { HTTPValidationError } from '../models';
 // @ts-ignore
 import type { PDFValidationResultAPI } from '../models';
 // @ts-ignore
 import type { TaskResponse } from '../models';
-// @ts-ignore
-import type { ValidationErrorResponse } from '../models';
 // @ts-ignore
 import type { ValidationSuccessResponse } from '../models';
 /**
@@ -65,6 +65,9 @@ export const FacturXValidationApiAxiosParamCreator = function (configuration?: C
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
 
             // authentication HTTPBearer required
             // http bearer authentication required
@@ -125,6 +128,9 @@ export const FacturXValidationApiAxiosParamCreator = function (configuration?: C
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
 
             // authentication HTTPBearer required
             // http bearer authentication required
@@ -187,6 +193,9 @@ export const FacturXValidationApiAxiosParamCreator = function (configuration?: C
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
             const localVarFormParams = new ((configuration && configuration.formDataCtor) || FormData)();
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
 
             // authentication HTTPBearer required
             // http bearer authentication required

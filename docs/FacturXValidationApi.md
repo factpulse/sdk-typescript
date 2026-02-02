@@ -53,7 +53,7 @@ const { status, data } = await apiInstance.validateFacturxPdfApiV1ProcessingVali
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -119,7 +119,7 @@ const { status, data } = await apiInstance.validateFacturxPdfAsyncApiV1Processin
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -179,7 +179,7 @@ const { status, data } = await apiInstance.validateXmlApiV1ProcessingValidateXml
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 

@@ -46,7 +46,7 @@ const { status, data } = await apiInstance.generateTestCertificateApiV1Processin
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -119,7 +119,7 @@ const { status, data } = await apiInstance.signPdfApiV1ProcessingSignPdfPost(
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -199,7 +199,7 @@ const { status, data } = await apiInstance.signPdfAsyncApiV1ProcessingSignPdfAsy
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -254,7 +254,7 @@ const { status, data } = await apiInstance.validatePdfSignatureEndpointApiV1Proc
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 

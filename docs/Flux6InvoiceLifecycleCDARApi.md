@@ -52,7 +52,7 @@ const { status, data } = await apiInstance.generateCdarApiV1CdarGeneratePost(
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -473,7 +473,7 @@ const { status, data } = await apiInstance.validateCdarApiV1CdarValidatePost(
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -528,7 +528,7 @@ const { status, data } = await apiInstance.validateXmlCdarApiV1CdarValidateXmlPo
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 

@@ -42,7 +42,7 @@ const { status, data } = await apiInstance.getTaskStatusApiV1ProcessingTasksTask
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 

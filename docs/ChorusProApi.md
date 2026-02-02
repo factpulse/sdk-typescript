@@ -57,7 +57,7 @@ const { status, data } = await apiInstance.ajouterFichierApiV1ChorusProTransvers
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -110,7 +110,7 @@ const { status, data } = await apiInstance.completerFactureApiV1ChorusProFacture
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -164,7 +164,7 @@ const { status, data } = await apiInstance.consulterFactureApiV1ChorusProFacture
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -218,7 +218,7 @@ const { status, data } = await apiInstance.consulterStructureApiV1ChorusProStruc
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -271,7 +271,7 @@ const { status, data } = await apiInstance.listerServicesStructureApiV1ChorusPro
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -325,7 +325,7 @@ const { status, data } = await apiInstance.obtenirIdChorusProDepuisSiretApiV1Cho
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -378,7 +378,7 @@ const { status, data } = await apiInstance.rechercherFacturesDestinataireApiV1Ch
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -431,7 +431,7 @@ const { status, data } = await apiInstance.rechercherFacturesFournisseurApiV1Cho
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -485,7 +485,7 @@ const { status, data } = await apiInstance.rechercherStructuresApiV1ChorusProStr
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -538,7 +538,7 @@ const { status, data } = await apiInstance.recyclerFactureApiV1ChorusProFactures
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -592,7 +592,7 @@ const { status, data } = await apiInstance.soumettreFactureApiV1ChorusProFacture
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -645,7 +645,7 @@ const { status, data } = await apiInstance.telechargerGroupeFacturesApiV1ChorusP
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -698,7 +698,7 @@ const { status, data } = await apiInstance.traiterFactureRecueApiV1ChorusProFact
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -751,7 +751,7 @@ const { status, data } = await apiInstance.valideurConsulterFactureApiV1ChorusPr
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -804,7 +804,7 @@ const { status, data } = await apiInstance.valideurRechercherFacturesApiV1Chorus
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 
@@ -857,7 +857,7 @@ const { status, data } = await apiInstance.valideurTraiterFactureApiV1ChorusProF
 
 ### Authorization
 
-[HTTPBearer](../README.md#HTTPBearer)
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
 
 ### HTTP request headers
 

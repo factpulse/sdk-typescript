@@ -15,7 +15,7 @@
 
 
 /**
- * PDP configuration update request.
+ * PDP configuration update request.  For encryption_mode=\'double\', the X-Encryption-Key header must also be provided containing a base64-encoded AES-256 key (32 bytes).
  */
 export interface PDPConfigUpdateRequest {
     /**
@@ -42,5 +42,14 @@ export interface PDPConfigUpdateRequest {
      * OAuth Client Secret (sent but never returned)
      */
     'clientSecret': string;
+    'encryptionMode'?: PDPConfigUpdateRequestEncryptionModeEnum | null;
 }
+
+export const PDPConfigUpdateRequestEncryptionModeEnum = {
+    Fernet: 'fernet',
+    Double: 'double'
+} as const;
+
+export type PDPConfigUpdateRequestEncryptionModeEnum = typeof PDPConfigUpdateRequestEncryptionModeEnum[keyof typeof PDPConfigUpdateRequestEncryptionModeEnum];
+
 

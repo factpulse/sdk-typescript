@@ -186,9 +186,9 @@ docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
 docs/FacturXPDFXMLVerificationApi.md
 docs/FacturXValidationApi.md
-docs/FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.md
-docs/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md
 docs/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md
+docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
+docs/FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.md
 docs/FieldStatus.md
 docs/FileInfo.md
 docs/FilesInfo.md
@@ -231,6 +231,8 @@ docs/InvoiceTypeCodeOutput.md
 docs/InvoicingFramework.md
 docs/InvoicingFrameworkCode.md
 docs/IssuerRoleCode.md
+docs/KeyRotationRequest.md
+docs/KeyRotationResponse.md
 docs/LineNetAmount.md
 docs/LineSubType.md
 docs/LineTotalAmount.md
@@ -342,6 +344,9 @@ docs/ValidationSuccessResponse.md
 docs/VatRate.md
 docs/VerificationSuccessResponse.md
 docs/VerifiedFieldSchema.md
+docs/WebhookSecretDeleteResponse.md
+docs/WebhookSecretGenerateResponse.md
+docs/WebhookSecretStatusResponse.md
 git_push.sh
 index.ts
 models/acknowledgment-status.ts
@@ -497,9 +502,9 @@ models/error-source.ts
 models/extraction-info.ts
 models/factur-xinvoice.ts
 models/factur-xpdfinfo.ts
-models/facture-electronique-rest-api-schemas-cdar-validation-error-response.ts
-models/facture-electronique-rest-api-schemas-chorus-pro-chorus-pro-credentials.ts
 models/facture-electronique-rest-api-schemas-ereporting-invoice-type-code.ts
+models/facture-electronique-rest-api-schemas-processing-chorus-pro-credentials.ts
+models/facture-electronique-rest-api-schemas-validation-validation-error-response.ts
 models/field-status.ts
 models/file-info.ts
 models/files-info.ts
@@ -540,6 +545,8 @@ models/invoice-type-code.ts
 models/invoicing-framework-code.ts
 models/invoicing-framework.ts
 models/issuer-role-code.ts
+models/key-rotation-request.ts
+models/key-rotation-response.ts
 models/line-net-amount.ts
 models/line-sub-type.ts
 models/line-total-amount.ts
@@ -651,6 +658,9 @@ models/vatline.ts
 models/vatpoint-date-code.ts
 models/verification-success-response.ts
 models/verified-field-schema.ts
+models/webhook-secret-delete-response.ts
+models/webhook-secret-generate-response.ts
+models/webhook-secret-status-response.ts
 package.json
 tsconfig.esm.json
 tsconfig.json

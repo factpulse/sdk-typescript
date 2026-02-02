@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | **string** | Secret status: \&#39;active\&#39;, \&#39;missing\&#39;, etc. | [default to undefined]
 **message** | **string** | Descriptive status message | [default to undefined]
+**encryptionMode** | **string** |  | [optional] [default to undefined]
+**requiresClientKey** | **boolean** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -17,6 +19,8 @@ import { SecretStatus } from '@factpulse/sdk';
 const instance: SecretStatus = {
     status,
     message,
+    encryptionMode,
+    requiresClientKey,
 };
 ```
 

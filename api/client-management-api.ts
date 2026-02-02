@@ -34,9 +34,19 @@ import type { ClientUpdateRequest } from '../models';
 // @ts-ignore
 import type { HTTPValidationError } from '../models';
 // @ts-ignore
+import type { KeyRotationRequest } from '../models';
+// @ts-ignore
+import type { KeyRotationResponse } from '../models';
+// @ts-ignore
 import type { PDPConfigResponse } from '../models';
 // @ts-ignore
 import type { PDPConfigUpdateRequest } from '../models';
+// @ts-ignore
+import type { WebhookSecretDeleteResponse } from '../models';
+// @ts-ignore
+import type { WebhookSecretGenerateResponse } from '../models';
+// @ts-ignore
+import type { WebhookSecretStatusResponse } from '../models';
 /**
  * ClientManagementApi - axios parameter creator
  */
@@ -64,6 +74,9 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
 
             // authentication HTTPBearer required
             // http bearer authentication required
@@ -101,6 +114,9 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
 
             // authentication HTTPBearer required
             // http bearer authentication required
@@ -142,6 +158,91 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
+         * @summary Delete webhook secret
+         * @param {string} uid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete: async (uid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'uid' is not null or undefined
+            assertParamExists('deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete', 'uid', uid)
+            const localVarPath = `/api/v1/clients/{uid}/webhook-secret`
+                .replace(`{${"uid"}}`, encodeURIComponent(String(uid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
+         * @summary Generate webhook secret
+         * @param {string} uid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost: async (uid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'uid' is not null or undefined
+            assertParamExists('generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost', 'uid', uid)
+            const localVarPath = `/api/v1/clients/{uid}/webhook-secret/generate`
+                .replace(`{${"uid"}}`, encodeURIComponent(String(uid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
             // authentication HTTPBearer required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
@@ -179,6 +280,9 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
 
             // authentication HTTPBearer required
             // http bearer authentication required
@@ -218,6 +322,50 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
+         * @summary Get webhook secret status
+         * @param {string} uid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet: async (uid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'uid' is not null or undefined
+            assertParamExists('getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet', 'uid', uid)
+            const localVarPath = `/api/v1/clients/{uid}/webhook-secret/status`
+                .replace(`{${"uid"}}`, encodeURIComponent(String(uid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
             // authentication HTTPBearer required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
@@ -254,6 +402,9 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
             // authentication HTTPBearer required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
@@ -271,6 +422,52 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with `encryptionMode: \"double\"` are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
+         * @summary Rotate client encryption key
+         * @param {string} uid 
+         * @param {KeyRotationRequest} keyRotationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost: async (uid: string, keyRotationRequest: KeyRotationRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'uid' is not null or undefined
+            assertParamExists('rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost', 'uid', uid)
+            // verify required parameter 'keyRotationRequest' is not null or undefined
+            assertParamExists('rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost', 'keyRotationRequest', keyRotationRequest)
+            const localVarPath = `/api/v1/clients/{uid}/rotate-encryption-key`
+                .replace(`{${"uid"}}`, encodeURIComponent(String(uid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(keyRotationRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -303,6 +500,9 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
             // authentication HTTPBearer required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
@@ -321,14 +521,15 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             };
         },
         /**
-         * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - `flowServiceUrl`: PDP Flow Service URL - `tokenUrl`: PDP OAuth token URL - `oauthClientId`: OAuth Client ID - `clientSecret`: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - `isActive`: Enable/disable the config (default: true) - `modeSandbox`: Sandbox mode (default: false)  **Security**: The `clientSecret` is stored encrypted on Django side and is never returned in API responses.
+         * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - `flowServiceUrl`: PDP Flow Service URL - `tokenUrl`: PDP OAuth token URL - `oauthClientId`: OAuth Client ID - `clientSecret`: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - `isActive`: Enable/disable the config (default: true) - `modeSandbox`: Sandbox mode (default: false) - `encryptionMode`: Encryption mode (default: \"fernet\")   - \"fernet\": Server-side encryption only   - \"double\": Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When `encryptionMode` is set to \"double\", you MUST also provide the `X-Encryption-Key` header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the `clientSecret` on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The `clientSecret` is stored encrypted on Django side and is never returned in API responses.
          * @summary Configure client PDP
          * @param {string} uid 
          * @param {PDPConfigUpdateRequest} pDPConfigUpdateRequest 
+         * @param {string | null} [xEncryptionKey] Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePdpConfigApiV1ClientsUidPdpConfigPut: async (uid: string, pDPConfigUpdateRequest: PDPConfigUpdateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updatePdpConfigApiV1ClientsUidPdpConfigPut: async (uid: string, pDPConfigUpdateRequest: PDPConfigUpdateRequest, xEncryptionKey?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'uid' is not null or undefined
             assertParamExists('updatePdpConfigApiV1ClientsUidPdpConfigPut', 'uid', uid)
             // verify required parameter 'pDPConfigUpdateRequest' is not null or undefined
@@ -346,6 +547,9 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
             // authentication HTTPBearer required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
@@ -353,6 +557,9 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarHeaderParameter['Accept'] = 'application/json';
 
+            if (xEncryptionKey != null) {
+                localVarHeaderParameter['X-Encryption-Key'] = String(xEncryptionKey);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -412,6 +619,32 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
+         * @summary Delete webhook secret
+         * @param {string} uid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(uid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookSecretDeleteResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(uid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
+         * @summary Generate webhook secret
+         * @param {string} uid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(uid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookSecretGenerateResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(uid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Get details of a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: If the JWT contains a client_uid, it must match the {uid} in the URL, otherwise a 403 error is returned.
          * @summary Get client details
          * @param {string} uid 
@@ -438,6 +671,19 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
+         * @summary Get webhook secret status
+         * @param {string} uid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(uid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WebhookSecretStatusResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(uid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Paginated list of clients for the account.  **Scope**: Account level (JWT without client_uid)  **Pagination**: - `page`: Page number (default: 1) - `pageSize`: Page size (default: 20, max: 100)
          * @summary List clients
          * @param {number} [page] Page number
@@ -449,6 +695,20 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.listClientsApiV1ClientsGet(page, pageSize, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.listClientsApiV1ClientsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with `encryptionMode: \"double\"` are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
+         * @summary Rotate client encryption key
+         * @param {string} uid 
+         * @param {KeyRotationRequest} keyRotationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(uid: string, keyRotationRequest: KeyRotationRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<KeyRotationResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(uid, keyRotationRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -466,15 +726,16 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - `flowServiceUrl`: PDP Flow Service URL - `tokenUrl`: PDP OAuth token URL - `oauthClientId`: OAuth Client ID - `clientSecret`: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - `isActive`: Enable/disable the config (default: true) - `modeSandbox`: Sandbox mode (default: false)  **Security**: The `clientSecret` is stored encrypted on Django side and is never returned in API responses.
+         * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - `flowServiceUrl`: PDP Flow Service URL - `tokenUrl`: PDP OAuth token URL - `oauthClientId`: OAuth Client ID - `clientSecret`: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - `isActive`: Enable/disable the config (default: true) - `modeSandbox`: Sandbox mode (default: false) - `encryptionMode`: Encryption mode (default: \"fernet\")   - \"fernet\": Server-side encryption only   - \"double\": Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When `encryptionMode` is set to \"double\", you MUST also provide the `X-Encryption-Key` header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the `clientSecret` on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The `clientSecret` is stored encrypted on Django side and is never returned in API responses.
          * @summary Configure client PDP
          * @param {string} uid 
          * @param {PDPConfigUpdateRequest} pDPConfigUpdateRequest 
+         * @param {string | null} [xEncryptionKey] Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updatePdpConfigApiV1ClientsUidPdpConfigPut(uid: string, pDPConfigUpdateRequest: PDPConfigUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PDPConfigResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pDPConfigUpdateRequest, options);
+        async updatePdpConfigApiV1ClientsUidPdpConfigPut(uid: string, pDPConfigUpdateRequest: PDPConfigUpdateRequest, xEncryptionKey?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PDPConfigResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pDPConfigUpdateRequest, xEncryptionKey, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.updatePdpConfigApiV1ClientsUidPdpConfigPut']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -519,6 +780,26 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
             return localVarFp.deactivateClientApiV1ClientsUidDesactiverPost(uid, options).then((request) => request(axios, basePath));
         },
         /**
+         * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
+         * @summary Delete webhook secret
+         * @param {string} uid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(uid: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookSecretDeleteResponse> {
+            return localVarFp.deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(uid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
+         * @summary Generate webhook secret
+         * @param {string} uid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(uid: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookSecretGenerateResponse> {
+            return localVarFp.generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(uid, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Get details of a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: If the JWT contains a client_uid, it must match the {uid} in the URL, otherwise a 403 error is returned.
          * @summary Get client details
          * @param {string} uid 
@@ -539,6 +820,16 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
             return localVarFp.getPdpConfigApiV1ClientsUidPdpConfigGet(uid, options).then((request) => request(axios, basePath));
         },
         /**
+         * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
+         * @summary Get webhook secret status
+         * @param {string} uid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(uid: string, options?: RawAxiosRequestConfig): AxiosPromise<WebhookSecretStatusResponse> {
+            return localVarFp.getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(uid, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Paginated list of clients for the account.  **Scope**: Account level (JWT without client_uid)  **Pagination**: - `page`: Page number (default: 1) - `pageSize`: Page size (default: 20, max: 100)
          * @summary List clients
          * @param {number} [page] Page number
@@ -548,6 +839,17 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
          */
         listClientsApiV1ClientsGet(page?: number, pageSize?: number, options?: RawAxiosRequestConfig): AxiosPromise<ClientListResponse> {
             return localVarFp.listClientsApiV1ClientsGet(page, pageSize, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with `encryptionMode: \"double\"` are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
+         * @summary Rotate client encryption key
+         * @param {string} uid 
+         * @param {KeyRotationRequest} keyRotationRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(uid: string, keyRotationRequest: KeyRotationRequest, options?: RawAxiosRequestConfig): AxiosPromise<KeyRotationResponse> {
+            return localVarFp.rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(uid, keyRotationRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Update client information (partial update).  **Scope**: Client level (JWT with client_uid that must match {uid})  **Updatable fields**: - `name`: Client name - `description`: Description - `siret`: SIRET (14 digits)  Only provided fields are updated.
@@ -561,15 +863,16 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
             return localVarFp.updateClientApiV1ClientsUidPatch(uid, clientUpdateRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - `flowServiceUrl`: PDP Flow Service URL - `tokenUrl`: PDP OAuth token URL - `oauthClientId`: OAuth Client ID - `clientSecret`: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - `isActive`: Enable/disable the config (default: true) - `modeSandbox`: Sandbox mode (default: false)  **Security**: The `clientSecret` is stored encrypted on Django side and is never returned in API responses.
+         * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - `flowServiceUrl`: PDP Flow Service URL - `tokenUrl`: PDP OAuth token URL - `oauthClientId`: OAuth Client ID - `clientSecret`: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - `isActive`: Enable/disable the config (default: true) - `modeSandbox`: Sandbox mode (default: false) - `encryptionMode`: Encryption mode (default: \"fernet\")   - \"fernet\": Server-side encryption only   - \"double\": Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When `encryptionMode` is set to \"double\", you MUST also provide the `X-Encryption-Key` header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the `clientSecret` on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The `clientSecret` is stored encrypted on Django side and is never returned in API responses.
          * @summary Configure client PDP
          * @param {string} uid 
          * @param {PDPConfigUpdateRequest} pDPConfigUpdateRequest 
+         * @param {string | null} [xEncryptionKey] Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updatePdpConfigApiV1ClientsUidPdpConfigPut(uid: string, pDPConfigUpdateRequest: PDPConfigUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<PDPConfigResponse> {
-            return localVarFp.updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pDPConfigUpdateRequest, options).then((request) => request(axios, basePath));
+        updatePdpConfigApiV1ClientsUidPdpConfigPut(uid: string, pDPConfigUpdateRequest: PDPConfigUpdateRequest, xEncryptionKey?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<PDPConfigResponse> {
+            return localVarFp.updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pDPConfigUpdateRequest, xEncryptionKey, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -612,6 +915,28 @@ export class ClientManagementApi extends BaseAPI {
     }
 
     /**
+     * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
+     * @summary Delete webhook secret
+     * @param {string} uid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(uid: string, options?: RawAxiosRequestConfig) {
+        return ClientManagementApiFp(this.configuration).deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(uid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
+     * @summary Generate webhook secret
+     * @param {string} uid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(uid: string, options?: RawAxiosRequestConfig) {
+        return ClientManagementApiFp(this.configuration).generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(uid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Get details of a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: If the JWT contains a client_uid, it must match the {uid} in the URL, otherwise a 403 error is returned.
      * @summary Get client details
      * @param {string} uid 
@@ -634,6 +959,17 @@ export class ClientManagementApi extends BaseAPI {
     }
 
     /**
+     * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
+     * @summary Get webhook secret status
+     * @param {string} uid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(uid: string, options?: RawAxiosRequestConfig) {
+        return ClientManagementApiFp(this.configuration).getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(uid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Paginated list of clients for the account.  **Scope**: Account level (JWT without client_uid)  **Pagination**: - `page`: Page number (default: 1) - `pageSize`: Page size (default: 20, max: 100)
      * @summary List clients
      * @param {number} [page] Page number
@@ -643,6 +979,18 @@ export class ClientManagementApi extends BaseAPI {
      */
     public listClientsApiV1ClientsGet(page?: number, pageSize?: number, options?: RawAxiosRequestConfig) {
         return ClientManagementApiFp(this.configuration).listClientsApiV1ClientsGet(page, pageSize, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with `encryptionMode: \"double\"` are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
+     * @summary Rotate client encryption key
+     * @param {string} uid 
+     * @param {KeyRotationRequest} keyRotationRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(uid: string, keyRotationRequest: KeyRotationRequest, options?: RawAxiosRequestConfig) {
+        return ClientManagementApiFp(this.configuration).rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(uid, keyRotationRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -658,15 +1006,16 @@ export class ClientManagementApi extends BaseAPI {
     }
 
     /**
-     * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - `flowServiceUrl`: PDP Flow Service URL - `tokenUrl`: PDP OAuth token URL - `oauthClientId`: OAuth Client ID - `clientSecret`: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - `isActive`: Enable/disable the config (default: true) - `modeSandbox`: Sandbox mode (default: false)  **Security**: The `clientSecret` is stored encrypted on Django side and is never returned in API responses.
+     * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - `flowServiceUrl`: PDP Flow Service URL - `tokenUrl`: PDP OAuth token URL - `oauthClientId`: OAuth Client ID - `clientSecret`: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - `isActive`: Enable/disable the config (default: true) - `modeSandbox`: Sandbox mode (default: false) - `encryptionMode`: Encryption mode (default: \"fernet\")   - \"fernet\": Server-side encryption only   - \"double\": Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When `encryptionMode` is set to \"double\", you MUST also provide the `X-Encryption-Key` header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the `clientSecret` on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The `clientSecret` is stored encrypted on Django side and is never returned in API responses.
      * @summary Configure client PDP
      * @param {string} uid 
      * @param {PDPConfigUpdateRequest} pDPConfigUpdateRequest 
+     * @param {string | null} [xEncryptionKey] Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public updatePdpConfigApiV1ClientsUidPdpConfigPut(uid: string, pDPConfigUpdateRequest: PDPConfigUpdateRequest, options?: RawAxiosRequestConfig) {
-        return ClientManagementApiFp(this.configuration).updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pDPConfigUpdateRequest, options).then((request) => request(this.axios, this.basePath));
+    public updatePdpConfigApiV1ClientsUidPdpConfigPut(uid: string, pDPConfigUpdateRequest: PDPConfigUpdateRequest, xEncryptionKey?: string | null, options?: RawAxiosRequestConfig) {
+        return ClientManagementApiFp(this.configuration).updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pDPConfigUpdateRequest, xEncryptionKey, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

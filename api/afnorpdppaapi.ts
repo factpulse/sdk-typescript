@@ -35,10 +35,11 @@ export const AFNORPDPPAApiAxiosParamCreator = function (configuration?: Configur
          * @summary Retrieve and extract an incoming invoice
          * @param {string} flowId AFNOR flow ID (UUID format)
          * @param {boolean} [includeDocument] Include base64-encoded document in response
+         * @param {string | null} [xEncryptionKey] Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet: async (flowId: string, includeDocument?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet: async (flowId: string, includeDocument?: boolean, xEncryptionKey?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'flowId' is not null or undefined
             assertParamExists('getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet', 'flowId', flowId)
             const localVarPath = `/api/v1/afnor/incoming-flows/{flow_id}`
@@ -54,6 +55,9 @@ export const AFNORPDPPAApiAxiosParamCreator = function (configuration?: Configur
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
             // authentication HTTPBearer required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
@@ -64,6 +68,9 @@ export const AFNORPDPPAApiAxiosParamCreator = function (configuration?: Configur
 
             localVarHeaderParameter['Accept'] = 'application/json';
 
+            if (xEncryptionKey != null) {
+                localVarHeaderParameter['X-Encryption-Key'] = String(xEncryptionKey);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -117,11 +124,12 @@ export const AFNORPDPPAApiFp = function(configuration?: Configuration) {
          * @summary Retrieve and extract an incoming invoice
          * @param {string} flowId AFNOR flow ID (UUID format)
          * @param {boolean} [includeDocument] Include base64-encoded document in response
+         * @param {string | null} [xEncryptionKey] Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId: string, includeDocument?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IncomingInvoice>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId, includeDocument, options);
+        async getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId: string, includeDocument?: boolean, xEncryptionKey?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<IncomingInvoice>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId, includeDocument, xEncryptionKey, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPAApi.getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -152,11 +160,12 @@ export const AFNORPDPPAApiFactory = function (configuration?: Configuration, bas
          * @summary Retrieve and extract an incoming invoice
          * @param {string} flowId AFNOR flow ID (UUID format)
          * @param {boolean} [includeDocument] Include base64-encoded document in response
+         * @param {string | null} [xEncryptionKey] Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId: string, includeDocument?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<IncomingInvoice> {
-            return localVarFp.getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId, includeDocument, options).then((request) => request(axios, basePath));
+        getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId: string, includeDocument?: boolean, xEncryptionKey?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<IncomingInvoice> {
+            return localVarFp.getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId, includeDocument, xEncryptionKey, options).then((request) => request(axios, basePath));
         },
         /**
          * OAuth2 proxy to validate PDP credentials. Use this endpoint to verify that OAuth credentials (client_id, client_secret) are valid before saving a PDP configuration. This endpoint is public (no authentication required).
@@ -179,11 +188,12 @@ export class AFNORPDPPAApi extends BaseAPI {
      * @summary Retrieve and extract an incoming invoice
      * @param {string} flowId AFNOR flow ID (UUID format)
      * @param {boolean} [includeDocument] Include base64-encoded document in response
+     * @param {string | null} [xEncryptionKey] Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId: string, includeDocument?: boolean, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPAApiFp(this.configuration).getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId, includeDocument, options).then((request) => request(this.axios, this.basePath));
+    public getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId: string, includeDocument?: boolean, xEncryptionKey?: string | null, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPAApiFp(this.configuration).getFluxEntrantApiV1AfnorIncomingFlowsFlowIdGet(flowId, includeDocument, xEncryptionKey, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

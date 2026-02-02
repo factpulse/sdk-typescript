@@ -15,28 +15,21 @@
 
 
 /**
- * Chorus Pro credentials for Zero-Trust mode.  **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.  **Security**: - Credentials are never persisted in the database - They are used only for the duration of the request - Secure transmission via HTTPS  **Use cases**: - High-security environments (banks, administrations) - Strict GDPR compliance - Tests with temporary credentials - Users who don\'t want to store their credentials
+ * Response from key rotation operation.
  */
-export interface FactureElectroniqueRestApiSchemasChorusProChorusProCredentials {
+export interface KeyRotationResponse {
     /**
-     * PISTE Client ID (government API portal)
+     * Whether rotation was successful
      */
-    'pisteClientId': string;
+    'success': boolean;
     /**
-     * PISTE Client Secret
+     * Result message
      */
-    'pisteClientSecret': string;
+    'message': string;
     /**
-     * Chorus Pro login
+     * Number of secrets that were rotated
      */
-    'chorusProLogin': string;
-    /**
-     * Chorus Pro password
-     */
-    'chorusProPassword': string;
-    /**
-     * Use sandbox environment (true) or production (false)
-     */
-    'sandbox'?: boolean;
+    'rotatedCount': number;
+    'partialErrors'?: Array<string> | null;
 }
 

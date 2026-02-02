@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **flowServiceUrl** | **string** |  | [optional] [default to undefined]
 **tokenUrl** | **string** |  | [optional] [default to undefined]
 **oauthClientId** | **string** |  | [optional] [default to undefined]
+**encryptionMode** | **string** |  | [optional] [default to undefined]
 **secretStatus** | [**SecretStatus**](SecretStatus.md) |  | [optional] [default to undefined]
 **lastTestAt** | **string** |  | [optional] [default to undefined]
 **lastTestSuccess** | **boolean** |  | [optional] [default to undefined]
@@ -34,6 +35,7 @@ const instance: PDPConfigResponse = {
     flowServiceUrl,
     tokenUrl,
     oauthClientId,
+    encryptionMode,
     secretStatus,
     lastTestAt,
     lastTestSuccess,
