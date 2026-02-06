@@ -230,6 +230,52 @@ export const FacturXConversionApiAxiosParamCreator = function (configuration?: C
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Resume a conversion after completing missing data or correcting errors (async mode).  The OCR extraction is preserved, data is updated with corrections, then processing is performed asynchronously via Celery.  ## Workflow  1. **Submit corrections**: Corrections are validated and task is queued 2. **Celery Task**: Task processes corrections and generates Factur-X 3. **Callback**: Webhook notification on completion  ## Possible responses  - **202**: Task accepted, processing - **404**: Conversion not found or expired
+         * @summary Resume a conversion asynchronously
+         * @param {string} conversionId Conversion ID returned by POST /convert (UUID format)
+         * @param {ConvertResumeRequest} convertResumeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost: async (conversionId: string, convertResumeRequest: ConvertResumeRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'conversionId' is not null or undefined
+            assertParamExists('resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost', 'conversionId', conversionId)
+            // verify required parameter 'convertResumeRequest' is not null or undefined
+            assertParamExists('resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost', 'convertResumeRequest', convertResumeRequest)
+            const localVarPath = `/api/v1/convert/{conversion_id}/resume/async`
+                .replace(`{${"conversion_id"}}`, encodeURIComponent(String(conversionId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(convertResumeRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -296,6 +342,20 @@ export const FacturXConversionApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['FacturXConversionApi.resumeConversionApiV1ConvertConversionIdResumePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * Resume a conversion after completing missing data or correcting errors (async mode).  The OCR extraction is preserved, data is updated with corrections, then processing is performed asynchronously via Celery.  ## Workflow  1. **Submit corrections**: Corrections are validated and task is queued 2. **Celery Task**: Task processes corrections and generates Factur-X 3. **Callback**: Webhook notification on completion  ## Possible responses  - **202**: Task accepted, processing - **404**: Conversion not found or expired
+         * @summary Resume a conversion asynchronously
+         * @param {string} conversionId Conversion ID returned by POST /convert (UUID format)
+         * @param {ConvertResumeRequest} convertResumeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost(conversionId: string, convertResumeRequest: ConvertResumeRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost(conversionId, convertResumeRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FacturXConversionApi.resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -349,6 +409,17 @@ export const FacturXConversionApiFactory = function (configuration?: Configurati
          */
         resumeConversionApiV1ConvertConversionIdResumePost(conversionId: string, convertResumeRequest: ConvertResumeRequest, options?: RawAxiosRequestConfig): AxiosPromise<ConvertSuccessResponse> {
             return localVarFp.resumeConversionApiV1ConvertConversionIdResumePost(conversionId, convertResumeRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Resume a conversion after completing missing data or correcting errors (async mode).  The OCR extraction is preserved, data is updated with corrections, then processing is performed asynchronously via Celery.  ## Workflow  1. **Submit corrections**: Corrections are validated and task is queued 2. **Celery Task**: Task processes corrections and generates Factur-X 3. **Callback**: Webhook notification on completion  ## Possible responses  - **202**: Task accepted, processing - **404**: Conversion not found or expired
+         * @summary Resume a conversion asynchronously
+         * @param {string} conversionId Conversion ID returned by POST /convert (UUID format)
+         * @param {ConvertResumeRequest} convertResumeRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost(conversionId: string, convertResumeRequest: ConvertResumeRequest, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost(conversionId, convertResumeRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -404,6 +475,18 @@ export class FacturXConversionApi extends BaseAPI {
      */
     public resumeConversionApiV1ConvertConversionIdResumePost(conversionId: string, convertResumeRequest: ConvertResumeRequest, options?: RawAxiosRequestConfig) {
         return FacturXConversionApiFp(this.configuration).resumeConversionApiV1ConvertConversionIdResumePost(conversionId, convertResumeRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Resume a conversion after completing missing data or correcting errors (async mode).  The OCR extraction is preserved, data is updated with corrections, then processing is performed asynchronously via Celery.  ## Workflow  1. **Submit corrections**: Corrections are validated and task is queued 2. **Celery Task**: Task processes corrections and generates Factur-X 3. **Callback**: Webhook notification on completion  ## Possible responses  - **202**: Task accepted, processing - **404**: Conversion not found or expired
+     * @summary Resume a conversion asynchronously
+     * @param {string} conversionId Conversion ID returned by POST /convert (UUID format)
+     * @param {ConvertResumeRequest} convertResumeRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost(conversionId: string, convertResumeRequest: ConvertResumeRequest, options?: RawAxiosRequestConfig) {
+        return FacturXConversionApiFp(this.configuration).resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost(conversionId, convertResumeRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

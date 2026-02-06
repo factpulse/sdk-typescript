@@ -15,12 +15,17 @@
 
 
 /**
- * Requete de reprise de conversion avec corrections.  Le champ `overrides` accepte n\'importe quel sous-ensemble de FacturXInvoice. Seuls les champs fournis seront mis a jour (merge profond).  Exemple:     {         \"overrides\": {             \"supplier\": {                 \"name\": \"Ma Société\",                 \"siret\": \"12345678901234\"             },             \"totals\": {                 \"total_net_amount\": 1000.00             }         }     }
+ * Requete de reprise de conversion avec corrections.  Le champ `overrides` accepte n\'importe quel sous-ensemble de FacturXInvoice. Seuls les champs fournis seront mis a jour (merge profond).  Exemple:     {         \"overrides\": {             \"supplier\": {                 \"name\": \"Ma Société\",                 \"siret\": \"12345678901234\"             },             \"totals\": {                 \"total_net_amount\": 1000.00             }         },         \"callback_url\": \"https://example.com/webhook\",         \"webhook_mode\": \"inline\"     }
  */
 export interface ConvertResumeRequest {
     /**
      * Sous-ensemble de FacturXInvoice a mettre a jour (merge profond)
      */
     'overrides'?: { [key: string]: any; };
+    'callback_url'?: string | null;
+    /**
+     * Mode de livraison webhook: \'inline\' ou \'download_url\'
+     */
+    'webhook_mode'?: string;
 }
 
