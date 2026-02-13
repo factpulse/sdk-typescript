@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * FactPulse REST API
- *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X - Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Factur-X - Validation - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)  ### ✍️ Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification  ### 📋 Flux 6 - Invoice Lifecycle (CDAR) - **CDAR Messages**: Acknowledgements, invoice statuses - **PPF Statuses**: REFUSED (210), PAID (212)  ### 📊 Flux 10 - E-Reporting - **Tax Declarations**: International B2B, B2C - **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4 (B2C payments)  ### 📡 AFNOR PDP/PA (XP Z12-013) - **Flow Service**: Submit and search flows to PDPs - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user  ### 🏛️ Chorus Pro - **Public Sector Invoicing**: Complete API for Chorus Pro  ### ⏳ Async Tasks - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **Webhooks**: Automatic notifications when tasks complete  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d \'{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }\' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d \'{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }\' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
+ *  REST API for electronic invoicing in France: Factur-X (CII), UBL 2.1, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Invoice Generation - **Formats**: CII XML, UBL 2.1 XML, or Factur-X PDF/A-3 - **Profiles** (CII/PDF): MINIMUM, BASIC, EN16931, EXTENDED - **UBL**: Always EN16931 compliant - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT), UBL 2.1 (OASIS) - **Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Factur-X - Validation - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)  ### ✍️ Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification  ### 📋 Flux 6 - Invoice Lifecycle (CDAR) - **CDAR Messages**: Acknowledgements, invoice statuses - **PPF Statuses**: REFUSED (210), PAID (212)  ### 📊 Flux 10 - E-Reporting - **Tax Declarations**: International B2B, B2C - **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4 (B2C payments)  ### 📡 AFNOR PDP/PA (XP Z12-013) - **Flow Service**: Submit and search flows to PDPs - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user  ### 🏛️ Chorus Pro - **Public Sector Invoicing**: Complete API for Chorus Pro  ### ⏳ Async Tasks - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **Webhooks**: Automatic notifications when tasks complete  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d \'{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }\' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d \'{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }\' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: contact@factpulse.fr
@@ -31,6 +31,8 @@ import type { HTTPValidationError } from '../models';
 import type { TaskResponse } from '../models';
 // @ts-ignore
 import type { VerificationSuccessResponse } from '../models';
+// @ts-ignore
+import type { VerificationTypedTaskStatus } from '../models';
 /**
  * FacturXPDFXMLVerificationApi - axios parameter creator
  */
@@ -47,6 +49,47 @@ export const FacturXPDFXMLVerificationApiAxiosParamCreator = function (configura
             // verify required parameter 'taskId' is not null or undefined
             assertParamExists('getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet', 'taskId', taskId)
             const localVarPath = `/api/v1/verification/verify-async/{task_id}/status`
+                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Typed status endpoint for async verification tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `VerificationSuccessTaskResult` with `verification_result` - **ERROR**: `TaskErrorResult` in AFNOR format
+         * @summary Get typed status of an asynchronous verification
+         * @param {string} taskId Celery task ID returned by /verify-async endpoint
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet: async (taskId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'taskId' is not null or undefined
+            assertParamExists('getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet', 'taskId', taskId)
+            const localVarPath = `/api/v1/verification/verify-async/{task_id}/typed-status`
                 .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -209,6 +252,19 @@ export const FacturXPDFXMLVerificationApiFp = function(configuration?: Configura
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Typed status endpoint for async verification tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `VerificationSuccessTaskResult` with `verification_result` - **ERROR**: `TaskErrorResult` in AFNOR format
+         * @summary Get typed status of an asynchronous verification
+         * @param {string} taskId Celery task ID returned by /verify-async endpoint
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet(taskId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<VerificationTypedTaskStatus>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet(taskId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FacturXPDFXMLVerificationApi.getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Verifies PDF/XML Factur-X compliance asynchronously.  **IMPORTANT**: Only Factur-X PDFs (with embedded XML) are accepted. PDFs without Factur-X XML will return a `NOT_FACTURX` error in the result.  This version uses a Celery task and can call the OCR service if the PDF is an image or if `force_ocr=true`.  **Returns immediately** a task ID. Use `/verify-async/{task_id}/status` to retrieve the result.  **Verification principle (Factur-X 1.08):** - Principle #2: XML can only contain info present in the PDF - Principle #4: All XML info must be present and compliant in the PDF  **Verified fields:** - Identification: BT-1 (invoice #), BT-2 (date), BT-3 (type), BT-5 (currency), BT-23 (framework) - Seller: BT-27 (name), BT-29 (SIRET), BT-30 (SIREN), BT-31 (VAT) - Buyer: BT-44 (name), BT-46 (SIRET), BT-47 (SIREN), BT-48 (VAT) - Amounts: BT-109 (excl. tax), BT-110 (VAT), BT-112 (incl. tax), BT-115 (amount due) - VAT breakdown: BT-116, BT-117, BT-118, BT-119 - Invoice lines: BT-153, BT-129, BT-146, BT-131 - Mandatory notes: PMT, PMD, AAB - Rule BR-FR-09: SIRET/SIREN consistency  **Advantages over synchronous version:** - OCR support for image PDFs (via DocTR service) - Longer timeout for large documents - Doesn\'t block the server  ## Webhook notification (recommended)  Instead of polling, you can receive a webhook notification when verification completes:  ``` callback_url=https://your-server.com/webhook ```  The webhook will POST a JSON payload with: - `event_type`: `verification.completed` or `verification.failed` - `data.is_compliant`: Whether the PDF/XML are consistent - `data.compliance_score`: Compliance score (0-1) - `X-Webhook-Signature` header for HMAC verification
          * @summary Verify PDF/XML Factur-X compliance (asynchronous)
          * @param {File} pdfFile Factur-X PDF file to verify
@@ -257,6 +313,16 @@ export const FacturXPDFXMLVerificationApiFactory = function (configuration?: Con
             return localVarFp.getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId, options).then((request) => request(axios, basePath));
         },
         /**
+         * Typed status endpoint for async verification tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `VerificationSuccessTaskResult` with `verification_result` - **ERROR**: `TaskErrorResult` in AFNOR format
+         * @summary Get typed status of an asynchronous verification
+         * @param {string} taskId Celery task ID returned by /verify-async endpoint
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet(taskId: string, options?: RawAxiosRequestConfig): AxiosPromise<VerificationTypedTaskStatus> {
+            return localVarFp.getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet(taskId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Verifies PDF/XML Factur-X compliance asynchronously.  **IMPORTANT**: Only Factur-X PDFs (with embedded XML) are accepted. PDFs without Factur-X XML will return a `NOT_FACTURX` error in the result.  This version uses a Celery task and can call the OCR service if the PDF is an image or if `force_ocr=true`.  **Returns immediately** a task ID. Use `/verify-async/{task_id}/status` to retrieve the result.  **Verification principle (Factur-X 1.08):** - Principle #2: XML can only contain info present in the PDF - Principle #4: All XML info must be present and compliant in the PDF  **Verified fields:** - Identification: BT-1 (invoice #), BT-2 (date), BT-3 (type), BT-5 (currency), BT-23 (framework) - Seller: BT-27 (name), BT-29 (SIRET), BT-30 (SIREN), BT-31 (VAT) - Buyer: BT-44 (name), BT-46 (SIRET), BT-47 (SIREN), BT-48 (VAT) - Amounts: BT-109 (excl. tax), BT-110 (VAT), BT-112 (incl. tax), BT-115 (amount due) - VAT breakdown: BT-116, BT-117, BT-118, BT-119 - Invoice lines: BT-153, BT-129, BT-146, BT-131 - Mandatory notes: PMT, PMD, AAB - Rule BR-FR-09: SIRET/SIREN consistency  **Advantages over synchronous version:** - OCR support for image PDFs (via DocTR service) - Longer timeout for large documents - Doesn\'t block the server  ## Webhook notification (recommended)  Instead of polling, you can receive a webhook notification when verification completes:  ``` callback_url=https://your-server.com/webhook ```  The webhook will POST a JSON payload with: - `event_type`: `verification.completed` or `verification.failed` - `data.is_compliant`: Whether the PDF/XML are consistent - `data.compliance_score`: Compliance score (0-1) - `X-Webhook-Signature` header for HMAC verification
          * @summary Verify PDF/XML Factur-X compliance (asynchronous)
          * @param {File} pdfFile Factur-X PDF file to verify
@@ -295,6 +361,17 @@ export class FacturXPDFXMLVerificationApi extends BaseAPI {
      */
     public getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId: string, options?: RawAxiosRequestConfig) {
         return FacturXPDFXMLVerificationApiFp(this.configuration).getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet(taskId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Typed status endpoint for async verification tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `VerificationSuccessTaskResult` with `verification_result` - **ERROR**: `TaskErrorResult` in AFNOR format
+     * @summary Get typed status of an asynchronous verification
+     * @param {string} taskId Celery task ID returned by /verify-async endpoint
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet(taskId: string, options?: RawAxiosRequestConfig) {
+        return FacturXPDFXMLVerificationApiFp(this.configuration).getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet(taskId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

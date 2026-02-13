@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **destinationType** | **string** | Destination type | [default to undefined]
 **chorusResult** | [**ChorusProResult**](ChorusProResult.md) |  | [optional] [default to undefined]
 **afnorResult** | [**AFNORResult**](AFNORResult.md) |  | [optional] [default to undefined]
-**enrichedInvoice** | [**EnrichedInvoiceInfo**](EnrichedInvoiceInfo.md) | Enriched invoice data | [default to undefined]
+**enrichedInvoice** | [**EnrichedInvoiceInfo**](EnrichedInvoiceInfo.md) | Enriched invoice data (summary) | [default to undefined]
+**invoice** | **{ [key: string]: any; }** | Complete enriched invoice data (FacturXInvoice format). Use this to regenerate the same invoice. | [default to undefined]
 **facturxPdf** | [**FacturXPDFInfo**](FacturXPDFInfo.md) | Generated PDF information | [default to undefined]
 **signature** | [**SignatureInfo**](SignatureInfo.md) |  | [optional] [default to undefined]
 **contentB64** | **string** | Generated Factur-X PDF (and signed if requested) base64-encoded | [default to undefined]
@@ -27,6 +28,7 @@ const instance: SubmitCompleteInvoiceResponse = {
     chorusResult,
     afnorResult,
     enrichedInvoice,
+    invoice,
     facturxPdf,
     signature,
     contentB64,

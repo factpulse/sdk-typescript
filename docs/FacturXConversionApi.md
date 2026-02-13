@@ -7,6 +7,7 @@ All URIs are relative to *https://factpulse.fr*
 |[**convertDocumentAsyncApiV1ConvertAsyncPost**](#convertdocumentasyncapiv1convertasyncpost) | **POST** /api/v1/convert/async | Convert a document to Factur-X (async mode)|
 |[**downloadFileApiV1ConvertConversionIdDownloadFilenameGet**](#downloadfileapiv1convertconversioniddownloadfilenameget) | **GET** /api/v1/convert/{conversion_id}/download/{filename} | Download a generated file|
 |[**getConversionStatusApiV1ConvertConversionIdStatusGet**](#getconversionstatusapiv1convertconversionidstatusget) | **GET** /api/v1/convert/{conversion_id}/status | Check conversion status|
+|[**getConversionTaskStatusApiV1ConvertTasksTaskIdConversionStatusGet**](#getconversiontaskstatusapiv1converttaskstaskidconversionstatusget) | **GET** /api/v1/convert/tasks/{task_id}/conversion-status | Get typed conversion task status|
 |[**resumeConversionApiV1ConvertConversionIdResumePost**](#resumeconversionapiv1convertconversionidresumepost) | **POST** /api/v1/convert/{conversion_id}/resume | Resume a conversion with corrections|
 |[**resumeConversionAsyncApiV1ConvertConversionIdResumeAsyncPost**](#resumeconversionasyncapiv1convertconversionidresumeasyncpost) | **POST** /api/v1/convert/{conversion_id}/resume/async | Resume a conversion asynchronously|
 
@@ -164,6 +165,59 @@ const { status, data } = await apiInstance.getConversionStatusApiV1ConvertConver
 ### Return type
 
 **{ [key: string]: any; }**
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getConversionTaskStatusApiV1ConvertTasksTaskIdConversionStatusGet**
+> ConversionTaskStatus getConversionTaskStatusApiV1ConvertTasksTaskIdConversionStatusGet()
+
+Typed status endpoint for document conversion tasks.  Returns a strongly-typed `result` discriminated on `result.status`: - **SUCCESS**: `ConversionSuccessTaskResult` - **PENDING_INPUT**: `ConversionPendingInputResult` (missing fields) - **VALIDATION_FAILED**: `ConversionValidationFailedResult` - **ERROR**: `ConversionErrorResult`
+
+### Example
+
+```typescript
+import {
+    FacturXConversionApi,
+    Configuration
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new FacturXConversionApi(configuration);
+
+let taskId: string; //Celery task ID returned by POST /convert (default to undefined)
+
+const { status, data } = await apiInstance.getConversionTaskStatusApiV1ConvertTasksTaskIdConversionStatusGet(
+    taskId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **taskId** | [**string**] | Celery task ID returned by POST /convert | defaults to undefined|
+
+
+### Return type
+
+**ConversionTaskStatus**
 
 ### Authorization
 

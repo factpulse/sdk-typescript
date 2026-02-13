@@ -5,6 +5,7 @@ All URIs are relative to *https://factpulse.fr*
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
 |[**getVerificationStatusApiV1VerificationVerifyAsyncTaskIdStatusGet**](#getverificationstatusapiv1verificationverifyasynctaskidstatusget) | **GET** /api/v1/verification/verify-async/{task_id}/status | Get status of an asynchronous verification|
+|[**getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet**](#getverificationtypedstatusapiv1verificationverifyasynctaskidtypedstatusget) | **GET** /api/v1/verification/verify-async/{task_id}/typed-status | Get typed status of an asynchronous verification|
 |[**verifyPdfAsyncApiV1VerificationVerifyAsyncPost**](#verifypdfasyncapiv1verificationverifyasyncpost) | **POST** /api/v1/verification/verify-async | Verify PDF/XML Factur-X compliance (asynchronous)|
 |[**verifyPdfSyncApiV1VerificationVerifyPost**](#verifypdfsyncapiv1verificationverifypost) | **POST** /api/v1/verification/verify | Verify PDF/XML Factur-X compliance (synchronous)|
 
@@ -41,6 +42,59 @@ const { status, data } = await apiInstance.getVerificationStatusApiV1Verificatio
 ### Return type
 
 **AsyncTaskStatus**
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**422** | Validation Error |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet**
+> VerificationTypedTaskStatus getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet()
+
+Typed status endpoint for async verification tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `VerificationSuccessTaskResult` with `verification_result` - **ERROR**: `TaskErrorResult` in AFNOR format
+
+### Example
+
+```typescript
+import {
+    FacturXPDFXMLVerificationApi,
+    Configuration
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new FacturXPDFXMLVerificationApi(configuration);
+
+let taskId: string; //Celery task ID returned by /verify-async endpoint (default to undefined)
+
+const { status, data } = await apiInstance.getVerificationTypedStatusApiV1VerificationVerifyAsyncTaskIdTypedStatusGet(
+    taskId
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **taskId** | [**string**] | Celery task ID returned by /verify-async endpoint | defaults to undefined|
+
+
+### Return type
+
+**VerificationTypedTaskStatus**
 
 ### Authorization
 

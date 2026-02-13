@@ -1,0 +1,34 @@
+# GenerationTaskStatusResult
+
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**status** | **string** |  | [optional] [default to StatusEnum_Error]
+**content_b64** | **string** |  | [optional] [default to undefined]
+**xml_content** | **string** |  | [optional] [default to undefined]
+**filename** | **string** |  | [default to undefined]
+**errorCode** | **string** |  | [default to undefined]
+**errorMessage** | **string** |  | [default to undefined]
+**details** | [**Array&lt;AFNORErrorDetail&gt;**](AFNORErrorDetail.md) |  | [optional] [default to undefined]
+**traceback** | **string** |  | [optional] [default to undefined]
+
+## Example
+
+```typescript
+import { GenerationTaskStatusResult } from '@factpulse/sdk';
+
+const instance: GenerationTaskStatusResult = {
+    status,
+    content_b64,
+    xml_content,
+    filename,
+    errorCode,
+    errorMessage,
+    details,
+    traceback,
+};
+```
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

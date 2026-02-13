@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * FactPulse REST API
- *  REST API for electronic invoicing in France: Factur-X, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Factur-X - Generation - **Formats**: XML only or PDF/A-3 with embedded XML - **Profiles**: MINIMUM, BASIC, EN16931, EXTENDED - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT) - **🆕 Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Factur-X - Validation - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)  ### ✍️ Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification  ### 📋 Flux 6 - Invoice Lifecycle (CDAR) - **CDAR Messages**: Acknowledgements, invoice statuses - **PPF Statuses**: REFUSED (210), PAID (212)  ### 📊 Flux 10 - E-Reporting - **Tax Declarations**: International B2B, B2C - **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4 (B2C payments)  ### 📡 AFNOR PDP/PA (XP Z12-013) - **Flow Service**: Submit and search flows to PDPs - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user  ### 🏛️ Chorus Pro - **Public Sector Invoicing**: Complete API for Chorus Pro  ### ⏳ Async Tasks - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **Webhooks**: Automatic notifications when tasks complete  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d \'{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }\' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d \'{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }\' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
+ *  REST API for electronic invoicing in France: Factur-X (CII), UBL 2.1, AFNOR PDP/PA, electronic signatures.  ## 🎯 Main Features  ### 📄 Invoice Generation - **Formats**: CII XML, UBL 2.1 XML, or Factur-X PDF/A-3 - **Profiles** (CII/PDF): MINIMUM, BASIC, EN16931, EXTENDED - **UBL**: Always EN16931 compliant - **Standards**: EN 16931 (EU directive 2014/55), ISO 19005-3 (PDF/A-3), CII (UN/CEFACT), UBL 2.1 (OASIS) - **Simplified Format**: Generation from SIRET + auto-enrichment (Chorus Pro API + Business Search)  ### ✅ Factur-X - Validation - **XML Validation**: Schematron (45 to 210+ rules depending on profile) - **PDF Validation**: PDF/A-3, Factur-X XMP metadata - **VeraPDF**: Strict PDF/A validation (146+ ISO 19005-3 rules)  ### ✍️ Electronic Signature - **Standards**: PAdES-B-B, PAdES-B-T (RFC 3161 timestamping), PAdES-B-LT (long-term archival) - **eIDAS Levels**: SES (self-signed), AdES (commercial CA), QES (QTSP) - **Validation**: Cryptographic integrity and certificate verification  ### 📋 Flux 6 - Invoice Lifecycle (CDAR) - **CDAR Messages**: Acknowledgements, invoice statuses - **PPF Statuses**: REFUSED (210), PAID (212)  ### 📊 Flux 10 - E-Reporting - **Tax Declarations**: International B2B, B2C - **Flow Types**: 10.1 (B2B transactions), 10.2 (B2B payments), 10.3 (B2C transactions), 10.4 (B2C payments)  ### 📡 AFNOR PDP/PA (XP Z12-013) - **Flow Service**: Submit and search flows to PDPs - **Directory Service**: Company search (SIREN/SIRET) - **Multi-client**: Support for multiple PDP configs per user  ### 🏛️ Chorus Pro - **Public Sector Invoicing**: Complete API for Chorus Pro  ### ⏳ Async Tasks - **Celery**: Asynchronous generation, validation and signing - **Polling**: Status tracking via `/tasks/{task_id}/status` - **Webhooks**: Automatic notifications when tasks complete  ## 🔒 Authentication  All requests require a **JWT token** in the Authorization header: ``` Authorization: Bearer YOUR_JWT_TOKEN ```  ### How to obtain a JWT token?  #### 🔑 Method 1: `/api/token/` API (Recommended)  **URL:** `https://factpulse.fr/api/token/`  This method is **recommended** for integration in your applications and CI/CD workflows.  **Prerequisites:** Having set a password on your account  **For users registered via email/password:** - You already have a password, use it directly  **For users registered via OAuth (Google/GitHub):** - You must first set a password at: https://factpulse.fr/accounts/password/set/ - Once the password is created, you can use the API  **Request example:** ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d \'{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\"   }\' ```  **Optional `client_uid` parameter:**  To select credentials for a specific client (PA/PDP, Chorus Pro, signing certificates), add `client_uid`:  ```bash curl -X POST https://factpulse.fr/api/token/ \\   -H \"Content-Type: application/json\" \\   -d \'{     \"username\": \"your_email@example.com\",     \"password\": \"your_password\",     \"client_uid\": \"550e8400-e29b-41d4-a716-446655440000\"   }\' ```  The `client_uid` will be included in the JWT and allow the API to automatically use: - AFNOR/PDP credentials configured for this client - Chorus Pro credentials configured for this client - Electronic signature certificates configured for this client  **Response:** ```json {   \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\",  // Access token (validity: 30 min)   \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGc...\"  // Refresh token (validity: 7 days) } ```  **Advantages:** - ✅ Full automation (CI/CD, scripts) - ✅ Programmatic token management - ✅ Refresh token support for automatic access renewal - ✅ Easy integration in any language/tool  #### 🖥️ Method 2: Dashboard Generation (Alternative)  **URL:** https://factpulse.fr/api/dashboard/  This method is suitable for quick tests or occasional use via the graphical interface.  **How it works:** - Log in to the dashboard - Use the \"Generate Test Token\" or \"Generate Production Token\" buttons - Works for **all** users (OAuth and email/password), without requiring a password  **Token types:** - **Test Token**: 24h validity, 1000 calls/day quota (free) - **Production Token**: 7 days validity, quota based on your plan  **Advantages:** - ✅ Quick for API testing - ✅ No password required - ✅ Simple visual interface  **Disadvantages:** - ❌ Requires manual action - ❌ No refresh token - ❌ Less suited for automation  ### 📚 Full Documentation  For more information on authentication and API usage: https://factpulse.fr/documentation-api/     
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: contact@factpulse.fr
@@ -26,12 +26,100 @@ import type { APIError } from '../models';
 // @ts-ignore
 import type { AsyncTaskStatus } from '../models';
 // @ts-ignore
+import type { GenerationTaskStatus } from '../models';
+// @ts-ignore
 import type { HTTPValidationError } from '../models';
+// @ts-ignore
+import type { SignatureTaskStatus } from '../models';
+// @ts-ignore
+import type { ValidationTaskStatus } from '../models';
 /**
  * AsyncTasksApi - axios parameter creator
  */
 export const AsyncTasksApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Typed status endpoint for invoice generation tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `GenerationSuccessResult` with `content_b64` / `xml_content` - **ERROR**: `TaskErrorResult` in AFNOR format
+         * @summary Get typed generation task status
+         * @param {string} taskId Celery task ID returned by /generate-invoice
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGenerationTaskStatusApiV1ProcessingTasksTaskIdGenerationStatusGet: async (taskId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'taskId' is not null or undefined
+            assertParamExists('getGenerationTaskStatusApiV1ProcessingTasksTaskIdGenerationStatusGet', 'taskId', taskId)
+            const localVarPath = `/api/v1/processing/tasks/{task_id}/generation-status`
+                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Typed status endpoint for PDF signing tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `SignatureSuccessResult` with `content_b64`, `signer_cn`, etc. - **ERROR**: `TaskErrorResult` in AFNOR format
+         * @summary Get typed signature task status
+         * @param {string} taskId Celery task ID returned by /sign-pdf-async
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSignatureTaskStatusApiV1ProcessingTasksTaskIdSignatureStatusGet: async (taskId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'taskId' is not null or undefined
+            assertParamExists('getSignatureTaskStatusApiV1ProcessingTasksTaskIdSignatureStatusGet', 'taskId', taskId)
+            const localVarPath = `/api/v1/processing/tasks/{task_id}/signature-status`
+                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Retrieves the progress status of an invoice generation task.  ## Possible states  The `status` field uses the `CeleryStatus` enum with values: - **PENDING, STARTED, SUCCESS, FAILURE, RETRY**  See the `CeleryStatus` schema documentation for details.  ## Business result  When `status=\"SUCCESS\"`, the `result` field contains: - `status`: \"SUCCESS\" or \"ERROR\" (business result) - `content_b64`: Base64 encoded content (if success) - `errorCode`, `errorMessage`, `details`: AFNOR format (if business error)  ## Usage  Poll this endpoint every 2-3 seconds until `status` is `SUCCESS` or `FAILURE`.
          * @summary Get task generation status
@@ -73,6 +161,47 @@ export const AsyncTasksApiAxiosParamCreator = function (configuration?: Configur
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Typed status endpoint for Factur-X PDF validation tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `ValidationSuccessTaskResult` with `validation_result` - **ERROR**: `TaskErrorResult` in AFNOR format
+         * @summary Get typed validation task status
+         * @param {string} taskId Celery task ID returned by /validate-pdf
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getValidationTaskStatusApiV1ProcessingTasksTaskIdValidationStatusGet: async (taskId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'taskId' is not null or undefined
+            assertParamExists('getValidationTaskStatusApiV1ProcessingTasksTaskIdValidationStatusGet', 'taskId', taskId)
+            const localVarPath = `/api/v1/processing/tasks/{task_id}/validation-status`
+                .replace(`{${"task_id"}}`, encodeURIComponent(String(taskId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -82,6 +211,32 @@ export const AsyncTasksApiAxiosParamCreator = function (configuration?: Configur
 export const AsyncTasksApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AsyncTasksApiAxiosParamCreator(configuration)
     return {
+        /**
+         * Typed status endpoint for invoice generation tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `GenerationSuccessResult` with `content_b64` / `xml_content` - **ERROR**: `TaskErrorResult` in AFNOR format
+         * @summary Get typed generation task status
+         * @param {string} taskId Celery task ID returned by /generate-invoice
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getGenerationTaskStatusApiV1ProcessingTasksTaskIdGenerationStatusGet(taskId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GenerationTaskStatus>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getGenerationTaskStatusApiV1ProcessingTasksTaskIdGenerationStatusGet(taskId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AsyncTasksApi.getGenerationTaskStatusApiV1ProcessingTasksTaskIdGenerationStatusGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Typed status endpoint for PDF signing tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `SignatureSuccessResult` with `content_b64`, `signer_cn`, etc. - **ERROR**: `TaskErrorResult` in AFNOR format
+         * @summary Get typed signature task status
+         * @param {string} taskId Celery task ID returned by /sign-pdf-async
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getSignatureTaskStatusApiV1ProcessingTasksTaskIdSignatureStatusGet(taskId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SignatureTaskStatus>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSignatureTaskStatusApiV1ProcessingTasksTaskIdSignatureStatusGet(taskId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AsyncTasksApi.getSignatureTaskStatusApiV1ProcessingTasksTaskIdSignatureStatusGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
         /**
          * Retrieves the progress status of an invoice generation task.  ## Possible states  The `status` field uses the `CeleryStatus` enum with values: - **PENDING, STARTED, SUCCESS, FAILURE, RETRY**  See the `CeleryStatus` schema documentation for details.  ## Business result  When `status=\"SUCCESS\"`, the `result` field contains: - `status`: \"SUCCESS\" or \"ERROR\" (business result) - `content_b64`: Base64 encoded content (if success) - `errorCode`, `errorMessage`, `details`: AFNOR format (if business error)  ## Usage  Poll this endpoint every 2-3 seconds until `status` is `SUCCESS` or `FAILURE`.
          * @summary Get task generation status
@@ -95,6 +250,19 @@ export const AsyncTasksApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['AsyncTasksApi.getTaskStatusApiV1ProcessingTasksTaskIdStatusGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * Typed status endpoint for Factur-X PDF validation tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `ValidationSuccessTaskResult` with `validation_result` - **ERROR**: `TaskErrorResult` in AFNOR format
+         * @summary Get typed validation task status
+         * @param {string} taskId Celery task ID returned by /validate-pdf
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getValidationTaskStatusApiV1ProcessingTasksTaskIdValidationStatusGet(taskId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ValidationTaskStatus>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getValidationTaskStatusApiV1ProcessingTasksTaskIdValidationStatusGet(taskId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AsyncTasksApi.getValidationTaskStatusApiV1ProcessingTasksTaskIdValidationStatusGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -105,6 +273,26 @@ export const AsyncTasksApiFactory = function (configuration?: Configuration, bas
     const localVarFp = AsyncTasksApiFp(configuration)
     return {
         /**
+         * Typed status endpoint for invoice generation tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `GenerationSuccessResult` with `content_b64` / `xml_content` - **ERROR**: `TaskErrorResult` in AFNOR format
+         * @summary Get typed generation task status
+         * @param {string} taskId Celery task ID returned by /generate-invoice
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGenerationTaskStatusApiV1ProcessingTasksTaskIdGenerationStatusGet(taskId: string, options?: RawAxiosRequestConfig): AxiosPromise<GenerationTaskStatus> {
+            return localVarFp.getGenerationTaskStatusApiV1ProcessingTasksTaskIdGenerationStatusGet(taskId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Typed status endpoint for PDF signing tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `SignatureSuccessResult` with `content_b64`, `signer_cn`, etc. - **ERROR**: `TaskErrorResult` in AFNOR format
+         * @summary Get typed signature task status
+         * @param {string} taskId Celery task ID returned by /sign-pdf-async
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSignatureTaskStatusApiV1ProcessingTasksTaskIdSignatureStatusGet(taskId: string, options?: RawAxiosRequestConfig): AxiosPromise<SignatureTaskStatus> {
+            return localVarFp.getSignatureTaskStatusApiV1ProcessingTasksTaskIdSignatureStatusGet(taskId, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Retrieves the progress status of an invoice generation task.  ## Possible states  The `status` field uses the `CeleryStatus` enum with values: - **PENDING, STARTED, SUCCESS, FAILURE, RETRY**  See the `CeleryStatus` schema documentation for details.  ## Business result  When `status=\"SUCCESS\"`, the `result` field contains: - `status`: \"SUCCESS\" or \"ERROR\" (business result) - `content_b64`: Base64 encoded content (if success) - `errorCode`, `errorMessage`, `details`: AFNOR format (if business error)  ## Usage  Poll this endpoint every 2-3 seconds until `status` is `SUCCESS` or `FAILURE`.
          * @summary Get task generation status
          * @param {string} taskId Celery task ID returned by async endpoints (UUID format)
@@ -114,6 +302,16 @@ export const AsyncTasksApiFactory = function (configuration?: Configuration, bas
         getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId: string, options?: RawAxiosRequestConfig): AxiosPromise<AsyncTaskStatus> {
             return localVarFp.getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Typed status endpoint for Factur-X PDF validation tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `ValidationSuccessTaskResult` with `validation_result` - **ERROR**: `TaskErrorResult` in AFNOR format
+         * @summary Get typed validation task status
+         * @param {string} taskId Celery task ID returned by /validate-pdf
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getValidationTaskStatusApiV1ProcessingTasksTaskIdValidationStatusGet(taskId: string, options?: RawAxiosRequestConfig): AxiosPromise<ValidationTaskStatus> {
+            return localVarFp.getValidationTaskStatusApiV1ProcessingTasksTaskIdValidationStatusGet(taskId, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -121,6 +319,28 @@ export const AsyncTasksApiFactory = function (configuration?: Configuration, bas
  * AsyncTasksApi - object-oriented interface
  */
 export class AsyncTasksApi extends BaseAPI {
+    /**
+     * Typed status endpoint for invoice generation tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `GenerationSuccessResult` with `content_b64` / `xml_content` - **ERROR**: `TaskErrorResult` in AFNOR format
+     * @summary Get typed generation task status
+     * @param {string} taskId Celery task ID returned by /generate-invoice
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getGenerationTaskStatusApiV1ProcessingTasksTaskIdGenerationStatusGet(taskId: string, options?: RawAxiosRequestConfig) {
+        return AsyncTasksApiFp(this.configuration).getGenerationTaskStatusApiV1ProcessingTasksTaskIdGenerationStatusGet(taskId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Typed status endpoint for PDF signing tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `SignatureSuccessResult` with `content_b64`, `signer_cn`, etc. - **ERROR**: `TaskErrorResult` in AFNOR format
+     * @summary Get typed signature task status
+     * @param {string} taskId Celery task ID returned by /sign-pdf-async
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getSignatureTaskStatusApiV1ProcessingTasksTaskIdSignatureStatusGet(taskId: string, options?: RawAxiosRequestConfig) {
+        return AsyncTasksApiFp(this.configuration).getSignatureTaskStatusApiV1ProcessingTasksTaskIdSignatureStatusGet(taskId, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Retrieves the progress status of an invoice generation task.  ## Possible states  The `status` field uses the `CeleryStatus` enum with values: - **PENDING, STARTED, SUCCESS, FAILURE, RETRY**  See the `CeleryStatus` schema documentation for details.  ## Business result  When `status=\"SUCCESS\"`, the `result` field contains: - `status`: \"SUCCESS\" or \"ERROR\" (business result) - `content_b64`: Base64 encoded content (if success) - `errorCode`, `errorMessage`, `details`: AFNOR format (if business error)  ## Usage  Poll this endpoint every 2-3 seconds until `status` is `SUCCESS` or `FAILURE`.
      * @summary Get task generation status
@@ -130,6 +350,17 @@ export class AsyncTasksApi extends BaseAPI {
      */
     public getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId: string, options?: RawAxiosRequestConfig) {
         return AsyncTasksApiFp(this.configuration).getTaskStatusApiV1ProcessingTasksTaskIdStatusGet(taskId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Typed status endpoint for Factur-X PDF validation tasks.  Returns a strongly-typed `result` (discriminated on `result.status`): - **SUCCESS**: `ValidationSuccessTaskResult` with `validation_result` - **ERROR**: `TaskErrorResult` in AFNOR format
+     * @summary Get typed validation task status
+     * @param {string} taskId Celery task ID returned by /validate-pdf
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getValidationTaskStatusApiV1ProcessingTasksTaskIdValidationStatusGet(taskId: string, options?: RawAxiosRequestConfig) {
+        return AsyncTasksApiFp(this.configuration).getValidationTaskStatusApiV1ProcessingTasksTaskIdValidationStatusGet(taskId, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
