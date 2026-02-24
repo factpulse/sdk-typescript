@@ -63,66 +63,6 @@ export const HealthApiAxiosParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
-        /**
-         * Healthcheck endpoint for Docker and load balancers.  Useful for: - Docker healthcheck - Kubernetes liveness/readiness probes - Load balancers (Nginx, HAProxy) - Availability monitoring - Zero downtime deployment  Returns a 200 code if the API is operational.
-         * @summary Docker healthcheck endpoint
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        healthcheckHealthcheckGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/healthcheck`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Health check endpoint to verify the API is responding.  Useful for: - Availability monitoring - Integration tests - Load balancers
-         * @summary Check API status
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        rootGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
     }
 };
 
@@ -144,30 +84,6 @@ export const HealthApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['HealthApi.getUserInfoApiV1MeGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
-        /**
-         * Healthcheck endpoint for Docker and load balancers.  Useful for: - Docker healthcheck - Kubernetes liveness/readiness probes - Load balancers (Nginx, HAProxy) - Availability monitoring - Zero downtime deployment  Returns a 200 code if the API is operational.
-         * @summary Docker healthcheck endpoint
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async healthcheckHealthcheckGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.healthcheckHealthcheckGet(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['HealthApi.healthcheckHealthcheckGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Health check endpoint to verify the API is responding.  Useful for: - Availability monitoring - Integration tests - Load balancers
-         * @summary Check API status
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async rootGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.rootGet(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['HealthApi.rootGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
     }
 };
 
@@ -186,24 +102,6 @@ export const HealthApiFactory = function (configuration?: Configuration, basePat
         getUserInfoApiV1MeGet(options?: RawAxiosRequestConfig): AxiosPromise<any> {
             return localVarFp.getUserInfoApiV1MeGet(options).then((request) => request(axios, basePath));
         },
-        /**
-         * Healthcheck endpoint for Docker and load balancers.  Useful for: - Docker healthcheck - Kubernetes liveness/readiness probes - Load balancers (Nginx, HAProxy) - Availability monitoring - Zero downtime deployment  Returns a 200 code if the API is operational.
-         * @summary Docker healthcheck endpoint
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        healthcheckHealthcheckGet(options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.healthcheckHealthcheckGet(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Health check endpoint to verify the API is responding.  Useful for: - Availability monitoring - Integration tests - Load balancers
-         * @summary Check API status
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        rootGet(options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.rootGet(options).then((request) => request(axios, basePath));
-        },
     };
 };
 
@@ -219,26 +117,6 @@ export class HealthApi extends BaseAPI {
      */
     public getUserInfoApiV1MeGet(options?: RawAxiosRequestConfig) {
         return HealthApiFp(this.configuration).getUserInfoApiV1MeGet(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Healthcheck endpoint for Docker and load balancers.  Useful for: - Docker healthcheck - Kubernetes liveness/readiness probes - Load balancers (Nginx, HAProxy) - Availability monitoring - Zero downtime deployment  Returns a 200 code if the API is operational.
-     * @summary Docker healthcheck endpoint
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public healthcheckHealthcheckGet(options?: RawAxiosRequestConfig) {
-        return HealthApiFp(this.configuration).healthcheckHealthcheckGet(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Health check endpoint to verify the API is responding.  Useful for: - Availability monitoring - Integration tests - Load balancers
-     * @summary Check API status
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public rootGet(options?: RawAxiosRequestConfig) {
-        return HealthApiFp(this.configuration).rootGet(options).then((request) => request(this.axios, this.basePath));
     }
 }
 

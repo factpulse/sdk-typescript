@@ -1,12 +1,15 @@
 # ValidationErrorResponse
 
-Response for validation errors.
+Erreur de validation.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**detail** | **Array&lt;string&gt;** | List of detected validation errors. | [default to undefined]
+**field** | **string** | Champ concerné | [default to undefined]
+**message** | **string** | Message d\&#39;erreur | [default to undefined]
+**rule** | **string** |  | [optional] [default to undefined]
+**severity** | **string** | Sévérité (error/warning) | [optional] [default to 'error']
 
 ## Example
 
@@ -14,7 +17,10 @@ Name | Type | Description | Notes
 import { ValidationErrorResponse } from '@factpulse/sdk';
 
 const instance: ValidationErrorResponse = {
-    detail,
+    field,
+    message,
+    rule,
+    severity,
 };
 ```
 

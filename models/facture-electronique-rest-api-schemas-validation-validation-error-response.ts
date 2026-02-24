@@ -15,18 +15,12 @@
 
 
 /**
- * Invoice type codes (UNTDID 1001).
+ * Response for validation errors.
  */
-
-export const FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = {
-    _380: '380',
-    _381: '381',
-    _384: '384',
-    _389: '389',
-    _386: '386'
-} as const;
-
-export type FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode[keyof typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode];
-
-
+export interface FactureElectroniqueRestApiSchemasValidationValidationErrorResponse {
+    /**
+     * List of detected validation errors.
+     */
+    'detail': Array<string>;
+}
 
