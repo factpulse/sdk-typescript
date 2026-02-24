@@ -23,7 +23,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new DownloadsApi(configuration);
 
-let downloadId: string; // (default to undefined)
+let downloadId: string; //Unique identifier of the temporary file to check (default to undefined)
 
 const { status, data } = await apiInstance.checkFileApiV1DownloadDownloadIdHead(
     downloadId
@@ -34,7 +34,7 @@ const { status, data } = await apiInstance.checkFileApiV1DownloadDownloadIdHead(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **downloadId** | [**string**] |  | defaults to undefined|
+| **downloadId** | [**string**] | Unique identifier of the temporary file to check | defaults to undefined|
 
 
 ### Return type
@@ -78,7 +78,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new DownloadsApi(configuration);
 
-let downloadId: string; // (default to undefined)
+let downloadId: string; //Unique identifier of the temporary file to download (default to undefined)
 let deleteAfter: boolean; //If true, delete the file after download (one-time download) (optional) (default to false)
 
 const { status, data } = await apiInstance.downloadFileApiV1DownloadDownloadIdGet(
@@ -91,7 +91,7 @@ const { status, data } = await apiInstance.downloadFileApiV1DownloadDownloadIdGe
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **downloadId** | [**string**] |  | defaults to undefined|
+| **downloadId** | [**string**] | Unique identifier of the temporary file to download | defaults to undefined|
 | **deleteAfter** | [**boolean**] | If true, delete the file after download (one-time download) | (optional) defaults to false|
 
 

@@ -13,14 +13,16 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { VATEXCodeInfo } from './vatexcode-info';
 
 /**
- * Response for validation errors.
+ * Response for the VATEX codes endpoint.
  */
-export interface FactureElectroniqueRestApiSchemasValidationValidationErrorResponse {
-    /**
-     * List of detected validation errors.
-     */
-    'detail': Array<string>;
+export interface VATEXCodesResponse {
+    'codes': Array<VATEXCodeInfo>;
+    'count': number;
+    'source'?: string;
 }
 

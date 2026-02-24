@@ -19,6 +19,7 @@ api/flux6-invoice-lifecycle-cdarapi.ts
 api/health-api.ts
 api/invoice-generation-api.ts
 api/parse-api.ts
+api/references-api.ts
 api/validation-api.ts
 base.ts
 common.ts
@@ -195,9 +196,9 @@ docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
 docs/FacturXPDFXMLVerificationApi.md
 docs/FacturXValidationApi.md
-docs/FactureElectroniqueModelsInvoiceTypeCode.md
-docs/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md
-docs/FactureElectroniqueRestApiSchemasValidationValidationErrorResponse.md
+docs/FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.md
+docs/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md
+docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
 docs/FieldStatus.md
 docs/FileInfo.md
 docs/FilesInfo.md
@@ -231,6 +232,7 @@ docs/IncomingSupplier.md
 docs/InvoiceFormat.md
 docs/InvoiceGenerationApi.md
 docs/InvoiceInput.md
+docs/InvoiceLifecycle.md
 docs/InvoiceLine.md
 docs/InvoiceLineAllowanceAmount.md
 docs/InvoiceNote.md
@@ -246,6 +248,8 @@ docs/InvoicingFrameworkCode.md
 docs/IssuerRoleCode.md
 docs/KeyRotationRequest.md
 docs/KeyRotationResponse.md
+docs/LifecycleEvent.md
+docs/LifecycleResponse.md
 docs/LineNetAmount.md
 docs/LineSubType.md
 docs/LineTotalAmount.md
@@ -282,6 +286,7 @@ docs/ReasonCodeInfo.md
 docs/ReasonCodesResponse.md
 docs/Recipient.md
 docs/RecipientInput.md
+docs/ReferencesApi.md
 docs/RefuseeRequest.md
 docs/ReportIssuer.md
 docs/ReportPeriod.md
@@ -349,6 +354,8 @@ docs/UnitOfMeasure.md
 docs/VATAccountingCode.md
 docs/VATAmount.md
 docs/VATCategory.md
+docs/VATEXCodeInfo.md
+docs/VATEXCodesResponse.md
 docs/VATLine.md
 docs/VATPointDateCode.md
 docs/ValidateCDARRequest.md
@@ -536,9 +543,9 @@ models/error-source.ts
 models/extraction-info.ts
 models/factur-xinvoice.ts
 models/factur-xpdfinfo.ts
-models/facture-electronique-models-invoice-type-code.ts
-models/facture-electronique-rest-api-schemas-chorus-pro-chorus-pro-credentials.ts
-models/facture-electronique-rest-api-schemas-validation-validation-error-response.ts
+models/facture-electronique-rest-api-schemas-cdar-validation-error-response.ts
+models/facture-electronique-rest-api-schemas-ereporting-invoice-type-code.ts
+models/facture-electronique-rest-api-schemas-processing-chorus-pro-credentials.ts
 models/field-status.ts
 models/file-info.ts
 models/files-info.ts
@@ -569,6 +576,7 @@ models/incoming-supplier.ts
 models/index.ts
 models/invoice-format.ts
 models/invoice-input.ts
+models/invoice-lifecycle.ts
 models/invoice-line-allowance-amount.ts
 models/invoice-line.ts
 models/invoice-note.ts
@@ -584,6 +592,8 @@ models/invoicing-framework.ts
 models/issuer-role-code.ts
 models/key-rotation-request.ts
 models/key-rotation-response.ts
+models/lifecycle-event.ts
+models/lifecycle-response.ts
 models/line-net-amount.ts
 models/line-sub-type.ts
 models/line-total-amount.ts
@@ -699,6 +709,8 @@ models/vat-rate.ts
 models/vataccounting-code.ts
 models/vatamount.ts
 models/vatcategory.ts
+models/vatexcode-info.ts
+models/vatexcodes-response.ts
 models/vatline.ts
 models/vatpoint-date-code.ts
 models/verification-success-response.ts

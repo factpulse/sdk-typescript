@@ -30,5 +30,6 @@ export * from './api/flux6-invoice-lifecycle-cdarapi';
 export * from './api/health-api';
 export * from './api/invoice-generation-api';
 export * from './api/parse-api';
+export * from './api/references-api';
 export * from './api/validation-api';
 

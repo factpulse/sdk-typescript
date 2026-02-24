@@ -7,7 +7,7 @@ Information about the supplier / seller (BG-4).
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **electronic_address** | [**ElectronicAddress**](ElectronicAddress.md) |  | [optional] [default to undefined]
-**supplier_id** | **number** |  | [default to undefined]
+**supplier_id** | **number** | Chorus Pro supplier structure ID (idFournisseur). Only required for B2G. | [optional] [default to 0]
 **private_id** | **string** |  | [optional] [default to undefined]
 **supplier_bank_account_code** | **number** |  | [optional] [default to undefined]
 **supplier_service_id** | **number** |  | [optional] [default to undefined]

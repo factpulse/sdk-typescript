@@ -6,6 +6,7 @@ All URIs are relative to *https://factpulse.fr*
 |------------- | ------------- | -------------|
 |[**generateCdarApiV1CdarGeneratePost**](#generatecdarapiv1cdargeneratepost) | **POST** /api/v1/cdar/generate | Generate a CDAR message|
 |[**getActionCodesApiV1CdarActionCodesGet**](#getactioncodesapiv1cdaractioncodesget) | **GET** /api/v1/cdar/action-codes | List of CDAR action codes|
+|[**getLifecycleApiV1CdarLifecycleGet**](#getlifecycleapiv1cdarlifecycleget) | **GET** /api/v1/cdar/lifecycle | [Simplified] Get lifecycle events for invoices|
 |[**getReasonCodesApiV1CdarReasonCodesGet**](#getreasoncodesapiv1cdarreasoncodesget) | **GET** /api/v1/cdar/reason-codes | List of CDAR reason codes|
 |[**getStatusCodesApiV1CdarStatusCodesGet**](#getstatuscodesapiv1cdarstatuscodesget) | **GET** /api/v1/cdar/status-codes | List of CDAR status codes|
 |[**submitCdarApiV1CdarSubmitPost**](#submitcdarapiv1cdarsubmitpost) | **POST** /api/v1/cdar/submit | Generate and submit a CDAR message|
@@ -115,6 +116,76 @@ No authorization required
 |**400** | Invalid request |  -  |
 |**422** | Validation error |  -  |
 |**500** | Server error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getLifecycleApiV1CdarLifecycleGet**
+> LifecycleResponse getLifecycleApiV1CdarLifecycleGet()
+
+Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+
+### Example
+
+```typescript
+import {
+    Flux6InvoiceLifecycleCDARApi,
+    Configuration
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new Flux6InvoiceLifecycleCDARApi(configuration);
+
+let days: number; //Number of days to look back (optional) (default to 7)
+let invoiceId: string; //Filter by invoice reference (optional) (default to undefined)
+let pdpFlowServiceUrl: string; //PDP Flow Service URL (optional) (default to undefined)
+let pdpTokenUrl: string; //PDP OAuth token URL (optional) (default to undefined)
+let pdpClientId: string; //PDP Client ID (optional) (default to undefined)
+let pdpClientSecret: string; //PDP Client Secret (optional) (default to undefined)
+
+const { status, data } = await apiInstance.getLifecycleApiV1CdarLifecycleGet(
+    days,
+    invoiceId,
+    pdpFlowServiceUrl,
+    pdpTokenUrl,
+    pdpClientId,
+    pdpClientSecret
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **days** | [**number**] | Number of days to look back | (optional) defaults to 7|
+| **invoiceId** | [**string**] | Filter by invoice reference | (optional) defaults to undefined|
+| **pdpFlowServiceUrl** | [**string**] | PDP Flow Service URL | (optional) defaults to undefined|
+| **pdpTokenUrl** | [**string**] | PDP OAuth token URL | (optional) defaults to undefined|
+| **pdpClientId** | [**string**] | PDP Client ID | (optional) defaults to undefined|
+| **pdpClientSecret** | [**string**] | PDP Client Secret | (optional) defaults to undefined|
+
+
+### Return type
+
+**LifecycleResponse**
+
+### Authorization
+
+[HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**400** | Invalid request |  -  |
+|**422** | Validation error |  -  |
+|**500** | Server error |  -  |
+|**401** | Authentication required - Invalid or missing JWT token |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

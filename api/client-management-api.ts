@@ -55,7 +55,7 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
         /**
          * Activate a deactivated client.  **Scope**: Client level (JWT with client_uid that must match {uid})
          * @summary Activate a client
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -138,7 +138,7 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
         /**
          * Deactivate an active client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Note**: A deactivated client cannot be used for API calls (AFNOR, Chorus Pro, etc.).
          * @summary Deactivate a client
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -179,7 +179,7 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
         /**
          * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
          * @summary Delete webhook secret
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -220,7 +220,7 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
         /**
          * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
          * @summary Generate webhook secret
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -261,7 +261,7 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
         /**
          * Get details of a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: If the JWT contains a client_uid, it must match the {uid} in the URL, otherwise a 403 error is returned.
          * @summary Get client details
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -302,7 +302,7 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
         /**
          * Get the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: The client secret is never returned. Only a status (`secretStatus`) indicates whether a secret is configured.  **Response**: - If configured: all config details (URLs, client_id, secret status) - If not configured: `isConfigured: false` with a message
          * @summary Get client PDP configuration
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -343,7 +343,7 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
         /**
          * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
          * @summary Get webhook secret status
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -431,7 +431,7 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
         /**
          * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with `encryptionMode: \"double\"` are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
          * @summary Rotate client encryption key
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {KeyRotationRequest} keyRotationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -477,7 +477,7 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
         /**
          * Update client information (partial update).  **Scope**: Client level (JWT with client_uid that must match {uid})  **Updatable fields**: - `name`: Client name - `description`: Description - `siret`: SIRET (14 digits)  Only provided fields are updated.
          * @summary Update a client
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {ClientUpdateRequest} clientUpdateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -523,7 +523,7 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
         /**
          * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - `flowServiceUrl`: PDP Flow Service URL - `tokenUrl`: PDP OAuth token URL - `oauthClientId`: OAuth Client ID - `clientSecret`: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - `isActive`: Enable/disable the config (default: true) - `modeSandbox`: Sandbox mode (default: false) - `encryptionMode`: Encryption mode (default: \"fernet\")   - \"fernet\": Server-side encryption only   - \"double\": Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When `encryptionMode` is set to \"double\", you MUST also provide the `X-Encryption-Key` header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the `clientSecret` on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The `clientSecret` is stored encrypted on Django side and is never returned in API responses.
          * @summary Configure client PDP
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {PDPConfigUpdateRequest} pDPConfigUpdateRequest 
          * @param {string | null} [xEncryptionKey] Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;.
          * @param {*} [options] Override http request option.
@@ -582,7 +582,7 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
         /**
          * Activate a deactivated client.  **Scope**: Client level (JWT with client_uid that must match {uid})
          * @summary Activate a client
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -608,7 +608,7 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
         /**
          * Deactivate an active client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Note**: A deactivated client cannot be used for API calls (AFNOR, Chorus Pro, etc.).
          * @summary Deactivate a client
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -621,7 +621,7 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
         /**
          * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
          * @summary Delete webhook secret
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -634,7 +634,7 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
         /**
          * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
          * @summary Generate webhook secret
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -647,7 +647,7 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
         /**
          * Get details of a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: If the JWT contains a client_uid, it must match the {uid} in the URL, otherwise a 403 error is returned.
          * @summary Get client details
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -660,7 +660,7 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
         /**
          * Get the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: The client secret is never returned. Only a status (`secretStatus`) indicates whether a secret is configured.  **Response**: - If configured: all config details (URLs, client_id, secret status) - If not configured: `isConfigured: false` with a message
          * @summary Get client PDP configuration
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -673,7 +673,7 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
         /**
          * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
          * @summary Get webhook secret status
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -700,7 +700,7 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
         /**
          * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with `encryptionMode: \"double\"` are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
          * @summary Rotate client encryption key
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {KeyRotationRequest} keyRotationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -714,7 +714,7 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
         /**
          * Update client information (partial update).  **Scope**: Client level (JWT with client_uid that must match {uid})  **Updatable fields**: - `name`: Client name - `description`: Description - `siret`: SIRET (14 digits)  Only provided fields are updated.
          * @summary Update a client
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {ClientUpdateRequest} clientUpdateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -728,7 +728,7 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
         /**
          * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - `flowServiceUrl`: PDP Flow Service URL - `tokenUrl`: PDP OAuth token URL - `oauthClientId`: OAuth Client ID - `clientSecret`: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - `isActive`: Enable/disable the config (default: true) - `modeSandbox`: Sandbox mode (default: false) - `encryptionMode`: Encryption mode (default: \"fernet\")   - \"fernet\": Server-side encryption only   - \"double\": Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When `encryptionMode` is set to \"double\", you MUST also provide the `X-Encryption-Key` header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the `clientSecret` on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The `clientSecret` is stored encrypted on Django side and is never returned in API responses.
          * @summary Configure client PDP
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {PDPConfigUpdateRequest} pDPConfigUpdateRequest 
          * @param {string | null} [xEncryptionKey] Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;.
          * @param {*} [options] Override http request option.
@@ -752,7 +752,7 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
         /**
          * Activate a deactivated client.  **Scope**: Client level (JWT with client_uid that must match {uid})
          * @summary Activate a client
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -772,7 +772,7 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
         /**
          * Deactivate an active client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Note**: A deactivated client cannot be used for API calls (AFNOR, Chorus Pro, etc.).
          * @summary Deactivate a client
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -782,7 +782,7 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
         /**
          * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
          * @summary Delete webhook secret
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -792,7 +792,7 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
         /**
          * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
          * @summary Generate webhook secret
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -802,7 +802,7 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
         /**
          * Get details of a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: If the JWT contains a client_uid, it must match the {uid} in the URL, otherwise a 403 error is returned.
          * @summary Get client details
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -812,7 +812,7 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
         /**
          * Get the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: The client secret is never returned. Only a status (`secretStatus`) indicates whether a secret is configured.  **Response**: - If configured: all config details (URLs, client_id, secret status) - If not configured: `isConfigured: false` with a message
          * @summary Get client PDP configuration
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -822,7 +822,7 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
         /**
          * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
          * @summary Get webhook secret status
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -843,7 +843,7 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
         /**
          * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with `encryptionMode: \"double\"` are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
          * @summary Rotate client encryption key
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {KeyRotationRequest} keyRotationRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -854,7 +854,7 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
         /**
          * Update client information (partial update).  **Scope**: Client level (JWT with client_uid that must match {uid})  **Updatable fields**: - `name`: Client name - `description`: Description - `siret`: SIRET (14 digits)  Only provided fields are updated.
          * @summary Update a client
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {ClientUpdateRequest} clientUpdateRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -865,7 +865,7 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
         /**
          * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - `flowServiceUrl`: PDP Flow Service URL - `tokenUrl`: PDP OAuth token URL - `oauthClientId`: OAuth Client ID - `clientSecret`: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - `isActive`: Enable/disable the config (default: true) - `modeSandbox`: Sandbox mode (default: false) - `encryptionMode`: Encryption mode (default: \"fernet\")   - \"fernet\": Server-side encryption only   - \"double\": Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When `encryptionMode` is set to \"double\", you MUST also provide the `X-Encryption-Key` header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the `clientSecret` on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The `clientSecret` is stored encrypted on Django side and is never returned in API responses.
          * @summary Configure client PDP
-         * @param {string} uid 
+         * @param {string} uid Client unique identifier (UUID)
          * @param {PDPConfigUpdateRequest} pDPConfigUpdateRequest 
          * @param {string | null} [xEncryptionKey] Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;.
          * @param {*} [options] Override http request option.
@@ -884,7 +884,7 @@ export class ClientManagementApi extends BaseAPI {
     /**
      * Activate a deactivated client.  **Scope**: Client level (JWT with client_uid that must match {uid})
      * @summary Activate a client
-     * @param {string} uid 
+     * @param {string} uid Client unique identifier (UUID)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -906,7 +906,7 @@ export class ClientManagementApi extends BaseAPI {
     /**
      * Deactivate an active client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Note**: A deactivated client cannot be used for API calls (AFNOR, Chorus Pro, etc.).
      * @summary Deactivate a client
-     * @param {string} uid 
+     * @param {string} uid Client unique identifier (UUID)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -917,7 +917,7 @@ export class ClientManagementApi extends BaseAPI {
     /**
      * Delete the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **After deletion**: Webhooks for this client will use the global server key for HMAC signature instead of a client-specific key.
      * @summary Delete webhook secret
-     * @param {string} uid 
+     * @param {string} uid Client unique identifier (UUID)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -928,7 +928,7 @@ export class ClientManagementApi extends BaseAPI {
     /**
      * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
      * @summary Generate webhook secret
-     * @param {string} uid 
+     * @param {string} uid Client unique identifier (UUID)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -939,7 +939,7 @@ export class ClientManagementApi extends BaseAPI {
     /**
      * Get details of a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: If the JWT contains a client_uid, it must match the {uid} in the URL, otherwise a 403 error is returned.
      * @summary Get client details
-     * @param {string} uid 
+     * @param {string} uid Client unique identifier (UUID)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -950,7 +950,7 @@ export class ClientManagementApi extends BaseAPI {
     /**
      * Get the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Security**: The client secret is never returned. Only a status (`secretStatus`) indicates whether a secret is configured.  **Response**: - If configured: all config details (URLs, client_id, secret status) - If not configured: `isConfigured: false` with a message
      * @summary Get client PDP configuration
-     * @param {string} uid 
+     * @param {string} uid Client unique identifier (UUID)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -961,7 +961,7 @@ export class ClientManagementApi extends BaseAPI {
     /**
      * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
      * @summary Get webhook secret status
-     * @param {string} uid 
+     * @param {string} uid Client unique identifier (UUID)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -984,7 +984,7 @@ export class ClientManagementApi extends BaseAPI {
     /**
      * Rotate the client encryption key for all secrets in double encryption mode.  **Scope**: Client level (JWT with client_uid that must match {uid})  **What this does**: 1. Decrypts all secrets (PDP, Chorus Pro) using the old key 2. Re-encrypts them using the new key 3. Saves to database  **Important notes**: - Both keys must be base64-encoded AES-256 keys (32 bytes each) - The old key becomes invalid immediately after rotation - Only secrets encrypted with `encryptionMode: \"double\"` are affected - If the client has no double-encrypted secrets, returns 404  **Security**: - The old key must be valid (decryption is verified) - If decryption fails, rotation is aborted (atomic operation) - Neither key is logged or stored by the server
      * @summary Rotate client encryption key
-     * @param {string} uid 
+     * @param {string} uid Client unique identifier (UUID)
      * @param {KeyRotationRequest} keyRotationRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -996,7 +996,7 @@ export class ClientManagementApi extends BaseAPI {
     /**
      * Update client information (partial update).  **Scope**: Client level (JWT with client_uid that must match {uid})  **Updatable fields**: - `name`: Client name - `description`: Description - `siret`: SIRET (14 digits)  Only provided fields are updated.
      * @summary Update a client
-     * @param {string} uid 
+     * @param {string} uid Client unique identifier (UUID)
      * @param {ClientUpdateRequest} clientUpdateRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1008,7 +1008,7 @@ export class ClientManagementApi extends BaseAPI {
     /**
      * Configure or update the PDP (PA/PDP) configuration for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Required fields**: - `flowServiceUrl`: PDP Flow Service URL - `tokenUrl`: PDP OAuth token URL - `oauthClientId`: OAuth Client ID - `clientSecret`: OAuth Client Secret (sent but NEVER returned)  **Optional fields**: - `isActive`: Enable/disable the config (default: true) - `modeSandbox`: Sandbox mode (default: false) - `encryptionMode`: Encryption mode (default: \"fernet\")   - \"fernet\": Server-side encryption only   - \"double\": Client AES-256-GCM + Server Fernet (requires X-Encryption-Key header)  **Double Encryption Mode**: When `encryptionMode` is set to \"double\", you MUST also provide the `X-Encryption-Key` header containing a base64-encoded AES-256 key (32 bytes). This key is used to encrypt the `clientSecret` on the client side before the server encrypts it again with Fernet. The server cannot decrypt the secret without the client key.  **Security**: The `clientSecret` is stored encrypted on Django side and is never returned in API responses.
      * @summary Configure client PDP
-     * @param {string} uid 
+     * @param {string} uid Client unique identifier (UUID)
      * @param {PDPConfigUpdateRequest} pDPConfigUpdateRequest 
      * @param {string | null} [xEncryptionKey] Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;.
      * @param {*} [options] Override http request option.

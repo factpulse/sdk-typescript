@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **submission_mode** | [**SubmissionMode**](SubmissionMode.md) |  | [optional] [default to undefined]
 **recipient** | [**Recipient**](Recipient.md) |  | [default to undefined]
 **supplier** | [**Supplier**](Supplier.md) |  | [default to undefined]
-**invoicing_framework** | [**InvoicingFramework**](InvoicingFramework.md) |  | [default to undefined]
+**invoicing_framework** | [**InvoicingFramework**](InvoicingFramework.md) |  | [optional] [default to undefined]
 **references** | [**InvoiceReferences**](InvoiceReferences.md) |  | [default to undefined]
 **totals** | [**InvoiceTotals**](InvoiceTotals.md) |  | [default to undefined]
 **invoice_lines** | [**Array&lt;InvoiceLine&gt;**](InvoiceLine.md) |  | [optional] [default to undefined]

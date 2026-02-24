@@ -32,6 +32,8 @@ import type { EncaisseeRequest } from '../models';
 // @ts-ignore
 import type { GenerateCDARResponse } from '../models';
 // @ts-ignore
+import type { LifecycleResponse } from '../models';
+// @ts-ignore
 import type { ReasonCodesResponse } from '../models';
 // @ts-ignore
 import type { RefuseeRequest } from '../models';
@@ -114,6 +116,70 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+         * @summary [Simplified] Get lifecycle events for invoices
+         * @param {number} [days] Number of days to look back
+         * @param {string | null} [invoiceId] Filter by invoice reference
+         * @param {string | null} [pdpFlowServiceUrl] PDP Flow Service URL
+         * @param {string | null} [pdpTokenUrl] PDP OAuth token URL
+         * @param {string | null} [pdpClientId] PDP Client ID
+         * @param {string | null} [pdpClientSecret] PDP Client Secret
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLifecycleApiV1CdarLifecycleGet: async (days?: number, invoiceId?: string | null, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/cdar/lifecycle`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (days !== undefined) {
+                localVarQueryParameter['days'] = days;
+            }
+
+            if (invoiceId !== undefined) {
+                localVarQueryParameter['invoiceId'] = invoiceId;
+            }
+
+            if (pdpFlowServiceUrl !== undefined) {
+                localVarQueryParameter['pdpFlowServiceUrl'] = pdpFlowServiceUrl;
+            }
+
+            if (pdpTokenUrl !== undefined) {
+                localVarQueryParameter['pdpTokenUrl'] = pdpTokenUrl;
+            }
+
+            if (pdpClientId !== undefined) {
+                localVarQueryParameter['pdpClientId'] = pdpClientId;
+            }
+
+            if (pdpClientSecret !== undefined) {
+                localVarQueryParameter['pdpClientSecret'] = pdpClientSecret;
+            }
 
             localVarHeaderParameter['Accept'] = 'application/json';
 
@@ -466,6 +532,24 @@ export const Flux6InvoiceLifecycleCDARApiFp = function(configuration?: Configura
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+         * @summary [Simplified] Get lifecycle events for invoices
+         * @param {number} [days] Number of days to look back
+         * @param {string | null} [invoiceId] Filter by invoice reference
+         * @param {string | null} [pdpFlowServiceUrl] PDP Flow Service URL
+         * @param {string | null} [pdpTokenUrl] PDP OAuth token URL
+         * @param {string | null} [pdpClientId] PDP Client ID
+         * @param {string | null} [pdpClientSecret] PDP Client Secret
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getLifecycleApiV1CdarLifecycleGet(days?: number, invoiceId?: string | null, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LifecycleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLifecycleApiV1CdarLifecycleGet(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['Flux6InvoiceLifecycleCDARApi.getLifecycleApiV1CdarLifecycleGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Returns the complete list of status reason codes (BR-FR-CDV-CL-09).  These codes explain the reason for a particular status.
          * @summary List of CDAR reason codes
          * @param {*} [options] Override http request option.
@@ -596,6 +680,21 @@ export const Flux6InvoiceLifecycleCDARApiFactory = function (configuration?: Con
             return localVarFp.getActionCodesApiV1CdarActionCodesGet(options).then((request) => request(axios, basePath));
         },
         /**
+         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+         * @summary [Simplified] Get lifecycle events for invoices
+         * @param {number} [days] Number of days to look back
+         * @param {string | null} [invoiceId] Filter by invoice reference
+         * @param {string | null} [pdpFlowServiceUrl] PDP Flow Service URL
+         * @param {string | null} [pdpTokenUrl] PDP OAuth token URL
+         * @param {string | null} [pdpClientId] PDP Client ID
+         * @param {string | null} [pdpClientSecret] PDP Client Secret
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLifecycleApiV1CdarLifecycleGet(days?: number, invoiceId?: string | null, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<LifecycleResponse> {
+            return localVarFp.getLifecycleApiV1CdarLifecycleGet(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Returns the complete list of status reason codes (BR-FR-CDV-CL-09).  These codes explain the reason for a particular status.
          * @summary List of CDAR reason codes
          * @param {*} [options] Override http request option.
@@ -699,6 +798,22 @@ export class Flux6InvoiceLifecycleCDARApi extends BaseAPI {
      */
     public getActionCodesApiV1CdarActionCodesGet(options?: RawAxiosRequestConfig) {
         return Flux6InvoiceLifecycleCDARApiFp(this.configuration).getActionCodesApiV1CdarActionCodesGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+     * @summary [Simplified] Get lifecycle events for invoices
+     * @param {number} [days] Number of days to look back
+     * @param {string | null} [invoiceId] Filter by invoice reference
+     * @param {string | null} [pdpFlowServiceUrl] PDP Flow Service URL
+     * @param {string | null} [pdpTokenUrl] PDP OAuth token URL
+     * @param {string | null} [pdpClientId] PDP Client ID
+     * @param {string | null} [pdpClientSecret] PDP Client Secret
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getLifecycleApiV1CdarLifecycleGet(days?: number, invoiceId?: string | null, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig) {
+        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).getLifecycleApiV1CdarLifecycleGet(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

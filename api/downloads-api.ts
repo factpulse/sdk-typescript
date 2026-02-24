@@ -31,7 +31,7 @@ export const DownloadsApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Check if a temporary file exists and get its metadata without downloading.  Useful for: - Verifying a download URL is still valid - Getting file size before downloading - Checking expiration time  **Security**: Requires authentication, only file owner can check.
          * @summary Check if a file exists
-         * @param {string} downloadId 
+         * @param {string} downloadId Unique identifier of the temporary file to check
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -72,7 +72,7 @@ export const DownloadsApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using `webhook_mode: \"download_url\"` - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
          * @summary Download a temporary file
-         * @param {string} downloadId 
+         * @param {string} downloadId Unique identifier of the temporary file to download
          * @param {boolean} [deleteAfter] If true, delete the file after download (one-time download)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -127,7 +127,7 @@ export const DownloadsApiFp = function(configuration?: Configuration) {
         /**
          * Check if a temporary file exists and get its metadata without downloading.  Useful for: - Verifying a download URL is still valid - Getting file size before downloading - Checking expiration time  **Security**: Requires authentication, only file owner can check.
          * @summary Check if a file exists
-         * @param {string} downloadId 
+         * @param {string} downloadId Unique identifier of the temporary file to check
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -140,7 +140,7 @@ export const DownloadsApiFp = function(configuration?: Configuration) {
         /**
          * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using `webhook_mode: \"download_url\"` - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
          * @summary Download a temporary file
-         * @param {string} downloadId 
+         * @param {string} downloadId Unique identifier of the temporary file to download
          * @param {boolean} [deleteAfter] If true, delete the file after download (one-time download)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -163,7 +163,7 @@ export const DownloadsApiFactory = function (configuration?: Configuration, base
         /**
          * Check if a temporary file exists and get its metadata without downloading.  Useful for: - Verifying a download URL is still valid - Getting file size before downloading - Checking expiration time  **Security**: Requires authentication, only file owner can check.
          * @summary Check if a file exists
-         * @param {string} downloadId 
+         * @param {string} downloadId Unique identifier of the temporary file to check
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -173,7 +173,7 @@ export const DownloadsApiFactory = function (configuration?: Configuration, base
         /**
          * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using `webhook_mode: \"download_url\"` - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
          * @summary Download a temporary file
-         * @param {string} downloadId 
+         * @param {string} downloadId Unique identifier of the temporary file to download
          * @param {boolean} [deleteAfter] If true, delete the file after download (one-time download)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -191,7 +191,7 @@ export class DownloadsApi extends BaseAPI {
     /**
      * Check if a temporary file exists and get its metadata without downloading.  Useful for: - Verifying a download URL is still valid - Getting file size before downloading - Checking expiration time  **Security**: Requires authentication, only file owner can check.
      * @summary Check if a file exists
-     * @param {string} downloadId 
+     * @param {string} downloadId Unique identifier of the temporary file to check
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -202,7 +202,7 @@ export class DownloadsApi extends BaseAPI {
     /**
      * Download a file stored temporarily after asynchronous processing.  **Usage**: - This URL is provided in webhook notifications when using `webhook_mode: \"download_url\"` - Files are automatically deleted after 1 hour - Each file can only be downloaded until it expires  **Security**: - Requires a valid JWT token - Only the user who initiated the task can download the file
      * @summary Download a temporary file
-     * @param {string} downloadId 
+     * @param {string} downloadId Unique identifier of the temporary file to download
      * @param {boolean} [deleteAfter] If true, delete the file after download (one-time download)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

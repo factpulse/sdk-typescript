@@ -6,7 +6,7 @@ Defines the invoicing framework.  - invoicing_framework_code: Chorus Pro code (A
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invoicing_framework_code** | [**InvoicingFrameworkCode**](InvoicingFrameworkCode.md) | Chorus Pro framework code (A1, A2, A9, A12) | [default to undefined]
+**invoicing_framework_code** | [**InvoicingFrameworkCode**](InvoicingFrameworkCode.md) |  | [optional] [default to undefined]
 **operation_nature** | [**OperationNature**](OperationNature.md) |  | [optional] [default to undefined]
 **approver_service_code** | **string** |  | [optional] [default to undefined]
 **approver_structure_code** | **string** |  | [optional] [default to undefined]

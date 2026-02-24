@@ -28,7 +28,10 @@ import type { PostalAddress } from './postal-address';
  */
 export interface Supplier {
     'electronic_address'?: ElectronicAddress | null;
-    'supplier_id': number;
+    /**
+     * Chorus Pro supplier structure ID (idFournisseur). Only required for B2G.
+     */
+    'supplier_id'?: number;
     'private_id'?: string | null;
     'supplier_bank_account_code'?: number | null;
     'supplier_service_id'?: number | null;

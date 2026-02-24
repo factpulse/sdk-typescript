@@ -33,7 +33,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ClientManagementApi(configuration);
 
-let uid: string; // (default to undefined)
+let uid: string; //Client unique identifier (UUID) (default to undefined)
 
 const { status, data } = await apiInstance.activateClientApiV1ClientsUidActiverPost(
     uid
@@ -44,7 +44,7 @@ const { status, data } = await apiInstance.activateClientApiV1ClientsUidActiverP
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **uid** | [**string**] |  | defaults to undefined|
+| **uid** | [**string**] | Client unique identifier (UUID) | defaults to undefined|
 
 
 ### Return type
@@ -148,7 +148,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ClientManagementApi(configuration);
 
-let uid: string; // (default to undefined)
+let uid: string; //Client unique identifier (UUID) (default to undefined)
 
 const { status, data } = await apiInstance.deactivateClientApiV1ClientsUidDesactiverPost(
     uid
@@ -159,7 +159,7 @@ const { status, data } = await apiInstance.deactivateClientApiV1ClientsUidDesact
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **uid** | [**string**] |  | defaults to undefined|
+| **uid** | [**string**] | Client unique identifier (UUID) | defaults to undefined|
 
 
 ### Return type
@@ -205,7 +205,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ClientManagementApi(configuration);
 
-let uid: string; // (default to undefined)
+let uid: string; //Client unique identifier (UUID) (default to undefined)
 
 const { status, data } = await apiInstance.deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(
     uid
@@ -216,7 +216,7 @@ const { status, data } = await apiInstance.deleteWebhookSecretApiV1ClientsUidWeb
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **uid** | [**string**] |  | defaults to undefined|
+| **uid** | [**string**] | Client unique identifier (UUID) | defaults to undefined|
 
 
 ### Return type
@@ -262,7 +262,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ClientManagementApi(configuration);
 
-let uid: string; // (default to undefined)
+let uid: string; //Client unique identifier (UUID) (default to undefined)
 
 const { status, data } = await apiInstance.generateWebhookSecretApiV1ClientsUidWebhookSecretGeneratePost(
     uid
@@ -273,7 +273,7 @@ const { status, data } = await apiInstance.generateWebhookSecretApiV1ClientsUidW
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **uid** | [**string**] |  | defaults to undefined|
+| **uid** | [**string**] | Client unique identifier (UUID) | defaults to undefined|
 
 
 ### Return type
@@ -319,7 +319,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ClientManagementApi(configuration);
 
-let uid: string; // (default to undefined)
+let uid: string; //Client unique identifier (UUID) (default to undefined)
 
 const { status, data } = await apiInstance.getClientApiV1ClientsUidGet(
     uid
@@ -330,7 +330,7 @@ const { status, data } = await apiInstance.getClientApiV1ClientsUidGet(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **uid** | [**string**] |  | defaults to undefined|
+| **uid** | [**string**] | Client unique identifier (UUID) | defaults to undefined|
 
 
 ### Return type
@@ -376,7 +376,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ClientManagementApi(configuration);
 
-let uid: string; // (default to undefined)
+let uid: string; //Client unique identifier (UUID) (default to undefined)
 
 const { status, data } = await apiInstance.getPdpConfigApiV1ClientsUidPdpConfigGet(
     uid
@@ -387,7 +387,7 @@ const { status, data } = await apiInstance.getPdpConfigApiV1ClientsUidPdpConfigG
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **uid** | [**string**] |  | defaults to undefined|
+| **uid** | [**string**] | Client unique identifier (UUID) | defaults to undefined|
 
 
 ### Return type
@@ -433,7 +433,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ClientManagementApi(configuration);
 
-let uid: string; // (default to undefined)
+let uid: string; //Client unique identifier (UUID) (default to undefined)
 
 const { status, data } = await apiInstance.getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet(
     uid
@@ -444,7 +444,7 @@ const { status, data } = await apiInstance.getWebhookSecretStatusApiV1ClientsUid
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **uid** | [**string**] |  | defaults to undefined|
+| **uid** | [**string**] | Client unique identifier (UUID) | defaults to undefined|
 
 
 ### Return type
@@ -551,7 +551,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ClientManagementApi(configuration);
 
-let uid: string; // (default to undefined)
+let uid: string; //Client unique identifier (UUID) (default to undefined)
 let keyRotationRequest: KeyRotationRequest; //
 
 const { status, data } = await apiInstance.rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost(
@@ -565,7 +565,7 @@ const { status, data } = await apiInstance.rotateEncryptionKeyApiV1ClientsUidRot
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **keyRotationRequest** | **KeyRotationRequest**|  | |
-| **uid** | [**string**] |  | defaults to undefined|
+| **uid** | [**string**] | Client unique identifier (UUID) | defaults to undefined|
 
 
 ### Return type
@@ -612,7 +612,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ClientManagementApi(configuration);
 
-let uid: string; // (default to undefined)
+let uid: string; //Client unique identifier (UUID) (default to undefined)
 let clientUpdateRequest: ClientUpdateRequest; //
 
 const { status, data } = await apiInstance.updateClientApiV1ClientsUidPatch(
@@ -626,7 +626,7 @@ const { status, data } = await apiInstance.updateClientApiV1ClientsUidPatch(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **clientUpdateRequest** | **ClientUpdateRequest**|  | |
-| **uid** | [**string**] |  | defaults to undefined|
+| **uid** | [**string**] | Client unique identifier (UUID) | defaults to undefined|
 
 
 ### Return type
@@ -673,7 +673,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ClientManagementApi(configuration);
 
-let uid: string; // (default to undefined)
+let uid: string; //Client unique identifier (UUID) (default to undefined)
 let pDPConfigUpdateRequest: PDPConfigUpdateRequest; //
 let xEncryptionKey: string; //Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode=\'double\'. (optional) (default to undefined)
 
@@ -689,7 +689,7 @@ const { status, data } = await apiInstance.updatePdpConfigApiV1ClientsUidPdpConf
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **pDPConfigUpdateRequest** | **PDPConfigUpdateRequest**|  | |
-| **uid** | [**string**] |  | defaults to undefined|
+| **uid** | [**string**] | Client unique identifier (UUID) | defaults to undefined|
 | **xEncryptionKey** | [**string**] | Client encryption key for double encryption mode. Must be a base64-encoded AES-256 key (32 bytes). Required only when accessing resources encrypted with encryption_mode&#x3D;\&#39;double\&#39;. | (optional) defaults to undefined|
 
 

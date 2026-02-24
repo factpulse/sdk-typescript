@@ -72,7 +72,7 @@ export interface FacturXInvoice {
     'submission_mode'?: SubmissionMode;
     'recipient': Recipient;
     'supplier': Supplier;
-    'invoicing_framework': InvoicingFramework;
+    'invoicing_framework'?: InvoicingFramework | null;
     'references': InvoiceReferences;
     'totals': InvoiceTotals;
     'invoice_lines'?: Array<InvoiceLine>;
