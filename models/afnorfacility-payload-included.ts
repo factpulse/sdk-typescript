@@ -18,9 +18,6 @@
 import type { AFNORAddressRead } from './afnoraddress-read';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORDiffusionStatus } from './afnordiffusion-status';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { AFNORFacilityAdministrativeStatus } from './afnorfacility-administrative-status';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -43,7 +40,6 @@ export interface AFNORFacilityPayloadIncluded {
      */
     'name'?: string;
     'facilityType'?: AFNORFacilityType;
-    'diffusible'?: AFNORDiffusionStatus;
     'administrativeStatus'?: AFNORFacilityAdministrativeStatus;
     'address'?: AFNORAddressRead;
     'b2gAdditionalData'?: AFNORFacilityPayloadHistoryUleB2gAdditionalData;

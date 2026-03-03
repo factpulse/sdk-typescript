@@ -24,12 +24,15 @@ import type { AFNORFlowProfile } from './afnorflow-profile';
 import type { AFNORFlowSyntax } from './afnorflow-syntax';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { AFNORFullFlowInfoExtension } from './afnorfull-flow-info-extension';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { AFNORProcessingRule } from './afnorprocessing-rule';
 
 /**
  * @type AFNORFullFlowInfo
  * Identified Flow info: flow info + id + timestamp
  */
-export type AFNORFullFlowInfo = AFNORFlowInfo;
+export type AFNORFullFlowInfo = AFNORFlowInfo & AFNORFullFlowInfoExtension;
 
 

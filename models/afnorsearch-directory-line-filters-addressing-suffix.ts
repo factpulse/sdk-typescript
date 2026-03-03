@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORStrictOperator } from './afnorstrict-operator';
+import type { AFNORContainsOrStrictOperator } from './afnorcontains-or-strict-operator';
 
 export interface AFNORSearchDirectoryLineFiltersAddressingSuffix {
-    'op'?: AFNORStrictOperator;
+    'op'?: AFNORContainsOrStrictOperator;
     /**
      * suffix of the directory line which defines an address mesh not attached to a facility
      */

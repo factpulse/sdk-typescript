@@ -19,6 +19,9 @@ import type { AFNOREntityType } from './afnorentity-type';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { AFNORLegalUnitAdministrativeStatus } from './afnorlegal-unit-administrative-status';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { AFNORSirenInstructions } from './afnorsiren-instructions';
 
 export interface AFNORLegalUnitPayloadHistory {
     /**
@@ -31,6 +34,7 @@ export interface AFNORLegalUnitPayloadHistory {
     'businessName'?: string;
     'entityType'?: AFNOREntityType;
     'administrativeStatus'?: AFNORLegalUnitAdministrativeStatus;
+    'instructions'?: AFNORSirenInstructions;
 }
 
 

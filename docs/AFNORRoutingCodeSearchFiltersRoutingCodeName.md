@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**op** | [**AFNORContainsOperator**](AFNORContainsOperator.md) |  | [optional] [default to undefined]
+**op** | [**AFNORContainsOrStrictOperator**](AFNORContainsOrStrictOperator.md) |  | [optional] [default to undefined]
 **value** | **string** | Name of the routing code. | [optional] [default to undefined]
 
 ## Example

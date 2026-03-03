@@ -15,6 +15,12 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { AFNORCoreFlowInfo } from './afnorcore-flow-info';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { AFNORFlowInfoExtension } from './afnorflow-info-extension';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { AFNORFlowProfile } from './afnorflow-profile';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -24,22 +30,9 @@ import type { AFNORFlowSyntax } from './afnorflow-syntax';
 import type { AFNORProcessingRule } from './afnorprocessing-rule';
 
 /**
- * Signaling of the flow: - The tracking id is an external identifier and is used to track the flow by the sender - The sha256 is the fingerprint of the attached file:   - if provided in the request: it should be checked once received   - if not provided in the request: it should be computed and returned in the response 
+ * @type AFNORFlowInfo
+ * Signaling of the flow
  */
-export interface AFNORFlowInfo {
-    /**
-     * Unique identifier supporting UUID but not only, for flexibility purpose
-     */
-    'trackingId'?: string;
-    /**
-     * Name of the file
-     */
-    'name'?: string;
-    'processingRule'?: AFNORProcessingRule;
-    'flowSyntax': AFNORFlowSyntax;
-    'flowProfile'?: AFNORFlowProfile;
-    'sha256'?: string;
-}
-
+export type AFNORFlowInfo = AFNORCoreFlowInfo & AFNORFlowInfoExtension;
 
 

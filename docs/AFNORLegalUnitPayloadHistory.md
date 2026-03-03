@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **businessName** | **string** | Business name | [optional] [default to undefined]
 **entityType** | [**AFNOREntityType**](AFNOREntityType.md) |  | [optional] [default to undefined]
 **administrativeStatus** | [**AFNORLegalUnitAdministrativeStatus**](AFNORLegalUnitAdministrativeStatus.md) |  | [optional] [default to undefined]
+**instructions** | [**AFNORSirenInstructions**](AFNORSirenInstructions.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -20,6 +21,7 @@ const instance: AFNORLegalUnitPayloadHistory = {
     businessName,
     entityType,
     administrativeStatus,
+    instructions,
 };
 ```
 

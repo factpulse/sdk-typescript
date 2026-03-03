@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**op** | [**AFNORContainsOperator**](AFNORContainsOperator.md) |  | [optional] [default to undefined]
+**op** | [**AFNORContainsOrStrictOperator**](AFNORContainsOrStrictOperator.md) |  | [optional] [default to undefined]
 **value** | **string** | Municipality of the recipient structure having defined the directory line(s). | [optional] [default to undefined]
 
 ## Example

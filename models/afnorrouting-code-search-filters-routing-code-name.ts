@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORContainsOperator } from './afnorcontains-operator';
+import type { AFNORContainsOrStrictOperator } from './afnorcontains-or-strict-operator';
 
 export interface AFNORRoutingCodeSearchFiltersRoutingCodeName {
-    'op'?: AFNORContainsOperator;
+    'op'?: AFNORContainsOrStrictOperator;
     /**
      * Name of the routing code.
      */

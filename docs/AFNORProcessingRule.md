@@ -1,6 +1,6 @@
 # AFNORProcessingRule
 
-- B2B                 : e-invoicing - B2BInt              : International B2B e-reporting - B2C                 : B2C e-reporting - OutOfScope          : Out of scope (not regulated flow) - ArchiveOnly         : Archive only, no transmission - NotApplicable       : Not Applicable 
+- B2B                 : e-invoicing - B2BInt              : International B2B e-reporting - B2C                 : B2C e-reporting - B2G                 : e-invoicing for B2G sales - B2GInt - OutOfScope          : Out of scope (not regulated flow) - B2GOutOfScope - ArchiveOnly         : Archive only, no transmission - NotApplicable       : Not Applicable 
 
 ## Enum
 
@@ -10,7 +10,13 @@
 
 * `B2C` (value: `'B2C'`)
 
+* `B2G` (value: `'B2G'`)
+
+* `B2GInt` (value: `'B2GInt'`)
+
 * `OutOfScope` (value: `'OutOfScope'`)
+
+* `B2GOutOfScope` (value: `'B2GOutOfScope'`)
 
 * `ArchiveOnly` (value: `'ArchiveOnly'`)
 

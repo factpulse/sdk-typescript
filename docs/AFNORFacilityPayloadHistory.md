@@ -9,11 +9,11 @@ Name | Type | Description | Notes
 **siren** | **string** | SIREN number | [optional] [default to undefined]
 **name** | **string** | business name | [optional] [default to undefined]
 **facilityType** | [**AFNORFacilityType**](AFNORFacilityType.md) |  | [optional] [default to undefined]
-**diffusible** | [**AFNORDiffusionStatus**](AFNORDiffusionStatus.md) |  | [optional] [default to undefined]
 **administrativeStatus** | [**AFNORFacilityAdministrativeStatus**](AFNORFacilityAdministrativeStatus.md) |  | [optional] [default to undefined]
+**siretInstructions** | [**AFNORSiretInstructions**](AFNORSiretInstructions.md) |  | [optional] [default to undefined]
 **address** | [**AFNORAddressRead**](AFNORAddressRead.md) |  | [optional] [default to undefined]
 **b2gAdditionalData** | [**AFNORFacilityPayloadHistoryUleB2gAdditionalData**](AFNORFacilityPayloadHistoryUleB2gAdditionalData.md) |  | [optional] [default to undefined]
-**legalUnit** | [**AFNORLegalUnitPayloadIncludedNoSiren**](AFNORLegalUnitPayloadIncludedNoSiren.md) |  | [optional] [default to undefined]
+**legalUnit** | [**AFNORLegalUnitPayloadIncluded**](AFNORLegalUnitPayloadIncluded.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -25,8 +25,8 @@ const instance: AFNORFacilityPayloadHistory = {
     siren,
     name,
     facilityType,
-    diffusible,
     administrativeStatus,
+    siretInstructions,
     address,
     b2gAdditionalData,
     legalUnit,

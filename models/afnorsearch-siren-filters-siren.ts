@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORContainsOperator } from './afnorcontains-operator';
+import type { AFNORStrictOperator } from './afnorstrict-operator';
 
 export interface AFNORSearchSirenFiltersSiren {
-    'op'?: AFNORContainsOperator;
+    'op'?: AFNORStrictOperator;
     /**
      * SIREN number to search for.
      */

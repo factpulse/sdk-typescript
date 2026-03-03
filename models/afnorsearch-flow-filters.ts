@@ -30,6 +30,9 @@ import type { AFNORProcessingRule } from './afnorprocessing-rule';
  * Filtering criteria, at least one is required
  */
 export interface AFNORSearchFlowFilters {
+    /**
+     * The comparison with current date is strict : updatedAt > updatedAfter
+     */
     'updatedAfter'?: string;
     'updatedBefore'?: string;
     'processingRule'?: Array<AFNORProcessingRule>;

@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**op** | [**AFNORContainsOperator**](AFNORContainsOperator.md) |  | [optional] [default to undefined]
+**op** | [**AFNORStrictOperator**](AFNORStrictOperator.md) |  | [optional] [default to undefined]
 **value** | **string** | Subdivision of the country | [optional] [default to undefined]
 
 ## Example

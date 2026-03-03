@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORContainsOperator } from './afnorcontains-operator';
+import type { AFNORContainsOrStrictOperator } from './afnorcontains-or-strict-operator';
 
 export interface AFNORSearchSiretFiltersName {
-    'op'?: AFNORContainsOperator;
+    'op'?: AFNORContainsOrStrictOperator;
     /**
      * business name
      */

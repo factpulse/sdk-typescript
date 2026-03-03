@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode } from './afnordirectory-line-payload-history-legal-unit-facility-routing-code';
+import type { AFNORDirectoryLinePayloadStatusLegalUnitFacilityRoutingCode } from './afnordirectory-line-payload-status-legal-unit-facility-routing-code';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { AFNORSearchDirectoryLine } from './afnorsearch-directory-line';
@@ -26,6 +26,6 @@ export interface AFNORDirectoryLineSearchPost200Response {
      * The total number of results
      */
     'totalNumberOfResults'?: number;
-    'results'?: Array<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>;
+    'results'?: Array<AFNORDirectoryLinePayloadStatusLegalUnitFacilityRoutingCode>;
 }
 

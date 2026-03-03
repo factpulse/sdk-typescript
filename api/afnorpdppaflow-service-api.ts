@@ -34,6 +34,8 @@ import type { AFNORSearchFlowContent } from '../models';
 // @ts-ignore
 import type { AFNORSearchFlowParams } from '../models';
 // @ts-ignore
+import type { AFNORWebhook } from '../models';
+// @ts-ignore
 import type { DocType } from '../models';
 // @ts-ignore
 import type { HTTPValidationError } from '../models';
@@ -42,6 +44,70 @@ import type { HTTPValidationError } from '../models';
  */
 export const AFNORPDPPAFlowServiceApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
+        /**
+         * Register a new webhook subscription (AFNOR XP Z12-013 v1.2.0)
+         * @summary Create a webhook
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createWebhookProxyApiV1AfnorFlowV1WebhooksPost: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/afnor/flow/v1/webhooks`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+         * @summary Delete a webhook
+         * @param {string} webhookUid Webhook unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete: async (webhookUid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookUid' is not null or undefined
+            assertParamExists('deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete', 'webhookUid', webhookUid)
+            const localVarPath = `/api/v1/afnor/flow/v1/webhooks/{webhookUid}`
+                .replace(`{${"webhookUid"}}`, encodeURIComponent(String(webhookUid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
         /**
          * Download a file related to a given flow (AFNOR XP Z12-013 compliant): - Metadata [Default]: provides the flow metadata as JSON - Original: the document initially sent by the emitter - Converted: the document optionally converted by the system - ReadableView: the document optionally generated as readable file
          * @summary Download a flow
@@ -89,6 +155,70 @@ export const AFNORPDPPAFlowServiceApiAxiosParamCreator = function (configuration
          */
         flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/afnor/flow/v1/healthcheck`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get details of a specific webhook (AFNOR XP Z12-013 v1.2.0)
+         * @summary Get a webhook
+         * @param {string} webhookUid Webhook unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet: async (webhookUid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookUid' is not null or undefined
+            assertParamExists('getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet', 'webhookUid', webhookUid)
+            const localVarPath = `/api/v1/afnor/flow/v1/webhooks/{webhookUid}`
+                .replace(`{${"webhookUid"}}`, encodeURIComponent(String(webhookUid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * List all registered webhooks (AFNOR XP Z12-013 v1.2.0)
+         * @summary List webhooks
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listWebhooksProxyApiV1AfnorFlowV1WebhooksGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v1/afnor/flow/v1/webhooks`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -193,6 +323,40 @@ export const AFNORPDPPAFlowServiceApiAxiosParamCreator = function (configuration
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Partially update a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+         * @summary Update a webhook
+         * @param {string} webhookUid Webhook unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch: async (webhookUid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'webhookUid' is not null or undefined
+            assertParamExists('updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch', 'webhookUid', webhookUid)
+            const localVarPath = `/api/v1/afnor/flow/v1/webhooks/{webhookUid}`
+                .replace(`{${"webhookUid"}}`, encodeURIComponent(String(webhookUid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -202,6 +366,31 @@ export const AFNORPDPPAFlowServiceApiAxiosParamCreator = function (configuration
 export const AFNORPDPPAFlowServiceApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AFNORPDPPAFlowServiceApiAxiosParamCreator(configuration)
     return {
+        /**
+         * Register a new webhook subscription (AFNOR XP Z12-013 v1.2.0)
+         * @summary Create a webhook
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async createWebhookProxyApiV1AfnorFlowV1WebhooksPost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createWebhookProxyApiV1AfnorFlowV1WebhooksPost(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPAFlowServiceApi.createWebhookProxyApiV1AfnorFlowV1WebhooksPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Delete a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+         * @summary Delete a webhook
+         * @param {string} webhookUid Webhook unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete(webhookUid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete(webhookUid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPAFlowServiceApi.deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
         /**
          * Download a file related to a given flow (AFNOR XP Z12-013 compliant): - Metadata [Default]: provides the flow metadata as JSON - Original: the document initially sent by the emitter - Converted: the document optionally converted by the system - ReadableView: the document optionally generated as readable file
          * @summary Download a flow
@@ -226,6 +415,31 @@ export const AFNORPDPPAFlowServiceApiFp = function(configuration?: Configuration
             const localVarAxiosArgs = await localVarAxiosParamCreator.flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPAFlowServiceApi.flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Get details of a specific webhook (AFNOR XP Z12-013 v1.2.0)
+         * @summary Get a webhook
+         * @param {string} webhookUid Webhook unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet(webhookUid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORWebhook>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet(webhookUid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPAFlowServiceApi.getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * List all registered webhooks (AFNOR XP Z12-013 v1.2.0)
+         * @summary List webhooks
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async listWebhooksProxyApiV1AfnorFlowV1WebhooksGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<AFNORWebhook>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.listWebhooksProxyApiV1AfnorFlowV1WebhooksGet(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPAFlowServiceApi.listWebhooksProxyApiV1AfnorFlowV1WebhooksGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -255,6 +469,19 @@ export const AFNORPDPPAFlowServiceApiFp = function(configuration?: Configuration
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPAFlowServiceApi.submitFlowProxyApiV1AfnorFlowV1FlowsPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * Partially update a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+         * @summary Update a webhook
+         * @param {string} webhookUid Webhook unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch(webhookUid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORWebhook>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch(webhookUid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPAFlowServiceApi.updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -264,6 +491,25 @@ export const AFNORPDPPAFlowServiceApiFp = function(configuration?: Configuration
 export const AFNORPDPPAFlowServiceApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = AFNORPDPPAFlowServiceApiFp(configuration)
     return {
+        /**
+         * Register a new webhook subscription (AFNOR XP Z12-013 v1.2.0)
+         * @summary Create a webhook
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createWebhookProxyApiV1AfnorFlowV1WebhooksPost(options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.createWebhookProxyApiV1AfnorFlowV1WebhooksPost(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Delete a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+         * @summary Delete a webhook
+         * @param {string} webhookUid Webhook unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete(webhookUid: string, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+            return localVarFp.deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete(webhookUid, options).then((request) => request(axios, basePath));
+        },
         /**
          * Download a file related to a given flow (AFNOR XP Z12-013 compliant): - Metadata [Default]: provides the flow metadata as JSON - Original: the document initially sent by the emitter - Converted: the document optionally converted by the system - ReadableView: the document optionally generated as readable file
          * @summary Download a flow
@@ -283,6 +529,25 @@ export const AFNORPDPPAFlowServiceApiFactory = function (configuration?: Configu
          */
         flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet(options?: RawAxiosRequestConfig): AxiosPromise<object> {
             return localVarFp.flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Get details of a specific webhook (AFNOR XP Z12-013 v1.2.0)
+         * @summary Get a webhook
+         * @param {string} webhookUid Webhook unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet(webhookUid: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORWebhook> {
+            return localVarFp.getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet(webhookUid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * List all registered webhooks (AFNOR XP Z12-013 v1.2.0)
+         * @summary List webhooks
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listWebhooksProxyApiV1AfnorFlowV1WebhooksGet(options?: RawAxiosRequestConfig): AxiosPromise<Array<AFNORWebhook>> {
+            return localVarFp.listWebhooksProxyApiV1AfnorFlowV1WebhooksGet(options).then((request) => request(axios, basePath));
         },
         /**
          * Search invoicing flows by criteria (AFNOR XP Z12-013 compliant)
@@ -305,6 +570,16 @@ export const AFNORPDPPAFlowServiceApiFactory = function (configuration?: Configu
         submitFlowProxyApiV1AfnorFlowV1FlowsPost(flowInfo: AFNORFlowInfo, file: File, options?: RawAxiosRequestConfig): AxiosPromise<any> {
             return localVarFp.submitFlowProxyApiV1AfnorFlowV1FlowsPost(flowInfo, file, options).then((request) => request(axios, basePath));
         },
+        /**
+         * Partially update a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+         * @summary Update a webhook
+         * @param {string} webhookUid Webhook unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch(webhookUid: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORWebhook> {
+            return localVarFp.updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch(webhookUid, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -312,6 +587,27 @@ export const AFNORPDPPAFlowServiceApiFactory = function (configuration?: Configu
  * AFNORPDPPAFlowServiceApi - object-oriented interface
  */
 export class AFNORPDPPAFlowServiceApi extends BaseAPI {
+    /**
+     * Register a new webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     * @summary Create a webhook
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public createWebhookProxyApiV1AfnorFlowV1WebhooksPost(options?: RawAxiosRequestConfig) {
+        return AFNORPDPPAFlowServiceApiFp(this.configuration).createWebhookProxyApiV1AfnorFlowV1WebhooksPost(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Delete a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     * @summary Delete a webhook
+     * @param {string} webhookUid Webhook unique identifier (UUID)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete(webhookUid: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPAFlowServiceApiFp(this.configuration).deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete(webhookUid, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * Download a file related to a given flow (AFNOR XP Z12-013 compliant): - Metadata [Default]: provides the flow metadata as JSON - Original: the document initially sent by the emitter - Converted: the document optionally converted by the system - ReadableView: the document optionally generated as readable file
      * @summary Download a flow
@@ -335,6 +631,27 @@ export class AFNORPDPPAFlowServiceApi extends BaseAPI {
     }
 
     /**
+     * Get details of a specific webhook (AFNOR XP Z12-013 v1.2.0)
+     * @summary Get a webhook
+     * @param {string} webhookUid Webhook unique identifier (UUID)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet(webhookUid: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPAFlowServiceApiFp(this.configuration).getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet(webhookUid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * List all registered webhooks (AFNOR XP Z12-013 v1.2.0)
+     * @summary List webhooks
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public listWebhooksProxyApiV1AfnorFlowV1WebhooksGet(options?: RawAxiosRequestConfig) {
+        return AFNORPDPPAFlowServiceApiFp(this.configuration).listWebhooksProxyApiV1AfnorFlowV1WebhooksGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Search invoicing flows by criteria (AFNOR XP Z12-013 compliant)
      * @summary Search flows
      * @param {AFNORSearchFlowParams} aFNORSearchFlowParams 
@@ -355,6 +672,17 @@ export class AFNORPDPPAFlowServiceApi extends BaseAPI {
      */
     public submitFlowProxyApiV1AfnorFlowV1FlowsPost(flowInfo: AFNORFlowInfo, file: File, options?: RawAxiosRequestConfig) {
         return AFNORPDPPAFlowServiceApiFp(this.configuration).submitFlowProxyApiV1AfnorFlowV1FlowsPost(flowInfo, file, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Partially update a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+     * @summary Update a webhook
+     * @param {string} webhookUid Webhook unique identifier (UUID)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch(webhookUid: string, options?: RawAxiosRequestConfig) {
+        return AFNORPDPPAFlowServiceApiFp(this.configuration).updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch(webhookUid, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

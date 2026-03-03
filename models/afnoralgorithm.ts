@@ -16,10 +16,11 @@
 
 
 export const AFNORAlgorithm = {
-    Rsa: 'RSA',
+    Rs256: 'RS256',
+    Hs256: 'HS256',
     Ecdsa: 'ECDSA',
-    RsaPss: 'RSA_PSS',
     Eddsa25519: 'EDDSA_25519',
+    RsaPss: 'RSA_PSS',
     Eddsa448: 'EDDSA_448'
 } as const;
 

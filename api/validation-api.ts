@@ -26,9 +26,9 @@ import type { APIError } from '../models';
 // @ts-ignore
 import type { APIProfile } from '../models';
 // @ts-ignore
-import type { FactureElectroniqueRestApiSchemasValidationValidationErrorResponse } from '../models';
-// @ts-ignore
 import type { HTTPValidationError } from '../models';
+// @ts-ignore
+import type { ValidationErrorResponse } from '../models';
 // @ts-ignore
 import type { ValidationSuccessResponse } from '../models';
 /**

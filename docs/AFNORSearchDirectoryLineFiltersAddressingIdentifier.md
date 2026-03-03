@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**op** | [**AFNORContainsOperator**](AFNORContainsOperator.md) |  | [optional] [default to undefined]
+**op** | [**AFNORContainsOrStrictOperator**](AFNORContainsOrStrictOperator.md) |  | [optional] [default to undefined]
 **value** | **string** | Addressing identifier of the directory line. | [optional] [default to undefined]
 
 ## Example

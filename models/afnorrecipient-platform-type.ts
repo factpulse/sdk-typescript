@@ -15,7 +15,7 @@
 
 
 /**
- * The type of platform for document reception
+ * The type of platform for document reception (from UNCL 3035 list) :   - WK : Value added network provider (PA)   - DFH : Government service requestor (PPF) 
  */
 
 export const AFNORRecipientPlatformType = {

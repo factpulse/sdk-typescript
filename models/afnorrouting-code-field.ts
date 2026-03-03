@@ -25,8 +25,7 @@ export const AFNORRoutingCodeField = {
     RoutingIdentifier: 'routingIdentifier',
     ManagesLegalCommitmentCode: 'managesLegalCommitmentCode',
     AdministrativeStatus: 'administrativeStatus',
-    Address: 'address',
-    IdInstance: 'idInstance'
+    Address: 'address'
 } as const;
 
 export type AFNORRoutingCodeField = typeof AFNORRoutingCodeField[keyof typeof AFNORRoutingCodeField];

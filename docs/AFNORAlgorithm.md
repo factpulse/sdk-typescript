@@ -3,13 +3,15 @@
 
 ## Enum
 
-* `Rsa` (value: `'RSA'`)
+* `Rs256` (value: `'RS256'`)
+
+* `Hs256` (value: `'HS256'`)
 
 * `Ecdsa` (value: `'ECDSA'`)
 
-* `RsaPss` (value: `'RSA_PSS'`)
-
 * `Eddsa25519` (value: `'EDDSA_25519'`)
+
+* `RsaPss` (value: `'RSA_PSS'`)
 
 * `Eddsa448` (value: `'EDDSA_448'`)
 

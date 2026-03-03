@@ -15,14 +15,17 @@
 
 
 /**
- * - B2B                 : e-invoicing - B2BInt              : International B2B e-reporting - B2C                 : B2C e-reporting - OutOfScope          : Out of scope (not regulated flow) - ArchiveOnly         : Archive only, no transmission - NotApplicable       : Not Applicable 
+ * - B2B                 : e-invoicing - B2BInt              : International B2B e-reporting - B2C                 : B2C e-reporting - B2G                 : e-invoicing for B2G sales - B2GInt - OutOfScope          : Out of scope (not regulated flow) - B2GOutOfScope - ArchiveOnly         : Archive only, no transmission - NotApplicable       : Not Applicable 
  */
 
 export const AFNORProcessingRule = {
     B2B: 'B2B',
     B2BInt: 'B2BInt',
     B2C: 'B2C',
+    B2G: 'B2G',
+    B2GInt: 'B2GInt',
     OutOfScope: 'OutOfScope',
+    B2GOutOfScope: 'B2GOutOfScope',
     ArchiveOnly: 'ArchiveOnly',
     NotApplicable: 'NotApplicable'
 } as const;

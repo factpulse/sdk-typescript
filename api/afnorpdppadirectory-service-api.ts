@@ -22,9 +22,7 @@ import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObj
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
 // @ts-ignore
-import type { AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode } from '../models';
-// @ts-ignore
-import type { AFNORDirectoryLinePost201Response } from '../models';
+import type { AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode } from '../models';
 // @ts-ignore
 import type { AFNORDirectoryLineSearchPost200Response } from '../models';
 // @ts-ignore
@@ -33,8 +31,6 @@ import type { AFNORFacilityPayloadHistory } from '../models';
 import type { AFNORLegalUnitPayloadHistory } from '../models';
 // @ts-ignore
 import type { AFNORRoutingCodePayloadHistoryLegalUnitFacility } from '../models';
-// @ts-ignore
-import type { AFNORRoutingCodePost201Response } from '../models';
 // @ts-ignore
 import type { AFNORRoutingCodeSearchPost200Response } from '../models';
 // @ts-ignore
@@ -46,100 +42,6 @@ import type { AFNORSiretSearchPost200Response } from '../models';
  */
 export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
-        /**
-         * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
-         * @summary Creating a directory line
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/afnor/directory/v1/directory-line`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Creating a routing code.
-         * @summary Create a routing code
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v1/afnor/directory/v1/routing-code`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Delete a directory line.
-         * @summary Delete a directory line
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'idInstance' is not null or undefined
-            assertParamExists('deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete', 'idInstance', idInstance)
-            const localVarPath = `/api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance}`
-                .replace(`{${"id_instance"}}`, encodeURIComponent(String(idInstance)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
         /**
          * Check Directory Service availability (AFNOR XP Z12-013 compliant)
          * @summary Healthcheck Directory Service
@@ -182,74 +84,6 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             assertParamExists('getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet', 'addressingIdentifier', addressingIdentifier)
             const localVarPath = `/api/v1/afnor/directory/v1/directory-line/code:{addressing_identifier}`
                 .replace(`{${"addressing_identifier"}}`, encodeURIComponent(String(addressingIdentifier)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
-         * @summary Get a directory line.
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'idInstance' is not null or undefined
-            assertParamExists('getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet', 'idInstance', idInstance)
-            const localVarPath = `/api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance}`
-                .replace(`{${"id_instance"}}`, encodeURIComponent(String(idInstance)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieve the Routing Code data corresponding to the Instance ID.
-         * @summary Get a routing code by instance-id.
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'idInstance' is not null or undefined
-            assertParamExists('getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet', 'idInstance', idInstance)
-            const localVarPath = `/api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance}`
-                .replace(`{${"id_instance"}}`, encodeURIComponent(String(idInstance)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -345,40 +179,6 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             };
         },
         /**
-         * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
-         * @summary Gets a siren (legal unit) by instance ID
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'idInstance' is not null or undefined
-            assertParamExists('getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet', 'idInstance', idInstance)
-            const localVarPath = `/api/v1/afnor/directory/v1/siren/id-instance:{id_instance}`
-                .replace(`{${"id_instance"}}`, encodeURIComponent(String(idInstance)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Returns the details of a facility associated to a SIRET.
          * @summary Gets a siret (facility) by SIRET number
          * @param {string} siret 14-digit SIRET number (INSEE establishment identifier)
@@ -398,142 +198,6 @@ export const AFNORPDPPADirectoryServiceApiAxiosParamCreator = function (configur
             }
 
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Returns the details of a facility according to an instance-id.
-         * @summary Gets a siret (facility) by id-instance
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'idInstance' is not null or undefined
-            assertParamExists('getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet', 'idInstance', idInstance)
-            const localVarPath = `/api/v1/afnor/directory/v1/siret/id-instance:{id_instance}`
-                .replace(`{${"id_instance"}}`, encodeURIComponent(String(idInstance)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Partially updates a directory line.
-         * @summary Partially updates a directory line..
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'idInstance' is not null or undefined
-            assertParamExists('patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch', 'idInstance', idInstance)
-            const localVarPath = `/api/v1/afnor/directory/v1/directory-line/id-instance:{id_instance}`
-                .replace(`{${"id_instance"}}`, encodeURIComponent(String(idInstance)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Partially update a private routing code.
-         * @summary Partially update a private routing code.
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'idInstance' is not null or undefined
-            assertParamExists('patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch', 'idInstance', idInstance)
-            const localVarPath = `/api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance}`
-                .replace(`{${"id_instance"}}`, encodeURIComponent(String(idInstance)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            localVarHeaderParameter['Accept'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Completely update a private routing code.
-         * @summary Completely update a private routing code.
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut: async (idInstance: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'idInstance' is not null or undefined
-            assertParamExists('putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut', 'idInstance', idInstance)
-            const localVarPath = `/api/v1/afnor/directory/v1/routing-code/id-instance:{id_instance}`
-                .replace(`{${"id_instance"}}`, encodeURIComponent(String(idInstance)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -678,43 +342,6 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
     const localVarAxiosParamCreator = AFNORPDPPADirectoryServiceApiAxiosParamCreator(configuration)
     return {
         /**
-         * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
-         * @summary Creating a directory line
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Creating a routing code.
-         * @summary Create a routing code
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Delete a directory line.
-         * @summary Delete a directory line
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Check Directory Service availability (AFNOR XP Z12-013 compliant)
          * @summary Healthcheck Directory Service
          * @param {*} [options] Override http request option.
@@ -733,36 +360,10 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>> {
+        async getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
-         * @summary Get a directory line.
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Retrieve the Routing Code data corresponding to the Instance ID.
-         * @summary Get a routing code by instance-id.
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodePayloadHistoryLegalUnitFacility>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -793,19 +394,6 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
-         * @summary Gets a siren (legal unit) by instance ID
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORLegalUnitPayloadHistory>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Returns the details of a facility associated to a SIRET.
          * @summary Gets a siret (facility) by SIRET number
          * @param {string} siret 14-digit SIRET number (INSEE establishment identifier)
@@ -816,58 +404,6 @@ export const AFNORPDPPADirectoryServiceApiFp = function(configuration?: Configur
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Returns the details of a facility according to an instance-id.
-         * @summary Gets a siret (facility) by id-instance
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORFacilityPayloadHistory>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Partially updates a directory line.
-         * @summary Partially updates a directory line..
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORDirectoryLinePost201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Partially update a private routing code.
-         * @summary Partially update a private routing code.
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodePost201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * Completely update a private routing code.
-         * @summary Completely update a private routing code.
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AFNORRoutingCodePost201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AFNORPDPPADirectoryServiceApi.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -928,34 +464,6 @@ export const AFNORPDPPADirectoryServiceApiFactory = function (configuration?: Co
     const localVarFp = AFNORPDPPADirectoryServiceApiFp(configuration)
     return {
         /**
-         * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
-         * @summary Creating a directory line
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Creating a routing code.
-         * @summary Create a routing code
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Delete a directory line.
-         * @summary Delete a directory line
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<any> {
-            return localVarFp.deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Check Directory Service availability (AFNOR XP Z12-013 compliant)
          * @summary Healthcheck Directory Service
          * @param {*} [options] Override http request option.
@@ -971,28 +479,8 @@ export const AFNORPDPPADirectoryServiceApiFactory = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> {
+        getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode> {
             return localVarFp.getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
-         * @summary Get a directory line.
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORDirectoryLinePayloadHistoryLegalUnitFacilityRoutingCode> {
-            return localVarFp.getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Retrieve the Routing Code data corresponding to the Instance ID.
-         * @summary Get a routing code by instance-id.
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodePayloadHistoryLegalUnitFacility> {
-            return localVarFp.getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve the Routing Code data corresponding to the identifier passed in parameters.
@@ -1016,16 +504,6 @@ export const AFNORPDPPADirectoryServiceApiFactory = function (configuration?: Co
             return localVarFp.getSirenByCodeInseeProxyApiV1AfnorDirectoryV1SirenCodeInseeSirenGet(siren, options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
-         * @summary Gets a siren (legal unit) by instance ID
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORLegalUnitPayloadHistory> {
-            return localVarFp.getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Returns the details of a facility associated to a SIRET.
          * @summary Gets a siret (facility) by SIRET number
          * @param {string} siret 14-digit SIRET number (INSEE establishment identifier)
@@ -1034,46 +512,6 @@ export const AFNORPDPPADirectoryServiceApiFactory = function (configuration?: Co
          */
         getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORFacilityPayloadHistory> {
             return localVarFp.getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Returns the details of a facility according to an instance-id.
-         * @summary Gets a siret (facility) by id-instance
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORFacilityPayloadHistory> {
-            return localVarFp.getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Partially updates a directory line.
-         * @summary Partially updates a directory line..
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORDirectoryLinePost201Response> {
-            return localVarFp.patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Partially update a private routing code.
-         * @summary Partially update a private routing code.
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodePost201Response> {
-            return localVarFp.patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Completely update a private routing code.
-         * @summary Completely update a private routing code.
-         * @param {string} idInstance AFNOR instance ID (UUID)
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance: string, options?: RawAxiosRequestConfig): AxiosPromise<AFNORRoutingCodePost201Response> {
-            return localVarFp.putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, options).then((request) => request(axios, basePath));
         },
         /**
          * Search for directory lines that meet all the criteria passed as parameters and return the results in the desired format.
@@ -1119,37 +557,6 @@ export const AFNORPDPPADirectoryServiceApiFactory = function (configuration?: Co
  */
 export class AFNORPDPPADirectoryServiceApi extends BaseAPI {
     /**
-     * Creation of a new directory line for a SIREN, a SIRET or a ROUTING CODE.
-     * @summary Creating a directory line
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).createDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLinePost(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Creating a routing code.
-     * @summary Create a routing code
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).createRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodePost(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Delete a directory line.
-     * @summary Delete a directory line
-     * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance: string, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).deleteDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceDelete(idInstance, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Check Directory Service availability (AFNOR XP Z12-013 compliant)
      * @summary Healthcheck Directory Service
      * @param {*} [options] Override http request option.
@@ -1168,28 +575,6 @@ export class AFNORPDPPADirectoryServiceApi extends BaseAPI {
      */
     public getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier: string, options?: RawAxiosRequestConfig) {
         return AFNORPDPPADirectoryServiceApiFp(this.configuration).getDirectoryLineByCodeProxyApiV1AfnorDirectoryV1DirectoryLineCodeAddressingIdentifierGet(addressingIdentifier, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Retrieve the data from the directory line corresponding to the identifier passed in parameters.
-     * @summary Get a directory line.
-     * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getDirectoryLineByIdInstanceProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstanceGet(idInstance, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Retrieve the Routing Code data corresponding to the Instance ID.
-     * @summary Get a routing code by instance-id.
-     * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getRoutingCodeByIdInstanceProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstanceGet(idInstance, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1216,17 +601,6 @@ export class AFNORPDPPADirectoryServiceApi extends BaseAPI {
     }
 
     /**
-     * Returns the details of a company (legal unit) identified by the id-instance passed as a parameter.
-     * @summary Gets a siren (legal unit) by instance ID
-     * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getSirenByIdInstanceProxyApiV1AfnorDirectoryV1SirenIdInstanceIdInstanceGet(idInstance, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
      * Returns the details of a facility associated to a SIRET.
      * @summary Gets a siret (facility) by SIRET number
      * @param {string} siret 14-digit SIRET number (INSEE establishment identifier)
@@ -1235,50 +609,6 @@ export class AFNORPDPPADirectoryServiceApi extends BaseAPI {
      */
     public getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret: string, options?: RawAxiosRequestConfig) {
         return AFNORPDPPADirectoryServiceApiFp(this.configuration).getSiretByCodeInseeProxyApiV1AfnorDirectoryV1SiretCodeInseeSiretGet(siret, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Returns the details of a facility according to an instance-id.
-     * @summary Gets a siret (facility) by id-instance
-     * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance: string, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).getSiretByIdInstanceProxyApiV1AfnorDirectoryV1SiretIdInstanceIdInstanceGet(idInstance, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Partially updates a directory line.
-     * @summary Partially updates a directory line..
-     * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance: string, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).patchDirectoryLineProxyApiV1AfnorDirectoryV1DirectoryLineIdInstanceIdInstancePatch(idInstance, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Partially update a private routing code.
-     * @summary Partially update a private routing code.
-     * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance: string, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).patchRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePatch(idInstance, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Completely update a private routing code.
-     * @summary Completely update a private routing code.
-     * @param {string} idInstance AFNOR instance ID (UUID)
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    public putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance: string, options?: RawAxiosRequestConfig) {
-        return AFNORPDPPADirectoryServiceApiFp(this.configuration).putRoutingCodeProxyApiV1AfnorDirectoryV1RoutingCodeIdInstanceIdInstancePut(idInstance, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

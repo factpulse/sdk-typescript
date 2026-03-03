@@ -6,7 +6,7 @@ Filtering criteria, at least one is required
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**updatedAfter** | **string** |  | [optional] [default to undefined]
+**updatedAfter** | **string** | The comparison with current date is strict : updatedAt &gt; updatedAfter | [optional] [default to undefined]
 **updatedBefore** | **string** |  | [optional] [default to undefined]
 **processingRule** | [**Array&lt;AFNORProcessingRule&gt;**](AFNORProcessingRule.md) |  | [optional] [default to undefined]
 **flowType** | [**Array&lt;AFNORFlowType&gt;**](AFNORFlowType.md) |  | [optional] [default to undefined]

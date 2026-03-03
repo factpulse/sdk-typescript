@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**op** | [**AFNORStrictOperator**](AFNORStrictOperator.md) |  | [optional] [default to undefined]
+**op** | [**AFNORContainsOrStrictOperator**](AFNORContainsOrStrictOperator.md) |  | [optional] [default to undefined]
 **value** | **string** | suffix of the directory line which defines an address mesh not attached to a facility | [optional] [default to undefined]
 
 ## Example

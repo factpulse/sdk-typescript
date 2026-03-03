@@ -23,16 +23,15 @@ export const AFNORSiretField = {
     Siren: 'siren',
     Name: 'name',
     FacilityType: 'facilityType',
-    Address: 'address',
-    Diffusible: 'diffusible',
     AdministrativeStatus: 'administrativeStatus',
+    SiretInstructions: 'siretInstructions',
+    Address: 'address',
     PmStatus: 'pmStatus',
     PmOnly: 'pmOnly',
     ManagesPaymentStatus: 'managesPaymentStatus',
     ManagesLegalCommitment: 'managesLegalCommitment',
     ManagesLegalCommitmentOrService: 'managesLegalCommitmentOrService',
-    ServiceCodeStatus: 'serviceCodeStatus',
-    IdInstance: 'idInstance'
+    ServiceCodeStatus: 'serviceCodeStatus'
 } as const;
 
 export type AFNORSiretField = typeof AFNORSiretField[keyof typeof AFNORSiretField];

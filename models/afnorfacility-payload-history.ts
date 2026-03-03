@@ -18,9 +18,6 @@
 import type { AFNORAddressRead } from './afnoraddress-read';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORDiffusionStatus } from './afnordiffusion-status';
-// May contain unused imports in some cases
-// @ts-ignore
 import type { AFNORFacilityAdministrativeStatus } from './afnorfacility-administrative-status';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -30,7 +27,10 @@ import type { AFNORFacilityPayloadHistoryUleB2gAdditionalData } from './afnorfac
 import type { AFNORFacilityType } from './afnorfacility-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORLegalUnitPayloadIncludedNoSiren } from './afnorlegal-unit-payload-included-no-siren';
+import type { AFNORLegalUnitPayloadIncluded } from './afnorlegal-unit-payload-included';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { AFNORSiretInstructions } from './afnorsiret-instructions';
 
 export interface AFNORFacilityPayloadHistory {
     /**
@@ -46,11 +46,11 @@ export interface AFNORFacilityPayloadHistory {
      */
     'name'?: string;
     'facilityType'?: AFNORFacilityType;
-    'diffusible'?: AFNORDiffusionStatus;
     'administrativeStatus'?: AFNORFacilityAdministrativeStatus;
+    'siretInstructions'?: AFNORSiretInstructions;
     'address'?: AFNORAddressRead;
     'b2gAdditionalData'?: AFNORFacilityPayloadHistoryUleB2gAdditionalData;
-    'legalUnit'?: AFNORLegalUnitPayloadIncludedNoSiren;
+    'legalUnit'?: AFNORLegalUnitPayloadIncluded;
 }
 
 

@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORContainsOperator } from './afnorcontains-operator';
+import type { AFNORFacilityType } from './afnorfacility-type';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORFacilityType } from './afnorfacility-type';
+import type { AFNORStrictOperator } from './afnorstrict-operator';
 
 export interface AFNORSearchSiretFiltersFacilityType {
-    'op'?: AFNORContainsOperator;
+    'op'?: AFNORStrictOperator;
     'value'?: AFNORFacilityType;
 }
 

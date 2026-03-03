@@ -12,11 +12,11 @@ Fields of the Siret resource.
 
 * `FacilityType` (value: `'facilityType'`)
 
-* `Address` (value: `'address'`)
-
-* `Diffusible` (value: `'diffusible'`)
-
 * `AdministrativeStatus` (value: `'administrativeStatus'`)
+
+* `SiretInstructions` (value: `'siretInstructions'`)
+
+* `Address` (value: `'address'`)
 
 * `PmStatus` (value: `'pmStatus'`)
 
@@ -29,7 +29,5 @@ Fields of the Siret resource.
 * `ManagesLegalCommitmentOrService` (value: `'managesLegalCommitmentOrService'`)
 
 * `ServiceCodeStatus` (value: `'serviceCodeStatus'`)
-
-* `IdInstance` (value: `'idInstance'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

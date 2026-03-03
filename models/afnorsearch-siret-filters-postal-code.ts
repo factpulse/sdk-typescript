@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORContainsOperator } from './afnorcontains-operator';
+import type { AFNORStrictOrStartWithOperator } from './afnorstrict-or-start-with-operator';
 
 export interface AFNORSearchSiretFiltersPostalCode {
-    'op'?: AFNORContainsOperator;
+    'op'?: AFNORStrictOrStartWithOperator;
     /**
      * Service postal code
      */

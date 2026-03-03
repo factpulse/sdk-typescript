@@ -6,17 +6,18 @@ The properties of a Flow resource
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**submittedAt** | **string** | The flow submission date and time (the date and time when the flow was created on the system)  | [optional] [default to undefined]
-**updatedAt** | **string** | The last update date and time of the flow. When the flow is submitted updatedAt is equal to submittedAt. When the flow acknowledgment status is changed updatedAt date and time is updated.  | [optional] [default to undefined]
-**flowId** | **string** | Unique identifier supporting UUID but not only, for flexibility purpose | [optional] [default to undefined]
-**trackingId** | **string** | Unique identifier supporting UUID but not only, for flexibility purpose | [optional] [default to undefined]
-**flowType** | [**AFNORFlowType**](AFNORFlowType.md) |  | [optional] [default to undefined]
+**trackingId** | **string** | The tracking id is an external identifier and is used to track the flow by the sender | [optional] [default to undefined]
+**name** | **string** | Name of the file | [default to undefined]
 **processingRule** | [**AFNORProcessingRule**](AFNORProcessingRule.md) |  | [optional] [default to undefined]
-**processingRuleSource** | **string** | Says whether the processing rule has been computed or the processing rule was an input parameter | [optional] [default to undefined]
-**flowDirection** | [**AFNORFlowDirection**](AFNORFlowDirection.md) |  | [optional] [default to undefined]
-**flowSyntax** | [**AFNORFlowSyntax**](AFNORFlowSyntax.md) |  | [optional] [default to undefined]
+**flowSyntax** | [**AFNORFlowSyntax**](AFNORFlowSyntax.md) |  | [default to undefined]
 **flowProfile** | [**AFNORFlowProfile**](AFNORFlowProfile.md) |  | [optional] [default to undefined]
-**acknowledgement** | [**AFNORAcknowledgement**](AFNORAcknowledgement.md) |  | [optional] [default to undefined]
+**flowId** | **string** | Unique identifier supporting UUID but not only, for flexibility purpose | [default to undefined]
+**submittedAt** | **string** | The flow submission date and time (the date and time when the flow was created on the system) This property should be used by the API consumer as a time reference to avoid clock synchronization issues  | [default to undefined]
+**updatedAt** | **string** | The last update date and time of the flow. When the flow is submitted updatedAt is equal to submittedAt. When the flow acknowledgment status is changed updatedAt date and time is updated.  | [default to undefined]
+**flowType** | [**AFNORFlowType**](AFNORFlowType.md) |  | [default to undefined]
+**processingRuleSource** | **string** | Says whether the processing rule has been computed or the processing rule was an input parameter | [default to undefined]
+**flowDirection** | [**AFNORFlowDirection**](AFNORFlowDirection.md) |  | [default to undefined]
+**acknowledgement** | [**AFNORAcknowledgement**](AFNORAcknowledgement.md) |  | [default to undefined]
 
 ## Example
 
@@ -24,16 +25,17 @@ Name | Type | Description | Notes
 import { AFNORFlow } from '@factpulse/sdk';
 
 const instance: AFNORFlow = {
-    submittedAt,
-    updatedAt,
-    flowId,
     trackingId,
-    flowType,
+    name,
     processingRule,
-    processingRuleSource,
-    flowDirection,
     flowSyntax,
     flowProfile,
+    flowId,
+    submittedAt,
+    updatedAt,
+    flowType,
+    processingRuleSource,
+    flowDirection,
     acknowledgement,
 };
 ```

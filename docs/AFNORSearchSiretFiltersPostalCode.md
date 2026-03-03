@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**op** | [**AFNORContainsOperator**](AFNORContainsOperator.md) |  | [optional] [default to undefined]
+**op** | [**AFNORStrictOrStartWithOperator**](AFNORStrictOrStartWithOperator.md) |  | [optional] [default to undefined]
 **value** | **string** | Service postal code | [optional] [default to undefined]
 
 ## Example

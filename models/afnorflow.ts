@@ -18,7 +18,13 @@
 import type { AFNORAcknowledgement } from './afnoracknowledgement';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { AFNORCoreFlowInfo } from './afnorcore-flow-info';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { AFNORFlowDirection } from './afnorflow-direction';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { AFNORFlowExtension } from './afnorflow-extension';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { AFNORFlowProfile } from './afnorflow-profile';
@@ -30,45 +36,15 @@ import type { AFNORFlowSyntax } from './afnorflow-syntax';
 import type { AFNORFlowType } from './afnorflow-type';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { AFNORFullFlowInfoExtension } from './afnorfull-flow-info-extension';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { AFNORProcessingRule } from './afnorprocessing-rule';
 
 /**
+ * @type AFNORFlow
  * The properties of a Flow resource
  */
-export interface AFNORFlow {
-    /**
-     * The flow submission date and time (the date and time when the flow was created on the system) 
-     */
-    'submittedAt'?: string;
-    /**
-     * The last update date and time of the flow. When the flow is submitted updatedAt is equal to submittedAt. When the flow acknowledgment status is changed updatedAt date and time is updated. 
-     */
-    'updatedAt'?: string;
-    /**
-     * Unique identifier supporting UUID but not only, for flexibility purpose
-     */
-    'flowId'?: string;
-    /**
-     * Unique identifier supporting UUID but not only, for flexibility purpose
-     */
-    'trackingId'?: string;
-    'flowType'?: AFNORFlowType;
-    'processingRule'?: AFNORProcessingRule;
-    /**
-     * Says whether the processing rule has been computed or the processing rule was an input parameter
-     */
-    'processingRuleSource'?: AFNORFlowProcessingRuleSourceEnum;
-    'flowDirection'?: AFNORFlowDirection;
-    'flowSyntax'?: AFNORFlowSyntax;
-    'flowProfile'?: AFNORFlowProfile;
-    'acknowledgement'?: AFNORAcknowledgement;
-}
-
-export const AFNORFlowProcessingRuleSourceEnum = {
-    Input: 'Input',
-    Computed: 'Computed'
-} as const;
-
-export type AFNORFlowProcessingRuleSourceEnum = typeof AFNORFlowProcessingRuleSourceEnum[keyof typeof AFNORFlowProcessingRuleSourceEnum];
+export type AFNORFlow = AFNORCoreFlowInfo & AFNORFlowExtension & AFNORFullFlowInfoExtension;
 
 

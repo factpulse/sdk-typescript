@@ -15,14 +15,17 @@
 
 
 /**
- * AFNOR XP Z12-013 ProcessingRule (Annexe A, lignes 212-216).  Valeurs EXACTES de la spec (case-sensitive).
+ * AFNOR XP Z12-013 ProcessingRule (Annexe A v1.2.0).  Valeurs EXACTES de la spec (case-sensitive).
  */
 
 export const ProcessingRule = {
     B2B: 'B2B',
     B2BInt: 'B2BInt',
     B2C: 'B2C',
+    B2G: 'B2G',
+    B2GInt: 'B2GInt',
     OutOfScope: 'OutOfScope',
+    B2GOutOfScope: 'B2GOutOfScope',
     ArchiveOnly: 'ArchiveOnly',
     NotApplicable: 'NotApplicable'
 } as const;

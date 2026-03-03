@@ -12,6 +12,6 @@ Fields of the Siren resource.
 
 * `AdministrativeStatus` (value: `'administrativeStatus'`)
 
-* `IdInstance` (value: `'idInstance'`)
+* `Instructions` (value: `'instructions'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
