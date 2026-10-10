@@ -22,7 +22,7 @@ export const TransactionCategory = {
     Tlb1: 'TLB1',
     Tps1: 'TPS1',
     Tnt1: 'TNT1',
-    Tma1: 'TMA1'
+    Tma1: 'TMA1',
 } as const;
 
 export type TransactionCategory = typeof TransactionCategory[keyof typeof TransactionCategory];

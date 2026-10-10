@@ -90,7 +90,7 @@ export const SchemeID = {
     /**
     * PT_VAT - Portuguese VAT number
     */
-    PT_VAT: '9934'
+    PT_VAT: '9934',
 } as const;
 
 export type SchemeID = typeof SchemeID[keyof typeof SchemeID];

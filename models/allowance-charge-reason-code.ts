@@ -56,7 +56,7 @@ export const AllowanceChargeReasonCode = {
     Fc: 'FC',
     Fi: 'FI',
     La: 'LA',
-    Pc: 'PC'
+    Pc: 'PC',
 } as const;
 
 export type AllowanceChargeReasonCode = typeof AllowanceChargeReasonCode[keyof typeof AllowanceChargeReasonCode];

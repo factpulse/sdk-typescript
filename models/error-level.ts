@@ -17,7 +17,7 @@
 
 export const ErrorLevel = {
     Error: 'Error',
-    Warning: 'Warning'
+    Warning: 'Warning',
 } as const;
 
 export type ErrorLevel = typeof ErrorLevel[keyof typeof ErrorLevel];

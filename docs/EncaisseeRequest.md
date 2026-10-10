@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **invoiceIssueDate** | **string** | Date d\&#39;émission de la facture (YYYY-MM-DD) | [default to undefined]
 **invoiceBuyerSiren** | **string** | SIREN de l\&#39;acheteur (destinataire du statut) | [default to undefined]
 **invoiceBuyerElectronicAddress** | **string** | Adresse électronique de l\&#39;acheteur (MDT-73) | [default to undefined]
-**amount** | [**Amount**](Amount.md) |  | [default to undefined]
+**amount** | [**Amount1**](Amount1.md) |  | [default to undefined]
+**vatRate** | **number** | Taux de TVA du montant encaissé en % (MDT-224, requis par BR-FR-CDV-14 ; défaut 20) | [optional] [default to 20]
 **currency** | **string** | Code devise ISO 4217 | [optional] [default to 'EUR']
 **senderSiren** | **string** |  | [optional] [default to undefined]
 **flowType** | **string** | Type de flux (CustomerInvoiceLC pour facture émise) | [optional] [default to 'CustomerInvoiceLC']
@@ -30,6 +31,7 @@ const instance: EncaisseeRequest = {
     invoiceBuyerSiren,
     invoiceBuyerElectronicAddress,
     amount,
+    vatRate,
     currency,
     senderSiren,
     flowType,

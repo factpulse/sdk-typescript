@@ -45,7 +45,7 @@ export interface AFNORSearchSiret {
 }
 
 export const AFNORSearchSiretIncludeEnum = {
-    Siren: 'siren'
+    Siren: 'siren',
 } as const;
 
 export type AFNORSearchSiretIncludeEnum = typeof AFNORSearchSiretIncludeEnum[keyof typeof AFNORSearchSiretIncludeEnum];

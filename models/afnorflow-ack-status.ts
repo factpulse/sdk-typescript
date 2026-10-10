@@ -21,7 +21,7 @@
 export const AFNORFlowAckStatus = {
     Pending: 'Pending',
     Ok: 'Ok',
-    Error: 'Error'
+    Error: 'Error',
 } as const;
 
 export type AFNORFlowAckStatus = typeof AFNORFlowAckStatus[keyof typeof AFNORFlowAckStatus];

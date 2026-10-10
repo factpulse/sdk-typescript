@@ -25,7 +25,7 @@ import type { AFNORSortingOrder } from './afnorsorting-order';
  */
 export interface AFNORSearchDirectoryLineSortingInner {
     'field'?: AFNORDirectoryLineField;
-    'sortingOrder'?: AFNORSortingOrder;
+    'order'?: AFNORSortingOrder;
 }
 
 

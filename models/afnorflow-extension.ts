@@ -42,7 +42,7 @@ export interface AFNORFlowExtension {
 
 export const AFNORFlowExtensionProcessingRuleSourceEnum = {
     Input: 'Input',
-    Computed: 'Computed'
+    Computed: 'Computed',
 } as const;
 
 export type AFNORFlowExtensionProcessingRuleSourceEnum = typeof AFNORFlowExtensionProcessingRuleSourceEnum[keyof typeof AFNORFlowExtensionProcessingRuleSourceEnum];

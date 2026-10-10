@@ -38,7 +38,7 @@ export const UnitOfMeasure = {
     Tne: 'TNE',
     Kwh: 'KWH',
     Set: 'SET',
-    Ls: 'LS'
+    Ls: 'LS',
 } as const;
 
 export type UnitOfMeasure = typeof UnitOfMeasure[keyof typeof UnitOfMeasure];

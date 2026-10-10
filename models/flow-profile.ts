@@ -21,7 +21,8 @@
 export const FlowProfile = {
     Basic: 'Basic',
     Cius: 'CIUS',
-    ExtendedCtcFr: 'Extended-CTC-FR'
+    ExtendedCtcFr: 'Extended-CTC-FR',
+    Undefined: 'Undefined',
 } as const;
 
 export type FlowProfile = typeof FlowProfile[keyof typeof FlowProfile];

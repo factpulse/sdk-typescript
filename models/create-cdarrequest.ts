@@ -72,5 +72,9 @@ export interface CreateCDARRequest {
     'reasonText'?: string | null;
     'actionCode'?: string | null;
     'encaisseAmount'?: Encaisseamount | null;
+    /**
+     * Taux de TVA du montant encaissé en % (MDT-224, requis par BR-FR-CDV-14 pour le statut 212 ; défaut 20)
+     */
+    'encaisseVatRate'?: number;
 }
 

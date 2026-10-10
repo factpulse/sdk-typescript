@@ -13,17 +13,30 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { AFNORAlgorithm } from './afnoralgorithm';
 
-export interface AFNORCallbackSignature {
-    'algo': AFNORAlgorithm;
+/**
+ * Chorus Pro credentials for Zero-Trust mode.  **Zero-Trust Mode**: Credentials are passed in each request and are NEVER stored.  **Security**: - Credentials are never persisted in the database - They are used only for the duration of the request - Secure transmission via HTTPS  **Use cases**: - High-security environments (banks, administrations) - Strict GDPR compliance - Tests with temporary credentials - Users who don\'t want to store their credentials
+ */
+export interface FactureElectroniqueRestApiSchemasChorusProChorusProCredentials {
     /**
-     * Base 64 encoded string
+     * PISTE Client ID (government API portal)
      */
-    'key': string;
+    'pisteClientId': string;
+    /**
+     * PISTE Client Secret
+     */
+    'pisteClientSecret': string;
+    /**
+     * Chorus Pro login
+     */
+    'chorusProLogin': string;
+    /**
+     * Chorus Pro password
+     */
+    'chorusProPassword': string;
+    /**
+     * Use sandbox environment (true) or production (false)
+     */
+    'sandbox'?: boolean;
 }
-
-
 

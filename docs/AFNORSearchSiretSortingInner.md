@@ -7,7 +7,7 @@ A sorting criteria composed of a field and an order (ascending or descending).
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **field** | [**AFNORSiretField**](AFNORSiretField.md) |  | [optional] [default to undefined]
-**sortingOrder** | [**AFNORSortingOrder**](AFNORSortingOrder.md) |  | [optional] [default to undefined]
+**order** | [**AFNORSortingOrder**](AFNORSortingOrder.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -16,7 +16,7 @@ import { AFNORSearchSiretSortingInner } from '@factpulse/sdk';
 
 const instance: AFNORSearchSiretSortingInner = {
     field,
-    sortingOrder,
+    order,
 };
 ```
 

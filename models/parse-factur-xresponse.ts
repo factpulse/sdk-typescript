@@ -33,7 +33,7 @@ export interface ParseFacturXResponse {
 
 export const ParseFacturXResponseStatusEnum = {
     Success: 'SUCCESS',
-    Failure: 'FAILURE'
+    Failure: 'FAILURE',
 } as const;
 
 export type ParseFacturXResponseStatusEnum = typeof ParseFacturXResponseStatusEnum[keyof typeof ParseFacturXResponseStatusEnum];

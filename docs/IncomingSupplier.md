@@ -10,8 +10,9 @@ Name | Type | Description | Notes
 **siren** | **string** |  | [optional] [default to undefined]
 **siret** | **string** |  | [optional] [default to undefined]
 **vatNumber** | **string** |  | [optional] [default to undefined]
-**postalAddress** | [**PostalAddress**](PostalAddress.md) |  | [optional] [default to undefined]
-**electronicAddress** | [**ElectronicAddress**](ElectronicAddress.md) |  | [optional] [default to undefined]
+**taxRegistrationId** | **string** |  | [optional] [default to undefined]
+**postalAddress** | [**PostalAddressOutput**](PostalAddressOutput.md) |  | [optional] [default to undefined]
+**electronicAddress** | [**ElectronicAddressOutput**](ElectronicAddressOutput.md) |  | [optional] [default to undefined]
 **email** | **string** |  | [optional] [default to undefined]
 **phone** | **string** |  | [optional] [default to undefined]
 
@@ -25,6 +26,7 @@ const instance: IncomingSupplier = {
     siren,
     siret,
     vatNumber,
+    taxRegistrationId,
     postalAddress,
     electronicAddress,
     email,

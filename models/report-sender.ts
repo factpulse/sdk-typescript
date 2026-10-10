@@ -26,6 +26,7 @@ export interface ReportSender {
      * Company name
      */
     'name': string;
+    'schemeId'?: string | null;
     'vatId'?: string | null;
 }
 

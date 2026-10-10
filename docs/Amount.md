@@ -1,6 +1,6 @@
 # Amount
 
-Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+Allowance/charge amount (BT-92/99/136/141).
 
 ## Properties
 

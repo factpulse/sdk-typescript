@@ -33,7 +33,7 @@ export interface ConversionValidationFailedResult {
 }
 
 export const ConversionValidationFailedResultStatusEnum = {
-    ValidationFailed: 'VALIDATION_FAILED'
+    ValidationFailed: 'VALIDATION_FAILED',
 } as const;
 
 export type ConversionValidationFailedResultStatusEnum = typeof ConversionValidationFailedResultStatusEnum[keyof typeof ConversionValidationFailedResultStatusEnum];

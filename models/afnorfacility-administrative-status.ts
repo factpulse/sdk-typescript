@@ -20,7 +20,7 @@
 
 export const AFNORFacilityAdministrativeStatus = {
     A: 'A',
-    C: 'C'
+    C: 'C',
 } as const;
 
 export type AFNORFacilityAdministrativeStatus = typeof AFNORFacilityAdministrativeStatus[keyof typeof AFNORFacilityAdministrativeStatus];

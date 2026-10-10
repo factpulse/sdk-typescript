@@ -15,13 +15,20 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORCallbackParameters } from './afnorcallback-parameters';
+import type { AFNORFlowAckStatus } from './afnorflow-ack-status';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORWebhookMetadata } from './afnorwebhook-metadata';
+import type { AFNORFlowDirection } from './afnorflow-direction';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { AFNORFlowType } from './afnorflow-type';
 
 export interface AFNORWebhookParams {
-    'callback': AFNORCallbackParameters;
-    'metadata': AFNORWebhookMetadata;
+    'callbackUrl': string;
+    'flowTypes'?: Array<AFNORFlowType>;
+    'flowDirection'?: AFNORFlowDirection;
+    'ackStatus'?: AFNORFlowAckStatus;
 }
+
+
 

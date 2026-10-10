@@ -13,25 +13,10 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { AFNORFlowAckStatus } from './afnorflow-ack-status';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { AFNORFlowDirection } from './afnorflow-direction';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { AFNORFlowType } from './afnorflow-type';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { AFNORProcessingRule } from './afnorprocessing-rule';
 
-export interface AFNORWebhookMetadata {
-    'processingRule'?: AFNORProcessingRule;
-    'flowType': AFNORFlowType;
-    'flowDirection': AFNORFlowDirection;
-    'ackStatus'?: AFNORFlowAckStatus;
+/**
+ * VAT amount in EUR for a non-EUR invoice. Computed automatically from the exchange rate when omitted.
+ */
+export interface Taxamounteur {
 }
-
-
 

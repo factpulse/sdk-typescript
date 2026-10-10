@@ -15,18 +15,15 @@
 
 
 /**
- * Invoice type codes (UNTDID 1001).
+ * Represents a postal address (BG-5, BG-8, BG-12, BG-15).
  */
-
-export const FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = {
-    _380: '380',
-    _381: '381',
-    _384: '384',
-    _389: '389',
-    _386: '386'
-} as const;
-
-export type FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode = typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode[keyof typeof FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode];
-
-
+export interface PostalAddressInput {
+    'postal_code'?: string | null;
+    'line_one'?: string | null;
+    'line_two'?: string | null;
+    'line_three'?: string | null;
+    'city'?: string | null;
+    'country_code'?: string | null;
+    'country_subdivision'?: string | null;
+}
 

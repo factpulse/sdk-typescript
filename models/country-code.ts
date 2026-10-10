@@ -188,7 +188,7 @@ export const CountryCode = {
     Az: 'AZ',
     Am: 'AM',
     Ge: 'GE',
-    Mn: 'MN'
+    Mn: 'MN',
 } as const;
 
 export type CountryCode = typeof CountryCode[keyof typeof CountryCode];

@@ -20,7 +20,7 @@
 
 export const AFNORRecipientPlatformType = {
     Wk: 'WK',
-    Dfh: 'DFH'
+    Dfh: 'DFH',
 } as const;
 
 export type AFNORRecipientPlatformType = typeof AFNORRecipientPlatformType[keyof typeof AFNORRecipientPlatformType];

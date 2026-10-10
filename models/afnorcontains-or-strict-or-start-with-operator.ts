@@ -13,17 +13,18 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { AFNORBasicAuthentication } from './afnorbasic-authentication';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { AFNOROAuth2Authentication } from './afnoroauth2-authentication';
 
 /**
- * @type AFNORCallbackAuthentication
- * The authentication mode required for the callback call
+ * \\\"contains\\\", \\\"strict\\\" or \\\"startWith\\\" comparison operator
  */
-export type AFNORCallbackAuthentication = AFNORBasicAuthentication | AFNOROAuth2Authentication;
+
+export const AFNORContainsOrStrictOrStartWithOperator = {
+    Contains: 'contains',
+    Strict: 'strict',
+    StartWith: 'startWith',
+} as const;
+
+export type AFNORContainsOrStrictOrStartWithOperator = typeof AFNORContainsOrStrictOrStartWithOperator[keyof typeof AFNORContainsOrStrictOrStartWithOperator];
+
 
 

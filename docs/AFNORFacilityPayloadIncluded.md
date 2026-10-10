@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **name** | **string** | business name | [optional] [default to undefined]
 **facilityType** | [**AFNORFacilityType**](AFNORFacilityType.md) |  | [optional] [default to undefined]
 **administrativeStatus** | [**AFNORFacilityAdministrativeStatus**](AFNORFacilityAdministrativeStatus.md) |  | [optional] [default to undefined]
+**instructions** | [**AFNORSiretInstructions**](AFNORSiretInstructions.md) |  | [optional] [default to undefined]
 **address** | [**AFNORAddressRead**](AFNORAddressRead.md) |  | [optional] [default to undefined]
 **b2gAdditionalData** | [**AFNORFacilityPayloadHistoryUleB2gAdditionalData**](AFNORFacilityPayloadHistoryUleB2gAdditionalData.md) |  | [optional] [default to undefined]
 
@@ -24,6 +25,7 @@ const instance: AFNORFacilityPayloadIncluded = {
     name,
     facilityType,
     administrativeStatus,
+    instructions,
     address,
     b2gAdditionalData,
 };

@@ -23,7 +23,7 @@ export const AFNORSirenField = {
     BusinessName: 'businessName',
     EntityType: 'entityType',
     AdministrativeStatus: 'administrativeStatus',
-    Instructions: 'instructions'
+    Instructions: 'instructions',
 } as const;
 
 export type AFNORSirenField = typeof AFNORSirenField[keyof typeof AFNORSirenField];

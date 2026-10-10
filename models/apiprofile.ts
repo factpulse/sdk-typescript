@@ -23,7 +23,7 @@ export const APIProfile = {
     Basicwl: 'BASICWL',
     Basic: 'BASIC',
     En16931: 'EN16931',
-    Extended: 'EXTENDED'
+    Extended: 'EXTENDED',
 } as const;
 
 export type APIProfile = typeof APIProfile[keyof typeof APIProfile];

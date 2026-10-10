@@ -28,7 +28,7 @@ export interface ElectronicAddress {
     /**
      * Identification scheme (EAS code)
      */
-    'schemeId'?: SchemeID;
+    'scheme_id'?: SchemeID;
 }
 
 

@@ -26,7 +26,7 @@ export interface ValidationSuccessTaskResult {
 }
 
 export const ValidationSuccessTaskResultStatusEnum = {
-    Success: 'SUCCESS'
+    Success: 'SUCCESS',
 } as const;
 
 export type ValidationSuccessTaskResultStatusEnum = typeof ValidationSuccessTaskResultStatusEnum[keyof typeof ValidationSuccessTaskResultStatusEnum];

@@ -24,7 +24,14 @@ import type { AFNORSearchFlowFilters } from './afnorsearch-flow-filters';
  * A set of flows matching criterias, provided into the request
  */
 export interface AFNORSearchFlowContent {
+    /**
+     * Pagination, Maximum number of results that may be returned
+     */
     'limit'?: number;
+    /**
+     * Pagination management: - If present, says where to start for next page, set nextCursor as the cursor in the next request - If omitted, says that pagination is finished 
+     */
+    'nextCursor'?: string;
     'filters'?: AFNORSearchFlowFilters;
     'results'?: Array<AFNORFlow>;
 }

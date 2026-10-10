@@ -20,7 +20,7 @@
 
 export const FlowDirection = {
     In: 'In',
-    Out: 'Out'
+    Out: 'Out',
 } as const;
 
 export type FlowDirection = typeof FlowDirection[keyof typeof FlowDirection];

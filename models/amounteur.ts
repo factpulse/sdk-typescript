@@ -15,14 +15,8 @@
 
 
 /**
- * \\\"contains\\\" comparison operator
+ * Payment amount in EUR for a non-EUR payment (G6.27). Computed automatically from the exchange rate when omitted.
  */
-
-export const AFNORContainsOperator = {
-    Contains: 'contains'
-} as const;
-
-export type AFNORContainsOperator = typeof AFNORContainsOperator[keyof typeof AFNORContainsOperator];
-
-
+export interface Amounteur {
+}
 

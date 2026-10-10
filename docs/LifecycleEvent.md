@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **statusCode** | **string** | Code statut (200-601) | [default to undefined]
 **statusDescription** | **string** |  | [optional] [default to undefined]
 **ackStatus** | **string** |  | [optional] [default to undefined]
+**flowDirection** | **string** |  | [optional] [default to undefined]
 **at** | **string** |  | [optional] [default to undefined]
 **documentId** | **string** |  | [optional] [default to undefined]
 **amount** | **string** |  | [optional] [default to undefined]
@@ -28,6 +29,7 @@ const instance: LifecycleEvent = {
     statusCode,
     statusDescription,
     ackStatus,
+    flowDirection,
     at,
     documentId,
     amount,

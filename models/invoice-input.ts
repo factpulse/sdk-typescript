@@ -21,7 +21,7 @@ import type { Buyercountry } from './buyercountry';
 import type { Currency } from './currency';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode } from './facture-electronique-rest-api-schemas-ereporting-invoice-type-code';
+import type { InvoiceTypeCode } from './invoice-type-code';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { Sellercountry } from './sellercountry';
@@ -31,6 +31,9 @@ import type { TaxBreakdownInput } from './tax-breakdown-input';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { Taxamount1 } from './taxamount1';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { Taxamounteur } from './taxamounteur';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { Taxexclusiveamount1 } from './taxexclusiveamount1';
@@ -50,7 +53,7 @@ export interface InvoiceInput {
     /**
      * Invoice type code
      */
-    'typeCode'?: FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode;
+    'typeCode'?: InvoiceTypeCode;
     'currency'?: Currency;
     'dueDate'?: string | null;
     'sellerId'?: string | null;
@@ -66,6 +69,8 @@ export interface InvoiceInput {
      * VAT breakdown
      */
     'taxBreakdown': Array<TaxBreakdownInput>;
+    'taxAmountEur'?: Taxamounteur | null;
+    'businessProcessId'?: string | null;
     'referencedInvoiceId'?: string | null;
     'referencedInvoiceDate'?: string | null;
 }

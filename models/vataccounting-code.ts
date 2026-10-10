@@ -22,7 +22,7 @@ export const VATAccountingCode = {
     TvaSurDebit: 'TVA_SUR_DEBIT',
     TvaSurEncaissement: 'TVA_SUR_ENCAISSEMENT',
     Exoneration: 'EXONERATION',
-    SansTva: 'SANS_TVA'
+    SansTva: 'SANS_TVA',
 } as const;
 
 export type VATAccountingCode = typeof VATAccountingCode[keyof typeof VATAccountingCode];

@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **trackingId** | **string** | The tracking id is an external identifier and is used to track the flow by the sender | [optional] [default to undefined]
 **name** | **string** | Name of the file | [default to undefined]
-**processingRule** | [**AFNORProcessingRule**](AFNORProcessingRule.md) |  | [optional] [default to undefined]
+**processingRule** | [**AFNORProcessingRule**](AFNORProcessingRule.md) |  | [default to undefined]
 **flowSyntax** | [**AFNORFlowSyntax**](AFNORFlowSyntax.md) |  | [default to undefined]
-**flowProfile** | [**AFNORFlowProfile**](AFNORFlowProfile.md) |  | [optional] [default to undefined]
+**flowProfile** | [**AFNORFlowProfile**](AFNORFlowProfile.md) |  | [default to undefined]
 **flowId** | **string** | Unique identifier supporting UUID but not only, for flexibility purpose | [default to undefined]
 **submittedAt** | **string** | The flow submission date and time (the date and time when the flow was created on the system) This property should be used by the API consumer as a time reference to avoid clock synchronization issues  | [default to undefined]
 **updatedAt** | **string** | The last update date and time of the flow. When the flow is submitted updatedAt is equal to submittedAt. When the flow acknowledgment status is changed updatedAt date and time is updated.  | [default to undefined]

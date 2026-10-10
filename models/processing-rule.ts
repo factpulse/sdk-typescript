@@ -15,7 +15,7 @@
 
 
 /**
- * AFNOR XP Z12-013 ProcessingRule (Annexe A v1.2.0).  Valeurs EXACTES de la spec (case-sensitive).
+ * AFNOR XP Z12-013 ProcessingRule (Annexe A v1.3.0).  Valeurs EXACTES de la spec (case-sensitive).
  */
 
 export const ProcessingRule = {
@@ -27,7 +27,8 @@ export const ProcessingRule = {
     OutOfScope: 'OutOfScope',
     B2GOutOfScope: 'B2GOutOfScope',
     ArchiveOnly: 'ArchiveOnly',
-    NotApplicable: 'NotApplicable'
+    NotApplicable: 'NotApplicable',
+    Undefined: 'Undefined',
 } as const;
 
 export type ProcessingRule = typeof ProcessingRule[keyof typeof ProcessingRule];

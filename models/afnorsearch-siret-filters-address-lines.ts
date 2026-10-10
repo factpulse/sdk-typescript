@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORContainsOperator } from './afnorcontains-operator';
+import type { AFNORContainsOrStartWithOperator } from './afnorcontains-or-start-with-operator';
 
 export interface AFNORSearchSiretFiltersAddressLines {
-    'op'?: AFNORContainsOperator;
+    'op'?: AFNORContainsOrStartWithOperator;
     /**
      * address lines of the recipient structure having defined the directory line(s).
      */

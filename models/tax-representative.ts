@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PostalAddress } from './postal-address';
+import type { PostalAddressInput } from './postal-address-input';
 
 /**
  * Seller tax representative (BG-11).  The tax representative is required when the seller is not established in the country where VAT is due.
@@ -32,6 +32,6 @@ export interface TaxRepresentative {
     /**
      * Tax representative postal address (BG-12).
      */
-    'postal_address': PostalAddress;
+    'postal_address': PostalAddressInput;
 }
 

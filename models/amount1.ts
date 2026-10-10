@@ -15,7 +15,7 @@
 
 
 /**
- * Payment amount
+ * Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
  */
 export interface Amount1 {
 }

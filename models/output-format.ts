@@ -22,7 +22,7 @@ export const OutputFormat = {
     Xml: 'xml',
     Cii: 'cii',
     Ubl: 'ubl',
-    Pdf: 'pdf'
+    Pdf: 'pdf',
 } as const;
 
 export type OutputFormat = typeof OutputFormat[keyof typeof OutputFormat];

@@ -7,7 +7,7 @@ Represents an electronic invoicing address, composed of an identifier and its sc
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **identifier** | **string** | Electronic address identifier (e.g., SIREN, SIRET, routing code) | [default to undefined]
-**schemeId** | [**SchemeID**](SchemeID.md) | Identification scheme (EAS code) | [optional] [default to undefined]
+**scheme_id** | [**SchemeID**](SchemeID.md) | Identification scheme (EAS code) | [optional] [default to undefined]
 
 ## Example
 
@@ -16,7 +16,7 @@ import { ElectronicAddress } from '@factpulse/sdk';
 
 const instance: ElectronicAddress = {
     identifier,
-    schemeId,
+    scheme_id,
 };
 ```
 

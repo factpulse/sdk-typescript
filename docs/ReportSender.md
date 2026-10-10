@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **siren** | **string** | SIREN or SIRET number of the sender (PA or company) | [default to undefined]
 **name** | **string** | Company name | [default to undefined]
+**schemeId** | **string** |  | [optional] [default to undefined]
 **vatId** | **string** |  | [optional] [default to undefined]
 
 ## Example
@@ -18,6 +19,7 @@ import { ReportSender } from '@factpulse/sdk';
 const instance: ReportSender = {
     siren,
     name,
+    schemeId,
     vatId,
 };
 ```

@@ -122,7 +122,7 @@ No authorization required
 # **getLifecycleApiV1CdarLifecycleGet**
 > LifecycleResponse getLifecycleApiV1CdarLifecycleGet()
 
-Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
 
 ### Example
 
@@ -137,18 +137,22 @@ const apiInstance = new Flux6InvoiceLifecycleCDARApi(configuration);
 
 let days: number; //Number of days to look back (optional) (default to 7)
 let invoiceId: string; //Filter by invoice reference (optional) (default to undefined)
+let flowDirection: 'In' | 'Out' | 'All'; //All (default), In (received statuses) or Out (issued statuses) (optional) (default to 'All')
 let pdpFlowServiceUrl: string; //PDP Flow Service URL (optional) (default to undefined)
 let pdpTokenUrl: string; //PDP OAuth token URL (optional) (default to undefined)
 let pdpClientId: string; //PDP Client ID (optional) (default to undefined)
 let pdpClientSecret: string; //PDP Client Secret (optional) (default to undefined)
+let organizationId: string; //Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.getLifecycleApiV1CdarLifecycleGet(
     days,
     invoiceId,
+    flowDirection,
     pdpFlowServiceUrl,
     pdpTokenUrl,
     pdpClientId,
-    pdpClientSecret
+    pdpClientSecret,
+    organizationId
 );
 ```
 
@@ -158,10 +162,12 @@ const { status, data } = await apiInstance.getLifecycleApiV1CdarLifecycleGet(
 |------------- | ------------- | ------------- | -------------|
 | **days** | [**number**] | Number of days to look back | (optional) defaults to 7|
 | **invoiceId** | [**string**] | Filter by invoice reference | (optional) defaults to undefined|
+| **flowDirection** | [**&#39;In&#39; | &#39;Out&#39; | &#39;All&#39;**]**Array<&#39;In&#39; &#124; &#39;Out&#39; &#124; &#39;All&#39;>** | All (default), In (received statuses) or Out (issued statuses) | (optional) defaults to 'All'|
 | **pdpFlowServiceUrl** | [**string**] | PDP Flow Service URL | (optional) defaults to undefined|
 | **pdpTokenUrl** | [**string**] | PDP OAuth token URL | (optional) defaults to undefined|
 | **pdpClientId** | [**string**] | PDP Client ID | (optional) defaults to undefined|
 | **pdpClientSecret** | [**string**] | PDP Client Secret | (optional) defaults to undefined|
+| **organizationId** | [**string**] | Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -301,9 +307,11 @@ const configuration = new Configuration();
 const apiInstance = new Flux6InvoiceLifecycleCDARApi(configuration);
 
 let submitCDARRequest: SubmitCDARRequest; //
+let organizationId: string; //Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.submitCdarApiV1CdarSubmitPost(
-    submitCDARRequest
+    submitCDARRequest,
+    organizationId
 );
 ```
 
@@ -312,6 +320,7 @@ const { status, data } = await apiInstance.submitCdarApiV1CdarSubmitPost(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **submitCDARRequest** | **SubmitCDARRequest**|  | |
+| **organizationId** | [**string**] | Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -357,9 +366,11 @@ const configuration = new Configuration();
 const apiInstance = new Flux6InvoiceLifecycleCDARApi(configuration);
 
 let submitCDARXMLRequest: SubmitCDARXMLRequest; //
+let organizationId: string; //Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.submitCdarXmlApiV1CdarSubmitXmlPost(
-    submitCDARXMLRequest
+    submitCDARXMLRequest,
+    organizationId
 );
 ```
 
@@ -368,6 +379,7 @@ const { status, data } = await apiInstance.submitCdarXmlApiV1CdarSubmitXmlPost(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **submitCDARXMLRequest** | **SubmitCDARXMLRequest**|  | |
+| **organizationId** | [**string**] | Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -413,9 +425,11 @@ const configuration = new Configuration();
 const apiInstance = new Flux6InvoiceLifecycleCDARApi(configuration);
 
 let encaisseeRequest: EncaisseeRequest; //
+let organizationId: string; //Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.submitEncaisseeApiV1CdarEncaisseePost(
-    encaisseeRequest
+    encaisseeRequest,
+    organizationId
 );
 ```
 
@@ -424,6 +438,7 @@ const { status, data } = await apiInstance.submitEncaisseeApiV1CdarEncaisseePost
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **encaisseeRequest** | **EncaisseeRequest**|  | |
+| **organizationId** | [**string**] | Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -469,9 +484,11 @@ const configuration = new Configuration();
 const apiInstance = new Flux6InvoiceLifecycleCDARApi(configuration);
 
 let refuseeRequest: RefuseeRequest; //
+let organizationId: string; //Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.submitRefuseeApiV1CdarRefuseePost(
-    refuseeRequest
+    refuseeRequest,
+    organizationId
 );
 ```
 
@@ -480,6 +497,7 @@ const { status, data } = await apiInstance.submitRefuseeApiV1CdarRefuseePost(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **refuseeRequest** | **RefuseeRequest**|  | |
+| **organizationId** | [**string**] | Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. | (optional) defaults to undefined|
 
 
 ### Return type

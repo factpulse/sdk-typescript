@@ -21,7 +21,7 @@
 export const VATPointDateCode = {
     _5: '5',
     _29: '29',
-    _72: '72'
+    _72: '72',
 } as const;
 
 export type VATPointDateCode = typeof VATPointDateCode[keyof typeof VATPointDateCode];

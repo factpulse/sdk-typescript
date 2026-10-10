@@ -42,6 +42,12 @@ import type { PDPConfigResponse } from '../models';
 // @ts-ignore
 import type { PDPConfigUpdateRequest } from '../models';
 // @ts-ignore
+import type { SuperPDPConnectURLResponse } from '../models';
+// @ts-ignore
+import type { SuperPDPDisconnectResponse } from '../models';
+// @ts-ignore
+import type { SuperPDPStatusResponse } from '../models';
+// @ts-ignore
 import type { WebhookSecretDeleteResponse } from '../models';
 // @ts-ignore
 import type { WebhookSecretGenerateResponse } from '../models';
@@ -218,6 +224,47 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             };
         },
         /**
+         * Disconnect SuperPDP for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  Revokes the stored refresh token with SuperPDP (RFC 7009) and deletes the stored tokens. The client can reconnect later via the connect-url endpoint.
+         * @summary Disconnect SuperPDP
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        disconnectSuperpdpApiV1ClientsUidSuperpdpDelete: async (uid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'uid' is not null or undefined
+            assertParamExists('disconnectSuperpdpApiV1ClientsUidSuperpdpDelete', 'uid', uid)
+            const localVarPath = `/api/v1/clients/{uid}/superpdp`
+                .replace(`{${"uid"}}`, encodeURIComponent(String(uid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
          * @summary Generate webhook secret
          * @param {string} uid Client unique identifier (UUID)
@@ -310,6 +357,98 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             // verify required parameter 'uid' is not null or undefined
             assertParamExists('getPdpConfigApiV1ClientsUidPdpConfigGet', 'uid', uid)
             const localVarPath = `/api/v1/clients/{uid}/pdp-config`
+                .replace(`{${"uid"}}`, encodeURIComponent(String(uid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Generate the SuperPDP OAuth2 authorization URL for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  Redirect the end user to the returned `authorizeUrl` so they can connect their own SuperPDP account to FactPulse (OAuth2 Authorization Code).  **Query parameters**: - `modeSandbox` (default `true`): connect via the SuperPDP sandbox app   (fictitious data) or the production app. - `returnUrl` (optional): absolute http(s) URL of your own portal. Once the   SuperPDP authorization flow is over, the end user is redirected there with   `superpdp_connected=true|false` (and `superpdp_error=<code>` on failure)   appended to the query string. Without it, FactPulse displays its own   confirmation page. Returns `400 invalid_return_url` if the URL is not an   absolute http(s) URL.
+         * @summary Get SuperPDP connection URL
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {boolean} [modeSandbox] True for the SuperPDP sandbox app (default), False for production
+         * @param {string | null} [returnUrl] Absolute http(s) URL to redirect the end user to once the SuperPDP connection is done. Defaults to the FactPulse confirmation page.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSuperpdpConnectUrlApiV1ClientsUidSuperpdpConnectUrlPost: async (uid: string, modeSandbox?: boolean, returnUrl?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'uid' is not null or undefined
+            assertParamExists('getSuperpdpConnectUrlApiV1ClientsUidSuperpdpConnectUrlPost', 'uid', uid)
+            const localVarPath = `/api/v1/clients/{uid}/superpdp/connect-url`
+                .replace(`{${"uid"}}`, encodeURIComponent(String(uid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (modeSandbox !== undefined) {
+                localVarQueryParameter['modeSandbox'] = modeSandbox;
+            }
+
+            if (returnUrl !== undefined) {
+                localVarQueryParameter['returnUrl'] = returnUrl;
+            }
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Check whether a client has connected its SuperPDP account.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `connected`: Whether the client has an active SuperPDP connection - `connectedAt`: When the connection was established (if any) - `expiresAt`: When the current access token expires (if any) - `modeSandbox`: True if connected via the sandbox app, False for production, null if not connected - `lastError`: Last token refresh error, if any
+         * @summary Get SuperPDP connection status
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSuperpdpStatusApiV1ClientsUidSuperpdpStatusGet: async (uid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'uid' is not null or undefined
+            assertParamExists('getSuperpdpStatusApiV1ClientsUidSuperpdpStatusGet', 'uid', uid)
+            const localVarPath = `/api/v1/clients/{uid}/superpdp/status`
                 .replace(`{${"uid"}}`, encodeURIComponent(String(uid)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -632,6 +771,19 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Disconnect SuperPDP for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  Revokes the stored refresh token with SuperPDP (RFC 7009) and deletes the stored tokens. The client can reconnect later via the connect-url endpoint.
+         * @summary Disconnect SuperPDP
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async disconnectSuperpdpApiV1ClientsUidSuperpdpDelete(uid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuperPDPDisconnectResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.disconnectSuperpdpApiV1ClientsUidSuperpdpDelete(uid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.disconnectSuperpdpApiV1ClientsUidSuperpdpDelete']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
          * @summary Generate webhook secret
          * @param {string} uid Client unique identifier (UUID)
@@ -668,6 +820,34 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPdpConfigApiV1ClientsUidPdpConfigGet(uid, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.getPdpConfigApiV1ClientsUidPdpConfigGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Generate the SuperPDP OAuth2 authorization URL for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  Redirect the end user to the returned `authorizeUrl` so they can connect their own SuperPDP account to FactPulse (OAuth2 Authorization Code).  **Query parameters**: - `modeSandbox` (default `true`): connect via the SuperPDP sandbox app   (fictitious data) or the production app. - `returnUrl` (optional): absolute http(s) URL of your own portal. Once the   SuperPDP authorization flow is over, the end user is redirected there with   `superpdp_connected=true|false` (and `superpdp_error=<code>` on failure)   appended to the query string. Without it, FactPulse displays its own   confirmation page. Returns `400 invalid_return_url` if the URL is not an   absolute http(s) URL.
+         * @summary Get SuperPDP connection URL
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {boolean} [modeSandbox] True for the SuperPDP sandbox app (default), False for production
+         * @param {string | null} [returnUrl] Absolute http(s) URL to redirect the end user to once the SuperPDP connection is done. Defaults to the FactPulse confirmation page.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getSuperpdpConnectUrlApiV1ClientsUidSuperpdpConnectUrlPost(uid: string, modeSandbox?: boolean, returnUrl?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuperPDPConnectURLResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSuperpdpConnectUrlApiV1ClientsUidSuperpdpConnectUrlPost(uid, modeSandbox, returnUrl, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.getSuperpdpConnectUrlApiV1ClientsUidSuperpdpConnectUrlPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Check whether a client has connected its SuperPDP account.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `connected`: Whether the client has an active SuperPDP connection - `connectedAt`: When the connection was established (if any) - `expiresAt`: When the current access token expires (if any) - `modeSandbox`: True if connected via the sandbox app, False for production, null if not connected - `lastError`: Last token refresh error, if any
+         * @summary Get SuperPDP connection status
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getSuperpdpStatusApiV1ClientsUidSuperpdpStatusGet(uid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuperPDPStatusResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSuperpdpStatusApiV1ClientsUidSuperpdpStatusGet(uid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.getSuperpdpStatusApiV1ClientsUidSuperpdpStatusGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -790,6 +970,16 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
             return localVarFp.deleteWebhookSecretApiV1ClientsUidWebhookSecretDelete(uid, options).then((request) => request(axios, basePath));
         },
         /**
+         * Disconnect SuperPDP for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  Revokes the stored refresh token with SuperPDP (RFC 7009) and deletes the stored tokens. The client can reconnect later via the connect-url endpoint.
+         * @summary Disconnect SuperPDP
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        disconnectSuperpdpApiV1ClientsUidSuperpdpDelete(uid: string, options?: RawAxiosRequestConfig): AxiosPromise<SuperPDPDisconnectResponse> {
+            return localVarFp.disconnectSuperpdpApiV1ClientsUidSuperpdpDelete(uid, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
          * @summary Generate webhook secret
          * @param {string} uid Client unique identifier (UUID)
@@ -818,6 +1008,28 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
          */
         getPdpConfigApiV1ClientsUidPdpConfigGet(uid: string, options?: RawAxiosRequestConfig): AxiosPromise<PDPConfigResponse> {
             return localVarFp.getPdpConfigApiV1ClientsUidPdpConfigGet(uid, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Generate the SuperPDP OAuth2 authorization URL for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  Redirect the end user to the returned `authorizeUrl` so they can connect their own SuperPDP account to FactPulse (OAuth2 Authorization Code).  **Query parameters**: - `modeSandbox` (default `true`): connect via the SuperPDP sandbox app   (fictitious data) or the production app. - `returnUrl` (optional): absolute http(s) URL of your own portal. Once the   SuperPDP authorization flow is over, the end user is redirected there with   `superpdp_connected=true|false` (and `superpdp_error=<code>` on failure)   appended to the query string. Without it, FactPulse displays its own   confirmation page. Returns `400 invalid_return_url` if the URL is not an   absolute http(s) URL.
+         * @summary Get SuperPDP connection URL
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {boolean} [modeSandbox] True for the SuperPDP sandbox app (default), False for production
+         * @param {string | null} [returnUrl] Absolute http(s) URL to redirect the end user to once the SuperPDP connection is done. Defaults to the FactPulse confirmation page.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSuperpdpConnectUrlApiV1ClientsUidSuperpdpConnectUrlPost(uid: string, modeSandbox?: boolean, returnUrl?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SuperPDPConnectURLResponse> {
+            return localVarFp.getSuperpdpConnectUrlApiV1ClientsUidSuperpdpConnectUrlPost(uid, modeSandbox, returnUrl, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Check whether a client has connected its SuperPDP account.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `connected`: Whether the client has an active SuperPDP connection - `connectedAt`: When the connection was established (if any) - `expiresAt`: When the current access token expires (if any) - `modeSandbox`: True if connected via the sandbox app, False for production, null if not connected - `lastError`: Last token refresh error, if any
+         * @summary Get SuperPDP connection status
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSuperpdpStatusApiV1ClientsUidSuperpdpStatusGet(uid: string, options?: RawAxiosRequestConfig): AxiosPromise<SuperPDPStatusResponse> {
+            return localVarFp.getSuperpdpStatusApiV1ClientsUidSuperpdpStatusGet(uid, options).then((request) => request(axios, basePath));
         },
         /**
          * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
@@ -926,6 +1138,17 @@ export class ClientManagementApi extends BaseAPI {
     }
 
     /**
+     * Disconnect SuperPDP for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  Revokes the stored refresh token with SuperPDP (RFC 7009) and deletes the stored tokens. The client can reconnect later via the connect-url endpoint.
+     * @summary Disconnect SuperPDP
+     * @param {string} uid Client unique identifier (UUID)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public disconnectSuperpdpApiV1ClientsUidSuperpdpDelete(uid: string, options?: RawAxiosRequestConfig) {
+        return ClientManagementApiFp(this.configuration).disconnectSuperpdpApiV1ClientsUidSuperpdpDelete(uid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Generate or regenerate the webhook secret for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Important**: Save the returned secret immediately - it will never be shown again. The secret is used to sign webhooks sent by the server (HMAC-SHA256).  **If a secret already exists**: It will be replaced by the new one.
      * @summary Generate webhook secret
      * @param {string} uid Client unique identifier (UUID)
@@ -956,6 +1179,30 @@ export class ClientManagementApi extends BaseAPI {
      */
     public getPdpConfigApiV1ClientsUidPdpConfigGet(uid: string, options?: RawAxiosRequestConfig) {
         return ClientManagementApiFp(this.configuration).getPdpConfigApiV1ClientsUidPdpConfigGet(uid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Generate the SuperPDP OAuth2 authorization URL for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  Redirect the end user to the returned `authorizeUrl` so they can connect their own SuperPDP account to FactPulse (OAuth2 Authorization Code).  **Query parameters**: - `modeSandbox` (default `true`): connect via the SuperPDP sandbox app   (fictitious data) or the production app. - `returnUrl` (optional): absolute http(s) URL of your own portal. Once the   SuperPDP authorization flow is over, the end user is redirected there with   `superpdp_connected=true|false` (and `superpdp_error=<code>` on failure)   appended to the query string. Without it, FactPulse displays its own   confirmation page. Returns `400 invalid_return_url` if the URL is not an   absolute http(s) URL.
+     * @summary Get SuperPDP connection URL
+     * @param {string} uid Client unique identifier (UUID)
+     * @param {boolean} [modeSandbox] True for the SuperPDP sandbox app (default), False for production
+     * @param {string | null} [returnUrl] Absolute http(s) URL to redirect the end user to once the SuperPDP connection is done. Defaults to the FactPulse confirmation page.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getSuperpdpConnectUrlApiV1ClientsUidSuperpdpConnectUrlPost(uid: string, modeSandbox?: boolean, returnUrl?: string | null, options?: RawAxiosRequestConfig) {
+        return ClientManagementApiFp(this.configuration).getSuperpdpConnectUrlApiV1ClientsUidSuperpdpConnectUrlPost(uid, modeSandbox, returnUrl, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Check whether a client has connected its SuperPDP account.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `connected`: Whether the client has an active SuperPDP connection - `connectedAt`: When the connection was established (if any) - `expiresAt`: When the current access token expires (if any) - `modeSandbox`: True if connected via the sandbox app, False for production, null if not connected - `lastError`: Last token refresh error, if any
+     * @summary Get SuperPDP connection status
+     * @param {string} uid Client unique identifier (UUID)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getSuperpdpStatusApiV1ClientsUidSuperpdpStatusGet(uid: string, options?: RawAxiosRequestConfig) {
+        return ClientManagementApiFp(this.configuration).getSuperpdpStatusApiV1ClientsUidSuperpdpStatusGet(uid, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

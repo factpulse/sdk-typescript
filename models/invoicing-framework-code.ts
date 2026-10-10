@@ -22,7 +22,7 @@ export const InvoicingFrameworkCode = {
     A1FactureFournisseur: 'A1_FACTURE_FOURNISSEUR',
     A2FactureFournisseurDejaPayee: 'A2_FACTURE_FOURNISSEUR_DEJA_PAYEE',
     A9FactureSoustraitant: 'A9_FACTURE_SOUSTRAITANT',
-    A12FactureCotraitant: 'A12_FACTURE_COTRAITANT'
+    A12FactureCotraitant: 'A12_FACTURE_COTRAITANT',
 } as const;
 
 export type InvoicingFrameworkCode = typeof InvoicingFrameworkCode[keyof typeof InvoicingFrameworkCode];

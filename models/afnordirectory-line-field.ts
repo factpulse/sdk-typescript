@@ -23,7 +23,7 @@ export const AFNORDirectoryLineField = {
     Siren: 'siren',
     Siret: 'siret',
     RoutingIdentifier: 'routingIdentifier',
-    AddressingSuffix: 'addressingSuffix'
+    AddressingSuffix: 'addressingSuffix',
 } as const;
 
 export type AFNORDirectoryLineField = typeof AFNORDirectoryLineField[keyof typeof AFNORDirectoryLineField];

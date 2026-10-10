@@ -21,7 +21,7 @@
 export const AcknowledgmentStatus = {
     Pending: 'Pending',
     Ok: 'Ok',
-    Error: 'Error'
+    Error: 'Error',
 } as const;
 
 export type AcknowledgmentStatus = typeof AcknowledgmentStatus[keyof typeof AcknowledgmentStatus];

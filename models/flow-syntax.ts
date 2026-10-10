@@ -23,7 +23,7 @@ export const FlowSyntax = {
     Ubl: 'UBL',
     FacturX: 'Factur-X',
     Cdar: 'CDAR',
-    Frr: 'FRR'
+    Frr: 'FRR',
 } as const;
 
 export type FlowSyntax = typeof FlowSyntax[keyof typeof FlowSyntax];

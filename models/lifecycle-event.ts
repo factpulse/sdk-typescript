@@ -28,6 +28,7 @@ export interface LifecycleEvent {
     'statusCode': string;
     'statusDescription'?: string | null;
     'ackStatus'?: string | null;
+    'flowDirection'?: string | null;
     'at'?: string | null;
     'documentId'?: string | null;
     'amount'?: string | null;

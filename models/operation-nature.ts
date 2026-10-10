@@ -32,7 +32,7 @@ export const OperationNature = {
     S5: 'S5',
     S6: 'S6',
     B7: 'B7',
-    S7: 'S7'
+    S7: 'S7',
 } as const;
 
 export type OperationNature = typeof OperationNature[keyof typeof OperationNature];

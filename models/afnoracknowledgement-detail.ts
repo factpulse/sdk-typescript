@@ -29,7 +29,7 @@ export interface AFNORAcknowledgementDetail {
 
 export const AFNORAcknowledgementDetailLevelEnum = {
     Error: 'Error',
-    Warning: 'Warning'
+    Warning: 'Warning',
 } as const;
 
 export type AFNORAcknowledgementDetailLevelEnum = typeof AFNORAcknowledgementDetailLevelEnum[keyof typeof AFNORAcknowledgementDetailLevelEnum];

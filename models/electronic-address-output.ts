@@ -13,10 +13,23 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SchemeID } from './scheme-id';
 
-export interface AFNOROAuth2Authentication {
-    'tokenUrl': string;
-    'clientId': string;
-    'clientSecret': string;
+/**
+ * Represents an electronic invoicing address, composed of an identifier and its scheme (SchemeID) in accordance with EN16931. Example: { \"identifier\": \"123456789\", \"scheme_id\": \"0225\" }
+ */
+export interface ElectronicAddressOutput {
+    /**
+     * Electronic address identifier (e.g., SIREN, SIRET, routing code)
+     */
+    'identifier': string;
+    /**
+     * Identification scheme (EAS code)
+     */
+    'schemeId'?: SchemeID;
 }
+
+
 

@@ -9,6 +9,9 @@ Name | Type | Description | Notes
 **rate** | [**Rate1**](Rate1.md) |  | [default to undefined]
 **taxableAmount** | [**Taxableamount**](Taxableamount.md) |  | [default to undefined]
 **taxAmount** | [**Taxamount2**](Taxamount2.md) |  | [default to undefined]
+**taxCategoryCode** | **string** |  | [optional] [default to undefined]
+**exemptionReasonCode** | **string** |  | [optional] [default to undefined]
+**exemptionReason** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -19,6 +22,9 @@ const instance: TaxBreakdownInput = {
     rate,
     taxableAmount,
     taxAmount,
+    taxCategoryCode,
+    exemptionReasonCode,
+    exemptionReason,
 };
 ```
 

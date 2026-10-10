@@ -19,7 +19,7 @@
  */
 
 export const AFNORStrictOperator = {
-    Strict: 'strict'
+    Strict: 'strict',
 } as const;
 
 export type AFNORStrictOperator = typeof AFNORStrictOperator[keyof typeof AFNORStrictOperator];

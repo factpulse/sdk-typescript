@@ -15,18 +15,18 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ElectronicAddress } from './electronic-address';
+import type { ElectronicAddressInput } from './electronic-address-input';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PostalAddress } from './postal-address';
+import type { PostalAddressInput } from './postal-address-input';
 
 /**
  * Delivery location information (BG-15 Deliver to).  Represents the party or location where goods/services are delivered.
  */
 export interface DeliveryParty {
     'id'?: string | null;
-    'global_id'?: ElectronicAddress | null;
+    'global_id'?: ElectronicAddressInput | null;
     'name'?: string | null;
-    'postal_address'?: PostalAddress | null;
+    'postal_address'?: PostalAddressInput | null;
 }
 

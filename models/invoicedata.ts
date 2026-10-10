@@ -15,17 +15,72 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORCallbackAuthentication } from './afnorcallback-authentication';
+import type { AdditionalDocument } from './additional-document';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORCallbackHeader } from './afnorcallback-header';
+import type { AllowanceCharge } from './allowance-charge';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORCallbackSignature } from './afnorcallback-signature';
+import type { DeliveryParty } from './delivery-party';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { FacturXInvoice } from './factur-xinvoice';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { FactureElectroniqueModelsInvoiceTypeCode } from './facture-electronique-models-invoice-type-code';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { InvoiceLine } from './invoice-line';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { InvoiceNote } from './invoice-note';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { InvoiceReferences } from './invoice-references';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { InvoiceTotals } from './invoice-totals';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { InvoicingFramework } from './invoicing-framework';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { InvoicingFrameworkCode } from './invoicing-framework-code';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OperationNature } from './operation-nature';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { Payee } from './payee';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { PaymentCard } from './payment-card';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { Recipient } from './recipient';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SimplifiedInvoiceData } from './simplified-invoice-data';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SubmissionMode } from './submission-mode';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { SupplementaryAttachment } from './supplementary-attachment';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { Supplier } from './supplier';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { TaxRepresentative } from './tax-representative';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { VATLine } from './vatline';
 
-export interface AFNORWebhookPatchPayload {
-    'headers'?: Array<AFNORCallbackHeader>;
-    'authentication'?: AFNORCallbackAuthentication;
-    'signature'?: AFNORCallbackSignature;
-}
+/**
+ * @type Invoicedata
+ * Invoice data, in either of the two accepted formats (detected automatically, same rule as /generate-invoice): 1. **Simplified format**: `number` + `lines`, with auto-enrichment. Any field of the complete model may be added on top. 2. **Complete format**: full `FacturXInvoice` structure, recognised by the presence of `invoiceLines`. No auto-enrichment of totals.
+ */
+export type Invoicedata = FacturXInvoice | SimplifiedInvoiceData;
+
 

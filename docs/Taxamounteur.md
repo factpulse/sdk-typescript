@@ -1,21 +1,18 @@
-# AFNORCallbackHeader
+# Taxamounteur
 
+VAT amount in EUR for a non-EUR invoice. Computed automatically from the exchange rate when omitted.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**headerName** | **string** |  | [default to undefined]
-**headerValue** | **string** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { AFNORCallbackHeader } from '@factpulse/sdk';
+import { Taxamounteur } from '@factpulse/sdk';
 
-const instance: AFNORCallbackHeader = {
-    headerName,
-    headerValue,
+const instance: Taxamounteur = {
 };
 ```
 

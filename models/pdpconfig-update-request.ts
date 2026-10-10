@@ -47,7 +47,7 @@ export interface PDPConfigUpdateRequest {
 
 export const PDPConfigUpdateRequestEncryptionModeEnum = {
     Fernet: 'fernet',
-    Double: 'double'
+    Double: 'double',
 } as const;
 
 export type PDPConfigUpdateRequestEncryptionModeEnum = typeof PDPConfigUpdateRequestEncryptionModeEnum[keyof typeof PDPConfigUpdateRequestEncryptionModeEnum];

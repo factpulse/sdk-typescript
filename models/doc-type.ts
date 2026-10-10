@@ -22,7 +22,7 @@ export const DocType = {
     Metadata: 'Metadata',
     Original: 'Original',
     Converted: 'Converted',
-    ReadableView: 'ReadableView'
+    ReadableView: 'ReadableView',
 } as const;
 
 export type DocType = typeof DocType[keyof typeof DocType];

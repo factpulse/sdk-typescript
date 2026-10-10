@@ -1,6 +1,6 @@
 # ProcessingRule
 
-AFNOR XP Z12-013 ProcessingRule (Annexe A v1.2.0).  Valeurs EXACTES de la spec (case-sensitive).
+AFNOR XP Z12-013 ProcessingRule (Annexe A v1.3.0).  Valeurs EXACTES de la spec (case-sensitive).
 
 ## Enum
 
@@ -21,5 +21,7 @@ AFNOR XP Z12-013 ProcessingRule (Annexe A v1.2.0).  Valeurs EXACTES de la spec (
 * `ArchiveOnly` (value: `'ArchiveOnly'`)
 
 * `NotApplicable` (value: `'NotApplicable'`)
+
+* `Undefined` (value: `'Undefined'`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

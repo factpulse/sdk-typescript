@@ -10,10 +10,10 @@ Name | Type | Description | Notes
 **payeeId** | **string** |  | [optional] [default to undefined]
 **siret** | **string** |  | [optional] [default to undefined]
 **siren** | **string** |  | [optional] [default to undefined]
-**electronicAddress** | [**ElectronicAddress**](ElectronicAddress.md) |  | [optional] [default to undefined]
+**electronicAddress** | [**ElectronicAddressInput**](ElectronicAddressInput.md) |  | [optional] [default to undefined]
 **iban** | **string** |  | [optional] [default to undefined]
 **bic** | **string** |  | [optional] [default to undefined]
-**global_ids** | [**Array&lt;ElectronicAddress&gt;**](ElectronicAddress.md) |  | [optional] [default to undefined]
+**global_ids** | [**Array&lt;ElectronicAddressInput&gt;**](ElectronicAddressInput.md) |  | [optional] [default to undefined]
 
 ## Example
 

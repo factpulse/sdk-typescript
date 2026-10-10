@@ -26,7 +26,7 @@ export interface ProcessingOptions {
      */
     'facturxProfile'?: APIProfile;
     /**
-     * Auto-enrich data (Company APIs, Chorus Pro, etc.)
+     * Auto-enrich data (Company APIs, Chorus Pro, etc.). Applies to the **simplified format** only: a complete `FacturXInvoice` payload is used exactly as provided.
      */
     'autoEnrich'?: boolean;
     /**

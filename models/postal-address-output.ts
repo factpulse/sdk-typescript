@@ -14,17 +14,16 @@
 
 
 
-
-export const AFNORAlgorithm = {
-    Rs256: 'RS256',
-    Hs256: 'HS256',
-    Ecdsa: 'ECDSA',
-    Eddsa25519: 'EDDSA_25519',
-    RsaPss: 'RSA_PSS',
-    Eddsa448: 'EDDSA_448'
-} as const;
-
-export type AFNORAlgorithm = typeof AFNORAlgorithm[keyof typeof AFNORAlgorithm];
-
-
+/**
+ * Represents a postal address (BG-5, BG-8, BG-12, BG-15).
+ */
+export interface PostalAddressOutput {
+    'postalCode'?: string | null;
+    'lineOne'?: string | null;
+    'lineTwo'?: string | null;
+    'lineThree'?: string | null;
+    'city'?: string | null;
+    'countryCode'?: string | null;
+    'countrySubdivision'?: string | null;
+}
 

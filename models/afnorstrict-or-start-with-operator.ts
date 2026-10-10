@@ -20,7 +20,7 @@
 
 export const AFNORStrictOrStartWithOperator = {
     StartWith: 'startWith',
-    Strict: 'strict'
+    Strict: 'strict',
 } as const;
 
 export type AFNORStrictOrStartWithOperator = typeof AFNORStrictOrStartWithOperator[keyof typeof AFNORStrictOrStartWithOperator];

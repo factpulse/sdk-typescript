@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ChorusProCredentials } from './chorus-pro-credentials';
+import type { FactureElectroniqueRestApiSchemasChorusProChorusProCredentials } from './facture-electronique-rest-api-schemas-chorus-pro-chorus-pro-credentials';
 
 /**
  * Get Chorus Pro ID from SIRET.
  */
 export interface GetChorusProIdRequest {
-    'credentials'?: ChorusProCredentials | null;
+    'credentials'?: FactureElectroniqueRestApiSchemasChorusProChorusProCredentials | null;
     /**
      * Structure SIRET (14 digits)
      */

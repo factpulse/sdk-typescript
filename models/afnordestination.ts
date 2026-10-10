@@ -38,7 +38,7 @@ export interface AFNORDestination {
 }
 
 export const AFNORDestinationTypeEnum = {
-    Afnor: 'afnor'
+    Afnor: 'afnor',
 } as const;
 
 export type AFNORDestinationTypeEnum = typeof AFNORDestinationTypeEnum[keyof typeof AFNORDestinationTypeEnum];

@@ -68,7 +68,7 @@ export interface SubmitCompleteInvoiceResponse {
 
 export const SubmitCompleteInvoiceResponseDestinationTypeEnum = {
     ChorusPro: 'chorus_pro',
-    Afnor: 'afnor'
+    Afnor: 'afnor',
 } as const;
 
 export type SubmitCompleteInvoiceResponseDestinationTypeEnum = typeof SubmitCompleteInvoiceResponseDestinationTypeEnum[keyof typeof SubmitCompleteInvoiceResponseDestinationTypeEnum];

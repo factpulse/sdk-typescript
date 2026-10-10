@@ -30,5 +30,8 @@ export interface TaxBreakdownInput {
     'rate': Rate1;
     'taxableAmount': Taxableamount;
     'taxAmount': Taxamount2;
+    'taxCategoryCode'?: string | null;
+    'exemptionReasonCode'?: string | null;
+    'exemptionReason'?: string | null;
 }
 

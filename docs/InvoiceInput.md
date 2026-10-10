@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **invoiceId** | **string** | Invoice identifier | [default to undefined]
 **issueDate** | **string** | Invoice issue date | [default to undefined]
-**typeCode** | [**FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode**](FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md) | Invoice type code | [optional] [default to undefined]
+**typeCode** | [**InvoiceTypeCode**](InvoiceTypeCode.md) | Invoice type code | [optional] [default to undefined]
 **currency** | [**Currency**](Currency.md) |  | [optional] [default to undefined]
 **dueDate** | **string** |  | [optional] [default to undefined]
 **sellerId** | **string** |  | [optional] [default to undefined]
@@ -21,6 +21,8 @@ Name | Type | Description | Notes
 **taxExclusiveAmount** | [**Taxexclusiveamount1**](Taxexclusiveamount1.md) |  | [default to undefined]
 **taxAmount** | [**Taxamount1**](Taxamount1.md) |  | [default to undefined]
 **taxBreakdown** | [**Array&lt;TaxBreakdownInput&gt;**](TaxBreakdownInput.md) | VAT breakdown | [default to undefined]
+**taxAmountEur** | [**Taxamounteur**](Taxamounteur.md) |  | [optional] [default to undefined]
+**businessProcessId** | **string** |  | [optional] [default to undefined]
 **referencedInvoiceId** | **string** |  | [optional] [default to undefined]
 **referencedInvoiceDate** | **string** |  | [optional] [default to undefined]
 
@@ -45,6 +47,8 @@ const instance: InvoiceInput = {
     taxExclusiveAmount,
     taxAmount,
     taxBreakdown,
+    taxAmountEur,
+    businessProcessId,
     referencedInvoiceId,
     referencedInvoiceDate,
 };

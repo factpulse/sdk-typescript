@@ -19,9 +19,13 @@ import type { AFNORSearchFlowFilters } from './afnorsearch-flow-filters';
 
 export interface AFNORSearchFlowParams {
     /**
-     * Maximum number of results that may be returned
+     * Pagination, Maximum number of results that may be returned
      */
     'limit'?: number;
+    /**
+     * If cursor is provided, then start search starting from that cursor
+     */
+    'cursor'?: string;
     'where': AFNORSearchFlowFilters;
 }
 

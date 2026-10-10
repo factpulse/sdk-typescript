@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **string** | Tax representative name (BT-62). | [default to undefined]
 **vat_number** | **string** | Tax representative VAT identifier (BT-63). | [default to undefined]
-**postal_address** | [**PostalAddress**](PostalAddress.md) | Tax representative postal address (BG-12). | [default to undefined]
+**postal_address** | [**PostalAddressInput**](PostalAddressInput.md) | Tax representative postal address (BG-12). | [default to undefined]
 
 ## Example
 

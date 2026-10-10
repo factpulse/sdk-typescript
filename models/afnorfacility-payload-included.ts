@@ -25,6 +25,9 @@ import type { AFNORFacilityPayloadHistoryUleB2gAdditionalData } from './afnorfac
 // May contain unused imports in some cases
 // @ts-ignore
 import type { AFNORFacilityType } from './afnorfacility-type';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { AFNORSiretInstructions } from './afnorsiret-instructions';
 
 export interface AFNORFacilityPayloadIncluded {
     /**
@@ -41,6 +44,7 @@ export interface AFNORFacilityPayloadIncluded {
     'name'?: string;
     'facilityType'?: AFNORFacilityType;
     'administrativeStatus'?: AFNORFacilityAdministrativeStatus;
+    'instructions'?: AFNORSiretInstructions;
     'address'?: AFNORAddressRead;
     'b2gAdditionalData'?: AFNORFacilityPayloadHistoryUleB2gAdditionalData;
 }

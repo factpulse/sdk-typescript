@@ -25,7 +25,7 @@ import type { AFNORSortingOrder } from './afnorsorting-order';
  */
 export interface AFNORSearchSiretSortingInner {
     'field'?: AFNORSiretField;
-    'sortingOrder'?: AFNORSortingOrder;
+    'order'?: AFNORSortingOrder;
 }
 
 

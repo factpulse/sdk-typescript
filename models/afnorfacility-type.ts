@@ -20,7 +20,7 @@
 
 export const AFNORFacilityType = {
     P: 'P',
-    S: 'S'
+    S: 'S',
 } as const;
 
 export type AFNORFacilityType = typeof AFNORFacilityType[keyof typeof AFNORFacilityType];

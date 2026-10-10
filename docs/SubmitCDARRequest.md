@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **reasonText** | **string** |  | [optional] [default to undefined]
 **actionCode** | **string** |  | [optional] [default to undefined]
 **encaisseAmount** | [**Encaisseamount**](Encaisseamount.md) |  | [optional] [default to undefined]
+**encaisseVatRate** | **number** | Taux de TVA du montant encaissé en % (MDT-224, requis par BR-FR-CDV-14 pour le statut 212 ; défaut 20) | [optional] [default to 20]
 **flowType** | **string** | Type de flux AFNOR (CustomerInvoiceLC, SupplierInvoiceLC, etc.) | [optional] [default to 'CustomerInvoiceLC']
 **pdpFlowServiceUrl** | **string** |  | [optional] [default to undefined]
 **pdpTokenUrl** | **string** |  | [optional] [default to undefined]
@@ -54,6 +55,7 @@ const instance: SubmitCDARRequest = {
     reasonText,
     actionCode,
     encaisseAmount,
+    encaisseVatRate,
     flowType,
     pdpFlowServiceUrl,
     pdpTokenUrl,

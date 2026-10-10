@@ -15,13 +15,14 @@
 
 
 /**
- * AFNOR XP Z12-013 FlowType enum.  Values from swagger specification v1.2.0: - Invoice flows (factures) - Lifecycle flows (cycle de vie) - E-reporting flows (transactions/paiements)
+ * AFNOR XP Z12-013 FlowType enum.  Values from swagger specification v1.3.0: - Invoice flows (factures) - Lifecycle flows (cycle de vie) - E-reporting flows (transactions/paiements) - \"State*\" flows sent to DFH and Undefined (added in v1.3.0)
  */
 
 export const FlowType = {
     CustomerInvoice: 'CustomerInvoice',
     SupplierInvoice: 'SupplierInvoice',
-    StateInvoice: 'StateInvoice',
+    StateCustomerInvoice: 'StateCustomerInvoice',
+    StateSupplierInvoice: 'StateSupplierInvoice',
     CustomerInvoiceLc: 'CustomerInvoiceLC',
     SupplierInvoiceLc: 'SupplierInvoiceLC',
     StateCustomerInvoiceLc: 'StateCustomerInvoiceLC',
@@ -31,7 +32,12 @@ export const FlowType = {
     UnitarySupplierTransactionReport: 'UnitarySupplierTransactionReport',
     UnitaryCustomerPaymentReport: 'UnitaryCustomerPaymentReport',
     AggregatedCustomerPaymentReport: 'AggregatedCustomerPaymentReport',
-    MultiFlowReport: 'MultiFlowReport'
+    StateTransactionReport: 'StateTransactionReport',
+    StateTransactionReportLc: 'StateTransactionReportLC',
+    StatePaymentReport: 'StatePaymentReport',
+    StatePaymentReportLc: 'StatePaymentReportLC',
+    MultiFlowReport: 'MultiFlowReport',
+    Undefined: 'Undefined',
 } as const;
 
 export type FlowType = typeof FlowType[keyof typeof FlowType];

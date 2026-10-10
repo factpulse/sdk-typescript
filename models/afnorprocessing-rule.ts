@@ -15,7 +15,7 @@
 
 
 /**
- * - B2B                 : e-invoicing - B2BInt              : International B2B e-reporting - B2C                 : B2C e-reporting - B2G                 : e-invoicing for B2G sales - B2GInt - OutOfScope          : Out of scope (not regulated flow) - B2GOutOfScope - ArchiveOnly         : Archive only, no transmission - NotApplicable       : Not Applicable 
+ * - B2B                 : e-invoicing - B2BInt              : International B2B e-reporting - B2C                 : B2C e-reporting - B2G                 : e-invoicing for B2G sales - B2GInt - OutOfScope          : Out of scope (not regulated flow) - B2GOutOfScope - ArchiveOnly         : Archive only, no transmission - NotApplicable       : Not Applicable - Undefined           : Not yet defined when in Pending state or unable to define when in Error state 
  */
 
 export const AFNORProcessingRule = {
@@ -27,7 +27,8 @@ export const AFNORProcessingRule = {
     OutOfScope: 'OutOfScope',
     B2GOutOfScope: 'B2GOutOfScope',
     ArchiveOnly: 'ArchiveOnly',
-    NotApplicable: 'NotApplicable'
+    NotApplicable: 'NotApplicable',
+    Undefined: 'Undefined',
 } as const;
 
 export type AFNORProcessingRule = typeof AFNORProcessingRule[keyof typeof AFNORProcessingRule];

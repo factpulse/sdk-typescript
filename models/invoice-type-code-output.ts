@@ -82,7 +82,7 @@ export const InvoiceTypeCodeOutput = {
     /**
     * Prepayment Credit Note
     */
-    PREPAYMENT_CREDIT_NOTE: '503'
+    PREPAYMENT_CREDIT_NOTE: '503',
 } as const;
 
 export type InvoiceTypeCodeOutput = typeof InvoiceTypeCodeOutput[keyof typeof InvoiceTypeCodeOutput];

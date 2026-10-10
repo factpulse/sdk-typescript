@@ -20,7 +20,7 @@
 
 export const AFNOREntityType = {
     Public: 'Public',
-    PrivateVatRegistered: 'PrivateVatRegistered'
+    PrivateVatRegistered: 'PrivateVatRegistered',
 } as const;
 
 export type AFNOREntityType = typeof AFNOREntityType[keyof typeof AFNOREntityType];

@@ -6,13 +6,13 @@ Represents a postal address (BG-5, BG-8, BG-12, BG-15).
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**postalCode** | **string** |  | [optional] [default to undefined]
-**lineOne** | **string** |  | [optional] [default to undefined]
-**lineTwo** | **string** |  | [optional] [default to undefined]
-**lineThree** | **string** |  | [optional] [default to undefined]
+**postal_code** | **string** |  | [optional] [default to undefined]
+**line_one** | **string** |  | [optional] [default to undefined]
+**line_two** | **string** |  | [optional] [default to undefined]
+**line_three** | **string** |  | [optional] [default to undefined]
 **city** | **string** |  | [optional] [default to undefined]
-**countryCode** | **string** |  | [optional] [default to undefined]
-**countrySubdivision** | **string** |  | [optional] [default to undefined]
+**country_code** | **string** |  | [optional] [default to undefined]
+**country_subdivision** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -20,13 +20,13 @@ Name | Type | Description | Notes
 import { PostalAddress } from '@factpulse/sdk';
 
 const instance: PostalAddress = {
-    postalCode,
-    lineOne,
-    lineTwo,
-    lineThree,
+    postal_code,
+    line_one,
+    line_two,
+    line_three,
     city,
-    countryCode,
-    countrySubdivision,
+    country_code,
+    country_subdivision,
 };
 ```
 

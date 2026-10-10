@@ -33,7 +33,7 @@ export const AFNORReasonCodeEnum = {
     InvoiceLcStatusError: 'InvoiceLCStatusError',
     InvoiceLcRuleError: 'InvoiceLCRuleError',
     InvoiceLcAccessDenied: 'InvoiceLCAccessDenied',
-    InvoiceLcAmountError: 'InvoiceLCAmountError'
+    InvoiceLcAmountError: 'InvoiceLCAmountError',
 } as const;
 
 export type AFNORReasonCodeEnum = typeof AFNORReasonCodeEnum[keyof typeof AFNORReasonCodeEnum];

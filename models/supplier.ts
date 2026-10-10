@@ -18,16 +18,16 @@
 import type { Contact } from './contact';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ElectronicAddress } from './electronic-address';
+import type { ElectronicAddressInput } from './electronic-address-input';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PostalAddress } from './postal-address';
+import type { PostalAddressInput } from './postal-address-input';
 
 /**
  * Information about the supplier / seller (BG-4).
  */
 export interface Supplier {
-    'electronic_address'?: ElectronicAddress | null;
+    'electronic_address'?: ElectronicAddressInput | null;
     /**
      * Chorus Pro supplier structure ID (idFournisseur). Only required for B2G.
      */
@@ -41,12 +41,13 @@ export interface Supplier {
     'siren'?: string | null;
     'siret'?: string | null;
     'vat_number'?: string | null;
+    'tax_registration_id'?: string | null;
     'iban'?: string | null;
     'bic'?: string | null;
     'bank_account_name'?: string | null;
     'proprietaryId'?: string | null;
-    'postal_address'?: PostalAddress | null;
+    'postal_address'?: PostalAddressInput | null;
     'contact'?: Contact | null;
-    'global_ids'?: Array<ElectronicAddress> | null;
+    'global_ids'?: Array<ElectronicAddressInput> | null;
 }
 

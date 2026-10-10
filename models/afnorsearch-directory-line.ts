@@ -33,6 +33,7 @@ export interface AFNORSearchDirectoryLine {
      * Allows you to filter the desired fields in the response.
      */
     'fields'?: Array<AFNORDirectoryLineField>;
+    'include'?: Array<AFNORSearchDirectoryLineIncludeEnum>;
     /**
      * Maximum number of results
      */
@@ -42,4 +43,13 @@ export interface AFNORSearchDirectoryLine {
      */
     'ignore'?: number;
 }
+
+export const AFNORSearchDirectoryLineIncludeEnum = {
+    Siren: 'siren',
+    Siret: 'siret',
+    RoutingCode: 'routingCode',
+} as const;
+
+export type AFNORSearchDirectoryLineIncludeEnum = typeof AFNORSearchDirectoryLineIncludeEnum[keyof typeof AFNORSearchDirectoryLineIncludeEnum];
+
 

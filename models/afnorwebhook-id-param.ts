@@ -16,5 +16,7 @@
 
 export interface AFNORWebhookIdParam {
     'webhookId'?: string;
+    'signingKey'?: string;
+    'createdAt'?: string;
 }
 

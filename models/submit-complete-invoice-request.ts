@@ -18,22 +18,19 @@
 import type { Destination } from './destination';
 // May contain unused imports in some cases
 // @ts-ignore
+import type { Invoicedata } from './invoicedata';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { ProcessingOptions } from './processing-options';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { SignatureParameters } from './signature-parameters';
-// May contain unused imports in some cases
-// @ts-ignore
-import type { SimplifiedInvoiceData } from './simplified-invoice-data';
 
 /**
  * Request to submit a complete invoice (generation + submission).  Workflow: 1. Auto-enrichment (optional) 2. Factur-X PDF generation 3. Signature (optional) 4. Submission to destination
  */
 export interface SubmitCompleteInvoiceRequest {
-    /**
-     * Invoice data in simplified format (see examples)
-     */
-    'invoiceData': SimplifiedInvoiceData;
+    'invoiceData': Invoicedata;
     /**
      * Base64-encoded source PDF (will be transformed to Factur-X)
      */

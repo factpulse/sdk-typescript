@@ -26,7 +26,7 @@ export interface VerificationSuccessTaskResult {
 }
 
 export const VerificationSuccessTaskResultStatusEnum = {
-    Success: 'SUCCESS'
+    Success: 'SUCCESS',
 } as const;
 
 export type VerificationSuccessTaskResultStatusEnum = typeof VerificationSuccessTaskResultStatusEnum[keyof typeof VerificationSuccessTaskResultStatusEnum];

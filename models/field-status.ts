@@ -23,7 +23,7 @@ export const FieldStatus = {
     Discrepancy: 'DISCREPANCY',
     MissingInPdf: 'MISSING_IN_PDF',
     MissingInXml: 'MISSING_IN_XML',
-    NotVerified: 'NOT_VERIFIED'
+    NotVerified: 'NOT_VERIFIED',
 } as const;
 
 export type FieldStatus = typeof FieldStatus[keyof typeof FieldStatus];

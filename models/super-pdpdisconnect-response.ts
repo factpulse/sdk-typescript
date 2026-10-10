@@ -14,8 +14,17 @@
 
 
 
-export interface AFNORCallbackHeader {
-    'headerName': string;
-    'headerValue': string;
+/**
+ * Response after disconnecting SuperPDP for a client.
+ */
+export interface SuperPDPDisconnectResponse {
+    /**
+     * Whether the disconnection completed successfully
+     */
+    'success': boolean;
+    /**
+     * Whether a SuperPDP connection existed and was removed
+     */
+    'deleted': boolean;
 }
 

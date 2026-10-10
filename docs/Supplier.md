@@ -6,7 +6,7 @@ Information about the supplier / seller (BG-4).
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**electronic_address** | [**ElectronicAddress**](ElectronicAddress.md) |  | [optional] [default to undefined]
+**electronic_address** | [**ElectronicAddressInput**](ElectronicAddressInput.md) |  | [optional] [default to undefined]
 **supplier_id** | **number** | Chorus Pro supplier structure ID (idFournisseur). Only required for B2G. | [optional] [default to 0]
 **private_id** | **string** |  | [optional] [default to undefined]
 **supplier_bank_account_code** | **number** |  | [optional] [default to undefined]
@@ -17,13 +17,14 @@ Name | Type | Description | Notes
 **siren** | **string** |  | [optional] [default to undefined]
 **siret** | **string** |  | [optional] [default to undefined]
 **vat_number** | **string** |  | [optional] [default to undefined]
+**tax_registration_id** | **string** |  | [optional] [default to undefined]
 **iban** | **string** |  | [optional] [default to undefined]
 **bic** | **string** |  | [optional] [default to undefined]
 **bank_account_name** | **string** |  | [optional] [default to undefined]
 **proprietaryId** | **string** |  | [optional] [default to undefined]
-**postal_address** | [**PostalAddress**](PostalAddress.md) |  | [optional] [default to undefined]
+**postal_address** | [**PostalAddressInput**](PostalAddressInput.md) |  | [optional] [default to undefined]
 **contact** | [**Contact**](Contact.md) |  | [optional] [default to undefined]
-**global_ids** | [**Array&lt;ElectronicAddress&gt;**](ElectronicAddress.md) |  | [optional] [default to undefined]
+**global_ids** | [**Array&lt;ElectronicAddressInput&gt;**](ElectronicAddressInput.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -42,6 +43,7 @@ const instance: Supplier = {
     siren,
     siret,
     vat_number,
+    tax_registration_id,
     iban,
     bic,
     bank_account_name,

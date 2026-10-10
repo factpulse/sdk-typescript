@@ -23,7 +23,7 @@ import type { AFNORRoutingCodeSearch } from './afnorrouting-code-search';
 export interface AFNORRoutingCodeSearchPost200Response {
     'search'?: AFNORRoutingCodeSearch;
     /**
-     * The total number of results
+     * The total number of results, if -1 is returned then this value is not managed due to performance issue
      */
     'totalNumberOfResults'?: number;
     'results'?: Array<AFNORRoutingCodePayloadHistoryLegalUnitFacility>;

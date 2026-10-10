@@ -24,7 +24,7 @@ export const ErrorSource = {
     Afnor: 'afnor',
     ChorusPro: 'chorus_pro',
     Ereporting: 'ereporting',
-    System: 'system'
+    System: 'system',
 } as const;
 
 export type ErrorSource = typeof ErrorSource[keyof typeof ErrorSource];

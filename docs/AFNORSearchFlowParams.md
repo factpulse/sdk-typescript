@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**limit** | **number** | Maximum number of results that may be returned | [optional] [default to 25]
+**limit** | **number** | Pagination, Maximum number of results that may be returned | [optional] [default to 25]
+**cursor** | **string** | If cursor is provided, then start search starting from that cursor | [optional] [default to undefined]
 **where** | [**AFNORSearchFlowFilters**](AFNORSearchFlowFilters.md) |  | [default to undefined]
 
 ## Example
@@ -15,6 +16,7 @@ import { AFNORSearchFlowParams } from '@factpulse/sdk';
 
 const instance: AFNORSearchFlowParams = {
     limit,
+    cursor,
     where,
 };
 ```

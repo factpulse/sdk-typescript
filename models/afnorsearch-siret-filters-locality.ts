@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { AFNORContainsOrStrictOperator } from './afnorcontains-or-strict-operator';
+import type { AFNORContainsOrStrictOrStartWithOperator } from './afnorcontains-or-strict-or-start-with-operator';
 
 export interface AFNORSearchSiretFiltersLocality {
-    'op'?: AFNORContainsOrStrictOperator;
+    'op'?: AFNORContainsOrStrictOrStartWithOperator;
     /**
      * Municipality of the recipient structure having defined the directory line(s).
      */

@@ -5,8 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**callback** | [**AFNORCallbackParameters**](AFNORCallbackParameters.md) |  | [default to undefined]
-**metadata** | [**AFNORWebhookMetadata**](AFNORWebhookMetadata.md) |  | [default to undefined]
+**callbackUrl** | **string** |  | [default to undefined]
+**flowTypes** | [**Array&lt;AFNORFlowType&gt;**](AFNORFlowType.md) |  | [optional] [default to undefined]
+**flowDirection** | [**AFNORFlowDirection**](AFNORFlowDirection.md) |  | [optional] [default to undefined]
+**ackStatus** | [**AFNORFlowAckStatus**](AFNORFlowAckStatus.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -14,8 +16,10 @@ Name | Type | Description | Notes
 import { AFNORWebhookParams } from '@factpulse/sdk';
 
 const instance: AFNORWebhookParams = {
-    callback,
-    metadata,
+    callbackUrl,
+    flowTypes,
+    flowDirection,
+    ackStatus,
 };
 ```
 

@@ -30,7 +30,7 @@ export interface SignatureSuccessResult {
 }
 
 export const SignatureSuccessResultStatusEnum = {
-    Success: 'SUCCESS'
+    Success: 'SUCCESS',
 } as const;
 
 export type SignatureSuccessResultStatusEnum = typeof SignatureSuccessResultStatusEnum[keyof typeof SignatureSuccessResultStatusEnum];

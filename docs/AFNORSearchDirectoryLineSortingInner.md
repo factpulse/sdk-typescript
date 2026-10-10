@@ -7,7 +7,7 @@ A sort criteria composed of a field and an order (ascending or descending).
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **field** | [**AFNORDirectoryLineField**](AFNORDirectoryLineField.md) |  | [optional] [default to undefined]
-**sortingOrder** | [**AFNORSortingOrder**](AFNORSortingOrder.md) |  | [optional] [default to undefined]
+**order** | [**AFNORSortingOrder**](AFNORSortingOrder.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -16,7 +16,7 @@ import { AFNORSearchDirectoryLineSortingInner } from '@factpulse/sdk';
 
 const instance: AFNORSearchDirectoryLineSortingInner = {
     field,
-    sortingOrder,
+    order,
 };
 ```
 

@@ -25,6 +25,9 @@ import type { AFNORLegalUnitPayloadIncluded } from './afnorlegal-unit-payload-in
 // May contain unused imports in some cases
 // @ts-ignore
 import type { AFNORRecipientPlatformType } from './afnorrecipient-platform-type';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { AFNORUniqueDirectoryLineStatus } from './afnorunique-directory-line-status';
 
 export interface AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode {
     /**
@@ -32,6 +35,7 @@ export interface AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode {
      */
     'addressingIdentifier'?: string;
     'platformType'?: AFNORRecipientPlatformType;
+    'directoryLineStatus'?: AFNORUniqueDirectoryLineStatus;
     /**
      * SIREN number
      */
@@ -40,6 +44,10 @@ export interface AFNORDirectoryLinePayloadLegalUnitFacilityRoutingCode {
      * SIRET Number
      */
     'siret'?: string;
+    /**
+     * Routing identifier od a routing code.
+     */
+    'routingIdentifier'?: string;
     /**
      * suffix of the directory line which defines an address mesh not attached to a facility
      */

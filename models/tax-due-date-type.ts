@@ -24,7 +24,7 @@ export const TaxDueDateType = {
     _72: '72',
     _3: '3',
     _35: '35',
-    _432: '432'
+    _432: '432',
 } as const;
 
 export type TaxDueDateType = typeof TaxDueDateType[keyof typeof TaxDueDateType];

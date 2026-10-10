@@ -29,7 +29,7 @@ export interface TaskErrorResult {
 }
 
 export const TaskErrorResultStatusEnum = {
-    Error: 'ERROR'
+    Error: 'ERROR',
 } as const;
 
 export type TaskErrorResultStatusEnum = typeof TaskErrorResultStatusEnum[keyof typeof TaskErrorResultStatusEnum];

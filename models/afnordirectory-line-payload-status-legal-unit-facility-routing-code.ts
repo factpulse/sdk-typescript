@@ -45,6 +45,10 @@ export interface AFNORDirectoryLinePayloadStatusLegalUnitFacilityRoutingCode {
      */
     'siret'?: string;
     /**
+     * Routing identifier od a routing code.
+     */
+    'routingIdentifier'?: string;
+    /**
      * suffix of the directory line which defines an address mesh not attached to a facility
      */
     'addressingSuffix'?: string;

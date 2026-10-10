@@ -28,7 +28,7 @@ export interface ConversionPendingInputResult {
 }
 
 export const ConversionPendingInputResultStatusEnum = {
-    PendingInput: 'PENDING_INPUT'
+    PendingInput: 'PENDING_INPUT',
 } as const;
 
 export type ConversionPendingInputResultStatusEnum = typeof ConversionPendingInputResultStatusEnum[keyof typeof ConversionPendingInputResultStatusEnum];

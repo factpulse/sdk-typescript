@@ -23,7 +23,7 @@ import type { AFNORSearchSiret } from './afnorsearch-siret';
 export interface AFNORSiretSearchPost200Response {
     'search'?: AFNORSearchSiret;
     /**
-     * The total number of results
+     * The total number of results, if -1 is returned then this value is not managed due to performance issue
      */
     'totalNumberOfResults'?: number;
     'results'?: Array<AFNORFacilityPayloadHistory>;

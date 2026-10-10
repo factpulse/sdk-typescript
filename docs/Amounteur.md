@@ -1,21 +1,18 @@
-# AFNORCallbackSignature
+# Amounteur
 
+Payment amount in EUR for a non-EUR payment (G6.27). Computed automatically from the exchange rate when omitted.
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**algo** | [**AFNORAlgorithm**](AFNORAlgorithm.md) |  | [default to undefined]
-**key** | **string** | Base 64 encoded string | [default to undefined]
 
 ## Example
 
 ```typescript
-import { AFNORCallbackSignature } from '@factpulse/sdk';
+import { Amounteur } from '@factpulse/sdk';
 
-const instance: AFNORCallbackSignature = {
-    algo,
-    key,
+const instance: Amounteur = {
 };
 ```
 

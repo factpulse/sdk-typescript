@@ -31,7 +31,7 @@ export interface ConversionErrorResult {
 }
 
 export const ConversionErrorResultStatusEnum = {
-    Error: 'ERROR'
+    Error: 'ERROR',
 } as const;
 
 export type ConversionErrorResultStatusEnum = typeof ConversionErrorResultStatusEnum[keyof typeof ConversionErrorResultStatusEnum];

@@ -23,7 +23,7 @@ export const CeleryStatus = {
     Started: 'STARTED',
     Success: 'SUCCESS',
     Failure: 'FAILURE',
-    Retry: 'RETRY'
+    Retry: 'RETRY',
 } as const;
 
 export type CeleryStatus = typeof CeleryStatus[keyof typeof CeleryStatus];

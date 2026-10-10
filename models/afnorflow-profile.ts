@@ -18,7 +18,8 @@
 export const AFNORFlowProfile = {
     Basic: 'Basic',
     Cius: 'CIUS',
-    ExtendedCtcFr: 'Extended-CTC-FR'
+    ExtendedCtcFr: 'Extended-CTC-FR',
+    Undefined: 'Undefined',
 } as const;
 
 export type AFNORFlowProfile = typeof AFNORFlowProfile[keyof typeof AFNORFlowProfile];

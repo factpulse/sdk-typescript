@@ -20,7 +20,7 @@
 
 export const AFNORSortingOrder = {
     Ascending: 'ascending',
-    Descending: 'descending'
+    Descending: 'descending',
 } as const;
 
 export type AFNORSortingOrder = typeof AFNORSortingOrder[keyof typeof AFNORSortingOrder];

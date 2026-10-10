@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ElectronicAddress } from './electronic-address';
+import type { ElectronicAddressInput } from './electronic-address-input';
 
 /**
  * Information about the payment beneficiary (BG-10 / PayeeTradeParty).  The payee is the party receiving payment. This block is used only if the payee is different from the seller (supplier).  **Main use case**: Factoring When an invoice is factored, the factor (factoring company) becomes the payment beneficiary instead of the supplier.  **Business Terms (EN16931)**: - BT-59: Payee name (mandatory) - BT-60: Payee identifier (SIRET with schemeID 0009) - BT-61: Payee legal identifier (SIREN with schemeID 0002)  **Reference**: docs/guide_affacturage.md
@@ -28,9 +28,9 @@ export interface Payee {
     'payeeId'?: string | null;
     'siret'?: string | null;
     'siren'?: string | null;
-    'electronicAddress'?: ElectronicAddress | null;
+    'electronicAddress'?: ElectronicAddressInput | null;
     'iban'?: string | null;
     'bic'?: string | null;
-    'global_ids'?: Array<ElectronicAddress> | null;
+    'global_ids'?: Array<ElectronicAddressInput> | null;
 }
 

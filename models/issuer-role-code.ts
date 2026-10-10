@@ -20,7 +20,7 @@
 
 export const IssuerRoleCode = {
     Se: 'SE',
-    By: 'BY'
+    By: 'BY',
 } as const;
 
 export type IssuerRoleCode = typeof IssuerRoleCode[keyof typeof IssuerRoleCode];

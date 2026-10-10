@@ -8,16 +8,14 @@ All URIs are relative to *https://factpulse.fr*
 |[**deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete**](#deletewebhookproxyapiv1afnorflowv1webhookswebhookuiddelete) | **DELETE** /api/v1/afnor/flow/v1/webhooks/{webhookUid} | Delete a webhook|
 |[**downloadFlowProxyApiV1AfnorFlowV1FlowsFlowIdGet**](#downloadflowproxyapiv1afnorflowv1flowsflowidget) | **GET** /api/v1/afnor/flow/v1/flows/{flowId} | Download a flow|
 |[**flowHealthcheckProxyApiV1AfnorFlowV1HealthcheckGet**](#flowhealthcheckproxyapiv1afnorflowv1healthcheckget) | **GET** /api/v1/afnor/flow/v1/healthcheck | Healthcheck Flow Service|
-|[**getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet**](#getwebhookproxyapiv1afnorflowv1webhookswebhookuidget) | **GET** /api/v1/afnor/flow/v1/webhooks/{webhookUid} | Get a webhook|
 |[**listWebhooksProxyApiV1AfnorFlowV1WebhooksGet**](#listwebhooksproxyapiv1afnorflowv1webhooksget) | **GET** /api/v1/afnor/flow/v1/webhooks | List webhooks|
 |[**searchFlowsProxyApiV1AfnorFlowV1FlowsSearchPost**](#searchflowsproxyapiv1afnorflowv1flowssearchpost) | **POST** /api/v1/afnor/flow/v1/flows/search | Search flows|
 |[**submitFlowProxyApiV1AfnorFlowV1FlowsPost**](#submitflowproxyapiv1afnorflowv1flowspost) | **POST** /api/v1/afnor/flow/v1/flows | Submit an invoicing flow|
-|[**updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch**](#updatewebhookproxyapiv1afnorflowv1webhookswebhookuidpatch) | **PATCH** /api/v1/afnor/flow/v1/webhooks/{webhookUid} | Update a webhook|
 
 # **createWebhookProxyApiV1AfnorFlowV1WebhooksPost**
 > any createWebhookProxyApiV1AfnorFlowV1WebhooksPost()
 
-Register a new webhook subscription (AFNOR XP Z12-013 v1.2.0)
+Register a new webhook subscription (AFNOR XP Z12-013 v1.3.0)
 
 ### Example
 
@@ -69,7 +67,7 @@ No authorization required
 # **deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete**
 > any deleteWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidDelete()
 
-Delete a webhook subscription (AFNOR XP Z12-013 v1.2.0)
+Delete a webhook subscription (AFNOR XP Z12-013 v1.3.0)
 
 ### Example
 
@@ -233,68 +231,10 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet**
-> AFNORWebhook getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet()
-
-Get details of a specific webhook (AFNOR XP Z12-013 v1.2.0)
-
-### Example
-
-```typescript
-import {
-    AFNORPDPPAFlowServiceApi,
-    Configuration
-} from '@factpulse/sdk';
-
-const configuration = new Configuration();
-const apiInstance = new AFNORPDPPAFlowServiceApi(configuration);
-
-let webhookUid: string; //Webhook unique identifier (UUID) (default to undefined)
-
-const { status, data } = await apiInstance.getWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidGet(
-    webhookUid
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **webhookUid** | [**string**] | Webhook unique identifier (UUID) | defaults to undefined|
-
-
-### Return type
-
-**AFNORWebhook**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | OK - Webhook details returned |  -  |
-|**401** | Authentication error - Missing or invalid token |  -  |
-|**403** | Forbidden - Insufficient permissions |  -  |
-|**404** | Resource not found |  -  |
-|**429** | Too many requests - Rate limit exceeded |  -  |
-|**500** | Internal server error |  -  |
-|**503** | Service unavailable - PDP temporarily unavailable |  -  |
-|**422** | Validation Error |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **listWebhooksProxyApiV1AfnorFlowV1WebhooksGet**
 > Array<AFNORWebhook> listWebhooksProxyApiV1AfnorFlowV1WebhooksGet()
 
-List all registered webhooks (AFNOR XP Z12-013 v1.2.0)
+List all registered webhooks (AFNOR XP Z12-013 v1.3.0)
 
 ### Example
 
@@ -456,65 +396,6 @@ No authorization required
 |**403** | Forbidden - Insufficient permissions |  -  |
 |**404** | Resource not found |  -  |
 |**413** | Payload too large - File exceeds maximum size |  -  |
-|**422** | Unprocessable entity - Business rule validation failed |  -  |
-|**429** | Too many requests - Rate limit exceeded |  -  |
-|**500** | Internal server error |  -  |
-|**503** | Service unavailable - PDP temporarily unavailable |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch**
-> AFNORWebhook updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch()
-
-Partially update a webhook subscription (AFNOR XP Z12-013 v1.2.0)
-
-### Example
-
-```typescript
-import {
-    AFNORPDPPAFlowServiceApi,
-    Configuration
-} from '@factpulse/sdk';
-
-const configuration = new Configuration();
-const apiInstance = new AFNORPDPPAFlowServiceApi(configuration);
-
-let webhookUid: string; //Webhook unique identifier (UUID) (default to undefined)
-
-const { status, data } = await apiInstance.updateWebhookProxyApiV1AfnorFlowV1WebhooksWebhookUidPatch(
-    webhookUid
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **webhookUid** | [**string**] | Webhook unique identifier (UUID) | defaults to undefined|
-
-
-### Return type
-
-**AFNORWebhook**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | OK - Webhook updated successfully |  -  |
-|**400** | Bad request - Invalid input parameters |  -  |
-|**401** | Authentication error - Missing or invalid token |  -  |
-|**403** | Forbidden - Insufficient permissions |  -  |
-|**404** | Resource not found |  -  |
 |**422** | Unprocessable entity - Business rule validation failed |  -  |
 |**429** | Too many requests - Rate limit exceeded |  -  |
 |**500** | Internal server error |  -  |

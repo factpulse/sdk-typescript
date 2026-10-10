@@ -20,7 +20,7 @@
 
 export const AFNORRoutingCodeAdministrativeStatus = {
     A: 'A',
-    C: 'C'
+    C: 'C',
 } as const;
 
 export type AFNORRoutingCodeAdministrativeStatus = typeof AFNORRoutingCodeAdministrativeStatus[keyof typeof AFNORRoutingCodeAdministrativeStatus];

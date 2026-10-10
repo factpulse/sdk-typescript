@@ -18,12 +18,12 @@
  * Represents a postal address (BG-5, BG-8, BG-12, BG-15).
  */
 export interface PostalAddress {
-    'postalCode'?: string | null;
-    'lineOne'?: string | null;
-    'lineTwo'?: string | null;
-    'lineThree'?: string | null;
+    'postal_code'?: string | null;
+    'line_one'?: string | null;
+    'line_two'?: string | null;
+    'line_three'?: string | null;
     'city'?: string | null;
-    'countryCode'?: string | null;
-    'countrySubdivision'?: string | null;
+    'country_code'?: string | null;
+    'country_subdivision'?: string | null;
 }
 

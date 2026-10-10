@@ -25,7 +25,7 @@ export const AllowanceReasonCode = {
     Adt: 'ADT',
     Fc: 'FC',
     Fi: 'FI',
-    La: 'LA'
+    La: 'LA',
 } as const;
 
 export type AllowanceReasonCode = typeof AllowanceReasonCode[keyof typeof AllowanceReasonCode];

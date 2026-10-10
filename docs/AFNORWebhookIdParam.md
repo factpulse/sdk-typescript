@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **webhookId** | **string** |  | [optional] [default to undefined]
+**signingKey** | **string** |  | [optional] [default to undefined]
+**createdAt** | **string** |  | [optional] [default to undefined]
 
 ## Example
 
@@ -14,6 +16,8 @@ import { AFNORWebhookIdParam } from '@factpulse/sdk';
 
 const instance: AFNORWebhookIdParam = {
     webhookId,
+    signingKey,
+    createdAt,
 };
 ```
 

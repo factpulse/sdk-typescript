@@ -129,18 +129,20 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
             };
         },
         /**
-         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
          * @summary [Simplified] Get lifecycle events for invoices
          * @param {number} [days] Number of days to look back
          * @param {string | null} [invoiceId] Filter by invoice reference
+         * @param {GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum} [flowDirection] All (default), In (received statuses) or Out (issued statuses)
          * @param {string | null} [pdpFlowServiceUrl] PDP Flow Service URL
          * @param {string | null} [pdpTokenUrl] PDP OAuth token URL
          * @param {string | null} [pdpClientId] PDP Client ID
          * @param {string | null} [pdpClientSecret] PDP Client Secret
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLifecycleApiV1CdarLifecycleGet: async (days?: number, invoiceId?: string | null, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getLifecycleApiV1CdarLifecycleGet: async (days?: number, invoiceId?: string | null, flowDirection?: GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, organizationId?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/cdar/lifecycle`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -165,6 +167,10 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
                 localVarQueryParameter['invoiceId'] = invoiceId;
             }
 
+            if (flowDirection !== undefined) {
+                localVarQueryParameter['flowDirection'] = flowDirection;
+            }
+
             if (pdpFlowServiceUrl !== undefined) {
                 localVarQueryParameter['pdpFlowServiceUrl'] = pdpFlowServiceUrl;
             }
@@ -183,6 +189,9 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
 
             localVarHeaderParameter['Accept'] = 'application/json';
 
+            if (organizationId != null) {
+                localVarHeaderParameter['Organization-Id'] = String(organizationId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -256,10 +265,11 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
          * Generate a CDAR message and submit it to the PA/PDP platform.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request  **Flow types (flowType):** - `CustomerInvoiceLC`: Client-side lifecycle (buyer) - `SupplierInvoiceLC`: Supplier-side lifecycle (seller)
          * @summary Generate and submit a CDAR message
          * @param {SubmitCDARRequest} submitCDARRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitCdarApiV1CdarSubmitPost: async (submitCDARRequest: SubmitCDARRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        submitCdarApiV1CdarSubmitPost: async (submitCDARRequest: SubmitCDARRequest, organizationId?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'submitCDARRequest' is not null or undefined
             assertParamExists('submitCdarApiV1CdarSubmitPost', 'submitCDARRequest', submitCDARRequest)
             const localVarPath = `/api/v1/cdar/submit`;
@@ -281,6 +291,9 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
             localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarHeaderParameter['Accept'] = 'application/json';
 
+            if (organizationId != null) {
+                localVarHeaderParameter['Organization-Id'] = String(organizationId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -295,10 +308,11 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
          * Submit a pre-generated CDAR XML message to the PA/PDP platform.  Useful for submitting XML generated by other systems.  **Validation:** The XML is validated against XSD and Schematron BR-FR-CDV rules BEFORE submission. Invalid XML will be rejected with detailed error messages.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request
          * @summary Submit a pre-generated CDAR XML
          * @param {SubmitCDARXMLRequest} submitCDARXMLRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitCdarXmlApiV1CdarSubmitXmlPost: async (submitCDARXMLRequest: SubmitCDARXMLRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        submitCdarXmlApiV1CdarSubmitXmlPost: async (submitCDARXMLRequest: SubmitCDARXMLRequest, organizationId?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'submitCDARXMLRequest' is not null or undefined
             assertParamExists('submitCdarXmlApiV1CdarSubmitXmlPost', 'submitCDARXMLRequest', submitCDARXMLRequest)
             const localVarPath = `/api/v1/cdar/submit-xml`;
@@ -320,6 +334,9 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
             localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarHeaderParameter['Accept'] = 'application/json';
 
+            if (organizationId != null) {
+                localVarHeaderParameter['Organization-Id'] = String(organizationId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -334,10 +351,11 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
          * **Simplified endpoint for OD** - Submit a PAID status (212) for an **ISSUED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-14 requires the paid amount).  **Use case:** The **seller** confirms payment receipt for an invoice they issued.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The seller (SE = Seller) who received payment - **Recipient (RecipientTradeParty):** The buyer (BY = Buyer) who paid  **Reference:** XP Z12-014 Annex B, example UC1_F202500003_07-CDV-212_Encaissee.xml  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
          * @summary [Simplified] Submit PAID status (212) - Issued invoice
          * @param {EncaisseeRequest} encaisseeRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitEncaisseeApiV1CdarEncaisseePost: async (encaisseeRequest: EncaisseeRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        submitEncaisseeApiV1CdarEncaisseePost: async (encaisseeRequest: EncaisseeRequest, organizationId?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'encaisseeRequest' is not null or undefined
             assertParamExists('submitEncaisseeApiV1CdarEncaisseePost', 'encaisseeRequest', encaisseeRequest)
             const localVarPath = `/api/v1/cdar/encaissee`;
@@ -359,6 +377,9 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
             localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarHeaderParameter['Accept'] = 'application/json';
 
+            if (organizationId != null) {
+                localVarHeaderParameter['Organization-Id'] = String(organizationId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -373,10 +394,11 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
          * **Simplified endpoint for OD** - Submit a REFUSED status (210) for a **RECEIVED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-15 requires a reason code).  **Use case:** The **buyer** refuses an invoice they received.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The buyer (BY = Buyer) refusing the invoice - **Recipient (RecipientTradeParty):** The seller (SE = Seller) who issued the invoice  **Reference:** XP Z12-014 Annex B, example UC3_F202500005_04-CDV-210_Refusee.xml  **Allowed reason codes (BR-FR-CDV-CL-09):** - `TX_TVA_ERR`: Incorrect VAT rate - `MONTANTTOTAL_ERR`: Incorrect total amount - `CALCUL_ERR`: Calculation error - `NON_CONFORME`: Non-compliant - `DOUBLON`: Duplicate - `DEST_ERR`: Wrong recipient - `TRANSAC_INC`: Incomplete transaction - `EMMET_INC`: Unknown issuer - `CONTRAT_TERM`: Contract terminated - `DOUBLE_FACT`: Double billing - `CMD_ERR`: Order error - `ADR_ERR`: Address error - `REF_CT_ABSENT`: Missing contract reference  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
          * @summary [Simplified] Submit REFUSED status (210) - Received invoice
          * @param {RefuseeRequest} refuseeRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitRefuseeApiV1CdarRefuseePost: async (refuseeRequest: RefuseeRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        submitRefuseeApiV1CdarRefuseePost: async (refuseeRequest: RefuseeRequest, organizationId?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'refuseeRequest' is not null or undefined
             assertParamExists('submitRefuseeApiV1CdarRefuseePost', 'refuseeRequest', refuseeRequest)
             const localVarPath = `/api/v1/cdar/refusee`;
@@ -398,6 +420,9 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
             localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarHeaderParameter['Accept'] = 'application/json';
 
+            if (organizationId != null) {
+                localVarHeaderParameter['Organization-Id'] = String(organizationId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -532,19 +557,21 @@ export const Flux6InvoiceLifecycleCDARApiFp = function(configuration?: Configura
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
          * @summary [Simplified] Get lifecycle events for invoices
          * @param {number} [days] Number of days to look back
          * @param {string | null} [invoiceId] Filter by invoice reference
+         * @param {GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum} [flowDirection] All (default), In (received statuses) or Out (issued statuses)
          * @param {string | null} [pdpFlowServiceUrl] PDP Flow Service URL
          * @param {string | null} [pdpTokenUrl] PDP OAuth token URL
          * @param {string | null} [pdpClientId] PDP Client ID
          * @param {string | null} [pdpClientSecret] PDP Client Secret
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getLifecycleApiV1CdarLifecycleGet(days?: number, invoiceId?: string | null, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LifecycleResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getLifecycleApiV1CdarLifecycleGet(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options);
+        async getLifecycleApiV1CdarLifecycleGet(days?: number, invoiceId?: string | null, flowDirection?: GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, organizationId?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LifecycleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLifecycleApiV1CdarLifecycleGet(days, invoiceId, flowDirection, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, organizationId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Flux6InvoiceLifecycleCDARApi.getLifecycleApiV1CdarLifecycleGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -577,11 +604,12 @@ export const Flux6InvoiceLifecycleCDARApiFp = function(configuration?: Configura
          * Generate a CDAR message and submit it to the PA/PDP platform.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request  **Flow types (flowType):** - `CustomerInvoiceLC`: Client-side lifecycle (buyer) - `SupplierInvoiceLC`: Supplier-side lifecycle (seller)
          * @summary Generate and submit a CDAR message
          * @param {SubmitCDARRequest} submitCDARRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async submitCdarApiV1CdarSubmitPost(submitCDARRequest: SubmitCDARRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitCDARResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.submitCdarApiV1CdarSubmitPost(submitCDARRequest, options);
+        async submitCdarApiV1CdarSubmitPost(submitCDARRequest: SubmitCDARRequest, organizationId?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitCDARResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.submitCdarApiV1CdarSubmitPost(submitCDARRequest, organizationId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Flux6InvoiceLifecycleCDARApi.submitCdarApiV1CdarSubmitPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -590,11 +618,12 @@ export const Flux6InvoiceLifecycleCDARApiFp = function(configuration?: Configura
          * Submit a pre-generated CDAR XML message to the PA/PDP platform.  Useful for submitting XML generated by other systems.  **Validation:** The XML is validated against XSD and Schematron BR-FR-CDV rules BEFORE submission. Invalid XML will be rejected with detailed error messages.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request
          * @summary Submit a pre-generated CDAR XML
          * @param {SubmitCDARXMLRequest} submitCDARXMLRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest: SubmitCDARXMLRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitCDARResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest, options);
+        async submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest: SubmitCDARXMLRequest, organizationId?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitCDARResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest, organizationId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Flux6InvoiceLifecycleCDARApi.submitCdarXmlApiV1CdarSubmitXmlPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -603,11 +632,12 @@ export const Flux6InvoiceLifecycleCDARApiFp = function(configuration?: Configura
          * **Simplified endpoint for OD** - Submit a PAID status (212) for an **ISSUED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-14 requires the paid amount).  **Use case:** The **seller** confirms payment receipt for an invoice they issued.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The seller (SE = Seller) who received payment - **Recipient (RecipientTradeParty):** The buyer (BY = Buyer) who paid  **Reference:** XP Z12-014 Annex B, example UC1_F202500003_07-CDV-212_Encaissee.xml  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
          * @summary [Simplified] Submit PAID status (212) - Issued invoice
          * @param {EncaisseeRequest} encaisseeRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest: EncaisseeRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimplifiedCDARResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest, options);
+        async submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest: EncaisseeRequest, organizationId?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimplifiedCDARResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest, organizationId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Flux6InvoiceLifecycleCDARApi.submitEncaisseeApiV1CdarEncaisseePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -616,11 +646,12 @@ export const Flux6InvoiceLifecycleCDARApiFp = function(configuration?: Configura
          * **Simplified endpoint for OD** - Submit a REFUSED status (210) for a **RECEIVED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-15 requires a reason code).  **Use case:** The **buyer** refuses an invoice they received.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The buyer (BY = Buyer) refusing the invoice - **Recipient (RecipientTradeParty):** The seller (SE = Seller) who issued the invoice  **Reference:** XP Z12-014 Annex B, example UC3_F202500005_04-CDV-210_Refusee.xml  **Allowed reason codes (BR-FR-CDV-CL-09):** - `TX_TVA_ERR`: Incorrect VAT rate - `MONTANTTOTAL_ERR`: Incorrect total amount - `CALCUL_ERR`: Calculation error - `NON_CONFORME`: Non-compliant - `DOUBLON`: Duplicate - `DEST_ERR`: Wrong recipient - `TRANSAC_INC`: Incomplete transaction - `EMMET_INC`: Unknown issuer - `CONTRAT_TERM`: Contract terminated - `DOUBLE_FACT`: Double billing - `CMD_ERR`: Order error - `ADR_ERR`: Address error - `REF_CT_ABSENT`: Missing contract reference  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
          * @summary [Simplified] Submit REFUSED status (210) - Received invoice
          * @param {RefuseeRequest} refuseeRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async submitRefuseeApiV1CdarRefuseePost(refuseeRequest: RefuseeRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimplifiedCDARResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.submitRefuseeApiV1CdarRefuseePost(refuseeRequest, options);
+        async submitRefuseeApiV1CdarRefuseePost(refuseeRequest: RefuseeRequest, organizationId?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimplifiedCDARResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.submitRefuseeApiV1CdarRefuseePost(refuseeRequest, organizationId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Flux6InvoiceLifecycleCDARApi.submitRefuseeApiV1CdarRefuseePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -680,19 +711,21 @@ export const Flux6InvoiceLifecycleCDARApiFactory = function (configuration?: Con
             return localVarFp.getActionCodesApiV1CdarActionCodesGet(options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
          * @summary [Simplified] Get lifecycle events for invoices
          * @param {number} [days] Number of days to look back
          * @param {string | null} [invoiceId] Filter by invoice reference
+         * @param {GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum} [flowDirection] All (default), In (received statuses) or Out (issued statuses)
          * @param {string | null} [pdpFlowServiceUrl] PDP Flow Service URL
          * @param {string | null} [pdpTokenUrl] PDP OAuth token URL
          * @param {string | null} [pdpClientId] PDP Client ID
          * @param {string | null} [pdpClientSecret] PDP Client Secret
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLifecycleApiV1CdarLifecycleGet(days?: number, invoiceId?: string | null, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<LifecycleResponse> {
-            return localVarFp.getLifecycleApiV1CdarLifecycleGet(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options).then((request) => request(axios, basePath));
+        getLifecycleApiV1CdarLifecycleGet(days?: number, invoiceId?: string | null, flowDirection?: GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, organizationId?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<LifecycleResponse> {
+            return localVarFp.getLifecycleApiV1CdarLifecycleGet(days, invoiceId, flowDirection, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, organizationId, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the complete list of status reason codes (BR-FR-CDV-CL-09).  These codes explain the reason for a particular status.
@@ -716,41 +749,45 @@ export const Flux6InvoiceLifecycleCDARApiFactory = function (configuration?: Con
          * Generate a CDAR message and submit it to the PA/PDP platform.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request  **Flow types (flowType):** - `CustomerInvoiceLC`: Client-side lifecycle (buyer) - `SupplierInvoiceLC`: Supplier-side lifecycle (seller)
          * @summary Generate and submit a CDAR message
          * @param {SubmitCDARRequest} submitCDARRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitCdarApiV1CdarSubmitPost(submitCDARRequest: SubmitCDARRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubmitCDARResponse> {
-            return localVarFp.submitCdarApiV1CdarSubmitPost(submitCDARRequest, options).then((request) => request(axios, basePath));
+        submitCdarApiV1CdarSubmitPost(submitCDARRequest: SubmitCDARRequest, organizationId?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SubmitCDARResponse> {
+            return localVarFp.submitCdarApiV1CdarSubmitPost(submitCDARRequest, organizationId, options).then((request) => request(axios, basePath));
         },
         /**
          * Submit a pre-generated CDAR XML message to the PA/PDP platform.  Useful for submitting XML generated by other systems.  **Validation:** The XML is validated against XSD and Schematron BR-FR-CDV rules BEFORE submission. Invalid XML will be rejected with detailed error messages.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request
          * @summary Submit a pre-generated CDAR XML
          * @param {SubmitCDARXMLRequest} submitCDARXMLRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest: SubmitCDARXMLRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubmitCDARResponse> {
-            return localVarFp.submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest, options).then((request) => request(axios, basePath));
+        submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest: SubmitCDARXMLRequest, organizationId?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SubmitCDARResponse> {
+            return localVarFp.submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest, organizationId, options).then((request) => request(axios, basePath));
         },
         /**
          * **Simplified endpoint for OD** - Submit a PAID status (212) for an **ISSUED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-14 requires the paid amount).  **Use case:** The **seller** confirms payment receipt for an invoice they issued.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The seller (SE = Seller) who received payment - **Recipient (RecipientTradeParty):** The buyer (BY = Buyer) who paid  **Reference:** XP Z12-014 Annex B, example UC1_F202500003_07-CDV-212_Encaissee.xml  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
          * @summary [Simplified] Submit PAID status (212) - Issued invoice
          * @param {EncaisseeRequest} encaisseeRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest: EncaisseeRequest, options?: RawAxiosRequestConfig): AxiosPromise<SimplifiedCDARResponse> {
-            return localVarFp.submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest, options).then((request) => request(axios, basePath));
+        submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest: EncaisseeRequest, organizationId?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SimplifiedCDARResponse> {
+            return localVarFp.submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest, organizationId, options).then((request) => request(axios, basePath));
         },
         /**
          * **Simplified endpoint for OD** - Submit a REFUSED status (210) for a **RECEIVED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-15 requires a reason code).  **Use case:** The **buyer** refuses an invoice they received.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The buyer (BY = Buyer) refusing the invoice - **Recipient (RecipientTradeParty):** The seller (SE = Seller) who issued the invoice  **Reference:** XP Z12-014 Annex B, example UC3_F202500005_04-CDV-210_Refusee.xml  **Allowed reason codes (BR-FR-CDV-CL-09):** - `TX_TVA_ERR`: Incorrect VAT rate - `MONTANTTOTAL_ERR`: Incorrect total amount - `CALCUL_ERR`: Calculation error - `NON_CONFORME`: Non-compliant - `DOUBLON`: Duplicate - `DEST_ERR`: Wrong recipient - `TRANSAC_INC`: Incomplete transaction - `EMMET_INC`: Unknown issuer - `CONTRAT_TERM`: Contract terminated - `DOUBLE_FACT`: Double billing - `CMD_ERR`: Order error - `ADR_ERR`: Address error - `REF_CT_ABSENT`: Missing contract reference  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
          * @summary [Simplified] Submit REFUSED status (210) - Received invoice
          * @param {RefuseeRequest} refuseeRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitRefuseeApiV1CdarRefuseePost(refuseeRequest: RefuseeRequest, options?: RawAxiosRequestConfig): AxiosPromise<SimplifiedCDARResponse> {
-            return localVarFp.submitRefuseeApiV1CdarRefuseePost(refuseeRequest, options).then((request) => request(axios, basePath));
+        submitRefuseeApiV1CdarRefuseePost(refuseeRequest: RefuseeRequest, organizationId?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SimplifiedCDARResponse> {
+            return localVarFp.submitRefuseeApiV1CdarRefuseePost(refuseeRequest, organizationId, options).then((request) => request(axios, basePath));
         },
         /**
          * Validate CDAR structured data without generating XML.  **Note:** This endpoint validates structured data fields only. Use `/validate-xml` to validate a pre-generated CDAR XML file against XSD and Schematron.  Checks: - Field formats (SIREN, dates, etc.) - Enum codes (status, reason, action) - Business rules BR-FR-CDV-*
@@ -801,19 +838,21 @@ export class Flux6InvoiceLifecycleCDARApi extends BaseAPI {
     }
 
     /**
-     * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+     * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
      * @summary [Simplified] Get lifecycle events for invoices
      * @param {number} [days] Number of days to look back
      * @param {string | null} [invoiceId] Filter by invoice reference
+     * @param {GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum} [flowDirection] All (default), In (received statuses) or Out (issued statuses)
      * @param {string | null} [pdpFlowServiceUrl] PDP Flow Service URL
      * @param {string | null} [pdpTokenUrl] PDP OAuth token URL
      * @param {string | null} [pdpClientId] PDP Client ID
      * @param {string | null} [pdpClientSecret] PDP Client Secret
+     * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getLifecycleApiV1CdarLifecycleGet(days?: number, invoiceId?: string | null, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig) {
-        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).getLifecycleApiV1CdarLifecycleGet(days, invoiceId, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options).then((request) => request(this.axios, this.basePath));
+    public getLifecycleApiV1CdarLifecycleGet(days?: number, invoiceId?: string | null, flowDirection?: GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, organizationId?: string | null, options?: RawAxiosRequestConfig) {
+        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).getLifecycleApiV1CdarLifecycleGet(days, invoiceId, flowDirection, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, organizationId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -840,44 +879,48 @@ export class Flux6InvoiceLifecycleCDARApi extends BaseAPI {
      * Generate a CDAR message and submit it to the PA/PDP platform.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request  **Flow types (flowType):** - `CustomerInvoiceLC`: Client-side lifecycle (buyer) - `SupplierInvoiceLC`: Supplier-side lifecycle (seller)
      * @summary Generate and submit a CDAR message
      * @param {SubmitCDARRequest} submitCDARRequest 
+     * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public submitCdarApiV1CdarSubmitPost(submitCDARRequest: SubmitCDARRequest, options?: RawAxiosRequestConfig) {
-        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).submitCdarApiV1CdarSubmitPost(submitCDARRequest, options).then((request) => request(this.axios, this.basePath));
+    public submitCdarApiV1CdarSubmitPost(submitCDARRequest: SubmitCDARRequest, organizationId?: string | null, options?: RawAxiosRequestConfig) {
+        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).submitCdarApiV1CdarSubmitPost(submitCDARRequest, organizationId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Submit a pre-generated CDAR XML message to the PA/PDP platform.  Useful for submitting XML generated by other systems.  **Validation:** The XML is validated against XSD and Schematron BR-FR-CDV rules BEFORE submission. Invalid XML will be rejected with detailed error messages.  **Authentication strategies:** 1. **JWT with client_uid** (recommended): PDP credentials retrieved from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in the request
      * @summary Submit a pre-generated CDAR XML
      * @param {SubmitCDARXMLRequest} submitCDARXMLRequest 
+     * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest: SubmitCDARXMLRequest, options?: RawAxiosRequestConfig) {
-        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest, options).then((request) => request(this.axios, this.basePath));
+    public submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest: SubmitCDARXMLRequest, organizationId?: string | null, options?: RawAxiosRequestConfig) {
+        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).submitCdarXmlApiV1CdarSubmitXmlPost(submitCDARXMLRequest, organizationId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * **Simplified endpoint for OD** - Submit a PAID status (212) for an **ISSUED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-14 requires the paid amount).  **Use case:** The **seller** confirms payment receipt for an invoice they issued.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The seller (SE = Seller) who received payment - **Recipient (RecipientTradeParty):** The buyer (BY = Buyer) who paid  **Reference:** XP Z12-014 Annex B, example UC1_F202500003_07-CDV-212_Encaissee.xml  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
      * @summary [Simplified] Submit PAID status (212) - Issued invoice
      * @param {EncaisseeRequest} encaisseeRequest 
+     * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest: EncaisseeRequest, options?: RawAxiosRequestConfig) {
-        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest, options).then((request) => request(this.axios, this.basePath));
+    public submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest: EncaisseeRequest, organizationId?: string | null, options?: RawAxiosRequestConfig) {
+        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).submitEncaisseeApiV1CdarEncaisseePost(encaisseeRequest, organizationId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * **Simplified endpoint for OD** - Submit a REFUSED status (210) for a **RECEIVED** invoice.  This status is **mandatory for PPF** (BR-FR-CDV-15 requires a reason code).  **Use case:** The **buyer** refuses an invoice they received.  **Who issues this status?** - **Issuer (IssuerTradeParty):** The buyer (BY = Buyer) refusing the invoice - **Recipient (RecipientTradeParty):** The seller (SE = Seller) who issued the invoice  **Reference:** XP Z12-014 Annex B, example UC3_F202500005_04-CDV-210_Refusee.xml  **Allowed reason codes (BR-FR-CDV-CL-09):** - `TX_TVA_ERR`: Incorrect VAT rate - `MONTANTTOTAL_ERR`: Incorrect total amount - `CALCUL_ERR`: Calculation error - `NON_CONFORME`: Non-compliant - `DOUBLON`: Duplicate - `DEST_ERR`: Wrong recipient - `TRANSAC_INC`: Incomplete transaction - `EMMET_INC`: Unknown issuer - `CONTRAT_TERM`: Contract terminated - `DOUBLE_FACT`: Double billing - `CMD_ERR`: Order error - `ADR_ERR`: Address error - `REF_CT_ABSENT`: Missing contract reference  **Authentication:** JWT Bearer (recommended) or PDP credentials in request.
      * @summary [Simplified] Submit REFUSED status (210) - Received invoice
      * @param {RefuseeRequest} refuseeRequest 
+     * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public submitRefuseeApiV1CdarRefuseePost(refuseeRequest: RefuseeRequest, options?: RawAxiosRequestConfig) {
-        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).submitRefuseeApiV1CdarRefuseePost(refuseeRequest, options).then((request) => request(this.axios, this.basePath));
+    public submitRefuseeApiV1CdarRefuseePost(refuseeRequest: RefuseeRequest, organizationId?: string | null, options?: RawAxiosRequestConfig) {
+        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).submitRefuseeApiV1CdarRefuseePost(refuseeRequest, organizationId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -903,3 +946,9 @@ export class Flux6InvoiceLifecycleCDARApi extends BaseAPI {
     }
 }
 
+export const GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum = {
+    In: 'In',
+    Out: 'Out',
+    All: 'All',
+} as const;
+export type GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum = typeof GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum[keyof typeof GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum];

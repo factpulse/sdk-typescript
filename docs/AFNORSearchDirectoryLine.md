@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **filters** | [**AFNORSearchDirectoryLineFilters**](AFNORSearchDirectoryLineFilters.md) |  | [optional] [default to undefined]
 **sorting** | [**Array&lt;AFNORSearchDirectoryLineSortingInner&gt;**](AFNORSearchDirectoryLineSortingInner.md) | Sorting criteria on a field and an order (ascending or descending). | [optional] [default to undefined]
 **fields** | [**Array&lt;AFNORDirectoryLineField&gt;**](AFNORDirectoryLineField.md) | Allows you to filter the desired fields in the response. | [optional] [default to undefined]
+**include** | **Array&lt;string&gt;** |  | [optional] [default to undefined]
 **limit** | **number** | Maximum number of results | [optional] [default to undefined]
 **ignore** | **number** | Number of results to skip | [optional] [default to undefined]
 
@@ -20,6 +21,7 @@ const instance: AFNORSearchDirectoryLine = {
     filters,
     sorting,
     fields,
+    include,
     limit,
     ignore,
 };

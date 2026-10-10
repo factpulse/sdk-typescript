@@ -21,7 +21,7 @@
 export const AFNORDirectoryLineStatus = {
     Enabled: 'Enabled',
     Disabled: 'Disabled',
-    Upcoming: 'Upcoming'
+    Upcoming: 'Upcoming',
 } as const;
 
 export type AFNORDirectoryLineStatus = typeof AFNORDirectoryLineStatus[keyof typeof AFNORDirectoryLineStatus];

@@ -14,8 +14,13 @@
 
 
 
-export interface AFNORBasicAuthentication {
-    'userId': string;
-    'userPassword': string;
+/**
+ * SuperPDP OAuth authorization URL for a client.
+ */
+export interface SuperPDPConnectURLResponse {
+    /**
+     * URL to redirect the end user to in order to connect their SuperPDP account
+     */
+    'authorizeUrl': string;
 }
 

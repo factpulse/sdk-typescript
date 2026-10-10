@@ -27,14 +27,9 @@ configuration.ts
 docs/AFNORAcknowledgement.md
 docs/AFNORAcknowledgementDetail.md
 docs/AFNORAddressRead.md
-docs/AFNORAlgorithm.md
-docs/AFNORBasicAuthentication.md
-docs/AFNORCallbackAuthentication.md
-docs/AFNORCallbackHeader.md
-docs/AFNORCallbackParameters.md
-docs/AFNORCallbackSignature.md
-docs/AFNORContainsOperator.md
+docs/AFNORContainsOrStartWithOperator.md
 docs/AFNORContainsOrStrictOperator.md
+docs/AFNORContainsOrStrictOrStartWithOperator.md
 docs/AFNORCoreFlowInfo.md
 docs/AFNORCredentials.md
 docs/AFNORDestination.md
@@ -67,7 +62,6 @@ docs/AFNORHealthCheckResponse.md
 docs/AFNORLegalUnitAdministrativeStatus.md
 docs/AFNORLegalUnitPayloadHistory.md
 docs/AFNORLegalUnitPayloadIncluded.md
-docs/AFNOROAuth2Authentication.md
 docs/AFNORPDPPAApi.md
 docs/AFNORPDPPADirectoryServiceApi.md
 docs/AFNORPDPPAFlowServiceApi.md
@@ -121,11 +115,10 @@ docs/AFNORSiretSearchPost200Response.md
 docs/AFNORSortingOrder.md
 docs/AFNORStrictOperator.md
 docs/AFNORStrictOrStartWithOperator.md
+docs/AFNORUniqueDirectoryLineStatus.md
 docs/AFNORWebhook.md
 docs/AFNORWebhookIdParam.md
-docs/AFNORWebhookMetadata.md
 docs/AFNORWebhookParams.md
-docs/AFNORWebhookPatchPayload.md
 docs/APIError.md
 docs/APIProfile.md
 docs/AcknowledgmentStatus.md
@@ -142,6 +135,7 @@ docs/Amount.md
 docs/Amount1.md
 docs/Amount2.md
 docs/AmountDue.md
+docs/Amounteur.md
 docs/AsyncTaskStatus.md
 docs/AsyncTasksApi.md
 docs/BaseAmount.md
@@ -186,6 +180,8 @@ docs/DownloadsApi.md
 docs/EReportingFlowType.md
 docs/EReportingValidationError.md
 docs/ElectronicAddress.md
+docs/ElectronicAddressInput.md
+docs/ElectronicAddressOutput.md
 docs/ElectronicSignatureApi.md
 docs/Encaisseamount.md
 docs/Encaisseamount1.md
@@ -199,9 +195,9 @@ docs/FacturXInvoice.md
 docs/FacturXPDFInfo.md
 docs/FacturXPDFXMLVerificationApi.md
 docs/FacturXValidationApi.md
+docs/FactureElectroniqueModelsInvoiceTypeCode.md
 docs/FactureElectroniqueRestApiSchemasCdarValidationErrorResponse.md
-docs/FactureElectroniqueRestApiSchemasEreportingInvoiceTypeCode.md
-docs/FactureElectroniqueRestApiSchemasProcessingChorusProCredentials.md
+docs/FactureElectroniqueRestApiSchemasChorusProChorusProCredentials.md
 docs/FieldStatus.md
 docs/FileInfo.md
 docs/FilesInfo.md
@@ -246,6 +242,7 @@ docs/InvoiceTotals.md
 docs/InvoiceTotalsPrepayment.md
 docs/InvoiceTypeCode.md
 docs/InvoiceTypeCodeOutput.md
+docs/Invoicedata.md
 docs/InvoicingFramework.md
 docs/InvoicingFrameworkCode.md
 docs/IssuerRoleCode.md
@@ -276,6 +273,8 @@ docs/PaymentCard.md
 docs/PaymentMeans.md
 docs/Percentage.md
 docs/PostalAddress.md
+docs/PostalAddressInput.md
+docs/PostalAddressOutput.md
 docs/PriceAllowanceAmount.md
 docs/PriceBasisQuantity.md
 docs/ProcessingOptions.md
@@ -333,6 +332,9 @@ docs/SubmitInvoiceRequest.md
 docs/SubmitInvoiceResponse.md
 docs/SubmitNetAmount.md
 docs/SubmitVatAmount.md
+docs/SuperPDPConnectURLResponse.md
+docs/SuperPDPDisconnectResponse.md
+docs/SuperPDPStatusResponse.md
 docs/SupplementaryAttachment.md
 docs/Supplier.md
 docs/TaskErrorResult.md
@@ -345,6 +347,7 @@ docs/Taxableamount.md
 docs/Taxamount.md
 docs/Taxamount1.md
 docs/Taxamount2.md
+docs/Taxamounteur.md
 docs/Taxexclusiveamount.md
 docs/Taxexclusiveamount1.md
 docs/TotalGrossAmount.md
@@ -392,14 +395,9 @@ models/additional-document.ts
 models/afnoracknowledgement-detail.ts
 models/afnoracknowledgement.ts
 models/afnoraddress-read.ts
-models/afnoralgorithm.ts
-models/afnorbasic-authentication.ts
-models/afnorcallback-authentication.ts
-models/afnorcallback-header.ts
-models/afnorcallback-parameters.ts
-models/afnorcallback-signature.ts
-models/afnorcontains-operator.ts
+models/afnorcontains-or-start-with-operator.ts
 models/afnorcontains-or-strict-operator.ts
+models/afnorcontains-or-strict-or-start-with-operator.ts
 models/afnorcore-flow-info.ts
 models/afnorcredentials.ts
 models/afnordestination.ts
@@ -432,7 +430,6 @@ models/afnorhealth-check-response.ts
 models/afnorlegal-unit-administrative-status.ts
 models/afnorlegal-unit-payload-history.ts
 models/afnorlegal-unit-payload-included.ts
-models/afnoroauth2-authentication.ts
 models/afnorprocessing-rule.ts
 models/afnorreason-code-enum.ts
 models/afnorreason-code.ts
@@ -483,10 +480,9 @@ models/afnorsiret-search-post200-response.ts
 models/afnorsorting-order.ts
 models/afnorstrict-operator.ts
 models/afnorstrict-or-start-with-operator.ts
+models/afnorunique-directory-line-status.ts
 models/afnorwebhook-id-param.ts
-models/afnorwebhook-metadata.ts
 models/afnorwebhook-params.ts
-models/afnorwebhook-patch-payload.ts
 models/afnorwebhook.ts
 models/aggregated-payment-input.ts
 models/aggregated-transaction-input.ts
@@ -498,6 +494,7 @@ models/amount-due.ts
 models/amount.ts
 models/amount1.ts
 models/amount2.ts
+models/amounteur.ts
 models/apierror.ts
 models/apiprofile.ts
 models/async-task-status.ts
@@ -537,6 +534,8 @@ models/delivery-party.ts
 models/destination.ts
 models/doc-type.ts
 models/document-type-info.ts
+models/electronic-address-input.ts
+models/electronic-address-output.ts
 models/electronic-address.ts
 models/encaisseamount.ts
 models/encaisseamount1.ts
@@ -549,9 +548,9 @@ models/error-source.ts
 models/extraction-info.ts
 models/factur-xinvoice.ts
 models/factur-xpdfinfo.ts
+models/facture-electronique-models-invoice-type-code.ts
 models/facture-electronique-rest-api-schemas-cdar-validation-error-response.ts
-models/facture-electronique-rest-api-schemas-ereporting-invoice-type-code.ts
-models/facture-electronique-rest-api-schemas-processing-chorus-pro-credentials.ts
+models/facture-electronique-rest-api-schemas-chorus-pro-chorus-pro-credentials.ts
 models/field-status.ts
 models/file-info.ts
 models/files-info.ts
@@ -593,6 +592,7 @@ models/invoice-totals-prepayment.ts
 models/invoice-totals.ts
 models/invoice-type-code-output.ts
 models/invoice-type-code.ts
+models/invoicedata.ts
 models/invoicing-framework-code.ts
 models/invoicing-framework.ts
 models/issuer-role-code.ts
@@ -621,6 +621,8 @@ models/pdpconfig-response.ts
 models/pdpconfig-update-request.ts
 models/pdpcredentials.ts
 models/percentage.ts
+models/postal-address-input.ts
+models/postal-address-output.ts
 models/postal-address.ts
 models/price-allowance-amount.ts
 models/price-basis-quantity.ts
@@ -678,6 +680,9 @@ models/submit-invoice-request.ts
 models/submit-invoice-response.ts
 models/submit-net-amount.ts
 models/submit-vat-amount.ts
+models/super-pdpconnect-urlresponse.ts
+models/super-pdpdisconnect-response.ts
+models/super-pdpstatus-response.ts
 models/supplementary-attachment.ts
 models/supplier.ts
 models/task-error-result.ts
@@ -690,6 +695,7 @@ models/taxableamount0.ts
 models/taxamount.ts
 models/taxamount1.ts
 models/taxamount2.ts
+models/taxamounteur.ts
 models/taxexclusiveamount.ts
 models/taxexclusiveamount1.ts
 models/total-gross-amount.ts

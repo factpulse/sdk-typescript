@@ -18,23 +18,23 @@
 import type { Contact } from './contact';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ElectronicAddress } from './electronic-address';
+import type { ElectronicAddressInput } from './electronic-address-input';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PostalAddress } from './postal-address';
+import type { PostalAddressInput } from './postal-address-input';
 
 /**
  * Information about the invoice recipient / buyer (BG-7).
  */
 export interface Recipient {
-    'electronic_address'?: ElectronicAddress | null;
+    'electronic_address'?: ElectronicAddressInput | null;
     'executing_service_code'?: string | null;
     'name'?: string | null;
     'siren'?: string | null;
     'siret'?: string | null;
     'vat_number'?: string | null;
-    'postal_address'?: PostalAddress | null;
+    'postal_address'?: PostalAddressInput | null;
     'contact'?: Contact | null;
-    'global_ids'?: Array<ElectronicAddress> | null;
+    'global_ids'?: Array<ElectronicAddressInput> | null;
 }
 

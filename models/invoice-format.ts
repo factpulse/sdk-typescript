@@ -21,7 +21,7 @@
 export const InvoiceFormat = {
     Cii: 'CII',
     Ubl: 'UBL',
-    FacturX: 'Factur-X'
+    FacturX: 'Factur-X',
 } as const;
 
 export type InvoiceFormat = typeof InvoiceFormat[keyof typeof InvoiceFormat];

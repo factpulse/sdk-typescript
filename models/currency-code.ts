@@ -71,7 +71,7 @@ export const CurrencyCode = {
     Xpf: 'XPF',
     Xaf: 'XAF',
     Xof: 'XOF',
-    Xdr: 'XDR'
+    Xdr: 'XDR',
 } as const;
 
 export type CurrencyCode = typeof CurrencyCode[keyof typeof CurrencyCode];

@@ -21,7 +21,7 @@
 export const LineSubType = {
     Detail: 'DETAIL',
     Information: 'INFORMATION',
-    Group: 'GROUP'
+    Group: 'GROUP',
 } as const;
 
 export type LineSubType = typeof LineSubType[keyof typeof LineSubType];

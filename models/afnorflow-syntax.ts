@@ -23,7 +23,7 @@ export const AFNORFlowSyntax = {
     Ubl: 'UBL',
     FacturX: 'Factur-X',
     Cdar: 'CDAR',
-    Frr: 'FRR'
+    Frr: 'FRR',
 } as const;
 
 export type AFNORFlowSyntax = typeof AFNORFlowSyntax[keyof typeof AFNORFlowSyntax];

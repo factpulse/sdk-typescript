@@ -34,7 +34,7 @@ export interface ConversionSuccessTaskResult {
 }
 
 export const ConversionSuccessTaskResultStatusEnum = {
-    Success: 'SUCCESS'
+    Success: 'SUCCESS',
 } as const;
 
 export type ConversionSuccessTaskResultStatusEnum = typeof ConversionSuccessTaskResultStatusEnum[keyof typeof ConversionSuccessTaskResultStatusEnum];

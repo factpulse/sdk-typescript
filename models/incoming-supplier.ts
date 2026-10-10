@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { ElectronicAddress } from './electronic-address';
+import type { ElectronicAddressOutput } from './electronic-address-output';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { PostalAddress } from './postal-address';
+import type { PostalAddressOutput } from './postal-address-output';
 
 /**
  * Supplier extracted from an incoming invoice.  Unlike the Supplier model in models.py, this model does not have a supplier_id field as this information is not available in Factur-X/CII/UBL XML files.
@@ -31,8 +31,9 @@ export interface IncomingSupplier {
     'siren'?: string | null;
     'siret'?: string | null;
     'vatNumber'?: string | null;
-    'postalAddress'?: PostalAddress | null;
-    'electronicAddress'?: ElectronicAddress | null;
+    'taxRegistrationId'?: string | null;
+    'postalAddress'?: PostalAddressOutput | null;
+    'electronicAddress'?: ElectronicAddressOutput | null;
     'email'?: string | null;
     'phone'?: string | null;
 }

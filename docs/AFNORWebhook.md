@@ -6,8 +6,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **webhookId** | **string** |  | [optional] [default to undefined]
-**callback** | [**AFNORCallbackParameters**](AFNORCallbackParameters.md) |  | [default to undefined]
-**metadata** | [**AFNORWebhookMetadata**](AFNORWebhookMetadata.md) |  | [default to undefined]
+**signingKey** | **string** |  | [optional] [default to undefined]
+**createdAt** | **string** |  | [optional] [default to undefined]
+**callbackUrl** | **string** |  | [default to undefined]
+**flowTypes** | [**Array&lt;AFNORFlowType&gt;**](AFNORFlowType.md) |  | [optional] [default to undefined]
+**flowDirection** | [**AFNORFlowDirection**](AFNORFlowDirection.md) |  | [optional] [default to undefined]
+**ackStatus** | [**AFNORFlowAckStatus**](AFNORFlowAckStatus.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -16,8 +20,12 @@ import { AFNORWebhook } from '@factpulse/sdk';
 
 const instance: AFNORWebhook = {
     webhookId,
-    callback,
-    metadata,
+    signingKey,
+    createdAt,
+    callbackUrl,
+    flowTypes,
+    flowDirection,
+    ackStatus,
 };
 ```
 

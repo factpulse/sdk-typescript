@@ -22,7 +22,7 @@ export const EReportingFlowType = {
     _101: '10.1',
     _102: '10.2',
     _103: '10.3',
-    _104: '10.4'
+    _104: '10.4',
 } as const;
 
 export type EReportingFlowType = typeof EReportingFlowType[keyof typeof EReportingFlowType];

@@ -241,10 +241,11 @@ export const Flux10EReportingApiAxiosParamCreator = function (configuration?: Co
          * Generate and submit a PPF-compliant aggregated e-reporting to a PA/PDP.  Combines generation and submission in a single call. Automatically determines the AFNOR FlowType based on content.
          * @summary Submit aggregated e-reporting to PA/PDP
          * @param {SubmitAggregatedReportRequest} submitAggregatedReportRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost: async (submitAggregatedReportRequest: SubmitAggregatedReportRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost: async (submitAggregatedReportRequest: SubmitAggregatedReportRequest, organizationId?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'submitAggregatedReportRequest' is not null or undefined
             assertParamExists('submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost', 'submitAggregatedReportRequest', submitAggregatedReportRequest)
             const localVarPath = `/api/v1/ereporting/submit-aggregated`;
@@ -266,6 +267,9 @@ export const Flux10EReportingApiAxiosParamCreator = function (configuration?: Co
             localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarHeaderParameter['Accept'] = 'application/json';
 
+            if (organizationId != null) {
+                localVarHeaderParameter['Organization-Id'] = String(organizationId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -280,10 +284,11 @@ export const Flux10EReportingApiAxiosParamCreator = function (configuration?: Co
          * Generate and submit e-reporting to a PA (Plateforme Agréée).  Authentication strategies (same as invoices): 1. **JWT with client_uid** (recommended): PDP credentials fetched from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in request  The e-reporting is submitted using the AFNOR Flow Service API with syntax=FRR (FRench Reporting).
          * @summary Submit e-reporting to PA/PDP
          * @param {SubmitEReportingRequest} submitEReportingRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitEreportingApiV1EreportingSubmitPost: async (submitEReportingRequest: SubmitEReportingRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        submitEreportingApiV1EreportingSubmitPost: async (submitEReportingRequest: SubmitEReportingRequest, organizationId?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'submitEReportingRequest' is not null or undefined
             assertParamExists('submitEreportingApiV1EreportingSubmitPost', 'submitEReportingRequest', submitEReportingRequest)
             const localVarPath = `/api/v1/ereporting/submit`;
@@ -305,6 +310,9 @@ export const Flux10EReportingApiAxiosParamCreator = function (configuration?: Co
             localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarHeaderParameter['Accept'] = 'application/json';
 
+            if (organizationId != null) {
+                localVarHeaderParameter['Organization-Id'] = String(organizationId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -319,6 +327,7 @@ export const Flux10EReportingApiAxiosParamCreator = function (configuration?: Co
          * Submit a pre-generated e-reporting XML file directly to a PA/PDP.  This endpoint is designed for clients who generate their own PPF-compliant XML and only need FactPulse for the PDP submission.  **Process:** 1. Validates the XML against PPF XSD schemas 2. Determines the appropriate AFNOR FlowType 3. Submits to the configured PDP/PA 4. Returns the flowId for tracking  **Authentication:** Same strategies as /submit endpoint (JWT or zero-storage credentials).
          * @summary Submit pre-generated e-reporting XML
          * @param {File} xmlFile E-reporting XML file
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {string | null} [trackingId] 
          * @param {boolean} [skipValidation] Skip XSD validation
          * @param {string | null} [pdpFlowServiceUrl] 
@@ -328,7 +337,7 @@ export const Flux10EReportingApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitXmlEreportingApiV1EreportingSubmitXmlPost: async (xmlFile: File, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        submitXmlEreportingApiV1EreportingSubmitXmlPost: async (xmlFile: File, organizationId?: string | null, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'xmlFile' is not null or undefined
             assertParamExists('submitXmlEreportingApiV1EreportingSubmitXmlPost', 'xmlFile', xmlFile)
             const localVarPath = `/api/v1/ereporting/submit-xml`;
@@ -379,6 +388,9 @@ export const Flux10EReportingApiAxiosParamCreator = function (configuration?: Co
             localVarHeaderParameter['Content-Type'] = 'multipart/form-data';
             localVarHeaderParameter['Accept'] = 'application/json';
 
+            if (organizationId != null) {
+                localVarHeaderParameter['Organization-Id'] = String(organizationId);
+            }
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
@@ -607,11 +619,12 @@ export const Flux10EReportingApiFp = function(configuration?: Configuration) {
          * Generate and submit a PPF-compliant aggregated e-reporting to a PA/PDP.  Combines generation and submission in a single call. Automatically determines the AFNOR FlowType based on content.
          * @summary Submit aggregated e-reporting to PA/PDP
          * @param {SubmitAggregatedReportRequest} submitAggregatedReportRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest: SubmitAggregatedReportRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitEReportingResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest, options);
+        async submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest: SubmitAggregatedReportRequest, organizationId?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitEReportingResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest, organizationId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -620,11 +633,12 @@ export const Flux10EReportingApiFp = function(configuration?: Configuration) {
          * Generate and submit e-reporting to a PA (Plateforme Agréée).  Authentication strategies (same as invoices): 1. **JWT with client_uid** (recommended): PDP credentials fetched from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in request  The e-reporting is submitted using the AFNOR Flow Service API with syntax=FRR (FRench Reporting).
          * @summary Submit e-reporting to PA/PDP
          * @param {SubmitEReportingRequest} submitEReportingRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest: SubmitEReportingRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitEReportingResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest, options);
+        async submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest: SubmitEReportingRequest, organizationId?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitEReportingResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest, organizationId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.submitEreportingApiV1EreportingSubmitPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -633,6 +647,7 @@ export const Flux10EReportingApiFp = function(configuration?: Configuration) {
          * Submit a pre-generated e-reporting XML file directly to a PA/PDP.  This endpoint is designed for clients who generate their own PPF-compliant XML and only need FactPulse for the PDP submission.  **Process:** 1. Validates the XML against PPF XSD schemas 2. Determines the appropriate AFNOR FlowType 3. Submits to the configured PDP/PA 4. Returns the flowId for tracking  **Authentication:** Same strategies as /submit endpoint (JWT or zero-storage credentials).
          * @summary Submit pre-generated e-reporting XML
          * @param {File} xmlFile E-reporting XML file
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {string | null} [trackingId] 
          * @param {boolean} [skipValidation] Skip XSD validation
          * @param {string | null} [pdpFlowServiceUrl] 
@@ -642,8 +657,8 @@ export const Flux10EReportingApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: File, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitEReportingResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options);
+        async submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: File, organizationId?: string | null, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitEReportingResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, organizationId, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.submitXmlEreportingApiV1EreportingSubmitXmlPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -751,26 +766,29 @@ export const Flux10EReportingApiFactory = function (configuration?: Configuratio
          * Generate and submit a PPF-compliant aggregated e-reporting to a PA/PDP.  Combines generation and submission in a single call. Automatically determines the AFNOR FlowType based on content.
          * @summary Submit aggregated e-reporting to PA/PDP
          * @param {SubmitAggregatedReportRequest} submitAggregatedReportRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest: SubmitAggregatedReportRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubmitEReportingResponse> {
-            return localVarFp.submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest, options).then((request) => request(axios, basePath));
+        submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest: SubmitAggregatedReportRequest, organizationId?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SubmitEReportingResponse> {
+            return localVarFp.submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest, organizationId, options).then((request) => request(axios, basePath));
         },
         /**
          * Generate and submit e-reporting to a PA (Plateforme Agréée).  Authentication strategies (same as invoices): 1. **JWT with client_uid** (recommended): PDP credentials fetched from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in request  The e-reporting is submitted using the AFNOR Flow Service API with syntax=FRR (FRench Reporting).
          * @summary Submit e-reporting to PA/PDP
          * @param {SubmitEReportingRequest} submitEReportingRequest 
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest: SubmitEReportingRequest, options?: RawAxiosRequestConfig): AxiosPromise<SubmitEReportingResponse> {
-            return localVarFp.submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest, options).then((request) => request(axios, basePath));
+        submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest: SubmitEReportingRequest, organizationId?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SubmitEReportingResponse> {
+            return localVarFp.submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest, organizationId, options).then((request) => request(axios, basePath));
         },
         /**
          * Submit a pre-generated e-reporting XML file directly to a PA/PDP.  This endpoint is designed for clients who generate their own PPF-compliant XML and only need FactPulse for the PDP submission.  **Process:** 1. Validates the XML against PPF XSD schemas 2. Determines the appropriate AFNOR FlowType 3. Submits to the configured PDP/PA 4. Returns the flowId for tracking  **Authentication:** Same strategies as /submit endpoint (JWT or zero-storage credentials).
          * @summary Submit pre-generated e-reporting XML
          * @param {File} xmlFile E-reporting XML file
+         * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {string | null} [trackingId] 
          * @param {boolean} [skipValidation] Skip XSD validation
          * @param {string | null} [pdpFlowServiceUrl] 
@@ -780,8 +798,8 @@ export const Flux10EReportingApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: File, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SubmitEReportingResponse> {
-            return localVarFp.submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options).then((request) => request(axios, basePath));
+        submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: File, organizationId?: string | null, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SubmitEReportingResponse> {
+            return localVarFp.submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, organizationId, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options).then((request) => request(axios, basePath));
         },
         /**
          * Validates aggregated e-reporting data without generating XML.
@@ -880,28 +898,31 @@ export class Flux10EReportingApi extends BaseAPI {
      * Generate and submit a PPF-compliant aggregated e-reporting to a PA/PDP.  Combines generation and submission in a single call. Automatically determines the AFNOR FlowType based on content.
      * @summary Submit aggregated e-reporting to PA/PDP
      * @param {SubmitAggregatedReportRequest} submitAggregatedReportRequest 
+     * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest: SubmitAggregatedReportRequest, options?: RawAxiosRequestConfig) {
-        return Flux10EReportingApiFp(this.configuration).submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest, options).then((request) => request(this.axios, this.basePath));
+    public submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest: SubmitAggregatedReportRequest, organizationId?: string | null, options?: RawAxiosRequestConfig) {
+        return Flux10EReportingApiFp(this.configuration).submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(submitAggregatedReportRequest, organizationId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Generate and submit e-reporting to a PA (Plateforme Agréée).  Authentication strategies (same as invoices): 1. **JWT with client_uid** (recommended): PDP credentials fetched from backend 2. **Zero-storage**: Provide pdpFlowServiceUrl, pdpClientId, pdpClientSecret in request  The e-reporting is submitted using the AFNOR Flow Service API with syntax=FRR (FRench Reporting).
      * @summary Submit e-reporting to PA/PDP
      * @param {SubmitEReportingRequest} submitEReportingRequest 
+     * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest: SubmitEReportingRequest, options?: RawAxiosRequestConfig) {
-        return Flux10EReportingApiFp(this.configuration).submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest, options).then((request) => request(this.axios, this.basePath));
+    public submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest: SubmitEReportingRequest, organizationId?: string | null, options?: RawAxiosRequestConfig) {
+        return Flux10EReportingApiFp(this.configuration).submitEreportingApiV1EreportingSubmitPost(submitEReportingRequest, organizationId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Submit a pre-generated e-reporting XML file directly to a PA/PDP.  This endpoint is designed for clients who generate their own PPF-compliant XML and only need FactPulse for the PDP submission.  **Process:** 1. Validates the XML against PPF XSD schemas 2. Determines the appropriate AFNOR FlowType 3. Submits to the configured PDP/PA 4. Returns the flowId for tracking  **Authentication:** Same strategies as /submit endpoint (JWT or zero-storage credentials).
      * @summary Submit pre-generated e-reporting XML
      * @param {File} xmlFile E-reporting XML file
+     * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
      * @param {string | null} [trackingId] 
      * @param {boolean} [skipValidation] Skip XSD validation
      * @param {string | null} [pdpFlowServiceUrl] 
@@ -911,8 +932,8 @@ export class Flux10EReportingApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: File, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig) {
-        return Flux10EReportingApiFp(this.configuration).submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options).then((request) => request(this.axios, this.basePath));
+    public submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: File, organizationId?: string | null, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig) {
+        return Flux10EReportingApiFp(this.configuration).submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, organizationId, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

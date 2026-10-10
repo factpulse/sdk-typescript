@@ -31,7 +31,7 @@ export const AFNORSiretField = {
     ManagesPaymentStatus: 'managesPaymentStatus',
     ManagesLegalCommitment: 'managesLegalCommitment',
     ManagesLegalCommitmentOrService: 'managesLegalCommitmentOrService',
-    ServiceCodeStatus: 'serviceCodeStatus'
+    ServiceCodeStatus: 'serviceCodeStatus',
 } as const;
 
 export type AFNORSiretField = typeof AFNORSiretField[keyof typeof AFNORSiretField];

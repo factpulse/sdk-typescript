@@ -46,7 +46,7 @@ export interface AFNORRoutingCodeSearch {
 
 export const AFNORRoutingCodeSearchIncludeEnum = {
     Siren: 'siren',
-    Siret: 'siret'
+    Siret: 'siret',
 } as const;
 
 export type AFNORRoutingCodeSearchIncludeEnum = typeof AFNORRoutingCodeSearchIncludeEnum[keyof typeof AFNORRoutingCodeSearchIncludeEnum];

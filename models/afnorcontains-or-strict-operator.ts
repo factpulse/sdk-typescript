@@ -20,7 +20,7 @@
 
 export const AFNORContainsOrStrictOperator = {
     Contains: 'contains',
-    Strict: 'strict'
+    Strict: 'strict',
 } as const;
 
 export type AFNORContainsOrStrictOperator = typeof AFNORContainsOrStrictOperator[keyof typeof AFNORContainsOrStrictOperator];

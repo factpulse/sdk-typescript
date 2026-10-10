@@ -24,7 +24,7 @@ export const PaymentMeans = {
     Virement: 'VIREMENT',
     Espece: 'ESPECE',
     Autre: 'AUTRE',
-    Report: 'REPORT'
+    Report: 'REPORT',
 } as const;
 
 export type PaymentMeans = typeof PaymentMeans[keyof typeof PaymentMeans];

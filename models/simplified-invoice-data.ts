@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { InvoiceTypeCode } from './invoice-type-code';
+import type { FactureElectroniqueModelsInvoiceTypeCode } from './facture-electronique-models-invoice-type-code';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { InvoicingFrameworkCode } from './invoicing-framework-code';
@@ -24,19 +24,21 @@ import type { InvoicingFrameworkCode } from './invoicing-framework-code';
 import type { OperationNature } from './operation-nature';
 
 /**
- * Simplified invoice data (minimal format for auto-enrichment).
+ * Simplified invoice data (minimal format for auto-enrichment).  Any field of the complete `FacturXInvoice` model may be added on top of the fields declared below (`deliveryDate` BT-72, `deliveryParty` BG-15, `paymentReference` BT-83, `payee` BG-10, ...): extra keys are kept and merged by `FacturXInvoice.create_from_simplified_dict`. Whatever the simplified format computes itself (totals, lines, addresses) always wins.
  */
 export interface SimplifiedInvoiceData {
+    [key: string]: any;
+
     /**
      * Unique invoice number
      */
     'number': string;
     /**
-     * Supplier information (siret, iban, ...)
+     * Supplier information (siret, iban, bic, routingAddress, ...). For a seller without an intra-community VAT number (VAT franchise, article 293 B of the CGI), provide `taxRegistrationId` (BT-32, usually the SIREN): it satisfies BR-E-02 and prevents BT-31 from being auto-calculated.
      */
     'supplier': { [key: string]: any; };
     /**
-     * Recipient information (siret, ...)
+     * Recipient information (siret, vatNumber for BT-48, ...)
      */
     'recipient': { [key: string]: any; };
     /**
@@ -54,7 +56,7 @@ export interface SimplifiedInvoiceData {
     /**
      * Document type (UNTDID 1001). Default: 380 (Invoice).
      */
-    'invoiceType'?: InvoiceTypeCode;
+    'invoiceType'?: FactureElectroniqueModelsInvoiceTypeCode;
     'precedingInvoiceReference'?: string | null;
     'operationNature'?: OperationNature | null;
     'invoicingFramework'?: InvoicingFrameworkCode | null;

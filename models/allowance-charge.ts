@@ -18,7 +18,7 @@
 import type { AllowanceChargeReasonCode } from './allowance-charge-reason-code';
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Amount2 } from './amount2';
+import type { Amount } from './amount';
 // May contain unused imports in some cases
 // @ts-ignore
 import type { BaseAmount } from './base-amount';
@@ -40,7 +40,7 @@ export interface AllowanceCharge {
      * True for charge, False for allowance (ChargeIndicator).
      */
     'is_charge': boolean;
-    'amount': Amount2;
+    'amount': Amount;
     'base_amount'?: BaseAmount | null;
     'percentage'?: Percentage | null;
     'reason'?: string | null;

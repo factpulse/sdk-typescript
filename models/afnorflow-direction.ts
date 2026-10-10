@@ -20,7 +20,7 @@
 
 export const AFNORFlowDirection = {
     In: 'In',
-    Out: 'Out'
+    Out: 'Out',
 } as const;
 
 export type AFNORFlowDirection = typeof AFNORFlowDirection[keyof typeof AFNORFlowDirection];

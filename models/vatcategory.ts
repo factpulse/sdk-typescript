@@ -27,7 +27,7 @@ export const VATCategory = {
     G: 'G',
     O: 'O',
     L: 'L',
-    M: 'M'
+    M: 'M',
 } as const;
 
 export type VATCategory = typeof VATCategory[keyof typeof VATCategory];

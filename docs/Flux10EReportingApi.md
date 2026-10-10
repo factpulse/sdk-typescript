@@ -299,9 +299,11 @@ const configuration = new Configuration();
 const apiInstance = new Flux10EReportingApi(configuration);
 
 let submitAggregatedReportRequest: SubmitAggregatedReportRequest; //
+let organizationId: string; //Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.submitAggregatedEreportingApiV1EreportingSubmitAggregatedPost(
-    submitAggregatedReportRequest
+    submitAggregatedReportRequest,
+    organizationId
 );
 ```
 
@@ -310,6 +312,7 @@ const { status, data } = await apiInstance.submitAggregatedEreportingApiV1Erepor
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **submitAggregatedReportRequest** | **SubmitAggregatedReportRequest**|  | |
+| **organizationId** | [**string**] | Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -355,9 +358,11 @@ const configuration = new Configuration();
 const apiInstance = new Flux10EReportingApi(configuration);
 
 let submitEReportingRequest: SubmitEReportingRequest; //
+let organizationId: string; //Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. (optional) (default to undefined)
 
 const { status, data } = await apiInstance.submitEreportingApiV1EreportingSubmitPost(
-    submitEReportingRequest
+    submitEReportingRequest,
+    organizationId
 );
 ```
 
@@ -366,6 +371,7 @@ const { status, data } = await apiInstance.submitEreportingApiV1EreportingSubmit
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **submitEReportingRequest** | **SubmitEReportingRequest**|  | |
+| **organizationId** | [**string**] | Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. | (optional) defaults to undefined|
 
 
 ### Return type
@@ -410,6 +416,7 @@ const configuration = new Configuration();
 const apiInstance = new Flux10EReportingApi(configuration);
 
 let xmlFile: File; //E-reporting XML file (default to undefined)
+let organizationId: string; //Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. (optional) (default to undefined)
 let trackingId: string; // (optional) (default to undefined)
 let skipValidation: boolean; //Skip XSD validation (optional) (default to false)
 let pdpFlowServiceUrl: string; // (optional) (default to undefined)
@@ -419,6 +426,7 @@ let pdpClientSecret: string; // (optional) (default to undefined)
 
 const { status, data } = await apiInstance.submitXmlEreportingApiV1EreportingSubmitXmlPost(
     xmlFile,
+    organizationId,
     trackingId,
     skipValidation,
     pdpFlowServiceUrl,
@@ -433,6 +441,7 @@ const { status, data } = await apiInstance.submitXmlEreportingApiV1EreportingSub
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **xmlFile** | [**File**] | E-reporting XML file | defaults to undefined|
+| **organizationId** | [**string**] | Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. | (optional) defaults to undefined|
 | **trackingId** | [**string**] |  | (optional) defaults to undefined|
 | **skipValidation** | [**boolean**] | Skip XSD validation | (optional) defaults to false|
 | **pdpFlowServiceUrl** | [**string**] |  | (optional) defaults to undefined|

@@ -25,7 +25,7 @@ export interface GenerationSuccessResult {
 }
 
 export const GenerationSuccessResultStatusEnum = {
-    Success: 'SUCCESS'
+    Success: 'SUCCESS',
 } as const;
 
 export type GenerationSuccessResultStatusEnum = typeof GenerationSuccessResultStatusEnum[keyof typeof GenerationSuccessResultStatusEnum];

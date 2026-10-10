@@ -20,7 +20,7 @@
 
 export const TransmissionTypeCode = {
     In: 'IN',
-    Re: 'RE'
+    Re: 'RE',
 } as const;
 
 export type TransmissionTypeCode = typeof TransmissionTypeCode[keyof typeof TransmissionTypeCode];
