@@ -122,7 +122,7 @@ No authorization required
 # **getLifecycleApiV1CdarLifecycleGet**
 > LifecycleResponse getLifecycleApiV1CdarLifecycleGet()
 
-Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range,    following the cursor pagination (all pages are read) 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7). Ignored when `dateFrom` is set. - `dateFrom` / `dateTo`: Explicit time window (ISO 8601, UTC if no offset).   `dateTo` defaults to now. - `invoiceId`: Optional filter on a specific invoice reference. The filter is applied   after reading the window: prefer one call per synchronisation over one call per invoice.  **Limits:** at most 1000 status flows are read per call. When the limit is reached, `truncated` is `true` and the response is incomplete: split the window with `dateFrom` / `dateTo`. For incremental synchronisation, request the period since your last successful sync (plus a small margin). - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
 
 ### Example
 
@@ -136,6 +136,8 @@ const configuration = new Configuration();
 const apiInstance = new Flux6InvoiceLifecycleCDARApi(configuration);
 
 let days: number; //Number of days to look back (optional) (default to 7)
+let dateFrom: string; //Window start (ISO 8601, UTC if no offset). Overrides days. (optional) (default to undefined)
+let dateTo: string; //Window end (ISO 8601, UTC if no offset). Default: now (optional) (default to undefined)
 let invoiceId: string; //Filter by invoice reference (optional) (default to undefined)
 let flowDirection: 'In' | 'Out' | 'All'; //All (default), In (received statuses) or Out (issued statuses) (optional) (default to 'All')
 let pdpFlowServiceUrl: string; //PDP Flow Service URL (optional) (default to undefined)
@@ -146,6 +148,8 @@ let organizationId: string; //Organization ID relayed to the PDP (AFNOR XP Z12-0
 
 const { status, data } = await apiInstance.getLifecycleApiV1CdarLifecycleGet(
     days,
+    dateFrom,
+    dateTo,
     invoiceId,
     flowDirection,
     pdpFlowServiceUrl,
@@ -161,6 +165,8 @@ const { status, data } = await apiInstance.getLifecycleApiV1CdarLifecycleGet(
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
 | **days** | [**number**] | Number of days to look back | (optional) defaults to 7|
+| **dateFrom** | [**string**] | Window start (ISO 8601, UTC if no offset). Overrides days. | (optional) defaults to undefined|
+| **dateTo** | [**string**] | Window end (ISO 8601, UTC if no offset). Default: now | (optional) defaults to undefined|
 | **invoiceId** | [**string**] | Filter by invoice reference | (optional) defaults to undefined|
 | **flowDirection** | [**&#39;In&#39; | &#39;Out&#39; | &#39;All&#39;**]**Array<&#39;In&#39; &#124; &#39;Out&#39; &#124; &#39;All&#39;>** | All (default), In (received statuses) or Out (issued statuses) | (optional) defaults to 'All'|
 | **pdpFlowServiceUrl** | [**string**] | PDP Flow Service URL | (optional) defaults to undefined|
@@ -597,7 +603,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new Flux6InvoiceLifecycleCDARApi(configuration);
 
-let xmlFile: File; //CDAR XML file to validate (default to undefined)
+let xmlFile: string; //CDAR XML file to validate (default to undefined)
 
 const { status, data } = await apiInstance.validateXmlCdarApiV1CdarValidateXmlPost(
     xmlFile
@@ -608,7 +614,7 @@ const { status, data } = await apiInstance.validateXmlCdarApiV1CdarValidateXmlPo
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **xmlFile** | [**File**] | CDAR XML file to validate | defaults to undefined|
+| **xmlFile** | [**string**] | CDAR XML file to validate | defaults to undefined|
 
 
 ### Return type

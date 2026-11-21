@@ -326,7 +326,7 @@ export const Flux10EReportingApiAxiosParamCreator = function (configuration?: Co
         /**
          * Submit a pre-generated e-reporting XML file directly to a PA/PDP.  This endpoint is designed for clients who generate their own PPF-compliant XML and only need FactPulse for the PDP submission.  **Process:** 1. Validates the XML against PPF XSD schemas 2. Determines the appropriate AFNOR FlowType 3. Submits to the configured PDP/PA 4. Returns the flowId for tracking  **Authentication:** Same strategies as /submit endpoint (JWT or zero-storage credentials).
          * @summary Submit pre-generated e-reporting XML
-         * @param {File} xmlFile E-reporting XML file
+         * @param {string} xmlFile E-reporting XML file
          * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {string | null} [trackingId] 
          * @param {boolean} [skipValidation] Skip XSD validation
@@ -337,7 +337,7 @@ export const Flux10EReportingApiAxiosParamCreator = function (configuration?: Co
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitXmlEreportingApiV1EreportingSubmitXmlPost: async (xmlFile: File, organizationId?: string | null, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        submitXmlEreportingApiV1EreportingSubmitXmlPost: async (xmlFile: string, organizationId?: string | null, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'xmlFile' is not null or undefined
             assertParamExists('submitXmlEreportingApiV1EreportingSubmitXmlPost', 'xmlFile', xmlFile)
             const localVarPath = `/api/v1/ereporting/submit-xml`;
@@ -488,13 +488,13 @@ export const Flux10EReportingApiAxiosParamCreator = function (configuration?: Co
         /**
          * Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals = sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002=SIREN, 0009=SIRET, 0224=RoutingCode, etc. - RoleCode (UNCL 3035): SE=Seller, BY=Buyer, WK=Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
          * @summary Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
-         * @param {File} xmlFile E-reporting XML file to validate
+         * @param {string} xmlFile E-reporting XML file to validate
          * @param {boolean} [validateCoherence] Validate data coherence (REJ_COH)
          * @param {boolean} [validatePeriod] Validate period coherence (REJ_PER)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateXmlEreportingApiV1EreportingValidateXmlPost: async (xmlFile: File, validateCoherence?: boolean, validatePeriod?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        validateXmlEreportingApiV1EreportingValidateXmlPost: async (xmlFile: string, validateCoherence?: boolean, validatePeriod?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'xmlFile' is not null or undefined
             assertParamExists('validateXmlEreportingApiV1EreportingValidateXmlPost', 'xmlFile', xmlFile)
             const localVarPath = `/api/v1/ereporting/validate-xml`;
@@ -646,7 +646,7 @@ export const Flux10EReportingApiFp = function(configuration?: Configuration) {
         /**
          * Submit a pre-generated e-reporting XML file directly to a PA/PDP.  This endpoint is designed for clients who generate their own PPF-compliant XML and only need FactPulse for the PDP submission.  **Process:** 1. Validates the XML against PPF XSD schemas 2. Determines the appropriate AFNOR FlowType 3. Submits to the configured PDP/PA 4. Returns the flowId for tracking  **Authentication:** Same strategies as /submit endpoint (JWT or zero-storage credentials).
          * @summary Submit pre-generated e-reporting XML
-         * @param {File} xmlFile E-reporting XML file
+         * @param {string} xmlFile E-reporting XML file
          * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {string | null} [trackingId] 
          * @param {boolean} [skipValidation] Skip XSD validation
@@ -657,7 +657,7 @@ export const Flux10EReportingApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: File, organizationId?: string | null, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitEReportingResponse>> {
+        async submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: string, organizationId?: string | null, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SubmitEReportingResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, organizationId, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.submitXmlEreportingApiV1EreportingSubmitXmlPost']?.[localVarOperationServerIndex]?.url;
@@ -692,13 +692,13 @@ export const Flux10EReportingApiFp = function(configuration?: Configuration) {
         /**
          * Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals = sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002=SIREN, 0009=SIRET, 0224=RoutingCode, etc. - RoleCode (UNCL 3035): SE=Seller, BY=Buyer, WK=Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
          * @summary Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
-         * @param {File} xmlFile E-reporting XML file to validate
+         * @param {string} xmlFile E-reporting XML file to validate
          * @param {boolean} [validateCoherence] Validate data coherence (REJ_COH)
          * @param {boolean} [validatePeriod] Validate period coherence (REJ_PER)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile: File, validateCoherence?: boolean, validatePeriod?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+        async validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile: string, validateCoherence?: boolean, validatePeriod?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateCoherence, validatePeriod, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Flux10EReportingApi.validateXmlEreportingApiV1EreportingValidateXmlPost']?.[localVarOperationServerIndex]?.url;
@@ -787,7 +787,7 @@ export const Flux10EReportingApiFactory = function (configuration?: Configuratio
         /**
          * Submit a pre-generated e-reporting XML file directly to a PA/PDP.  This endpoint is designed for clients who generate their own PPF-compliant XML and only need FactPulse for the PDP submission.  **Process:** 1. Validates the XML against PPF XSD schemas 2. Determines the appropriate AFNOR FlowType 3. Submits to the configured PDP/PA 4. Returns the flowId for tracking  **Authentication:** Same strategies as /submit endpoint (JWT or zero-storage credentials).
          * @summary Submit pre-generated e-reporting XML
-         * @param {File} xmlFile E-reporting XML file
+         * @param {string} xmlFile E-reporting XML file
          * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
          * @param {string | null} [trackingId] 
          * @param {boolean} [skipValidation] Skip XSD validation
@@ -798,7 +798,7 @@ export const Flux10EReportingApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: File, organizationId?: string | null, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SubmitEReportingResponse> {
+        submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: string, organizationId?: string | null, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<SubmitEReportingResponse> {
             return localVarFp.submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, organizationId, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options).then((request) => request(axios, basePath));
         },
         /**
@@ -824,13 +824,13 @@ export const Flux10EReportingApiFactory = function (configuration?: Configuratio
         /**
          * Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals = sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002=SIREN, 0009=SIRET, 0224=RoutingCode, etc. - RoleCode (UNCL 3035): SE=Seller, BY=Buyer, WK=Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
          * @summary Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
-         * @param {File} xmlFile E-reporting XML file to validate
+         * @param {string} xmlFile E-reporting XML file to validate
          * @param {boolean} [validateCoherence] Validate data coherence (REJ_COH)
          * @param {boolean} [validatePeriod] Validate period coherence (REJ_PER)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile: File, validateCoherence?: boolean, validatePeriod?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
+        validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile: string, validateCoherence?: boolean, validatePeriod?: boolean, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
             return localVarFp.validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateCoherence, validatePeriod, options).then((request) => request(axios, basePath));
         },
     };
@@ -921,7 +921,7 @@ export class Flux10EReportingApi extends BaseAPI {
     /**
      * Submit a pre-generated e-reporting XML file directly to a PA/PDP.  This endpoint is designed for clients who generate their own PPF-compliant XML and only need FactPulse for the PDP submission.  **Process:** 1. Validates the XML against PPF XSD schemas 2. Determines the appropriate AFNOR FlowType 3. Submits to the configured PDP/PA 4. Returns the flowId for tracking  **Authentication:** Same strategies as /submit endpoint (JWT or zero-storage credentials).
      * @summary Submit pre-generated e-reporting XML
-     * @param {File} xmlFile E-reporting XML file
+     * @param {string} xmlFile E-reporting XML file
      * @param {string | null} [organizationId] Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space.
      * @param {string | null} [trackingId] 
      * @param {boolean} [skipValidation] Skip XSD validation
@@ -932,7 +932,7 @@ export class Flux10EReportingApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: File, organizationId?: string | null, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig) {
+    public submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile: string, organizationId?: string | null, trackingId?: string | null, skipValidation?: boolean, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, options?: RawAxiosRequestConfig) {
         return Flux10EReportingApiFp(this.configuration).submitXmlEreportingApiV1EreportingSubmitXmlPost(xmlFile, organizationId, trackingId, skipValidation, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -961,13 +961,13 @@ export class Flux10EReportingApi extends BaseAPI {
     /**
      * Validates an e-reporting XML file against PPF specifications (Annexe 6 v1.9):  **Validation levels:** 1. **XSD (REJ_SEMAN)**: Structure, types, cardinality 2. **Semantic (REJ_SEMAN)**: Authorized values from codelists 3. **Coherence (REJ_COH)**: Data consistency (totals = sum of breakdowns) 4. **Period (REJ_PER)**: Transaction dates within declared period  **Validated codes:** - SchemeID (ISO 6523): 0002=SIREN, 0009=SIRET, 0224=RoutingCode, etc. - RoleCode (UNCL 3035): SE=Seller, BY=Buyer, WK=Working party - CategoryCode (TT-81): TLB1, TPS1, TNT1, TMA1 - TaxCategoryCode (UNTDID 5305): S, Z, E, AE, K, G, O - Currency (ISO 4217), Country (ISO 3166-1)  Returns structured validation errors with PPF rejection codes.
      * @summary Validate e-reporting XML (PPF Annexe 6 v1.9 compliant)
-     * @param {File} xmlFile E-reporting XML file to validate
+     * @param {string} xmlFile E-reporting XML file to validate
      * @param {boolean} [validateCoherence] Validate data coherence (REJ_COH)
      * @param {boolean} [validatePeriod] Validate period coherence (REJ_PER)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile: File, validateCoherence?: boolean, validatePeriod?: boolean, options?: RawAxiosRequestConfig) {
+    public validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile: string, validateCoherence?: boolean, validatePeriod?: boolean, options?: RawAxiosRequestConfig) {
         return Flux10EReportingApiFp(this.configuration).validateXmlEreportingApiV1EreportingValidateXmlPost(xmlFile, validateCoherence, validatePeriod, options).then((request) => request(this.axios, this.basePath));
     }
 }

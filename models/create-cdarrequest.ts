@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { EncaisseAmountByRate } from './encaisse-amount-by-rate';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { Encaisseamount } from './encaisseamount';
 // May contain unused imports in some cases
 // @ts-ignore
@@ -76,5 +79,7 @@ export interface CreateCDARRequest {
      * Taux de TVA du montant encaissé en % (MDT-224, requis par BR-FR-CDV-14 pour le statut 212 ; défaut 20)
      */
     'encaisseVatRate'?: number;
+    'encaisseAmountsByRate'?: Array<EncaisseAmountByRate> | null;
+    'comment'?: string | null;
 }
 

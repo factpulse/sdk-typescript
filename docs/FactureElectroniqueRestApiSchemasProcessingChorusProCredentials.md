@@ -1,4 +1,4 @@
-# ChorusProCredentials
+# FactureElectroniqueRestApiSchemasProcessingChorusProCredentials
 
 Optional Chorus Pro credentials.  **MODE 1 - JWT retrieval (recommended):** Do not provide this `credentials` field in the payload. Credentials will be automatically retrieved via client_uid from JWT (0-trust).  **MODE 2 - Credentials in payload:** Provide all required fields below. Useful for tests or third-party integrations.
 
@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { ChorusProCredentials } from '@factpulse/sdk';
+import { FactureElectroniqueRestApiSchemasProcessingChorusProCredentials } from '@factpulse/sdk';
 
-const instance: ChorusProCredentials = {
+const instance: FactureElectroniqueRestApiSchemasProcessingChorusProCredentials = {
     pisteClientId,
     pisteClientSecret,
     chorusLogin,

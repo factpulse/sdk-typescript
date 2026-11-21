@@ -28,7 +28,7 @@ let invoiceData: string; //Invoice data in JSON format.              Two formats
 let profile: APIProfile; //Factur-X/CII profile: MINIMUM, BASIC, EN16931 or EXTENDED. Ignored when output_format=\\\'ubl\\\' (always EN16931). (optional) (default to undefined)
 let outputFormat: OutputFormat; //Output format: \\\'xml\\\' or \\\'cii\\\' (CII/Factur-X XML), \\\'ubl\\\' (UBL 2.1 XML), \\\'pdf\\\' (Factur-X PDF/A-3). (optional) (default to undefined)
 let autoEnrich: boolean; //🆕 Enable auto-enrichment from SIRET/SIREN (simplified format only) (optional) (default to true)
-let sourcePdf: File; // (optional) (default to undefined)
+let sourcePdf: string; // (optional) (default to undefined)
 let callbackUrl: string; // (optional) (default to undefined)
 let webhookMode: string; //Webhook content delivery: \\\'inline\\\' (base64 in payload) or \\\'download_url\\\' (temporary URL, 1h TTL) (optional) (default to 'inline')
 let skipBrFr: boolean; // (optional) (default to undefined)
@@ -53,7 +53,7 @@ const { status, data } = await apiInstance.generateInvoiceApiV1ProcessingGenerat
 | **profile** | **APIProfile** | Factur-X/CII profile: MINIMUM, BASIC, EN16931 or EXTENDED. Ignored when output_format&#x3D;\\\&#39;ubl\\\&#39; (always EN16931). | (optional) defaults to undefined|
 | **outputFormat** | **OutputFormat** | Output format: \\\&#39;xml\\\&#39; or \\\&#39;cii\\\&#39; (CII/Factur-X XML), \\\&#39;ubl\\\&#39; (UBL 2.1 XML), \\\&#39;pdf\\\&#39; (Factur-X PDF/A-3). | (optional) defaults to undefined|
 | **autoEnrich** | [**boolean**] | 🆕 Enable auto-enrichment from SIRET/SIREN (simplified format only) | (optional) defaults to true|
-| **sourcePdf** | [**File**] |  | (optional) defaults to undefined|
+| **sourcePdf** | [**string**] |  | (optional) defaults to undefined|
 | **callbackUrl** | [**string**] |  | (optional) defaults to undefined|
 | **webhookMode** | [**string**] | Webhook content delivery: \\\&#39;inline\\\&#39; (base64 in payload) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL) | (optional) defaults to 'inline'|
 | **skipBrFr** | [**boolean**] |  | (optional) defaults to undefined|

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **status** | **string** |  | [optional] [default to undefined]
 **reasonCode** | **string** |  | [optional] [default to undefined]
 **encaisseAmount** | [**Encaisseamount1**](Encaisseamount1.md) |  | [optional] [default to undefined]
+**encaisseAmountsByRate** | [**Array&lt;EncaisseAmountByRate&gt;**](EncaisseAmountByRate.md) |  | [optional] [default to undefined]
 
 ## Example
 
@@ -29,6 +30,7 @@ const instance: ValidateCDARRequest = {
     status,
     reasonCode,
     encaisseAmount,
+    encaisseAmountsByRate,
 };
 ```
 

@@ -1,6 +1,6 @@
 # Amount1
 
-Montant encaissé en EUR (obligatoire, BR-FR-CDV-14)
+Montant TTC encaissé pour ce taux, en EUR (MDT-215). Négatif pour un décaissement (remboursement, P1.15)
 
 ## Properties
 

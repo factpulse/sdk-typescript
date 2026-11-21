@@ -15,7 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import type { Amount1 } from './amount1';
+import type { Amount2 } from './amount2';
+// May contain unused imports in some cases
+// @ts-ignore
+import type { EncaisseAmountByRate } from './encaisse-amount-by-rate';
 
 /**
  * Requête simplifiée pour soumettre un statut ENCAISSÉE (212).  **Usage** : Pour une facture ÉMISE (vous êtes vendeur). Le vendeur confirme l\'encaissement et envoie le statut à l\'acheteur.  Statut obligatoire PPF - Le montant encaissé est OBLIGATOIRE (BR-FR-CDV-14).
@@ -33,15 +36,14 @@ export interface EncaisseeRequest {
      * SIREN de l\'acheteur (destinataire du statut)
      */
     'invoiceBuyerSiren': string;
+    'invoiceBuyerElectronicAddress'?: string | null;
+    'amount'?: Amount2 | null;
     /**
-     * Adresse électronique de l\'acheteur (MDT-73)
-     */
-    'invoiceBuyerElectronicAddress': string;
-    'amount': Amount1;
-    /**
-     * Taux de TVA du montant encaissé en % (MDT-224, requis par BR-FR-CDV-14 ; défaut 20)
+     * Taux de TVA du montant encaissé en % (MDT-224, requis par BR-FR-CDV-14 ; défaut 20). Ignoré avec amountsByRate
      */
     'vatRate'?: number;
+    'amountsByRate'?: Array<EncaisseAmountByRate> | null;
+    'comment'?: string | null;
     /**
      * Code devise ISO 4217
      */

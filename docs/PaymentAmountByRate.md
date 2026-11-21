@@ -7,7 +7,7 @@ Payment amount for a specific VAT rate.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **rate** | [**Rate**](Rate.md) |  | [default to undefined]
-**amount** | [**Amount2**](Amount2.md) |  | [default to undefined]
+**amount** | [**Amount3**](Amount3.md) |  | [default to undefined]
 **amountEur** | [**Amounteur**](Amounteur.md) |  | [optional] [default to undefined]
 
 ## Example

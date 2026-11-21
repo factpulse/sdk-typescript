@@ -23,7 +23,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new FacturXValidationApi(configuration);
 
-let pdfFile: File; //Factur-X PDF file to validate (.pdf format). (default to undefined)
+let pdfFile: string; //Factur-X PDF file to validate (.pdf format). (default to undefined)
 let profile: APIProfile; // (optional) (default to undefined)
 let useVerapdf: boolean; //Enable strict PDF/A validation with VeraPDF (recommended for production). If False, uses basic metadata validation. (optional) (default to false)
 let skipBrFr: boolean; // (optional) (default to undefined)
@@ -40,7 +40,7 @@ const { status, data } = await apiInstance.validateFacturxPdfApiV1ProcessingVali
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **pdfFile** | [**File**] | Factur-X PDF file to validate (.pdf format). | defaults to undefined|
+| **pdfFile** | [**string**] | Factur-X PDF file to validate (.pdf format). | defaults to undefined|
 | **profile** | **APIProfile** |  | (optional) defaults to undefined|
 | **useVerapdf** | [**boolean**] | Enable strict PDF/A validation with VeraPDF (recommended for production). If False, uses basic metadata validation. | (optional) defaults to false|
 | **skipBrFr** | [**boolean**] |  | (optional) defaults to undefined|
@@ -86,7 +86,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new FacturXValidationApi(configuration);
 
-let pdfFile: File; //Factur-X PDF file to validate (.pdf format). (default to undefined)
+let pdfFile: string; //Factur-X PDF file to validate (.pdf format). (default to undefined)
 let profile: APIProfile; // (optional) (default to undefined)
 let useVerapdf: boolean; //Enable strict PDF/A validation with VeraPDF (recommended for production). May take several seconds. (optional) (default to false)
 let callbackUrl: string; // (optional) (default to undefined)
@@ -105,7 +105,7 @@ const { status, data } = await apiInstance.validateFacturxPdfAsyncApiV1Processin
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **pdfFile** | [**File**] | Factur-X PDF file to validate (.pdf format). | defaults to undefined|
+| **pdfFile** | [**string**] | Factur-X PDF file to validate (.pdf format). | defaults to undefined|
 | **profile** | **APIProfile** |  | (optional) defaults to undefined|
 | **useVerapdf** | [**boolean**] | Enable strict PDF/A validation with VeraPDF (recommended for production). May take several seconds. | (optional) defaults to false|
 | **callbackUrl** | [**string**] |  | (optional) defaults to undefined|

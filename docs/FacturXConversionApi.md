@@ -27,7 +27,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new FacturXConversionApi(configuration);
 
-let file: File; //Document to convert (PDF, DOCX, XLSX, JPG, PNG) (default to undefined)
+let file: string; //Document to convert (PDF, DOCX, XLSX, JPG, PNG) (default to undefined)
 let output: string; //Output format: pdf, xml, both (optional) (default to 'pdf')
 let callbackUrl: string; // (optional) (default to undefined)
 let webhookMode: string; //Content delivery mode: \\\'inline\\\' (base64 in webhook) or \\\'download_url\\\' (temporary URL, 1h TTL) (optional) (default to 'inline')
@@ -44,7 +44,7 @@ const { status, data } = await apiInstance.convertDocumentAsyncApiV1ConvertAsync
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **file** | [**File**] | Document to convert (PDF, DOCX, XLSX, JPG, PNG) | defaults to undefined|
+| **file** | [**string**] | Document to convert (PDF, DOCX, XLSX, JPG, PNG) | defaults to undefined|
 | **output** | [**string**] | Output format: pdf, xml, both | (optional) defaults to 'pdf'|
 | **callbackUrl** | [**string**] |  | (optional) defaults to undefined|
 | **webhookMode** | [**string**] | Content delivery mode: \\\&#39;inline\\\&#39; (base64 in webhook) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL) | (optional) defaults to 'inline'|

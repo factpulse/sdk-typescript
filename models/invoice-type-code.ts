@@ -15,15 +15,74 @@
 
 
 /**
- * Invoice type codes (UNTDID 1001).
+ * Invoice type code (BT-3). UNTDID 1001.
  */
 
 export const InvoiceTypeCode = {
-    _380: '380',
-    _381: '381',
-    _384: '384',
-    _389: '389',
-    _386: '386',
+    /**
+    * Commercial Invoice
+    */
+    INVOICE: '380',
+    /**
+    * Self-billed Invoice
+    */
+    SELF_BILLED_INVOICE: '389',
+    /**
+    * Factored Invoice
+    */
+    FACTORED_INVOICE: '393',
+    /**
+    * Self-billed Factored Invoice
+    */
+    SELF_BILLED_FACTORED_INVOICE: '501',
+    /**
+    * Prepayment Invoice
+    */
+    PREPAYMENT_INVOICE: '386',
+    /**
+    * Self-billed Prepayment Invoice
+    */
+    SELF_BILLED_PREPAYMENT_INVOICE: '500',
+    /**
+    * Corrective Invoice
+    */
+    CORRECTIVE_INVOICE: '384',
+    /**
+    * Self-billed Corrective Invoice
+    */
+    SELF_BILLED_CORRECTIVE_INVOICE: '471',
+    /**
+    * Factored Corrective Invoice
+    */
+    FACTORED_CORRECTIVE_INVOICE: '472',
+    /**
+    * Self-billed Factored Corrective Invoice
+    */
+    SELF_BILLED_FACTORED_CORRECTIVE_INVOICE: '473',
+    /**
+    * Credit Note
+    */
+    CREDIT_NOTE: '381',
+    /**
+    * Self-billed Credit Note
+    */
+    SELF_BILLED_CREDIT_NOTE: '261',
+    /**
+    * Global Allowance Credit Note
+    */
+    GLOBAL_ALLOWANCE_CREDIT_NOTE: '262',
+    /**
+    * Factored Credit Note
+    */
+    FACTORED_CREDIT_NOTE: '396',
+    /**
+    * Self-billed Factored Credit Note
+    */
+    SELF_BILLED_FACTORED_CREDIT_NOTE: '502',
+    /**
+    * Prepayment Credit Note
+    */
+    PREPAYMENT_CREDIT_NOTE: '503',
 } as const;
 
 export type InvoiceTypeCode = typeof InvoiceTypeCode[keyof typeof InvoiceTypeCode];

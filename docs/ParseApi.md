@@ -23,7 +23,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ParseApi(configuration);
 
-let file: File; //Factur-X PDF or XML file to parse (default to undefined)
+let file: string; //Factur-X PDF or XML file to parse (default to undefined)
 let callbackUrl: string; // (optional) (default to undefined)
 
 const { status, data } = await apiInstance.parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost(
@@ -36,7 +36,7 @@ const { status, data } = await apiInstance.parseFacturxAsyncApiV1ProcessingParse
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **file** | [**File**] | Factur-X PDF or XML file to parse | defaults to undefined|
+| **file** | [**string**] | Factur-X PDF or XML file to parse | defaults to undefined|
 | **callbackUrl** | [**string**] |  | (optional) defaults to undefined|
 
 
@@ -79,7 +79,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ParseApi(configuration);
 
-let file: File; //Factur-X PDF or XML file to parse (default to undefined)
+let file: string; //Factur-X PDF or XML file to parse (default to undefined)
 
 const { status, data } = await apiInstance.parseFacturxSyncApiV1ProcessingParseFacturxPost(
     file
@@ -90,7 +90,7 @@ const { status, data } = await apiInstance.parseFacturxSyncApiV1ProcessingParseF
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **file** | [**File**] | Factur-X PDF or XML file to parse | defaults to undefined|
+| **file** | [**string**] | Factur-X PDF or XML file to parse | defaults to undefined|
 
 
 ### Return type

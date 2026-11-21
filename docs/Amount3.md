@@ -1,20 +1,18 @@
-# ValidationErrorResponse
+# Amount3
 
-Response for validation errors.
+Collected amount for this VAT rate (TT-95 / TT-99). Negative for a refund, on the refund date (G7.07)
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**detail** | **Array&lt;string&gt;** | List of detected validation errors. | [default to undefined]
 
 ## Example
 
 ```typescript
-import { ValidationErrorResponse } from '@factpulse/sdk';
+import { Amount3 } from '@factpulse/sdk';
 
-const instance: ValidationErrorResponse = {
-    detail,
+const instance: Amount3 = {
 };
 ```
 

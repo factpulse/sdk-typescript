@@ -131,7 +131,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new FacturXPDFXMLVerificationApi(configuration);
 
-let pdfFile: File; //Factur-X PDF file to verify (default to undefined)
+let pdfFile: string; //Factur-X PDF file to verify (default to undefined)
 let forceOcr: boolean; //Force OCR usage even if PDF contains native text (optional) (default to false)
 let callbackUrl: string; // (optional) (default to undefined)
 let webhookMode: string; //Webhook content delivery: \\\'inline\\\' (base64 in payload) or \\\'download_url\\\' (temporary URL, 1h TTL) (optional) (default to 'inline')
@@ -148,7 +148,7 @@ const { status, data } = await apiInstance.verifyPdfAsyncApiV1VerificationVerify
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **pdfFile** | [**File**] | Factur-X PDF file to verify | defaults to undefined|
+| **pdfFile** | [**string**] | Factur-X PDF file to verify | defaults to undefined|
 | **forceOcr** | [**boolean**] | Force OCR usage even if PDF contains native text | (optional) defaults to false|
 | **callbackUrl** | [**string**] |  | (optional) defaults to undefined|
 | **webhookMode** | [**string**] | Webhook content delivery: \\\&#39;inline\\\&#39; (base64 in payload) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL) | (optional) defaults to 'inline'|
@@ -193,7 +193,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new FacturXPDFXMLVerificationApi(configuration);
 
-let pdfFile: File; //Factur-X PDF file to verify (default to undefined)
+let pdfFile: string; //Factur-X PDF file to verify (default to undefined)
 
 const { status, data } = await apiInstance.verifyPdfSyncApiV1VerificationVerifyPost(
     pdfFile
@@ -204,7 +204,7 @@ const { status, data } = await apiInstance.verifyPdfSyncApiV1VerificationVerifyP
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **pdfFile** | [**File**] | Factur-X PDF file to verify | defaults to undefined|
+| **pdfFile** | [**string**] | Factur-X PDF file to verify | defaults to undefined|
 
 
 ### Return type

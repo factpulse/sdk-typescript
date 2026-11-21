@@ -14,11 +14,13 @@ All URIs are relative to *https://factpulse.fr*
 |[**getPdpConfigApiV1ClientsUidPdpConfigGet**](#getpdpconfigapiv1clientsuidpdpconfigget) | **GET** /api/v1/clients/{uid}/pdp-config | Get client PDP configuration|
 |[**getSuperpdpConnectUrlApiV1ClientsUidSuperpdpConnectUrlPost**](#getsuperpdpconnecturlapiv1clientsuidsuperpdpconnecturlpost) | **POST** /api/v1/clients/{uid}/superpdp/connect-url | Get SuperPDP connection URL|
 |[**getSuperpdpStatusApiV1ClientsUidSuperpdpStatusGet**](#getsuperpdpstatusapiv1clientsuidsuperpdpstatusget) | **GET** /api/v1/clients/{uid}/superpdp/status | Get SuperPDP connection status|
+|[**getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet**](#getsuperpdpvatregimeapiv1clientsuidsuperpdpvatregimeget) | **GET** /api/v1/clients/{uid}/superpdp/vat-regime | Get the SuperPDP VAT regime|
 |[**getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet**](#getwebhooksecretstatusapiv1clientsuidwebhooksecretstatusget) | **GET** /api/v1/clients/{uid}/webhook-secret/status | Get webhook secret status|
 |[**listClientsApiV1ClientsGet**](#listclientsapiv1clientsget) | **GET** /api/v1/clients | List clients|
 |[**rotateEncryptionKeyApiV1ClientsUidRotateEncryptionKeyPost**](#rotateencryptionkeyapiv1clientsuidrotateencryptionkeypost) | **POST** /api/v1/clients/{uid}/rotate-encryption-key | Rotate client encryption key|
 |[**updateClientApiV1ClientsUidPatch**](#updateclientapiv1clientsuidpatch) | **PATCH** /api/v1/clients/{uid} | Update a client|
 |[**updatePdpConfigApiV1ClientsUidPdpConfigPut**](#updatepdpconfigapiv1clientsuidpdpconfigput) | **PUT** /api/v1/clients/{uid}/pdp-config | Configure client PDP|
+|[**updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch**](#updatesuperpdpvatregimeapiv1clientsuidsuperpdpvatregimepatch) | **PATCH** /api/v1/clients/{uid}/superpdp/vat-regime | Set the SuperPDP VAT regime|
 
 # **activateClientApiV1ClientsUidActiverPost**
 > ClientActivateResponse activateClientApiV1ClientsUidActiverPost()
@@ -597,6 +599,63 @@ const { status, data } = await apiInstance.getSuperpdpStatusApiV1ClientsUidSuper
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet**
+> SuperPDPVatRegimeResponse getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet()
+
+Read the VAT regime of the client\'s company at SuperPDP (`vatRegime` is null when not set).  SuperPDP refuses e-reporting (\"The VAT regime needs to be setup at the company level\") until the VAT regime of the company is set: it defines the e-reporting transmission periods, and the Flux 10 file does not carry it. This setting is not part of the AFNOR API; FactPulse sets it with the client\'s SuperPDP connection.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Errors**: - `404 not_connected`: the client has not connected its SuperPDP account - `400 superpdp_error`: SuperPDP refused the request (`superpdp_status`, `message`) - `502`: SuperPDP unreachable, or the SuperPDP connection must be redone
+
+### Example
+
+```typescript
+import {
+    ClientManagementApi,
+    Configuration
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new ClientManagementApi(configuration);
+
+let uid: string; //Client unique identifier (UUID) (default to undefined)
+
+const { status, data } = await apiInstance.getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet(
+    uid
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **uid** | [**string**] | Client unique identifier (UUID) | defaults to undefined|
+
+
+### Return type
+
+**SuperPDPVatRegimeResponse**
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**400** | Invalid request |  -  |
+|**401** | Missing or invalid JWT token |  -  |
+|**403** | Access denied |  -  |
+|**404** | Client not found |  -  |
+|**500** | Server error |  -  |
+|**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet**
 > WebhookSecretStatusResponse getWebhookSecretStatusApiV1ClientsUidWebhookSecretStatusGet()
 
@@ -876,6 +935,67 @@ const { status, data } = await apiInstance.updatePdpConfigApiV1ClientsUidPdpConf
 ### Return type
 
 **PDPConfigResponse**
+
+### Authorization
+
+[APIKeyHeader](../README.md#APIKeyHeader), [HTTPBearer](../README.md#HTTPBearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Successful Response |  -  |
+|**400** | Invalid request |  -  |
+|**401** | Missing or invalid JWT token |  -  |
+|**403** | Access denied |  -  |
+|**404** | Client not found |  -  |
+|**500** | Server error |  -  |
+|**422** | Validation Error |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch**
+> SuperPDPVatRegimeResponse updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch(superPDPVatRegimeUpdateRequest)
+
+Set the VAT regime of the client\'s company at SuperPDP. When `hasVatOnDebits` is omitted, its current value is kept.  SuperPDP refuses e-reporting (\"The VAT regime needs to be setup at the company level\") until the VAT regime of the company is set: it defines the e-reporting transmission periods, and the Flux 10 file does not carry it. This setting is not part of the AFNOR API; FactPulse sets it with the client\'s SuperPDP connection.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Errors**: - `404 not_connected`: the client has not connected its SuperPDP account - `400 superpdp_error`: SuperPDP refused the request (`superpdp_status`, `message`) - `502`: SuperPDP unreachable, or the SuperPDP connection must be redone
+
+### Example
+
+```typescript
+import {
+    ClientManagementApi,
+    Configuration,
+    SuperPDPVatRegimeUpdateRequest
+} from '@factpulse/sdk';
+
+const configuration = new Configuration();
+const apiInstance = new ClientManagementApi(configuration);
+
+let uid: string; //Client unique identifier (UUID) (default to undefined)
+let superPDPVatRegimeUpdateRequest: SuperPDPVatRegimeUpdateRequest; //
+
+const { status, data } = await apiInstance.updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch(
+    uid,
+    superPDPVatRegimeUpdateRequest
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **superPDPVatRegimeUpdateRequest** | **SuperPDPVatRegimeUpdateRequest**|  | |
+| **uid** | [**string**] | Client unique identifier (UUID) | defaults to undefined|
+
+
+### Return type
+
+**SuperPDPVatRegimeResponse**
 
 ### Authorization
 

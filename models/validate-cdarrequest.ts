@@ -15,6 +15,9 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import type { EncaisseAmountByRate } from './encaisse-amount-by-rate';
+// May contain unused imports in some cases
+// @ts-ignore
 import type { Encaisseamount1 } from './encaisseamount1';
 
 /**
@@ -29,5 +32,6 @@ export interface ValidateCDARRequest {
     'status'?: string | null;
     'reasonCode'?: string | null;
     'encaisseAmount'?: Encaisseamount1 | null;
+    'encaisseAmountsByRate'?: Array<EncaisseAmountByRate> | null;
 }
 

@@ -48,6 +48,10 @@ import type { SuperPDPDisconnectResponse } from '../models';
 // @ts-ignore
 import type { SuperPDPStatusResponse } from '../models';
 // @ts-ignore
+import type { SuperPDPVatRegimeResponse } from '../models';
+// @ts-ignore
+import type { SuperPDPVatRegimeUpdateRequest } from '../models';
+// @ts-ignore
 import type { WebhookSecretDeleteResponse } from '../models';
 // @ts-ignore
 import type { WebhookSecretGenerateResponse } from '../models';
@@ -480,6 +484,47 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
             };
         },
         /**
+         * Read the VAT regime of the client\'s company at SuperPDP (`vatRegime` is null when not set).  SuperPDP refuses e-reporting (\"The VAT regime needs to be setup at the company level\") until the VAT regime of the company is set: it defines the e-reporting transmission periods, and the Flux 10 file does not carry it. This setting is not part of the AFNOR API; FactPulse sets it with the client\'s SuperPDP connection.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Errors**: - `404 not_connected`: the client has not connected its SuperPDP account - `400 superpdp_error`: SuperPDP refused the request (`superpdp_status`, `message`) - `502`: SuperPDP unreachable, or the SuperPDP connection must be redone
+         * @summary Get the SuperPDP VAT regime
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet: async (uid: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'uid' is not null or undefined
+            assertParamExists('getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet', 'uid', uid)
+            const localVarPath = `/api/v1/clients/{uid}/superpdp/vat-regime`
+                .replace(`{${"uid"}}`, encodeURIComponent(String(uid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
          * @summary Get webhook secret status
          * @param {string} uid Client unique identifier (UUID)
@@ -709,6 +754,52 @@ export const ClientManagementApiAxiosParamCreator = function (configuration?: Co
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Set the VAT regime of the client\'s company at SuperPDP. When `hasVatOnDebits` is omitted, its current value is kept.  SuperPDP refuses e-reporting (\"The VAT regime needs to be setup at the company level\") until the VAT regime of the company is set: it defines the e-reporting transmission periods, and the Flux 10 file does not carry it. This setting is not part of the AFNOR API; FactPulse sets it with the client\'s SuperPDP connection.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Errors**: - `404 not_connected`: the client has not connected its SuperPDP account - `400 superpdp_error`: SuperPDP refused the request (`superpdp_status`, `message`) - `502`: SuperPDP unreachable, or the SuperPDP connection must be redone
+         * @summary Set the SuperPDP VAT regime
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {SuperPDPVatRegimeUpdateRequest} superPDPVatRegimeUpdateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch: async (uid: string, superPDPVatRegimeUpdateRequest: SuperPDPVatRegimeUpdateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'uid' is not null or undefined
+            assertParamExists('updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch', 'uid', uid)
+            // verify required parameter 'superPDPVatRegimeUpdateRequest' is not null or undefined
+            assertParamExists('updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch', 'superPDPVatRegimeUpdateRequest', superPDPVatRegimeUpdateRequest)
+            const localVarPath = `/api/v1/clients/{uid}/superpdp/vat-regime`
+                .replace(`{${"uid"}}`, encodeURIComponent(String(uid)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication APIKeyHeader required
+            await setApiKeyToObject(localVarHeaderParameter, "X-API-Key", configuration)
+
+            // authentication HTTPBearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(superPDPVatRegimeUpdateRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -851,6 +942,19 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
+         * Read the VAT regime of the client\'s company at SuperPDP (`vatRegime` is null when not set).  SuperPDP refuses e-reporting (\"The VAT regime needs to be setup at the company level\") until the VAT regime of the company is set: it defines the e-reporting transmission periods, and the Flux 10 file does not carry it. This setting is not part of the AFNOR API; FactPulse sets it with the client\'s SuperPDP connection.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Errors**: - `404 not_connected`: the client has not connected its SuperPDP account - `400 superpdp_error`: SuperPDP refused the request (`superpdp_status`, `message`) - `502`: SuperPDP unreachable, or the SuperPDP connection must be redone
+         * @summary Get the SuperPDP VAT regime
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet(uid: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuperPDPVatRegimeResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet(uid, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
          * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
          * @summary Get webhook secret status
          * @param {string} uid Client unique identifier (UUID)
@@ -918,6 +1022,20 @@ export const ClientManagementApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pDPConfigUpdateRequest, xEncryptionKey, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.updatePdpConfigApiV1ClientsUidPdpConfigPut']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * Set the VAT regime of the client\'s company at SuperPDP. When `hasVatOnDebits` is omitted, its current value is kept.  SuperPDP refuses e-reporting (\"The VAT regime needs to be setup at the company level\") until the VAT regime of the company is set: it defines the e-reporting transmission periods, and the Flux 10 file does not carry it. This setting is not part of the AFNOR API; FactPulse sets it with the client\'s SuperPDP connection.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Errors**: - `404 not_connected`: the client has not connected its SuperPDP account - `400 superpdp_error`: SuperPDP refused the request (`superpdp_status`, `message`) - `502`: SuperPDP unreachable, or the SuperPDP connection must be redone
+         * @summary Set the SuperPDP VAT regime
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {SuperPDPVatRegimeUpdateRequest} superPDPVatRegimeUpdateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch(uid: string, superPDPVatRegimeUpdateRequest: SuperPDPVatRegimeUpdateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuperPDPVatRegimeResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch(uid, superPDPVatRegimeUpdateRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ClientManagementApi.updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -1032,6 +1150,16 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
             return localVarFp.getSuperpdpStatusApiV1ClientsUidSuperpdpStatusGet(uid, options).then((request) => request(axios, basePath));
         },
         /**
+         * Read the VAT regime of the client\'s company at SuperPDP (`vatRegime` is null when not set).  SuperPDP refuses e-reporting (\"The VAT regime needs to be setup at the company level\") until the VAT regime of the company is set: it defines the e-reporting transmission periods, and the Flux 10 file does not carry it. This setting is not part of the AFNOR API; FactPulse sets it with the client\'s SuperPDP connection.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Errors**: - `404 not_connected`: the client has not connected its SuperPDP account - `400 superpdp_error`: SuperPDP refused the request (`superpdp_status`, `message`) - `502`: SuperPDP unreachable, or the SuperPDP connection must be redone
+         * @summary Get the SuperPDP VAT regime
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet(uid: string, options?: RawAxiosRequestConfig): AxiosPromise<SuperPDPVatRegimeResponse> {
+            return localVarFp.getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet(uid, options).then((request) => request(axios, basePath));
+        },
+        /**
          * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
          * @summary Get webhook secret status
          * @param {string} uid Client unique identifier (UUID)
@@ -1085,6 +1213,17 @@ export const ClientManagementApiFactory = function (configuration?: Configuratio
          */
         updatePdpConfigApiV1ClientsUidPdpConfigPut(uid: string, pDPConfigUpdateRequest: PDPConfigUpdateRequest, xEncryptionKey?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<PDPConfigResponse> {
             return localVarFp.updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pDPConfigUpdateRequest, xEncryptionKey, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Set the VAT regime of the client\'s company at SuperPDP. When `hasVatOnDebits` is omitted, its current value is kept.  SuperPDP refuses e-reporting (\"The VAT regime needs to be setup at the company level\") until the VAT regime of the company is set: it defines the e-reporting transmission periods, and the Flux 10 file does not carry it. This setting is not part of the AFNOR API; FactPulse sets it with the client\'s SuperPDP connection.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Errors**: - `404 not_connected`: the client has not connected its SuperPDP account - `400 superpdp_error`: SuperPDP refused the request (`superpdp_status`, `message`) - `502`: SuperPDP unreachable, or the SuperPDP connection must be redone
+         * @summary Set the SuperPDP VAT regime
+         * @param {string} uid Client unique identifier (UUID)
+         * @param {SuperPDPVatRegimeUpdateRequest} superPDPVatRegimeUpdateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch(uid: string, superPDPVatRegimeUpdateRequest: SuperPDPVatRegimeUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<SuperPDPVatRegimeResponse> {
+            return localVarFp.updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch(uid, superPDPVatRegimeUpdateRequest, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1206,6 +1345,17 @@ export class ClientManagementApi extends BaseAPI {
     }
 
     /**
+     * Read the VAT regime of the client\'s company at SuperPDP (`vatRegime` is null when not set).  SuperPDP refuses e-reporting (\"The VAT regime needs to be setup at the company level\") until the VAT regime of the company is set: it defines the e-reporting transmission periods, and the Flux 10 file does not carry it. This setting is not part of the AFNOR API; FactPulse sets it with the client\'s SuperPDP connection.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Errors**: - `404 not_connected`: the client has not connected its SuperPDP account - `400 superpdp_error`: SuperPDP refused the request (`superpdp_status`, `message`) - `502`: SuperPDP unreachable, or the SuperPDP connection must be redone
+     * @summary Get the SuperPDP VAT regime
+     * @param {string} uid Client unique identifier (UUID)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet(uid: string, options?: RawAxiosRequestConfig) {
+        return ClientManagementApiFp(this.configuration).getSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimeGet(uid, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
      * Check if a webhook secret is configured for a client.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Response**: - `hasSecret`: Whether a webhook secret is configured - `createdAt`: When the secret was created (if exists)  **Note**: The secret value is never returned, only its status.
      * @summary Get webhook secret status
      * @param {string} uid Client unique identifier (UUID)
@@ -1263,6 +1413,18 @@ export class ClientManagementApi extends BaseAPI {
      */
     public updatePdpConfigApiV1ClientsUidPdpConfigPut(uid: string, pDPConfigUpdateRequest: PDPConfigUpdateRequest, xEncryptionKey?: string | null, options?: RawAxiosRequestConfig) {
         return ClientManagementApiFp(this.configuration).updatePdpConfigApiV1ClientsUidPdpConfigPut(uid, pDPConfigUpdateRequest, xEncryptionKey, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Set the VAT regime of the client\'s company at SuperPDP. When `hasVatOnDebits` is omitted, its current value is kept.  SuperPDP refuses e-reporting (\"The VAT regime needs to be setup at the company level\") until the VAT regime of the company is set: it defines the e-reporting transmission periods, and the Flux 10 file does not carry it. This setting is not part of the AFNOR API; FactPulse sets it with the client\'s SuperPDP connection.  **Scope**: Client level (JWT with client_uid that must match {uid})  **Errors**: - `404 not_connected`: the client has not connected its SuperPDP account - `400 superpdp_error`: SuperPDP refused the request (`superpdp_status`, `message`) - `502`: SuperPDP unreachable, or the SuperPDP connection must be redone
+     * @summary Set the SuperPDP VAT regime
+     * @param {string} uid Client unique identifier (UUID)
+     * @param {SuperPDPVatRegimeUpdateRequest} superPDPVatRegimeUpdateRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch(uid: string, superPDPVatRegimeUpdateRequest: SuperPDPVatRegimeUpdateRequest, options?: RawAxiosRequestConfig) {
+        return ClientManagementApiFp(this.configuration).updateSuperpdpVatRegimeApiV1ClientsUidSuperpdpVatRegimePatch(uid, superPDPVatRegimeUpdateRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

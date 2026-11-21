@@ -129,9 +129,11 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
             };
         },
         /**
-         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range,    following the cursor pagination (all pages are read) 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7). Ignored when `dateFrom` is set. - `dateFrom` / `dateTo`: Explicit time window (ISO 8601, UTC if no offset).   `dateTo` defaults to now. - `invoiceId`: Optional filter on a specific invoice reference. The filter is applied   after reading the window: prefer one call per synchronisation over one call per invoice.  **Limits:** at most 1000 status flows are read per call. When the limit is reached, `truncated` is `true` and the response is incomplete: split the window with `dateFrom` / `dateTo`. For incremental synchronisation, request the period since your last successful sync (plus a small margin). - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
          * @summary [Simplified] Get lifecycle events for invoices
          * @param {number} [days] Number of days to look back
+         * @param {string | null} [dateFrom] Window start (ISO 8601, UTC if no offset). Overrides days.
+         * @param {string | null} [dateTo] Window end (ISO 8601, UTC if no offset). Default: now
          * @param {string | null} [invoiceId] Filter by invoice reference
          * @param {GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum} [flowDirection] All (default), In (received statuses) or Out (issued statuses)
          * @param {string | null} [pdpFlowServiceUrl] PDP Flow Service URL
@@ -142,7 +144,7 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLifecycleApiV1CdarLifecycleGet: async (days?: number, invoiceId?: string | null, flowDirection?: GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, organizationId?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getLifecycleApiV1CdarLifecycleGet: async (days?: number, dateFrom?: string | null, dateTo?: string | null, invoiceId?: string | null, flowDirection?: GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, organizationId?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/cdar/lifecycle`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -161,6 +163,18 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
 
             if (days !== undefined) {
                 localVarQueryParameter['days'] = days;
+            }
+
+            if (dateFrom !== undefined) {
+                localVarQueryParameter['dateFrom'] = (dateFrom as any instanceof Date) ?
+                    (dateFrom as any).toISOString() :
+                    dateFrom;
+            }
+
+            if (dateTo !== undefined) {
+                localVarQueryParameter['dateTo'] = (dateTo as any instanceof Date) ?
+                    (dateTo as any).toISOString() :
+                    dateTo;
             }
 
             if (invoiceId !== undefined) {
@@ -478,11 +492,11 @@ export const Flux6InvoiceLifecycleCDARApiAxiosParamCreator = function (configura
         /**
          * Validates a CDAR XML file against:  1. **XSD schema**: UN/CEFACT D22B CrossDomainAcknowledgementAndResponse 2. **Schematron BR-FR-CDV**: French business rules for invoice lifecycle  Returns validation status and detailed error messages if invalid.  **Note:** Use `/validate` to validate structured data fields (JSON).
          * @summary Validate CDAR XML against XSD and Schematron BR-FR-CDV
-         * @param {File} xmlFile CDAR XML file to validate
+         * @param {string} xmlFile CDAR XML file to validate
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateXmlCdarApiV1CdarValidateXmlPost: async (xmlFile: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        validateXmlCdarApiV1CdarValidateXmlPost: async (xmlFile: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'xmlFile' is not null or undefined
             assertParamExists('validateXmlCdarApiV1CdarValidateXmlPost', 'xmlFile', xmlFile)
             const localVarPath = `/api/v1/cdar/validate-xml`;
@@ -557,9 +571,11 @@ export const Flux6InvoiceLifecycleCDARApiFp = function(configuration?: Configura
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range,    following the cursor pagination (all pages are read) 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7). Ignored when `dateFrom` is set. - `dateFrom` / `dateTo`: Explicit time window (ISO 8601, UTC if no offset).   `dateTo` defaults to now. - `invoiceId`: Optional filter on a specific invoice reference. The filter is applied   after reading the window: prefer one call per synchronisation over one call per invoice.  **Limits:** at most 1000 status flows are read per call. When the limit is reached, `truncated` is `true` and the response is incomplete: split the window with `dateFrom` / `dateTo`. For incremental synchronisation, request the period since your last successful sync (plus a small margin). - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
          * @summary [Simplified] Get lifecycle events for invoices
          * @param {number} [days] Number of days to look back
+         * @param {string | null} [dateFrom] Window start (ISO 8601, UTC if no offset). Overrides days.
+         * @param {string | null} [dateTo] Window end (ISO 8601, UTC if no offset). Default: now
          * @param {string | null} [invoiceId] Filter by invoice reference
          * @param {GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum} [flowDirection] All (default), In (received statuses) or Out (issued statuses)
          * @param {string | null} [pdpFlowServiceUrl] PDP Flow Service URL
@@ -570,8 +586,8 @@ export const Flux6InvoiceLifecycleCDARApiFp = function(configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getLifecycleApiV1CdarLifecycleGet(days?: number, invoiceId?: string | null, flowDirection?: GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, organizationId?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LifecycleResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getLifecycleApiV1CdarLifecycleGet(days, invoiceId, flowDirection, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, organizationId, options);
+        async getLifecycleApiV1CdarLifecycleGet(days?: number, dateFrom?: string | null, dateTo?: string | null, invoiceId?: string | null, flowDirection?: GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, organizationId?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LifecycleResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getLifecycleApiV1CdarLifecycleGet(days, dateFrom, dateTo, invoiceId, flowDirection, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, organizationId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Flux6InvoiceLifecycleCDARApi.getLifecycleApiV1CdarLifecycleGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -672,11 +688,11 @@ export const Flux6InvoiceLifecycleCDARApiFp = function(configuration?: Configura
         /**
          * Validates a CDAR XML file against:  1. **XSD schema**: UN/CEFACT D22B CrossDomainAcknowledgementAndResponse 2. **Schematron BR-FR-CDV**: French business rules for invoice lifecycle  Returns validation status and detailed error messages if invalid.  **Note:** Use `/validate` to validate structured data fields (JSON).
          * @summary Validate CDAR XML against XSD and Schematron BR-FR-CDV
-         * @param {File} xmlFile CDAR XML file to validate
+         * @param {string} xmlFile CDAR XML file to validate
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async validateXmlCdarApiV1CdarValidateXmlPost(xmlFile: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+        async validateXmlCdarApiV1CdarValidateXmlPost(xmlFile: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.validateXmlCdarApiV1CdarValidateXmlPost(xmlFile, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['Flux6InvoiceLifecycleCDARApi.validateXmlCdarApiV1CdarValidateXmlPost']?.[localVarOperationServerIndex]?.url;
@@ -711,9 +727,11 @@ export const Flux6InvoiceLifecycleCDARApiFactory = function (configuration?: Con
             return localVarFp.getActionCodesApiV1CdarActionCodesGet(options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+         * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range,    following the cursor pagination (all pages are read) 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7). Ignored when `dateFrom` is set. - `dateFrom` / `dateTo`: Explicit time window (ISO 8601, UTC if no offset).   `dateTo` defaults to now. - `invoiceId`: Optional filter on a specific invoice reference. The filter is applied   after reading the window: prefer one call per synchronisation over one call per invoice.  **Limits:** at most 1000 status flows are read per call. When the limit is reached, `truncated` is `true` and the response is incomplete: split the window with `dateFrom` / `dateTo`. For incremental synchronisation, request the period since your last successful sync (plus a small margin). - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
          * @summary [Simplified] Get lifecycle events for invoices
          * @param {number} [days] Number of days to look back
+         * @param {string | null} [dateFrom] Window start (ISO 8601, UTC if no offset). Overrides days.
+         * @param {string | null} [dateTo] Window end (ISO 8601, UTC if no offset). Default: now
          * @param {string | null} [invoiceId] Filter by invoice reference
          * @param {GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum} [flowDirection] All (default), In (received statuses) or Out (issued statuses)
          * @param {string | null} [pdpFlowServiceUrl] PDP Flow Service URL
@@ -724,8 +742,8 @@ export const Flux6InvoiceLifecycleCDARApiFactory = function (configuration?: Con
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLifecycleApiV1CdarLifecycleGet(days?: number, invoiceId?: string | null, flowDirection?: GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, organizationId?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<LifecycleResponse> {
-            return localVarFp.getLifecycleApiV1CdarLifecycleGet(days, invoiceId, flowDirection, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, organizationId, options).then((request) => request(axios, basePath));
+        getLifecycleApiV1CdarLifecycleGet(days?: number, dateFrom?: string | null, dateTo?: string | null, invoiceId?: string | null, flowDirection?: GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, organizationId?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<LifecycleResponse> {
+            return localVarFp.getLifecycleApiV1CdarLifecycleGet(days, dateFrom, dateTo, invoiceId, flowDirection, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, organizationId, options).then((request) => request(axios, basePath));
         },
         /**
          * Returns the complete list of status reason codes (BR-FR-CDV-CL-09).  These codes explain the reason for a particular status.
@@ -802,11 +820,11 @@ export const Flux6InvoiceLifecycleCDARApiFactory = function (configuration?: Con
         /**
          * Validates a CDAR XML file against:  1. **XSD schema**: UN/CEFACT D22B CrossDomainAcknowledgementAndResponse 2. **Schematron BR-FR-CDV**: French business rules for invoice lifecycle  Returns validation status and detailed error messages if invalid.  **Note:** Use `/validate` to validate structured data fields (JSON).
          * @summary Validate CDAR XML against XSD and Schematron BR-FR-CDV
-         * @param {File} xmlFile CDAR XML file to validate
+         * @param {string} xmlFile CDAR XML file to validate
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateXmlCdarApiV1CdarValidateXmlPost(xmlFile: File, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
+        validateXmlCdarApiV1CdarValidateXmlPost(xmlFile: string, options?: RawAxiosRequestConfig): AxiosPromise<{ [key: string]: any; }> {
             return localVarFp.validateXmlCdarApiV1CdarValidateXmlPost(xmlFile, options).then((request) => request(axios, basePath));
         },
     };
@@ -838,9 +856,11 @@ export class Flux6InvoiceLifecycleCDARApi extends BaseAPI {
     }
 
     /**
-     * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7) - `invoiceId`: Optional filter on a specific invoice reference - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
+     * Returns lifecycle events (CDAR) grouped by invoice reference.  **How it works (AFNOR XP Z12-013 compliant):** 1. Searches lifecycle flows on the PDP by flowType + flowDirection + date range,    following the cursor pagination (all pages are read) 2. Downloads and parses each CDAR XML to extract the invoice reference 3. Groups events by invoice, sorted chronologically  **Parameters:** - `days`: Number of days to look back (default: 7). Ignored when `dateFrom` is set. - `dateFrom` / `dateTo`: Explicit time window (ISO 8601, UTC if no offset).   `dateTo` defaults to now. - `invoiceId`: Optional filter on a specific invoice reference. The filter is applied   after reading the window: prefer one call per synchronisation over one call per invoice.  **Limits:** at most 1000 status flows are read per call. When the limit is reached, `truncated` is `true` and the response is incomplete: split the window with `dateFrom` / `dateTo`. For incremental synchronisation, request the period since your last successful sync (plus a small margin). - `flowDirection`: `All` (default), `In` (statuses received from the counterparty)   or `Out` (statuses issued by you or your PA, e.g. 202/203)  **Authentication:** JWT Bearer (recommended) or PDP credentials as query parameters.
      * @summary [Simplified] Get lifecycle events for invoices
      * @param {number} [days] Number of days to look back
+     * @param {string | null} [dateFrom] Window start (ISO 8601, UTC if no offset). Overrides days.
+     * @param {string | null} [dateTo] Window end (ISO 8601, UTC if no offset). Default: now
      * @param {string | null} [invoiceId] Filter by invoice reference
      * @param {GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum} [flowDirection] All (default), In (received statuses) or Out (issued statuses)
      * @param {string | null} [pdpFlowServiceUrl] PDP Flow Service URL
@@ -851,8 +871,8 @@ export class Flux6InvoiceLifecycleCDARApi extends BaseAPI {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public getLifecycleApiV1CdarLifecycleGet(days?: number, invoiceId?: string | null, flowDirection?: GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, organizationId?: string | null, options?: RawAxiosRequestConfig) {
-        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).getLifecycleApiV1CdarLifecycleGet(days, invoiceId, flowDirection, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, organizationId, options).then((request) => request(this.axios, this.basePath));
+    public getLifecycleApiV1CdarLifecycleGet(days?: number, dateFrom?: string | null, dateTo?: string | null, invoiceId?: string | null, flowDirection?: GetLifecycleApiV1CdarLifecycleGetFlowDirectionEnum, pdpFlowServiceUrl?: string | null, pdpTokenUrl?: string | null, pdpClientId?: string | null, pdpClientSecret?: string | null, organizationId?: string | null, options?: RawAxiosRequestConfig) {
+        return Flux6InvoiceLifecycleCDARApiFp(this.configuration).getLifecycleApiV1CdarLifecycleGet(days, dateFrom, dateTo, invoiceId, flowDirection, pdpFlowServiceUrl, pdpTokenUrl, pdpClientId, pdpClientSecret, organizationId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -937,11 +957,11 @@ export class Flux6InvoiceLifecycleCDARApi extends BaseAPI {
     /**
      * Validates a CDAR XML file against:  1. **XSD schema**: UN/CEFACT D22B CrossDomainAcknowledgementAndResponse 2. **Schematron BR-FR-CDV**: French business rules for invoice lifecycle  Returns validation status and detailed error messages if invalid.  **Note:** Use `/validate` to validate structured data fields (JSON).
      * @summary Validate CDAR XML against XSD and Schematron BR-FR-CDV
-     * @param {File} xmlFile CDAR XML file to validate
+     * @param {string} xmlFile CDAR XML file to validate
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public validateXmlCdarApiV1CdarValidateXmlPost(xmlFile: File, options?: RawAxiosRequestConfig) {
+    public validateXmlCdarApiV1CdarValidateXmlPost(xmlFile: string, options?: RawAxiosRequestConfig) {
         return Flux6InvoiceLifecycleCDARApiFp(this.configuration).validateXmlCdarApiV1CdarValidateXmlPost(xmlFile, options).then((request) => request(this.axios, this.basePath));
     }
 }

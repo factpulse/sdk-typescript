@@ -81,7 +81,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ElectronicSignatureApi(configuration);
 
-let pdfFile: File; //PDF file to sign (will be processed and returned signed in base64) (default to undefined)
+let pdfFile: string; //PDF file to sign (will be processed and returned signed in base64) (default to undefined)
 let reason: string; // (optional) (default to undefined)
 let location: string; // (optional) (default to undefined)
 let contact: string; // (optional) (default to undefined)
@@ -104,7 +104,7 @@ const { status, data } = await apiInstance.signPdfApiV1ProcessingSignPdfPost(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **pdfFile** | [**File**] | PDF file to sign (will be processed and returned signed in base64) | defaults to undefined|
+| **pdfFile** | [**string**] | PDF file to sign (will be processed and returned signed in base64) | defaults to undefined|
 | **reason** | [**string**] |  | (optional) defaults to undefined|
 | **location** | [**string**] |  | (optional) defaults to undefined|
 | **contact** | [**string**] |  | (optional) defaults to undefined|
@@ -155,7 +155,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ElectronicSignatureApi(configuration);
 
-let pdfFile: File; //PDF file to sign (processed asynchronously) (default to undefined)
+let pdfFile: string; //PDF file to sign (processed asynchronously) (default to undefined)
 let callbackUrl: string; // (optional) (default to undefined)
 let webhookMode: string; //Webhook content delivery: \\\'inline\\\' (base64 in payload) or \\\'download_url\\\' (temporary URL, 1h TTL) (optional) (default to 'inline')
 let reason: string; // (optional) (default to undefined)
@@ -182,7 +182,7 @@ const { status, data } = await apiInstance.signPdfAsyncApiV1ProcessingSignPdfAsy
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **pdfFile** | [**File**] | PDF file to sign (processed asynchronously) | defaults to undefined|
+| **pdfFile** | [**string**] | PDF file to sign (processed asynchronously) | defaults to undefined|
 | **callbackUrl** | [**string**] |  | (optional) defaults to undefined|
 | **webhookMode** | [**string**] | Webhook content delivery: \\\&#39;inline\\\&#39; (base64 in payload) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL) | (optional) defaults to 'inline'|
 | **reason** | [**string**] |  | (optional) defaults to undefined|
@@ -234,7 +234,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new ElectronicSignatureApi(configuration);
 
-let pdfFile: File; //PDF file to validate (will be analyzed to detect and validate signatures) (default to undefined)
+let pdfFile: string; //PDF file to validate (will be analyzed to detect and validate signatures) (default to undefined)
 
 const { status, data } = await apiInstance.validatePdfSignatureEndpointApiV1ProcessingValidatePdfSignaturePost(
     pdfFile
@@ -245,7 +245,7 @@ const { status, data } = await apiInstance.validatePdfSignatureEndpointApiV1Proc
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **pdfFile** | [**File**] | PDF file to validate (will be analyzed to detect and validate signatures) | defaults to undefined|
+| **pdfFile** | [**string**] | PDF file to validate (will be analyzed to detect and validate signatures) | defaults to undefined|
 
 
 ### Return type

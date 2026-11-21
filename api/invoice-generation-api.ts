@@ -47,14 +47,14 @@ export const InvoiceGenerationApiAxiosParamCreator = function (configuration?: C
          * @param {APIProfile} [profile] Factur-X/CII profile: MINIMUM, BASIC, EN16931 or EXTENDED. Ignored when output_format&#x3D;\\\&#39;ubl\\\&#39; (always EN16931).
          * @param {OutputFormat} [outputFormat] Output format: \\\&#39;xml\\\&#39; or \\\&#39;cii\\\&#39; (CII/Factur-X XML), \\\&#39;ubl\\\&#39; (UBL 2.1 XML), \\\&#39;pdf\\\&#39; (Factur-X PDF/A-3).
          * @param {boolean} [autoEnrich] 🆕 Enable auto-enrichment from SIRET/SIREN (simplified format only)
-         * @param {File | null} [sourcePdf] 
+         * @param {string | null} [sourcePdf] 
          * @param {string | null} [callbackUrl] 
          * @param {string} [webhookMode] Webhook content delivery: \\\&#39;inline\\\&#39; (base64 in payload) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL)
          * @param {boolean | null} [skipBrFr] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        generateInvoiceApiV1ProcessingGenerateInvoicePost: async (invoiceData: string, profile?: APIProfile, outputFormat?: OutputFormat, autoEnrich?: boolean, sourcePdf?: File | null, callbackUrl?: string | null, webhookMode?: string, skipBrFr?: boolean | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        generateInvoiceApiV1ProcessingGenerateInvoicePost: async (invoiceData: string, profile?: APIProfile, outputFormat?: OutputFormat, autoEnrich?: boolean, sourcePdf?: string | null, callbackUrl?: string | null, webhookMode?: string, skipBrFr?: boolean | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'invoiceData' is not null or undefined
             assertParamExists('generateInvoiceApiV1ProcessingGenerateInvoicePost', 'invoiceData', invoiceData)
             const localVarPath = `/api/v1/processing/generate-invoice`;
@@ -240,14 +240,14 @@ export const InvoiceGenerationApiFp = function(configuration?: Configuration) {
          * @param {APIProfile} [profile] Factur-X/CII profile: MINIMUM, BASIC, EN16931 or EXTENDED. Ignored when output_format&#x3D;\\\&#39;ubl\\\&#39; (always EN16931).
          * @param {OutputFormat} [outputFormat] Output format: \\\&#39;xml\\\&#39; or \\\&#39;cii\\\&#39; (CII/Factur-X XML), \\\&#39;ubl\\\&#39; (UBL 2.1 XML), \\\&#39;pdf\\\&#39; (Factur-X PDF/A-3).
          * @param {boolean} [autoEnrich] 🆕 Enable auto-enrichment from SIRET/SIREN (simplified format only)
-         * @param {File | null} [sourcePdf] 
+         * @param {string | null} [sourcePdf] 
          * @param {string | null} [callbackUrl] 
          * @param {string} [webhookMode] Webhook content delivery: \\\&#39;inline\\\&#39; (base64 in payload) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL)
          * @param {boolean | null} [skipBrFr] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async generateInvoiceApiV1ProcessingGenerateInvoicePost(invoiceData: string, profile?: APIProfile, outputFormat?: OutputFormat, autoEnrich?: boolean, sourcePdf?: File | null, callbackUrl?: string | null, webhookMode?: string, skipBrFr?: boolean | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskResponse>> {
+        async generateInvoiceApiV1ProcessingGenerateInvoicePost(invoiceData: string, profile?: APIProfile, outputFormat?: OutputFormat, autoEnrich?: boolean, sourcePdf?: string | null, callbackUrl?: string | null, webhookMode?: string, skipBrFr?: boolean | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.generateInvoiceApiV1ProcessingGenerateInvoicePost(invoiceData, profile, outputFormat, autoEnrich, sourcePdf, callbackUrl, webhookMode, skipBrFr, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['InvoiceGenerationApi.generateInvoiceApiV1ProcessingGenerateInvoicePost']?.[localVarOperationServerIndex]?.url;
@@ -299,14 +299,14 @@ export const InvoiceGenerationApiFactory = function (configuration?: Configurati
          * @param {APIProfile} [profile] Factur-X/CII profile: MINIMUM, BASIC, EN16931 or EXTENDED. Ignored when output_format&#x3D;\\\&#39;ubl\\\&#39; (always EN16931).
          * @param {OutputFormat} [outputFormat] Output format: \\\&#39;xml\\\&#39; or \\\&#39;cii\\\&#39; (CII/Factur-X XML), \\\&#39;ubl\\\&#39; (UBL 2.1 XML), \\\&#39;pdf\\\&#39; (Factur-X PDF/A-3).
          * @param {boolean} [autoEnrich] 🆕 Enable auto-enrichment from SIRET/SIREN (simplified format only)
-         * @param {File | null} [sourcePdf] 
+         * @param {string | null} [sourcePdf] 
          * @param {string | null} [callbackUrl] 
          * @param {string} [webhookMode] Webhook content delivery: \\\&#39;inline\\\&#39; (base64 in payload) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL)
          * @param {boolean | null} [skipBrFr] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        generateInvoiceApiV1ProcessingGenerateInvoicePost(invoiceData: string, profile?: APIProfile, outputFormat?: OutputFormat, autoEnrich?: boolean, sourcePdf?: File | null, callbackUrl?: string | null, webhookMode?: string, skipBrFr?: boolean | null, options?: RawAxiosRequestConfig): AxiosPromise<TaskResponse> {
+        generateInvoiceApiV1ProcessingGenerateInvoicePost(invoiceData: string, profile?: APIProfile, outputFormat?: OutputFormat, autoEnrich?: boolean, sourcePdf?: string | null, callbackUrl?: string | null, webhookMode?: string, skipBrFr?: boolean | null, options?: RawAxiosRequestConfig): AxiosPromise<TaskResponse> {
             return localVarFp.generateInvoiceApiV1ProcessingGenerateInvoicePost(invoiceData, profile, outputFormat, autoEnrich, sourcePdf, callbackUrl, webhookMode, skipBrFr, options).then((request) => request(axios, basePath));
         },
         /**
@@ -347,14 +347,14 @@ export class InvoiceGenerationApi extends BaseAPI {
      * @param {APIProfile} [profile] Factur-X/CII profile: MINIMUM, BASIC, EN16931 or EXTENDED. Ignored when output_format&#x3D;\\\&#39;ubl\\\&#39; (always EN16931).
      * @param {OutputFormat} [outputFormat] Output format: \\\&#39;xml\\\&#39; or \\\&#39;cii\\\&#39; (CII/Factur-X XML), \\\&#39;ubl\\\&#39; (UBL 2.1 XML), \\\&#39;pdf\\\&#39; (Factur-X PDF/A-3).
      * @param {boolean} [autoEnrich] 🆕 Enable auto-enrichment from SIRET/SIREN (simplified format only)
-     * @param {File | null} [sourcePdf] 
+     * @param {string | null} [sourcePdf] 
      * @param {string | null} [callbackUrl] 
      * @param {string} [webhookMode] Webhook content delivery: \\\&#39;inline\\\&#39; (base64 in payload) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL)
      * @param {boolean | null} [skipBrFr] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public generateInvoiceApiV1ProcessingGenerateInvoicePost(invoiceData: string, profile?: APIProfile, outputFormat?: OutputFormat, autoEnrich?: boolean, sourcePdf?: File | null, callbackUrl?: string | null, webhookMode?: string, skipBrFr?: boolean | null, options?: RawAxiosRequestConfig) {
+    public generateInvoiceApiV1ProcessingGenerateInvoicePost(invoiceData: string, profile?: APIProfile, outputFormat?: OutputFormat, autoEnrich?: boolean, sourcePdf?: string | null, callbackUrl?: string | null, webhookMode?: string, skipBrFr?: boolean | null, options?: RawAxiosRequestConfig) {
         return InvoiceGenerationApiFp(this.configuration).generateInvoiceApiV1ProcessingGenerateInvoicePost(invoiceData, profile, outputFormat, autoEnrich, sourcePdf, callbackUrl, webhookMode, skipBrFr, options).then((request) => request(this.axios, this.basePath));
     }
 

@@ -15,12 +15,23 @@
 
 
 /**
- * Response for validation errors.
+ * VAT regime of the client\'s company at SuperPDP.
  */
-export interface ValidationErrorResponse {
+export interface SuperPDPVatRegimeResponse {
+    'vatRegime'?: SuperPDPVatRegimeResponseVatRegimeEnum | null;
     /**
-     * List of detected validation errors.
+     * Whether VAT on debits is opted for
      */
-    'detail': Array<string>;
+    'hasVatOnDebits'?: boolean;
 }
+
+export const SuperPDPVatRegimeResponseVatRegimeEnum = {
+    Monthly: 'monthly',
+    Quarterly: 'quarterly',
+    Simplified: 'simplified',
+    VatExemption: 'vat_exemption',
+} as const;
+
+export type SuperPDPVatRegimeResponseVatRegimeEnum = typeof SuperPDPVatRegimeResponseVatRegimeEnum[keyof typeof SuperPDPVatRegimeResponseVatRegimeEnum];
+
 

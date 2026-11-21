@@ -41,14 +41,14 @@ export const FacturXConversionApiAxiosParamCreator = function (configuration?: C
         /**
          * Launch an asynchronous conversion via Celery.  ## Workflow  1. **Upload**: Document is sent as multipart/form-data 2. **Celery Task**: Task is queued for processing 3. **Callback**: Webhook notification on completion  ## Possible responses  - **202**: Task accepted, processing - **400**: Invalid file
          * @summary Convert a document to Factur-X (async mode)
-         * @param {File} file Document to convert (PDF, DOCX, XLSX, JPG, PNG)
+         * @param {string} file Document to convert (PDF, DOCX, XLSX, JPG, PNG)
          * @param {string} [output] Output format: pdf, xml, both
          * @param {string | null} [callbackUrl] 
          * @param {string} [webhookMode] Content delivery mode: \\\&#39;inline\\\&#39; (base64 in webhook) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        convertDocumentAsyncApiV1ConvertAsyncPost: async (file: File, output?: string, callbackUrl?: string | null, webhookMode?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        convertDocumentAsyncApiV1ConvertAsyncPost: async (file: string, output?: string, callbackUrl?: string | null, webhookMode?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'file' is not null or undefined
             assertParamExists('convertDocumentAsyncApiV1ConvertAsyncPost', 'file', file)
             const localVarPath = `/api/v1/convert/async`;
@@ -331,14 +331,14 @@ export const FacturXConversionApiFp = function(configuration?: Configuration) {
         /**
          * Launch an asynchronous conversion via Celery.  ## Workflow  1. **Upload**: Document is sent as multipart/form-data 2. **Celery Task**: Task is queued for processing 3. **Callback**: Webhook notification on completion  ## Possible responses  - **202**: Task accepted, processing - **400**: Invalid file
          * @summary Convert a document to Factur-X (async mode)
-         * @param {File} file Document to convert (PDF, DOCX, XLSX, JPG, PNG)
+         * @param {string} file Document to convert (PDF, DOCX, XLSX, JPG, PNG)
          * @param {string} [output] Output format: pdf, xml, both
          * @param {string | null} [callbackUrl] 
          * @param {string} [webhookMode] Content delivery mode: \\\&#39;inline\\\&#39; (base64 in webhook) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async convertDocumentAsyncApiV1ConvertAsyncPost(file: File, output?: string, callbackUrl?: string | null, webhookMode?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+        async convertDocumentAsyncApiV1ConvertAsyncPost(file: string, output?: string, callbackUrl?: string | null, webhookMode?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.convertDocumentAsyncApiV1ConvertAsyncPost(file, output, callbackUrl, webhookMode, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FacturXConversionApi.convertDocumentAsyncApiV1ConvertAsyncPost']?.[localVarOperationServerIndex]?.url;
@@ -424,14 +424,14 @@ export const FacturXConversionApiFactory = function (configuration?: Configurati
         /**
          * Launch an asynchronous conversion via Celery.  ## Workflow  1. **Upload**: Document is sent as multipart/form-data 2. **Celery Task**: Task is queued for processing 3. **Callback**: Webhook notification on completion  ## Possible responses  - **202**: Task accepted, processing - **400**: Invalid file
          * @summary Convert a document to Factur-X (async mode)
-         * @param {File} file Document to convert (PDF, DOCX, XLSX, JPG, PNG)
+         * @param {string} file Document to convert (PDF, DOCX, XLSX, JPG, PNG)
          * @param {string} [output] Output format: pdf, xml, both
          * @param {string | null} [callbackUrl] 
          * @param {string} [webhookMode] Content delivery mode: \\\&#39;inline\\\&#39; (base64 in webhook) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        convertDocumentAsyncApiV1ConvertAsyncPost(file: File, output?: string, callbackUrl?: string | null, webhookMode?: string, options?: RawAxiosRequestConfig): AxiosPromise<any> {
+        convertDocumentAsyncApiV1ConvertAsyncPost(file: string, output?: string, callbackUrl?: string | null, webhookMode?: string, options?: RawAxiosRequestConfig): AxiosPromise<any> {
             return localVarFp.convertDocumentAsyncApiV1ConvertAsyncPost(file, output, callbackUrl, webhookMode, options).then((request) => request(axios, basePath));
         },
         /**
@@ -497,14 +497,14 @@ export class FacturXConversionApi extends BaseAPI {
     /**
      * Launch an asynchronous conversion via Celery.  ## Workflow  1. **Upload**: Document is sent as multipart/form-data 2. **Celery Task**: Task is queued for processing 3. **Callback**: Webhook notification on completion  ## Possible responses  - **202**: Task accepted, processing - **400**: Invalid file
      * @summary Convert a document to Factur-X (async mode)
-     * @param {File} file Document to convert (PDF, DOCX, XLSX, JPG, PNG)
+     * @param {string} file Document to convert (PDF, DOCX, XLSX, JPG, PNG)
      * @param {string} [output] Output format: pdf, xml, both
      * @param {string | null} [callbackUrl] 
      * @param {string} [webhookMode] Content delivery mode: \\\&#39;inline\\\&#39; (base64 in webhook) or \\\&#39;download_url\\\&#39; (temporary URL, 1h TTL)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public convertDocumentAsyncApiV1ConvertAsyncPost(file: File, output?: string, callbackUrl?: string | null, webhookMode?: string, options?: RawAxiosRequestConfig) {
+    public convertDocumentAsyncApiV1ConvertAsyncPost(file: string, output?: string, callbackUrl?: string | null, webhookMode?: string, options?: RawAxiosRequestConfig) {
         return FacturXConversionApiFp(this.configuration).convertDocumentAsyncApiV1ConvertAsyncPost(file, output, callbackUrl, webhookMode, options).then((request) => request(this.axios, this.basePath));
     }
 

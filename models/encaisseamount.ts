@@ -15,7 +15,7 @@
 
 
 /**
- * Montant encaissé (requis pour statut 212)
+ * Montant TTC encaissé à un seul taux (statut 212). Négatif pour un décaissement. Pour plusieurs taux, utiliser encaisseAmountsByRate
  */
 export interface Encaisseamount {
 }

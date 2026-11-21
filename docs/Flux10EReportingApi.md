@@ -415,7 +415,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new Flux10EReportingApi(configuration);
 
-let xmlFile: File; //E-reporting XML file (default to undefined)
+let xmlFile: string; //E-reporting XML file (default to undefined)
 let organizationId: string; //Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. (optional) (default to undefined)
 let trackingId: string; // (optional) (default to undefined)
 let skipValidation: boolean; //Skip XSD validation (optional) (default to false)
@@ -440,7 +440,7 @@ const { status, data } = await apiInstance.submitXmlEreportingApiV1EreportingSub
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **xmlFile** | [**File**] | E-reporting XML file | defaults to undefined|
+| **xmlFile** | [**string**] | E-reporting XML file | defaults to undefined|
 | **organizationId** | [**string**] | Organization ID relayed to the PDP (AFNOR XP Z12-013 delegation / multi-tenancy). Required by some PDPs to select the client space. | (optional) defaults to undefined|
 | **trackingId** | [**string**] |  | (optional) defaults to undefined|
 | **skipValidation** | [**boolean**] | Skip XSD validation | (optional) defaults to false|
@@ -603,7 +603,7 @@ import {
 const configuration = new Configuration();
 const apiInstance = new Flux10EReportingApi(configuration);
 
-let xmlFile: File; //E-reporting XML file to validate (default to undefined)
+let xmlFile: string; //E-reporting XML file to validate (default to undefined)
 let validateCoherence: boolean; //Validate data coherence (REJ_COH) (optional) (default to true)
 let validatePeriod: boolean; //Validate period coherence (REJ_PER) (optional) (default to true)
 
@@ -618,7 +618,7 @@ const { status, data } = await apiInstance.validateXmlEreportingApiV1EreportingV
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **xmlFile** | [**File**] | E-reporting XML file to validate | defaults to undefined|
+| **xmlFile** | [**string**] | E-reporting XML file to validate | defaults to undefined|
 | **validateCoherence** | [**boolean**] | Validate data coherence (REJ_COH) | (optional) defaults to true|
 | **validatePeriod** | [**boolean**] | Validate period coherence (REJ_PER) | (optional) defaults to true|
 

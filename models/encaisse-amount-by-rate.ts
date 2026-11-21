@@ -13,18 +13,18 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import type { Amount1 } from './amount1';
 
 /**
- * Optional Chorus Pro credentials.  **MODE 1 - JWT retrieval (recommended):** Do not provide this `credentials` field in the payload. Credentials will be automatically retrieved via client_uid from JWT (0-trust).  **MODE 2 - Credentials in payload:** Provide all required fields below. Useful for tests or third-party integrations.
+ * Montant encaissé TTC pour un taux de TVA (un bloc MEN, MDG-43).
  */
-export interface ChorusProCredentials {
-    'pisteClientId'?: string | null;
-    'pisteClientSecret'?: string | null;
-    'chorusLogin'?: string | null;
-    'chorusPassword'?: string | null;
+export interface EncaisseAmountByRate {
     /**
-     * [MODE 2] Use sandbox mode (default: True)
+     * Taux de TVA applicable au montant encaissé, en % (MDT-224)
      */
-    'sandboxMode'?: boolean;
+    'rate': number;
+    'amount': Amount1;
 }
 

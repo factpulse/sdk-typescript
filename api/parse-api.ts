@@ -37,12 +37,12 @@ export const ParseApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Parse a Factur-X file asynchronously using a Celery task.  **Use case:** For large files or when you want non-blocking processing.  **Workflow:** 1. Submit file with this endpoint -> receive `task_id` 2. Poll `/tasks/{task_id}/status` for result 3. Result contains `invoice` and `detected_profile`  **Optional:** Provide `callback_url` to receive a webhook when parsing completes.
          * @summary Parse Factur-X XML or PDF (async)
-         * @param {File} file Factur-X PDF or XML file to parse
+         * @param {string} file Factur-X PDF or XML file to parse
          * @param {string | null} [callbackUrl] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost: async (file: File, callbackUrl?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost: async (file: string, callbackUrl?: string | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'file' is not null or undefined
             assertParamExists('parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost', 'file', file)
             const localVarPath = `/api/v1/processing/parse-facturx/async`;
@@ -89,11 +89,11 @@ export const ParseApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Parse a CII XML, UBL XML, or Factur-X PDF and extract the invoice data as a FacturXInvoice model.  **Use cases:** - Extract invoice data from received invoices (any format) - Round-trip: parse an existing invoice, modify it, and regenerate in another format - Convert between CII and UBL via the FacturXInvoice pivot model  **Supported formats:** - Factur-X PDF (PDF/A-3 with embedded CII XML) - CII XML (UN/CEFACT Cross-Industry Invoice) - UBL 2.1 XML (OASIS Invoice or CreditNote)  **Returns:** - `invoice`: Complete FacturXInvoice data (can be used with /generate-invoice) - `detected_profile`: Factur-X profile (MINIMUM, BASIC, EN16931, EXTENDED)
          * @summary Parse CII, UBL or Factur-X PDF (sync)
-         * @param {File} file Factur-X PDF or XML file to parse
+         * @param {string} file Factur-X PDF or XML file to parse
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        parseFacturxSyncApiV1ProcessingParseFacturxPost: async (file: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        parseFacturxSyncApiV1ProcessingParseFacturxPost: async (file: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'file' is not null or undefined
             assertParamExists('parseFacturxSyncApiV1ProcessingParseFacturxPost', 'file', file)
             const localVarPath = `/api/v1/processing/parse-facturx`;
@@ -145,12 +145,12 @@ export const ParseApiFp = function(configuration?: Configuration) {
         /**
          * Parse a Factur-X file asynchronously using a Celery task.  **Use case:** For large files or when you want non-blocking processing.  **Workflow:** 1. Submit file with this endpoint -> receive `task_id` 2. Poll `/tasks/{task_id}/status` for result 3. Result contains `invoice` and `detected_profile`  **Optional:** Provide `callback_url` to receive a webhook when parsing completes.
          * @summary Parse Factur-X XML or PDF (async)
-         * @param {File} file Factur-X PDF or XML file to parse
+         * @param {string} file Factur-X PDF or XML file to parse
          * @param {string | null} [callbackUrl] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost(file: File, callbackUrl?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskResponse>> {
+        async parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost(file: string, callbackUrl?: string | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TaskResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost(file, callbackUrl, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ParseApi.parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost']?.[localVarOperationServerIndex]?.url;
@@ -159,11 +159,11 @@ export const ParseApiFp = function(configuration?: Configuration) {
         /**
          * Parse a CII XML, UBL XML, or Factur-X PDF and extract the invoice data as a FacturXInvoice model.  **Use cases:** - Extract invoice data from received invoices (any format) - Round-trip: parse an existing invoice, modify it, and regenerate in another format - Convert between CII and UBL via the FacturXInvoice pivot model  **Supported formats:** - Factur-X PDF (PDF/A-3 with embedded CII XML) - CII XML (UN/CEFACT Cross-Industry Invoice) - UBL 2.1 XML (OASIS Invoice or CreditNote)  **Returns:** - `invoice`: Complete FacturXInvoice data (can be used with /generate-invoice) - `detected_profile`: Factur-X profile (MINIMUM, BASIC, EN16931, EXTENDED)
          * @summary Parse CII, UBL or Factur-X PDF (sync)
-         * @param {File} file Factur-X PDF or XML file to parse
+         * @param {string} file Factur-X PDF or XML file to parse
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async parseFacturxSyncApiV1ProcessingParseFacturxPost(file: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ParseFacturXResponse>> {
+        async parseFacturxSyncApiV1ProcessingParseFacturxPost(file: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ParseFacturXResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.parseFacturxSyncApiV1ProcessingParseFacturxPost(file, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ParseApi.parseFacturxSyncApiV1ProcessingParseFacturxPost']?.[localVarOperationServerIndex]?.url;
@@ -181,22 +181,22 @@ export const ParseApiFactory = function (configuration?: Configuration, basePath
         /**
          * Parse a Factur-X file asynchronously using a Celery task.  **Use case:** For large files or when you want non-blocking processing.  **Workflow:** 1. Submit file with this endpoint -> receive `task_id` 2. Poll `/tasks/{task_id}/status` for result 3. Result contains `invoice` and `detected_profile`  **Optional:** Provide `callback_url` to receive a webhook when parsing completes.
          * @summary Parse Factur-X XML or PDF (async)
-         * @param {File} file Factur-X PDF or XML file to parse
+         * @param {string} file Factur-X PDF or XML file to parse
          * @param {string | null} [callbackUrl] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost(file: File, callbackUrl?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<TaskResponse> {
+        parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost(file: string, callbackUrl?: string | null, options?: RawAxiosRequestConfig): AxiosPromise<TaskResponse> {
             return localVarFp.parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost(file, callbackUrl, options).then((request) => request(axios, basePath));
         },
         /**
          * Parse a CII XML, UBL XML, or Factur-X PDF and extract the invoice data as a FacturXInvoice model.  **Use cases:** - Extract invoice data from received invoices (any format) - Round-trip: parse an existing invoice, modify it, and regenerate in another format - Convert between CII and UBL via the FacturXInvoice pivot model  **Supported formats:** - Factur-X PDF (PDF/A-3 with embedded CII XML) - CII XML (UN/CEFACT Cross-Industry Invoice) - UBL 2.1 XML (OASIS Invoice or CreditNote)  **Returns:** - `invoice`: Complete FacturXInvoice data (can be used with /generate-invoice) - `detected_profile`: Factur-X profile (MINIMUM, BASIC, EN16931, EXTENDED)
          * @summary Parse CII, UBL or Factur-X PDF (sync)
-         * @param {File} file Factur-X PDF or XML file to parse
+         * @param {string} file Factur-X PDF or XML file to parse
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        parseFacturxSyncApiV1ProcessingParseFacturxPost(file: File, options?: RawAxiosRequestConfig): AxiosPromise<ParseFacturXResponse> {
+        parseFacturxSyncApiV1ProcessingParseFacturxPost(file: string, options?: RawAxiosRequestConfig): AxiosPromise<ParseFacturXResponse> {
             return localVarFp.parseFacturxSyncApiV1ProcessingParseFacturxPost(file, options).then((request) => request(axios, basePath));
         },
     };
@@ -209,23 +209,23 @@ export class ParseApi extends BaseAPI {
     /**
      * Parse a Factur-X file asynchronously using a Celery task.  **Use case:** For large files or when you want non-blocking processing.  **Workflow:** 1. Submit file with this endpoint -> receive `task_id` 2. Poll `/tasks/{task_id}/status` for result 3. Result contains `invoice` and `detected_profile`  **Optional:** Provide `callback_url` to receive a webhook when parsing completes.
      * @summary Parse Factur-X XML or PDF (async)
-     * @param {File} file Factur-X PDF or XML file to parse
+     * @param {string} file Factur-X PDF or XML file to parse
      * @param {string | null} [callbackUrl] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost(file: File, callbackUrl?: string | null, options?: RawAxiosRequestConfig) {
+    public parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost(file: string, callbackUrl?: string | null, options?: RawAxiosRequestConfig) {
         return ParseApiFp(this.configuration).parseFacturxAsyncApiV1ProcessingParseFacturxAsyncPost(file, callbackUrl, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * Parse a CII XML, UBL XML, or Factur-X PDF and extract the invoice data as a FacturXInvoice model.  **Use cases:** - Extract invoice data from received invoices (any format) - Round-trip: parse an existing invoice, modify it, and regenerate in another format - Convert between CII and UBL via the FacturXInvoice pivot model  **Supported formats:** - Factur-X PDF (PDF/A-3 with embedded CII XML) - CII XML (UN/CEFACT Cross-Industry Invoice) - UBL 2.1 XML (OASIS Invoice or CreditNote)  **Returns:** - `invoice`: Complete FacturXInvoice data (can be used with /generate-invoice) - `detected_profile`: Factur-X profile (MINIMUM, BASIC, EN16931, EXTENDED)
      * @summary Parse CII, UBL or Factur-X PDF (sync)
-     * @param {File} file Factur-X PDF or XML file to parse
+     * @param {string} file Factur-X PDF or XML file to parse
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    public parseFacturxSyncApiV1ProcessingParseFacturxPost(file: File, options?: RawAxiosRequestConfig) {
+    public parseFacturxSyncApiV1ProcessingParseFacturxPost(file: string, options?: RawAxiosRequestConfig) {
         return ParseApiFp(this.configuration).parseFacturxSyncApiV1ProcessingParseFacturxPost(file, options).then((request) => request(this.axios, this.basePath));
     }
 }

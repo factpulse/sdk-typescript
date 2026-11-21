@@ -33,5 +33,15 @@ export interface LifecycleResponse {
      * Nombre de jours de la fenetre de recherche
      */
     'cutoffDays': number;
+    /**
+     * Nombre de flux de statut (CDAR) lus sur la PA
+     */
+    'totalFlows'?: number;
+    /**
+     * True si la limite de flux lus par appel a ete atteinte : la reponse est incomplete, reduire la fenetre (dateFrom/dateTo ou days)
+     */
+    'truncated'?: boolean;
+    'dateFrom'?: string | null;
+    'dateTo'?: string | null;
 }
 
